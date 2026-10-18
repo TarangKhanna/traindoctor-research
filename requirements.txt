@@ -1,6 +1,6 @@
 # Library (environment, jobs runtime, verifier): pinned to an exact commit.
-# LIB_SHA_PLACEHOLDER is replaced with the traindoctor-env commit this repository was validated against.
-traindoctor-env @ git+https://github.com/TarangKhanna/traindoctor-env@LIB_SHA_PLACEHOLDER
+# Pinned to the traindoctor-env commit this repository was validated against.
+traindoctor-env @ git+https://github.com/TarangKhanna/traindoctor-env@0b0a36b6b2a34a620e959c665a59f8a92b7413c2
 # CPU test and analysis dependencies (versions equal the library's uv.lock).
 # On Linux add: --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.14.1

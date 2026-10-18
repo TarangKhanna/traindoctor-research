@@ -39,3 +39,5 @@ Expected: `alt no invariant 1`, `alt yes accepted 9`, `borderline yes accepted 1
 Every row of both red-team tables ran with `exec_mode = modal_sandbox`: the repair executed in a network-less gVisor Modal Sandbox and the invariants were recomputed outside it. Results labelled `dev_container` came from trusted pinned code in a local container and are exploratory training-reward views only. The 38 execution failures show that those cheats do not produce a working job, not that an invariant would catch them.
 
 The isolation runs `results/redteam_isolate*.json` are the surviving raw red-team records. Files hash-pinned by `results/SHA256SUMS` and the frozen protocols are byte-identical to their original versions, so they may mention paths, tooling and documents from the original development layout that do not exist here.
+
+Note: `results/TEST_REPORT.md` and the frozen protocol were written in the original repository layout, so paths inside them (`docs/results/...`, `docs/prereg/...`, `modal_train/results/...`) correspond to `evidence/results/...`, `evidence/prereg/...` and files that are not published here. They are unmodified because their hashes are recorded.

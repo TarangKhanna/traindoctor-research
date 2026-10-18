@@ -1,6 +1,9 @@
 """Rules under test (pure pieces of rl/first_update.py).
 GRPO advantages are group-relative (zero mean per group, exactly zero for an all-equal group), so only groups with
 reward spread can move the policy; and a reload check must FAIL when the reloaded logprobs differ beyond tolerance."""
+import pytest
+
+pytest.importorskip("mlx.core", reason="needs MLX (Apple Silicon)")
 import mlx.core as mx
 from mlxrl.algo.grpo import algorithm_by_name
 

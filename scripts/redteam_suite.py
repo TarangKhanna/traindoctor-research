@@ -446,7 +446,7 @@ _tl = threading.local()
 def _install_capture():
     """Wrap run_resubmit so each case also reads back (as data) the cheat reports the job code wrote and the size of
     the copied-back ledger. Evidence only: the verdict still comes from reexec.check on the trusted side."""
-    from modal_train import sandbox_backend
+    from traindoctor_env import modal_backend as sandbox_backend
     orig = sandbox_backend.run_resubmit
 
     def wrapped(jd, sched, kw, **k):
@@ -527,7 +527,7 @@ def run(args) -> int:
         import modal  # noqa: F401
     except ImportError:
         sys.path.append(os.environ["TD_MODAL_SITE"])    # the Modal client lives in a separate venv, appended AFTER the repo venv
-    from modal_train import sandbox_backend
+    from traindoctor_env import modal_backend as sandbox_backend
     from traindoctor_env import reexec
     from traindoctor_env.oracle import reference_solution
     from traindoctor_env.snapshot import execute, load_truth

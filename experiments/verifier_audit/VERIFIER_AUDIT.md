@@ -2,7 +2,7 @@
 
 Scope: the Tier A prompt bundle and menu (can a model read the answer off the menu alone?), the V0/V1/V2 verifier and its tamper boundary, and the tests that guard them. The audit was done by the project's author with automated reviews; no external red team has run. The leak-validation scripts and their raw outputs are archived privately and are not published; the checks below can be re-run with `audit/menu_leak.py` and the tests named in each section.
 
-Verifiers: V0 = label correct; V1 = V0 + cited evidence observed and relevant; V2 = V1 + verified repair by re-execution with recovery-correctness invariants (committed sample accounting, restored state versus reference, lost work within one checkpoint interval, rank consistency, tamper checks) + safety gates. See [`docs/VERIFICATION.md`](../../docs/VERIFICATION.md).
+Verifiers: V0 = label correct; V1 = V0 + cited evidence observed and relevant; V2 = V1 + verified repair by re-execution with recovery-correctness invariants (committed sample accounting, restored state versus reference, lost work within one checkpoint interval, rank consistency, tamper checks) + safety gates. See [`docs/VERIFICATION.md`](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/VERIFICATION.md).
 
 ## 1. Menu leak (can the menu alone predict the answer?)
 
@@ -38,7 +38,7 @@ Source: [`evidence/results/REDTEAM_TABLE.md`](../../evidence/results/REDTEAM_TAB
 | cheats (19 classes) | **0 of 86 accepted**; pooled rule-of-three 95% bound <= 0.035; per-class n is 2 to 5 |
 | by rejection class | **48 by an artifact invariant, 38 by execution failure** |
 
-Execution failures show the cheats do not work, not that invariants would catch them; invariant coverage is claimed for the 48 only. Verifier v1.1 (opt-in, not active) accepts the B_DUP alt2 repair and still rejects all verified cheats (0 of 85): [`REDTEAM_TABLE_v11.md`](../../evidence/results/REDTEAM_TABLE_v11.md), [`VERIFIER_V11.md`](../../evidence/results/VERIFIER_V11.md). A2v2, a separately versioned scenario with a real producer thread, is in [`A2V2_SCENARIO.md`](../../evidence/results/A2V2_SCENARIO.md); the Modal Sandbox properties (network blocked, loopback Gloo works) are in [`MODAL_SANDBOX_PROOF.md`](../../evidence/results/MODAL_SANDBOX_PROOF.md).
+Execution failures show the cheats do not work, not that invariants would catch them; invariant coverage is claimed for the 48 only. Verifier v1.1 (opt-in, not active) accepts the B_DUP alt2 repair and still rejects all verified cheats (0 of 85): [`REDTEAM_TABLE_v11.md`](../../evidence/results/REDTEAM_TABLE_v11.md), [`VERIFIER_V11.md`](../../evidence/results/VERIFIER_V11.md). A2v2, a separately versioned scenario with a real producer thread, is in `A2V2_SCENARIO.md` (library); the Modal Sandbox properties (network blocked, loopback Gloo works) are in `MODAL_SANDBOX_PROOF.md` (library).
 
 ## 6. V1 equals V2 on 97.7% of development rollouts
 
@@ -52,4 +52,4 @@ Execution failures show the cheats do not work, not that invariants would catch 
 
 - Live re-execution of decoy repairs, and executed true-token counts at the 3,072 cap.
 - Independence of the leak validation (same author as the fix); the stumps were not run under a label-permutation null.
-- Linux executed-suite results: see [`docs/TESTING.md`](../../docs/TESTING.md).
+- Linux executed-suite results: see [`docs/TESTING.md`](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TESTING.md).

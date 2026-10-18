@@ -1,0 +1,50 @@
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  docs-and-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: README numbers match their sources
+        run: python scripts/check_readme.py
+      - name: Checksums
+        run: |
+          for d in evidence/results experiments/cross_agent_dev6 experiments/mutation_pilot; do
+            (cd "$d" && sha256sum -c SHA256SUMS)
+          done
+      - name: Markdown relative links
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys
+          bad = []
+          for p in pathlib.Path(".").rglob("*.md"):
+              if ".git" in p.parts:
+                  continue
+              for m in re.finditer(r"!?\[[^\]]*\]\(([^)\s]+)\)", p.read_text()):
+                  t = m[1].split("#")[0]
+                  if t and not re.match(r"[a-z]+:", t) and not (p.parent / t).exists():
+                      bad.append(f"{p}: {t}")
+          print("\n".join(bad) or "all relative links resolve")
+          sys.exit(1 if bad else 0)
+          PY
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+      - name: Tests
+        env:
+          PYTHONPATH: .
+          TD_KEY: research-test-key
+        run: python -m pytest -q

@@ -15,7 +15,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements-rl.txt   # only for rl/ (Apple Silicon, MLX)
 export PYTHONPATH=. TD_KEY=$(python -c "import secrets;print(secrets.token_hex(16))")
-python -m pytest -q
+python -m pytest -q --ignore=tests/test_first_update.py   # that file needs MLX (Apple Silicon)
 ```
 
 ## Results

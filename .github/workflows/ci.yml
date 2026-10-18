@@ -47,4 +47,4 @@ jobs:
         env:
           PYTHONPATH: .
           TD_KEY: research-test-key
-        run: python -m pytest -q
+        run: python -m pytest -q --ignore=tests/test_first_update.py

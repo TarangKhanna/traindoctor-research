@@ -15,7 +15,7 @@ Setup: 400 development seeds (10000..10399), 5-fold cross-validation across seed
 
 ## 2. Mutation check of the leak tests
 
-`python scripts/mutation_check_leak.py` applies 17 in-memory mutants (library code on disk is never changed) and requires each leak or config-visibility test to pass on the real code and fail on the mutant. Output: [`mutation_check_leak.json`](mutation_check_leak.json): 12 tests pass on real code; 17 of 17 mutants detected. The two weakest tests were strengthened before this count was reached.
+The mutation-check script and the config-visibility tests it exercises (`test_config_swap`) stay in the library, since they read the library source tree; this repository keeps only the recorded output. The script applies 17 in-memory mutants (library code on disk is never changed) and requires each leak or config-visibility test to pass on the real code and fail on the mutant. Output: [`mutation_check_leak.json`](mutation_check_leak.json): 12 tests pass on real code; 17 of 17 mutants detected. The two weakest tests were strengthened before this count was reached.
 
 ## 3. Tamper probes
 

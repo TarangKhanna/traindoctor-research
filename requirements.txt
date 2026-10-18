@@ -1,0 +1,12 @@
+# Library (environment, jobs runtime, verifier): pinned to an exact commit.
+# LIB_SHA_PLACEHOLDER is replaced with the traindoctor-env commit this repository was validated against.
+traindoctor-env @ git+https://github.com/TarangKhanna/traindoctor-env@LIB_SHA_PLACEHOLDER
+# CPU test and analysis dependencies (versions equal the library's uv.lock).
+# On Linux add: --extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+numpy==2.5.4
+pydantic==2.14.1
+pytest==9.1.1
+hypothesis==6.170.1
+# Needed only to run scripts and tests that import modal_train or call Modal.
+modal==1.6.2

@@ -7,3 +7,5 @@ A menu with three extra distractor repairs (a raised timeout, restart from scrat
 Next: menus with at least two label-consistent options that complete the run, each distractor violating exactly one V2 invariant, with outcomes from live re-execution. The A2v2 scenario (code and tests in the library; see [A2V2_STATUS.md](A2V2_STATUS.md)) is a first step in that direction. Other open items: held-out mechanisms instead of held-out seeds, a larger and independent red team, and an external review of the sandbox boundary.
 
 Development split, 6 paired seeds: V2 arm minus V0 arm = +4.64 points, 95% CI [-0.69, +9.98], inconclusive.
+
+The preregistered minimum meaningful difference is stated as 7.2 points in the TEST protocol and 20 in the power-analysis amendment: see [ERRATUM_mmd.md](ERRATUM_mmd.md).

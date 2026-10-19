@@ -31,3 +31,5 @@ Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/REA
 | Failure, reference repair and fake repair, locally | library `scripts/quickstart.py` | [RERUN_EXAMPLE.md](RERUN_EXAMPLE.md) | invariants printed; the verified verdict needs Modal | B |
 | Verified replay of gold and F11 on A2 | `R/quickstart_verified_replay.txt` | recorded output; a rerun needs Modal | gold accepted, F11 rejected (I1) | C |
 | A2v2 behaviour | library tests | [A2V2_STATUS.md](A2V2_STATUS.md) | result tables withheld | C |
+
+See [ERRATUM_mmd.md](ERRATUM_mmd.md) for the 7.2 vs 20 point MMD discrepancy.

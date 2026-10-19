@@ -47,7 +47,7 @@ The recovery-aware arm gained 10.36 percentage points over the label-only arm (9
 ## What is not reproducible here
 
 - Cross-agent prompts, raw answers, outcomes and harness; mutation-pilot validation receipts; the gate experiment; per-run development JSON behind the six-seed development comparison.
-- GPU training and evaluation (`modal_train/`, `rl/`) need Modal credit and an Apple Silicon machine for the MLX parts. They were not re-run after the split. The `modal_train` image builds expect the library source tree at a pinned version, and `scripts/redteam_suite.py` still imports `modal_train.sandbox_backend`, which became the library's `traindoctor_env.modal_backend`. These files are left as they were used for the published runs.
+- GPU training and evaluation (`modal_train/`, `rl/`) need Modal credit and an Apple Silicon machine for the MLX parts. They were not re-run after the split. The `modal_train` image builds expect the library source tree at a pinned version. `scripts/redteam_suite.py` imports `traindoctor_env.modal_backend` from the pinned library (import checked against `requirements.txt` on Python 3.12; the sandbox runs themselves were not repeated). The remaining files are left as they were used for the published runs.
 - The sealed test seed list is withheld; only its sha256 is published, so the test set cannot be regenerated.
 - The sealed-test protocol was frozen in a private repository before any test episode was built. It is copied unmodified here, and this repository's commit dates are not evidence of preregistration (see [evidence/README.md](evidence/README.md)).
 
@@ -58,4 +58,4 @@ The recovery-aware arm gained 10.36 percentage points over the label-only arm (9
 - Six paired seeds is a robustness minimum, not statistical power.
 - No claim about production NCCL/FSDP failures, arbitrary training programs, or difficulty for frontier agents.
 
-Related documents: [findings](docs/FINDINGS.md), [realism of the fault families](docs/REALISM.md), [related work](docs/RELATED_WORK.md). Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)); citation in [CITATION.cff](CITATION.cff); security reports in [SECURITY.md](SECURITY.md).
+Related documents: [evidence map](docs/EVIDENCE_MAP.md), [rerun example](docs/RERUN_EXAMPLE.md), [findings](docs/FINDINGS.md), [realism of the fault families](docs/REALISM.md), [related work](docs/RELATED_WORK.md). Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)); citation in [CITATION.cff](CITATION.cff); security reports in [SECURITY.md](SECURITY.md).

@@ -1,8 +1,15 @@
 # TrainDoctor research artifacts
 
-TrainDoctor is an environment in which AI agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs: four executed fault kinds across two synthetic families (mismatched collectives, A1; a rank stalled before communication, A2; checkpoint and sampler state that disagree after a worker failure, so samples are skipped, B_SKIP, or duplicated, B_DUP) plus a healthy control (B_OK), with a verifier that re-executes repairs in a sandbox and checks whether training actually recovered ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)). This repository holds the training and evaluation code, sealed-test evidence, experiments and analysis scripts that substantiate the reported results; the environment, jobs runtime, verifier, Modal repair backend and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). The headline findings are exploratory and partly negative: on the sealed test, GRPO with the recovery-aware reward outscored the label-only reward, but the gain came from evidence grounding rather than repair selection and is not distinguishable from a continued-SFT baseline with similar compute; no fake repair was accepted, though many of them failed during execution rather than at a correctness invariant; and strong coding agents solved all development tasks, so those tasks do not rank agents.
+**Question.** Does training a small model against a reward that checks whether a repaired training job actually recovers teach it to debug distributed training better than a reward that only checks the diagnosis label?
 
-This repository was split from the library at commit `6a8f565` and has a fresh history ([PROVENANCE.md](PROVENANCE.md)).
+TrainDoctor is an environment where agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs: four executed fault kinds in two synthetic families (A1 mismatched collectives, A2 a rank stalled before communication, B_SKIP and B_DUP checkpoint and sampler state that disagree after a worker failure) plus a healthy control (B_OK). A verifier re-executes each repair in a sandbox. The environment, verifier and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)); this repository holds the training and evaluation code, sealed-test evidence, experiments and analysis scripts.
+
+**Findings (exploratory, partly negative).**
+- **SFT and GRPO.** On a sealed test of 100 incidents, GRPO with the recovery-aware reward outscored the label-only reward (33.4% vs 23.0%). The gain came from evidence grounding. Repair selection did not improve, and continued SFT with similar compute is not distinguishable from the recovery-aware arm.
+- **Verifier audit.** None of 86 scripted fake repairs was accepted, but 38 of them only crashed, which shows they do not run, not that an invariant covers them. I wrote the attacks; there was no external review.
+- **Strong agents.** Claude and Codex solved all six development tasks. The tasks are too easy to rank agents, and a mutation pilot confirmed it (Codex 24 of 24).
+
+Navigate: [evidence map](docs/EVIDENCE_MAP.md) | [analysis commands](#recomputing-the-results) | [limitations](#limitations) | [library](https://github.com/TarangKhanna/traindoctor-env) | [ERRATUM](docs/ERRATUM_mmd.md) | [provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history).
 
 ![Four ranks: rank 2 calls broadcast while ranks 0, 1 and 3 call all_reduce, so every rank times out with the same error](docs/figures/fig_failure.svg)
 
@@ -48,18 +55,21 @@ The recovery-aware arm gained 10.36 percentage points over the label-only arm (9
 
 [evidence/README.md](evidence/README.md) maps each claim to its file and the command that recomputes it. In short: `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts from the scored rollouts, `scripts/make_figures.py` redraws the figures, `scripts/check_readme.py` checks the numbers above against those files, and `shasum -a 256 -c SHA256SUMS` in `evidence/results/` and the two experiment folders verifies every hash-pinned file.
 
-## What is not reproducible here
+## What can be recomputed
 
-- Cross-agent prompts, raw answers, outcomes and harness; mutation-pilot validation receipts; the gate experiment; per-run development JSON behind the six-seed development comparison.
-- GPU training and evaluation (`modal_train/`, `rl/`) need Modal credit and an Apple Silicon machine for the MLX parts. They were not re-run after the split. The `modal_train` image builds expect the library source tree at a pinned version. `scripts/redteam_suite.py` imports `traindoctor_env.modal_backend` from the pinned library (import checked against `requirements.txt` on Python 3.12; the sandbox runs themselves were not repeated). The remaining files are left as they were used for the published runs.
-- The sealed test seed list is withheld; only its sha256 is published, so the test set cannot be regenerated.
-- The sealed-test protocol is copied unmodified into `evidence/prereg/`; its sha256 is stated in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so the public copy and its hash do not establish when the freeze happened. This repository's commit dates are not evidence of preregistration.
+| Status | What | Notes |
+| --- | --- | --- |
+| Recompute here | Policy table, repair-choice counts, red-team recount, figures, README numbers, checksums | Commands under "Recomputing the results" and in the [evidence map](docs/EVIDENCE_MAP.md) (class A) |
+| Historical | GPU training and evaluation (`modal_train/`, `rl/`), the sandbox replays, `scripts/redteam_suite.py` | Run before the split, not re-run after it; scripts left as used. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library, the sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md) |
+| Cannot be regenerated | Sealed test set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison | Withheld or lost; see evidence map class C |
+
+The sealed-test protocol is copied unmodified into `evidence/prereg/`; its sha256 is in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so neither the copy nor its hash establishes when the freeze happened, and this repository's commit dates are not evidence of preregistration.
 
 ## Limitations
 
 - Two synthetic task families; splits differ by seed, not by failure mechanism.
 - Each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the sealed test). The results do not show that recovery-based reward improves repair selection.
-- Six paired seeds is a robustness minimum, not statistical power.
+- Six paired seeds is enough to see whether the sign is stable, not enough for statistical power.
 - No claim about production NCCL/FSDP failures, arbitrary training programs, or difficulty for frontier agents.
 
 Related documents: [evidence map](docs/EVIDENCE_MAP.md), [rerun example](docs/RERUN_EXAMPLE.md), [findings](docs/FINDINGS.md), [realism of the fault families](docs/REALISM.md), [related work](docs/RELATED_WORK.md). Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)); citation in [CITATION.cff](CITATION.cff); security reports in [SECURITY.md](SECURITY.md).

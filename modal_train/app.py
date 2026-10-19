@@ -32,6 +32,9 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .pip_install("torch==2.14.1", "transformers==5.20.1", "trl==1.16.0", "peft==0.21.2", "accelerate==1.15.0", "datasets", "pydantic==2.14.1")
     .env({"HF_HOME": f"{CACHE_DIR}/hf", "HF_HUB_DISABLE_XET": "1", "TOKENIZERS_PARALLELISM": "false"})
+    # `traindoctor_env` and `jobs` come from the pinned library (requirements.txt), which must be pip-installed in the
+    # environment that runs `modal run` (add_local_python_source resolves installed modules); `rl` and `modal_train` are
+    # this repository. The image does not pip-install the library.
     # Python source of only these packages: no data dirs, no .env, no tests/, so no sealed TEST data or secrets ride along.
     .add_local_python_source("traindoctor_env", "jobs", "rl", "modal_train", ignore=_exclude)
 )

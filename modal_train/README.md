@@ -12,3 +12,11 @@ Pins: modal client 1.3.5, torch 2.14.1, transformers 5.20.1, trl 1.16.0, peft 0.
 2. `modal_train/run.sh 300 upload`, then `run_smoke`, `run_sft "--run-id sft1"`, `run_grpo "--run-id g_v2 --arm V2 --sft-run sft1"`, `run_eval "--run-id e1 --adapter-run g_v2"`, then `modal run modal_train/app.py::download`.
 
 Evaluation uses HF `generate` (sampling T=1.0, top_p 0.95), not the MLX sampler, so numbers are not directly comparable to MLX runs. `run.sh` forwards extra arguments as one string; quote as shown. The training and evaluation runs behind the published tables were executed on Modal; the run scripts are included, the per-run logs are not.
+
+## Library source in the image
+
+`app.py` adds `traindoctor_env`, `jobs`, `rl` and `modal_train` with `add_local_python_source` (Python files only). `rl` and `modal_train` are this repository. `traindoctor_env` and `jobs` are not in this repository since the split; they come from the library commit pinned in `requirements.txt` (`0b0a36b`), so run `pip install -r requirements.txt` in the environment that launches `modal run`.
+
+- Historical: the published runs were built before the split, when both packages sat in the same checkout as `modal_train/`.
+- Supported now: the pinned-library install above. Static check, no Modal build: both packages exist at that commit, every file under them is a `.py` file (so the extension filter in `_exclude` drops nothing), and every library module imported by this repository's `rl/`, `modal_train/`, `scripts/` and `tests/` exists there.
+- Unverified (needs a paid Modal build): that the image builds and the functions import the library inside the container. The path-based exclusion filter was not exercised on an installed-package location.

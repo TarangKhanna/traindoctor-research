@@ -83,6 +83,8 @@ The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; i
 - Two synthetic task families; splits differ by seed, not by failure mechanism.
 - Each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the held-out set). The results do not show that recovery-based reward improves repair selection.
 - Six paired seeds is enough to see whether the sign is stable, not enough for statistical power.
+- A post-hoc audit on 120 new development seeds found that the process-status records in the Tier A bundle separate A2 from A1 perfectly but not A1_src from A1_cfg ([report](https://github.com/TarangKhanna/traindoctor-env/blob/main/results/status_audit/run1/REPORT.md)). The bundles were not changed, and the audit does not measure whether the trained models used that shortcut.
+- Tier B is an interactive development environment, not a validated multi-turn RL benchmark; the training results are Tier A only.
 - No claim about production NCCL/FSDP failures, arbitrary training programs, or difficulty for frontier agents.
 
 Related documents: [evidence map](docs/EVIDENCE_MAP.md), [rerun example](docs/RERUN_EXAMPLE.md), [findings](docs/FINDINGS.md), [realism of the fault families](docs/REALISM.md), [related work](docs/RELATED_WORK.md). Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)); citation in [CITATION.cff](CITATION.cff); security reports in [SECURITY.md](SECURITY.md).

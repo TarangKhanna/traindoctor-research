@@ -60,7 +60,7 @@ check(round(pct("base"), 1) == 5.0 and round(pct("sft"), 1) == 17.2 and "| Base 
 s = A["secondary"]["v2_arm_minus_csft"]
 check(f"{s['diff']:+.2f}" == "+3.70" and [f"{x:+.2f}" for x in s["boot_ci95"]] == ["-1.67", "+9.11"] and "+3.7 points; interval \u22121.7 to +9.1" in R,
       "continued-SFT diff +3.70 CI [-1.67, +9.11]")
-check(A["n_episodes"] == 100 and "sealed test set of 100 incidents" in R, "100 episodes")
+check(A["n_episodes"] == 100 and "held-out evaluation set of 100 incidents" in R, "100 episodes")
 check("369" in R and "369" in TR, "369 replays in README and TEST_REPORT")
 check("0 accepted of 86" in RT and "48 invariant, 38 execution_failure" in RT and "None of 86 fake repairs" in R and "48 were rejected by a correctness invariant and 38 failed during execution" in R,
       "red team 86/48/38/0")

@@ -6,7 +6,7 @@ TrainDoctor is an environment where agents diagnose and repair failed multi-proc
 
 **Findings (exploratory, partly negative).**
 - **SFT and GRPO.** On a sealed test of 100 incidents, GRPO with the recovery-aware reward outscored the label-only reward (33.4% vs 23.0%). The gain came from evidence grounding. Repair selection did not improve, and continued SFT with similar compute is not distinguishable from the recovery-aware arm.
-- **Verifier audit.** None of 86 scripted fake repairs was accepted, but 38 of them only crashed, which shows they do not run, not that an invariant covers them. I wrote the attacks; there was no external review.
+- **Verifier audit.** None of 86 scripted fake repairs was accepted, but 38 failed during execution rather than being rejected by a correctness invariant, which shows they do not run, not that an invariant covers them. I wrote the attacks; there was no external review.
 - **Strong agents.** Claude and Codex solved all six development tasks. The tasks are too easy to rank agents, and a mutation pilot confirmed it (Codex 24 of 24).
 
 Navigate: [evidence map](docs/EVIDENCE_MAP.md) | [analysis commands](#recomputing-the-results) | [limitations](#limitations) | [library](https://github.com/TarangKhanna/traindoctor-env) | [ERRATUM](docs/ERRATUM_mmd.md) | [provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history).

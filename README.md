@@ -30,7 +30,7 @@ python -m pytest -q --ignore=tests/test_first_update.py   # that file needs MLX 
 | GRPO, label-only reward (mean of 6 seeds) | 23.0% |
 | GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
 
-The recovery-aware arm gained 10.36 percentage points over the label-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds). The gain came from evidence grounding, not better repair selection: both arms chose the recovering repair at the same rate (71.4% vs 71.5%) and label accuracy did not change. Continued SFT is not clearly different from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1) and is a single run. Training used precomputed outcomes from a development container; test scores come from 369 live sandbox replays. Report: [evidence/results/TEST_REPORT.md](evidence/results/TEST_REPORT.md).
+The recovery-aware arm gained 10.36 percentage points over the label-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds). The gain came from evidence grounding, not better repair selection: both arms chose the recovering repair at the same rate (71.4% vs 71.5%) and label accuracy did not change. Continued SFT with similar compute (a single run) is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats spending the same compute on more SFT. On the development split the same V2-minus-V0 comparison was +4.64 points (interval −0.69 to +9.98), inconclusive. The frozen protocol states a minimum meaningful difference of 7.2 points; its power-analysis amendment states 20. The 10.36-point gain is above the first and below the second, and the two were not reconciled ([ERRATUM_mmd.md](docs/ERRATUM_mmd.md)). Training used precomputed outcomes from a development container; test scores come from 369 live sandbox replays. Report: [evidence/results/TEST_REPORT.md](evidence/results/TEST_REPORT.md).
 
 ![Full-task success and working-repair selection for the two reward arms](docs/figures/fig_reward_outcome.svg)
 
@@ -49,12 +49,12 @@ The recovery-aware arm gained 10.36 percentage points over the label-only arm (9
 - Cross-agent prompts, raw answers, outcomes and harness; mutation-pilot validation receipts; the gate experiment; per-run development JSON behind the six-seed development comparison.
 - GPU training and evaluation (`modal_train/`, `rl/`) need Modal credit and an Apple Silicon machine for the MLX parts. They were not re-run after the split. The `modal_train` image builds expect the library source tree at a pinned version. `scripts/redteam_suite.py` imports `traindoctor_env.modal_backend` from the pinned library (import checked against `requirements.txt` on Python 3.12; the sandbox runs themselves were not repeated). The remaining files are left as they were used for the published runs.
 - The sealed test seed list is withheld; only its sha256 is published, so the test set cannot be regenerated.
-- The sealed-test protocol was frozen in a private repository before any test episode was built. It is copied unmodified here, and this repository's commit dates are not evidence of preregistration (see [evidence/README.md](evidence/README.md)).
+- The sealed-test protocol is copied unmodified into `evidence/prereg/`; its sha256 is stated in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so the only public artifact is that hash. This repository's commit dates are not evidence of preregistration.
 
 ## Limitations
 
 - Two synthetic task families; splits differ by seed, not by failure mechanism.
-- Each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts. The results do not show that recovery-based reward improves repair selection.
+- Each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the sealed test). The results do not show that recovery-based reward improves repair selection.
 - Six paired seeds is a robustness minimum, not statistical power.
 - No claim about production NCCL/FSDP failures, arbitrary training programs, or difficulty for frontier agents.
 

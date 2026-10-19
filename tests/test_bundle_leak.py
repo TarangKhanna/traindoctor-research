@@ -1,7 +1,6 @@
 """Tier A metadata must not identify the variant. Rule: within a task family, nothing about a bundle other than its
 CONTENT (menu size, menu item sizes, bundle length, record counts per kind, file sizes) predicts the answer better
 than always guessing the majority class."""
-import random
 import statistics
 import tempfile
 from concurrent.futures import ThreadPoolExecutor

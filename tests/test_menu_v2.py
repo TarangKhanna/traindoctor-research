@@ -11,7 +11,7 @@ from pathlib import Path
 import pytest
 
 from audit.menu_leak import report, violations
-from jobs.build import apply_edits, materialize
+from jobs.build import apply_edits
 from traindoctor_env.bundle import CAP_TOKENS, ITEM_CHARS, K_MENU, K_MENU_V2, make_bundle, make_menu
 from traindoctor_env.scenario import Scenario
 from tests.test_bundle_leak import fake_snapshot

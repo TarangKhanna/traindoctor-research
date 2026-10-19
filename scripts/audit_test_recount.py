@@ -3,7 +3,7 @@ Does not import scripts/analyze_test.py. V0/V1 truth is not available offline
 (ground truth lives only in the Modal volume pickle), so V0 uses the label implied
 by kind (derived from the scored file, then checked for uniqueness) and V1 is read
 from test_scored.json with consistency checks. V2 is recomputed from raw."""
-import json, sys, collections, hashlib
+import json, sys, collections
 import numpy as np
 
 D = sys.argv[1] if len(sys.argv) > 1 else "evidence/results/test"

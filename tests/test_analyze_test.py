@@ -1,7 +1,6 @@
 """scripts/analyze_test.py on synthetic data. Rules asserted (evidence/prereg/test_protocol.md): the outcome class follows the CI vs
 MMD rule; the primary contrast is V2-arm minus V0-arm on the 4 faulted kinds only (B_OK excluded); invalid or errored replays
 are never successes; claimed-but-unverified counts valid claimed rollouts that are not V2; t critical value matches the table."""
-import math
 
 import numpy as np
 

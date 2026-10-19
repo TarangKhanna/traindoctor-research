@@ -2,8 +2,4 @@
 # Versions equal the library's uv.lock.
 mlx==0.31.2
 mlx-lm==0.31.3
-inspect-ai==0.3.281
-openai==3.31.0
-pyarrow==26.0.0
-openenv==0.9.0
 inductive-mlxrl @ git+https://github.com/inductiveML/mlxrl@25054948b19461569e25f8b657ca041b4bc7740b

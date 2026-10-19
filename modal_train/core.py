@@ -93,7 +93,6 @@ def variant_episode(ep, variant: str):
     if variant == "none":
         return ep
     import hashlib, random
-    from traindoctor_env.bundle import Bundle
     truth, bundle, menu, table = ep
     head, tail = bundle.text.split("\n== repairs ==\n")
     pairs = list(bundle.menu)

@@ -9,7 +9,6 @@ import mlx.core as mx
 import mlx.nn as nn
 import mlxrl.policy.logprobs as LP
 import mlxrl.train.grpo as TG
-from mlx_lm.models.cache import KVCache, make_prompt_cache
 
 _STOCK = LP.completion_logprobs_from_inputs
 STATE = {"mode": "stock"}

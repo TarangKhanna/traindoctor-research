@@ -120,7 +120,7 @@ def main():
 
     from rl import lp_patch
     from traindoctor_env.pilot import prepare, stratified_seeds
-    from traindoctor_env.tiera import parse_answer, reward, training_prompt
+    from traindoctor_env.tiera import reward, training_prompt
 
     R = dict(args=vars(a), host_start=host_state())
     t_all = time.perf_counter()

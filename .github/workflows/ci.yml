@@ -13,7 +13,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: README numbers match their sources
-        run: python scripts/check_readme.py
+        run: |
+          python scripts/check_readme.py
+          python scripts/check_readme_numbers.py
       - name: Checksums
         run: |
           for d in evidence/results experiments/cross_agent_dev6 experiments/mutation_pilot; do

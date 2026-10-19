@@ -1,10 +1,12 @@
 # TrainDoctor research artifacts
 
-Training and evaluation code, sealed-test evidence, experiments and analysis scripts behind the results reported for TrainDoctor, an environment for diagnosing and repairing failed distributed PyTorch (Gloo) training jobs. The environment, jobs runtime, verifier, Modal repair backend and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). This repository holds what substantiates the numbers. It was split from the library at commit `6a8f565` and has a fresh history ([PROVENANCE.md](PROVENANCE.md)).
+TrainDoctor is an environment in which AI agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs: four executed fault kinds across two synthetic families (mismatched collectives, A1; a rank stalled before communication, A2; checkpoint and sampler state that disagree after a worker failure, so samples are skipped, B_SKIP, or duplicated, B_DUP) plus a healthy control (B_OK), with a verifier that re-executes repairs in a sandbox and checks whether training actually recovered ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)). This repository holds the training and evaluation code, sealed-test evidence, experiments and analysis scripts that substantiate the reported results; the environment, jobs runtime, verifier, Modal repair backend and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). The headline findings are exploratory and partly negative: on the sealed test, GRPO with the recovery-aware reward outscored the label-only reward, but the gain came from evidence grounding rather than repair selection and is not distinguishable from a continued-SFT baseline with similar compute; no fake repair was accepted, though many of them failed during execution rather than at a correctness invariant; and strong coding agents solved all development tasks, so those tasks do not rank agents.
+
+This repository was split from the library at commit `6a8f565` and has a fresh history ([PROVENANCE.md](PROVENANCE.md)).
 
 ![Four ranks: rank 2 calls broadcast while ranks 0, 1 and 3 call all_reduce, so every rank times out with the same error](docs/figures/fig_failure.svg)
 
-All results are exploratory. Raw results and checksums are in [`evidence/`](evidence/README.md).
+The figure shows the A1 kind. All results are exploratory. Raw results and checksums are in [`evidence/`](evidence/README.md).
 
 ## Install
 
@@ -36,6 +38,8 @@ The recovery-aware arm gained 10.36 percentage points over the label-only arm (9
 
 **Attacking the verifier.** None of 86 fake repairs (swallow the exception, exit 0, shrink the world, raise timeouts, forge logs) was accepted: 48 were rejected by a correctness invariant and 38 failed during execution, which shows those cheats do not run, not that an invariant covers them. The reference repair was accepted 5/5 and alternative valid repairs 9/10 (one false rejection, fixed in a prepared v1.1 verifier). One scripted cheat, `world_size: 1` on the rank-divergence task, completes the job but leaves 72 missing and 8 duplicated samples. I wrote the attacks; there was no external review. See [REDTEAM_TABLE.md](evidence/results/REDTEAM_TABLE.md) and [the audit write-up](experiments/verifier_audit/VERIFIER_AUDIT.md).
 
+![Outcomes of the fake repairs: rejected by a correctness invariant or failed during execution](docs/figures/fig_redteam_funnel.svg)
+
 **Agent baselines.** On six development tasks, Claude Sonnet and Codex both produced patches that recovered all six; one Claude answer omitted a required evidence record (strict score 5/6 vs 6/6). The tasks are easy for strong agents and do not rank them. Per-task results are published; prompts and transcripts are not ([report](experiments/cross_agent_dev6/BENCHMARK_REPORT.md)).
 
 **Mutation pilot.** Eight procedurally mutated tasks passed trusted re-execution validation, then Codex solved 24 of 24 attempts, so the tasks do not discriminate. The pilot was stopped (NO-GO) ([pilot](experiments/mutation_pilot/README.md)).
@@ -49,7 +53,7 @@ The recovery-aware arm gained 10.36 percentage points over the label-only arm (9
 - Cross-agent prompts, raw answers, outcomes and harness; mutation-pilot validation receipts; the gate experiment; per-run development JSON behind the six-seed development comparison.
 - GPU training and evaluation (`modal_train/`, `rl/`) need Modal credit and an Apple Silicon machine for the MLX parts. They were not re-run after the split. The `modal_train` image builds expect the library source tree at a pinned version. `scripts/redteam_suite.py` imports `traindoctor_env.modal_backend` from the pinned library (import checked against `requirements.txt` on Python 3.12; the sandbox runs themselves were not repeated). The remaining files are left as they were used for the published runs.
 - The sealed test seed list is withheld; only its sha256 is published, so the test set cannot be regenerated.
-- The sealed-test protocol is copied unmodified into `evidence/prereg/`; its sha256 is stated in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so the only public artifact is that hash. This repository's commit dates are not evidence of preregistration.
+- The sealed-test protocol is copied unmodified into `evidence/prereg/`; its sha256 is stated in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so the public copy and its hash do not establish when the freeze happened. This repository's commit dates are not evidence of preregistration.
 
 ## Limitations
 

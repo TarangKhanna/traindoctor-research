@@ -1,13 +1,12 @@
 # TrainDoctor research artifacts
 
-**Question.** Does training a small model against a reward that checks whether a repaired training job actually recovers teach it to debug distributed training better than a reward that only checks the diagnosis label?
+**Question.** Does rewarding verified recovery teach a small model to debug distributed training better than rewarding only the diagnosis label?
 
 TrainDoctor is an environment where agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs: four executed fault kinds in two synthetic families (A1 mismatched collectives, A2 a rank stalled before communication, B_SKIP and B_DUP checkpoint and sampler state that disagree after a worker failure) plus a healthy control (B_OK). A verifier re-executes each repair in a sandbox. The environment, verifier and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)); this repository holds the training and evaluation code, held-out evaluation evidence, experiments and analysis scripts.
 
 **Historical v0.1 findings (exploratory, partly negative).**
-- **SFT and GRPO (Qwen3-4B, trained on Modal GPUs).** On a held-out evaluation set of 100 incidents, GRPO with the recovery-aware reward outscored GRPO with a diagnosis-only reward (33.4% vs 23.0%, mean of six training seeds). The gain came from evidence grounding. Repair selection did not improve (71.4% vs 71.5%), and continued SFT with similar compute is not distinguishable from the recovery-aware arm.
-- **Verifier audit.** None of 86 scripted fake repairs was accepted, but 38 failed during execution rather than being rejected by a correctness invariant, which shows they do not run, not that an invariant covers them. The verifier and attacks share an author; there was no external review.
-- **Coding agents (Claude Sonnet and Codex).** Existing agents, not trained here, evaluated separately from the Qwen3-4B results above. Both solved all six development tasks. The tasks are too easy to rank agents, and a mutation pilot confirmed it (Codex 24 of 24).
+
+Recovery-aware GRPO improved evidence grounding, while repair selection did not improve and continued SFT at similar compute was not distinguishable. The verifier audit and separate coding-agent experiments are reported below; the tasks were too easy to rank strong agents.
 
 [Evidence map](docs/EVIDENCE_MAP.md) · [Analysis commands](#recomputing-the-results) · [Limitations](#limitations) · [Library](https://github.com/TarangKhanna/traindoctor-env) · [Erratum](docs/ERRATUM_mmd.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
 
@@ -35,7 +34,7 @@ Terms used below. **V0** rewards a correct diagnosis label. **V1** also requires
 
 ## Results (historical v0.1)
 
-**Training.** Qwen3-4B was fine-tuned with SFT and then GRPO, with a diagnosis-only reward (V0) or the recovery-aware reward (V2), six paired seeds each, and scored once on the held-out evaluation set of 100 incidents. Success is full-task success on the four faulted task kinds: correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2).
+**Training.** After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents. Full-task success requires correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2) on the four faulted task kinds.
 
 | Policy | Success |
 | --- | ---: |
@@ -44,8 +43,6 @@ Terms used below. **V0** rewards a correct diagnosis label. **V1** also requires
 | Continued SFT, similar compute | 29.7% |
 | GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
 | GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
-
-Reading the table:
 
 - **Reward comparison:** the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
 - **Where the gain came from:** evidence grounding, not better repair selection. Both arms chose the recovering repair at the same rate (71.4% vs 71.5%) and label accuracy did not change.
@@ -77,18 +74,16 @@ Limitations: one development seed range, one strong agent and three checkpoints 
 
 ## Coding-agent evaluation (Claude Sonnet and Codex)
 
-These are existing coding agents, not fine-tuned in TrainDoctor, and they are unrelated to the 23.0% and 33.4% figures above, which are Qwen3-4B results. On six development tasks both produced patches that recovered all six. On the stricter score, which also requires the required evidence records, Claude scored 5/6 because one answer omitted a required record, and Codex scored 6/6. The tasks are easy for strong agents, so this comparison does not establish a model ranking. Per-task results are published; prompts and transcripts are not ([report](experiments/cross_agent_dev6/BENCHMARK_REPORT.md)).
+Existing coding agents, evaluated separately from the Qwen3-4B 23.0% and 33.4% results, both recovered all six development tasks. The stricter score also requires evidence records: Claude scored 5/6 because one answer omitted a record, and Codex scored 6/6. These easy tasks do not establish a model ranking. Per-task results are published; prompts and transcripts are not ([report](experiments/cross_agent_dev6/BENCHMARK_REPORT.md)).
 
-A separate mutation pilot is a different experiment: eight procedurally mutated tasks passed trusted re-execution validation, then Codex solved 24 of 24 attempts, so those tasks do not discriminate either. The pilot was stopped (NO-GO) ([pilot](experiments/mutation_pilot/README.md)).
+In a separate mutation pilot, eight procedurally mutated tasks passed trusted re-execution validation, then Codex solved 24 of 24 attempts. Those tasks also failed to discriminate, so the pilot stopped (NO-GO) ([pilot](experiments/mutation_pilot/README.md)).
 
 ## Recomputing the results
 
-[evidence/README.md](evidence/README.md) maps each claim to its file and the command that recomputes it. In short: `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts from the scored rollouts, `scripts/make_figures.py` redraws the figures, `scripts/check_readme.py` checks the numbers above against those files, and `shasum -a 256 -c SHA256SUMS` in `evidence/results/` and the two experiment folders verifies every hash-pinned file.
+The [evidence map](docs/EVIDENCE_MAP.md) links claims to sources and recount commands. `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts; `scripts/make_figures.py` redraws the figures; `scripts/check_readme.py` checks README numbers. Run `shasum -a 256 -c SHA256SUMS` in `evidence/results/` and the two experiment folders to verify their hash-pinned files.
 
-## What can be recomputed
-
-- **Recompute here:** the policy table, repair-choice counts, red-team recount, figures, README numbers and checksums. Commands are under "Recomputing the results" and in the [evidence map](docs/EVIDENCE_MAP.md) (class A).
-- **Historical:** GPU training and evaluation (`modal_train/`, `rl/`), the sandbox replays and `scripts/redteam_suite.py`. They ran before the split and were not re-run after it; scripts are left as used. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library, but the sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md).
+- **Recompute here (class A):** the policy table, repair-choice counts, red-team recount, figures, README numbers and checksums.
+- **Historical:** GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays and `scripts/redteam_suite.py` ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md).
 - **Cannot be regenerated:** the held-out evaluation set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison. These are withheld or lost; see evidence map class C.
 
 The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; its sha256 is in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so neither the copy nor its hash establishes when the freeze happened, and this repository's commit dates are not evidence of preregistration.

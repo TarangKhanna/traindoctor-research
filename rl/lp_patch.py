@@ -6,7 +6,6 @@ mode "shared" : prompt prefilled ONCE (batch 1, with gradients), KV broadcast to
                 it, lm_head only at completion positions. Requires all rows to share one prompt; else falls back to slice.
 """
 import mlx.core as mx
-import mlx.nn as nn
 import mlxrl.policy.logprobs as LP
 import mlxrl.train.grpo as TG
 

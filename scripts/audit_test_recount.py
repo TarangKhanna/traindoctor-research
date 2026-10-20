@@ -133,7 +133,6 @@ def contrast(k, kinds=F4, arms=("v2", "v0")):
     bs = []
     for _ in range(10000):
         si = rng.integers(0, len(SEEDS), len(SEEDS))
-        tot = 0; cnt = 0
         parts = []
         for st in strata:
             ei = rng.choice(st, len(st))

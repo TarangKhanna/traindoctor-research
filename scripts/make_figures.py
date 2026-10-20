@@ -8,7 +8,6 @@ fig_failure.svg is a schematic of the quickstart scenario (seed 123, Task A1); i
 Usage:  python scripts/make_figures.py          (from the repo root; writes docs/figures/*.svg)
 Colors are the Okabe-Ito colorblind-safe palette.
 """
-import re
 import sys
 from pathlib import Path
 from xml.sax.saxutils import escape

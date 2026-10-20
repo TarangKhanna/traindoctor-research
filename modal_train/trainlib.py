@@ -2,7 +2,6 @@
 All TRL/PEFT specifics are isolated here. Private-API timing hooks are best-effort and flagged in the output."""
 from __future__ import annotations
 
-import json
 import pickle
 import time
 from pathlib import Path

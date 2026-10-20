@@ -8,7 +8,7 @@ This is a record of a discrepancy, not a revision. No preregistered file was edi
 - `evidence/prereg/power_analysis_amendment.md:42` (revision after the power simulation): "**MMD = 20 percentage points** on the primary endpoint (overall live-verified recovery, V2 - V0)", with the outcome rules "in section 4 apply with MMD = 20" (line 46). The file contains no 7.2 figure.
 - `evidence/prereg/test_protocol.md:42` (sealed TEST protocol, frozen 2026-10-18): "**Minimum meaningful difference 7.2 points** (`docs/prereg/power_analysis_amendment.md`; paired seed sd ~5.1 over 6 seeds)". It cites the amendment as the source, but the amendment states 20.
 
-The 7.2 figure is therefore not traceable to the file that is cited for it. Its derivation is not recorded anywhere in `evidence/prereg/`.
+The cited file does not support 7.2, and `evidence/prereg/` records no derivation.
 
 ## What the sealed-TEST analysis applied
 
@@ -20,4 +20,4 @@ Two-level bootstrap 95% CI [+5.83, +15.26] (`evidence/results/TEST_REPORT.md:32`
 
 ## How to read the result
 
-The point estimate (+10.36) is above 7.2 and below 20. The data support a positive effect of V2 over V0 whose size is not resolved relative to a 7.2-point threshold, and would not meet a 20-point threshold. The classification depends on which MMD is taken as binding, and the two frozen files disagree on that. The TEST run is exploratory (two task families, 6 seeds); neither figure was re-derived here and the power simulation was not rerun.
+The point estimate (+10.36) is above 7.2 and below 20; classification depends on which conflicting frozen MMD is binding. The TEST run is exploratory (two task families, 6 seeds); neither figure was re-derived and the power simulation was not rerun.

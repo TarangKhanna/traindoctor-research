@@ -1,6 +1,6 @@
 # Evidence map
 
-Each public claim, the file it comes from and a command that recounts it. Run from the repository root with `PYTHONPATH=. TD_KEY=<any hex>` and the install from the README. Class: **A** recomputable from published results; **B** reproducible from public assets (needs the pinned library, and possibly Modal); **C** historical, not fully reproducible (withheld seeds, transcripts or external infrastructure). "Printed" is what the command printed on a fresh clone (Python 3.12).
+Sources and recount commands for public claims. After the README setup, run from the repository root with `PYTHONPATH=. TD_KEY=<any hex>`. Class: **A** recomputable from published results; **B** reproducible from public assets (needs the pinned library, possibly Modal); **C** historical, not fully reproducible (withheld seeds, transcripts or external infrastructure). "Printed" records fresh-clone output (Python 3.12).
 
 Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/README.md); `R` is `evidence/results`.
 

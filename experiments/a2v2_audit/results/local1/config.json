@@ -1,0 +1,12 @@
+{
+  "script": "experiments/a2v2_audit/run_cases.py",
+  "scenario": {"seed": 101, "kind": "A2v2", "variant": 0, "world_size": 3, "job_seed": 31337},
+  "cases": "library scripts/redteam_a2v2.py build_cases: null, gold, alt1, alt2, S01, R1, S02",
+  "checks": ["v1", "v1.1"],
+  "library_commit": "80eccec (local branch sprint-v3; reexec.py identical to library main 6b06ea1)",
+  "td_key": "a2v2-audit-key",
+  "exec_mode": "local_unsandboxed_trusted",
+  "source": "executed",
+  "date": "2026-10-20",
+  "note": "exploratory: repo-authored cases run on a development Mac without OS isolation; not a verified outcome"
+}

@@ -1,12 +1,12 @@
 # TrainDoctor research artifacts
 
-**Question.** Does rewarding verified recovery teach a small model to debug distributed training better than rewarding only the diagnosis label?
+Training and evaluation code and results for TrainDoctor, an environment where agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs.
 
-TrainDoctor is an environment where agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs: four executed fault kinds in two synthetic families (A1 mismatched collectives, A2 a rank stalled before communication, B_SKIP and B_DUP checkpoint and sampler state that disagree after a worker failure) plus a healthy control (B_OK). A verifier re-executes each repair in a sandbox. The environment, verifier and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)); this repository holds the training and evaluation code, held-out evaluation evidence, experiments and analysis scripts.
+The core problem: a job can restart cleanly and still skip or duplicate data or corrupt optimizer state, so the verifier checks recovery from launcher-owned evidence by re-executing each repair in a sandbox. The question here is whether rewarding verified recovery teaches a small model to debug such jobs better than rewarding only the diagnosis label.
 
-**Historical v0.1 findings (exploratory, partly negative).**
+The environment has four executed fault kinds in two synthetic families (A1 mismatched collectives, A2 a rank stalled before communication, B_SKIP and B_DUP checkpoint and sampler state that disagree after a worker failure) plus a healthy control (B_OK). The environment, verifier and quickstart are in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)). This repository holds the training and evaluation code, held-out evidence, experiments and analysis scripts.
 
-Recovery-aware GRPO improved evidence grounding, while repair selection did not improve and continued SFT at similar compute was not distinguishable. The verifier audit and separate coding-agent experiments are reported below; the tasks were too easy to rank strong agents.
+Historical v0.1 findings (exploratory, partly negative): recovery-aware GRPO improved evidence grounding, but repair selection did not improve, and continued SFT at similar compute was not distinguishable. The tasks were too easy to rank strong agents.
 
 [Evidence map](docs/EVIDENCE_MAP.md) · [Analysis commands](#recomputing-the-results) · [Limitations](#limitations) · [Library](https://github.com/TarangKhanna/traindoctor-env) · [Erratum](docs/ERRATUM_mmd.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
 
@@ -30,11 +30,11 @@ python -m pytest -q --ignore=tests/test_first_update.py   # that file needs MLX 
 
 The trained model is Qwen3-4B (4 billion parameters), adapted with LoRA. It was first trained with supervised fine-tuning (SFT) on reference answers, then with GRPO (group-relative policy optimization, a reinforcement-learning method). Training and evaluation ran on Modal cloud GPUs (A100 and L40S), not on a laptop: evaluation used GPU inference, and repairs on the held-out set were verified by replay in Modal Sandboxes. Claude Sonnet and Codex were not trained or fine-tuned; they appear only in [Coding-agent evaluation](#coding-agent-evaluation-claude-sonnet-and-codex).
 
-Terms used below. **V0** rewards a correct diagnosis label. **V1** also requires cited evidence that supports it. **V2** (the recovery-aware reward) additionally requires a repair that passes sandboxed re-execution. **Repair-selection accuracy** is how often the model picks the repair that recovers the job. The **held-out evaluation set** was reserved before evaluation; its scenarios come from the same generator and the same fault mechanisms as the training data, so it tests new seeds, not new failure mechanisms.
+Terms used below. V0 rewards a correct diagnosis label. V1 also requires cited evidence that supports it. V2 (the recovery-aware reward) additionally requires a repair that passes sandboxed re-execution. Repair-selection accuracy is how often the model picks the repair that recovers the job. The held-out evaluation set was reserved before evaluation; its scenarios come from the same generator and the same fault mechanisms as the training data, so it tests new seeds, not new failure mechanisms.
 
 ## Results (historical v0.1)
 
-**Training.** After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents. Full-task success requires correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2) on the four faulted task kinds.
+Training. After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents. Full-task success requires correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2) on the four faulted task kinds.
 
 | Policy | Success |
 | --- | ---: |
@@ -44,22 +44,22 @@ Terms used below. **V0** rewards a correct diagnosis label. **V1** also requires
 | GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
 | GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
 
-- **Reward comparison:** the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
-- **Where the gain came from:** evidence grounding, not better repair selection. Both arms chose the recovering repair at the same rate (71.4% vs 71.5%) and label accuracy did not change.
-- **Continued SFT:** a single run with similar compute is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats spending the same compute on more SFT.
-- **Development split:** the same V2-minus-V0 comparison was +4.64 points (interval −0.69 to +9.98), inconclusive.
-- **Minimum meaningful difference:** the frozen protocol states 7.2 points and its power-analysis amendment states 20. The 10.36-point gain is above the first and below the second, and the two were not reconciled ([ERRATUM_mmd.md](docs/ERRATUM_mmd.md)).
-- **How scores were produced:** training used precomputed outcomes from a development container; held-out scores come from 369 live sandbox replays. Report: [evidence/results/TEST_REPORT.md](evidence/results/TEST_REPORT.md).
+- Reward comparison: the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
+- Where the gain came from: evidence grounding, not better repair selection. Both arms chose the recovering repair at the same rate (71.4% vs 71.5%) and label accuracy did not change.
+- Continued SFT: a single run with similar compute is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats spending the same compute on more SFT.
+- Development split: the same V2-minus-V0 comparison was +4.64 points (interval −0.69 to +9.98), inconclusive.
+- Minimum meaningful difference: the frozen protocol states 7.2 points and its power-analysis amendment states 20. The 10.36-point gain is above the first and below the second, and the two were not reconciled ([ERRATUM_mmd.md](docs/ERRATUM_mmd.md)).
+- How scores were produced: training used precomputed outcomes from a development container; held-out scores come from 369 live sandbox replays. Report: [evidence/results/TEST_REPORT.md](evidence/results/TEST_REPORT.md).
 
 ![Full-task success and working-repair selection for the two reward arms](docs/figures/fig_reward_outcome.svg)
 
-**Attacking the verifier.** None of 86 fake repairs (swallow the exception, exit 0, shrink the world, raise timeouts, forge logs) was accepted: 48 were rejected by a correctness invariant and 38 failed during execution, which shows those cheats do not run, not that an invariant covers them. The reference repair was accepted 5/5 and alternative valid repairs 9/10 (one false rejection, fixed in a prepared v1.1 verifier). One scripted cheat, `world_size: 1` on the rank-divergence task, completes the job but leaves 72 missing and 8 duplicated samples. The verifier and attacks share an author; there was no external review. See [REDTEAM_TABLE.md](evidence/results/REDTEAM_TABLE.md) and [the audit write-up](experiments/verifier_audit/VERIFIER_AUDIT.md).
+Attacking the verifier. None of 86 fake repairs (swallow the exception, exit 0, shrink the world, raise timeouts, forge logs) was accepted: 48 were rejected by a correctness invariant and 38 failed during execution, which shows those cheats do not run, not that an invariant covers them. The reference repair was accepted 5/5 and alternative valid repairs 9/10 (one false rejection, fixed in a prepared v1.1 verifier). One scripted cheat, `world_size: 1` on the rank-divergence task, completes the job but leaves 72 missing and 8 duplicated samples. The verifier and attacks share an author; there was no external review. See [REDTEAM_TABLE.md](evidence/results/REDTEAM_TABLE.md) and [the audit write-up](experiments/verifier_audit/VERIFIER_AUDIT.md).
 
 ![Outcomes of the fake repairs: rejected by a correctness invariant or failed during execution](docs/figures/fig_redteam_funnel.svg)
 
 ## Menu v3 development result
 
-**NO-GO for RL on menu v3.** The 720 Modal-sandboxed candidate outcomes comprise 60 reference repairs, 115 valid alternatives, 271 incorrect-but-completed repairs, 274 non-completions and 0 infrastructure errors. Verifier v1.2 accepts 175/175 valid and 0/271 incorrect-but-completed repairs; v1 has 12 false rejections. See [ACCOUNTING.md](experiments/menu_v3_dev/ACCOUNTING.md) and [REPORT.md](experiments/menu_v3_dev/REPORT.md).
+NO-GO for RL on menu v3. The 720 Modal-sandboxed candidate outcomes comprise 60 reference repairs, 115 valid alternatives, 271 incorrect-but-completed repairs, 274 non-completions and 0 infrastructure errors. Verifier v1.2 accepts 175/175 valid and 0/271 incorrect-but-completed repairs; v1 has 12 false rejections. See [ACCOUNTING.md](experiments/menu_v3_dev/ACCOUNTING.md) and [REPORT.md](experiments/menu_v3_dev/REPORT.md).
 
 | Policy | P(V1 != V2) | V1-pass/V2-fail (of V1-pass) | Avoid-list share of V1-pass/V2-fail |
 | --- | --- | --- | --- |
@@ -82,9 +82,9 @@ In a separate mutation pilot, eight procedurally mutated tasks passed trusted re
 
 The [evidence map](docs/EVIDENCE_MAP.md) links claims to sources and recount commands. `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts; `scripts/make_figures.py` redraws the figures; `scripts/check_readme.py` checks README numbers. Run `shasum -a 256 -c SHA256SUMS` in `evidence/results/` and the two experiment folders to verify their hash-pinned files.
 
-- **Recompute here (class A):** the policy table, repair-choice counts, red-team recount, figures, README numbers and checksums.
-- **Historical:** GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays and `scripts/redteam_suite.py` ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md).
-- **Cannot be regenerated:** the held-out evaluation set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison. These are withheld or lost; see evidence map class C.
+- Recompute here (class A): the policy table, repair-choice counts, red-team recount, figures, README numbers and checksums.
+- Historical: GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays and `scripts/redteam_suite.py` ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md).
+- Cannot be regenerated: the held-out evaluation set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison. These are withheld or lost; see evidence map class C.
 
 The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; its sha256 is in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so neither the copy nor its hash establishes when the freeze happened, and this repository's commit dates are not evidence of preregistration.
 

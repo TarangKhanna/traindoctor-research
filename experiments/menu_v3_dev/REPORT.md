@@ -1,0 +1,83 @@
+# Menu v3 development experiment: result
+
+**Decision: NO-GO for an RL run on menu v3.** On these 720 outcomes the verifier rejects every completing-but-invalid
+repair and accepts every valid alternative, but the reward information it adds over V1 is small for trained models, zero
+for a strong agent, and mostly (not entirely) explained by four fixed menu items a learner could memorize. Criteria are in
+[README.md](README.md); they were written before the agent answers were collected (the commit history is not
+independent evidence of that).
+
+Every number below was produced by `analyze.py` (`results/dev1/analysis_verified/summary.json`, all outcomes Modal
+gVisor sandboxed) or recounted from the `outcomes.jsonl` files, except the historical figures, which come from
+[docs/FINDINGS.md](../../docs/FINDINGS.md). Development
+split, 60 fresh incidents (12 per kind), verifier v1.2. Intervals: 95% seed-clustered bootstrap.
+
+## 1. Candidate outcomes (720 = 60 incidents x 12 items, each re-executed once)
+
+- The 720 Modal-sandboxed outcomes (`dev1_modal_s1b`, `dev1_modal_s2`) agree with the earlier local unsandboxed run
+  (`dev1`) on the verdict (`ok`) and on completion for all 720 rows under v1, v1.1 and v1.2. Bit-level equality with the
+reference (`bit_identical`) differs on 163 rows between the Linux sandbox and the macOS run (numerics within the
+verifier's tolerance; `ok` is unaffected); a recheck of the two seeds that ran while other CPU load was present agreed
+  24/24. Infrastructure errors 0/720.
+- v1.2: accepted 175, invariant rejection 271, execution failure 274. Against the independent semantic reference (final
+  model equals the uninterrupted run's and every sample consumed as in the reference): false acceptance 0/720, false
+  rejection 0/720. v1: false rejection 12/720, all `ckpt:from_step` on B_DUP (checkpoint stores no sampler position).
+- Completing-but-invalid items rejected by a correctness invariant, not by a crash: `sync:align` on A1 v0 (5/5,
+  optimizer transition), `ckpt:from_progress` (sample accounting) and `ckpt:fresh_optimizer` (optimizer transition) on all
+  36 Task B incidents each, and `sync:align` on B_SKIP, B_DUP and B_OK.
+- Valid alternatives accepted: `sync:reduce_bcast` (A1 v0 5/5, A1 v1 7/7), `perrank:global_reduce_bcast` (A1 v1 7/7),
+  `ckpt:from_step` (B_SKIP 12/12, B_OK 12/12, B_DUP 12/12 under v1.1/v1.2).
+- A2 has no completing-invalid item (its shard files carry no data); disagreement there can only come from wrong
+  locations.
+
+## 2. Reward discrimination
+
+| policy | n | valid | V0 | V1 | V2 (sandboxed) | P(V1 != V2) | P(V2 = 0 \| V1 = 1) | V1-pass with completing-invalid repair |
+|---|---|---|---|---|---|---|---|---|
+| Codex CLI (gpt-6.1-sol, medium), 2 samples | 120 | 100% | 95.8% | 85.0% | 85.0% | 0.0% (0/120) | 0/102 | 0/102 |
+| Qwen3-4B continued SFT (`csft`), 4 samples | 240 | 95.4% | 32.5% | 10.0% | 7.1% | 2.9% [1.2, 5.0] | 7/24 | 4/24 |
+| Qwen3-4B GRPO-V0 (`g_v0`, seed 0) | 240 | 95.0% | 47.9% | 17.1% | 11.2% | 5.8% [2.5, 9.6] | 14/41 | 3/41 |
+| Qwen3-4B GRPO-V2 (`g_v2`, seed 0) | 240 | 95.8% | 39.2% | 16.7% | 9.6% | 7.1% [2.9, 12.1] | 17/40 | 4/40 |
+| reference: perfect V1, uniform over the fault location's items | 60 | | | 100% | 69.9% | 30.1% [24.5, 35.5] | | |
+| reference: same, excluding the leave-one-out avoid-list | 60 | | | 100% | 97.5% | 2.5% [1.2, 3.8] | | |
+
+Historical, for orientation only (different menus and task distribution): V1 != V2 on 2.3% of 3,072 rollouts (menu v1)
+and 2.6% (menu v2). The 4B checkpoints were trained on menu v1 prompts; they are evaluated here, not retrained.
+
+Of the checkpoint answers with V1 credit but no V2 credit, 6/7 (csft), 9/14 (GRPO-V0) and 14/17 (GRPO-V2) chose a role
+in the avoid-list (the four items never accepted on other seeds: `sync:align`, `ckpt:from_progress`,
+`ckpt:fresh_optimizer`, `exclude_rank`). Across samples, the checkpoints chose both an accepted and a completing-invalid
+repair on the same incident for 7, 19 and 14 of 60 seeds; Codex never did.
+
+Shortcut baselines (leave-one-seed-out, granted perfect evidence when their label is right, so upper bounds): label-only
+V0 40.0%, V2 6.7%; menu-only V2 40.0% (always the majority checkpoint label with `ckpt:canonical`); config-only V2 48.3%
+(the shown config truthfully exposes the A1 v1 override and the A2 stale shard directory); status-only V2 38.3%.
+
+## 3. Why NO-GO (criteria (a)-(c))
+
+(a) holds on these outcomes: no false acceptance and no false rejection under v1.2, and a substantial invalid class is
+rejected by invariants rather than by crashes. (b) fails: the strong agent never chose a completing-invalid repair
+(0/102 V1-passing answers), so the menu is not hard where it matters. (c) is not met as a NO-GO trigger, because the
+avoid-list does not explain all of the signal, but it explains most of it: removing four fixed items lowers the reference
+disagreement from 30.1% to 2.5%, and 6/7, 9/14 and 14/17 of the trained models' V1-pass/V2-fail choices are those items.
+Overall disagreement for trained models (2.9-7.1%) stays below the ~10% target. The NO-GO therefore rests on (b) and on the
+target; the expectation that training would mostly teach item identities is an inference, not a measurement.
+
+**Strongest counterargument.** For the 4B models V2 does carry information V1 lacks: 29-43% of their V1-passing answers
+fail V2, and they mix accepted and invalid repairs across samples on up to a third of incidents. Avoiding a broken restore
+is a real lesson even if learnable by memorization. But the V1-pass denominators are 24-41 answers, the effect is mostly
+explained by four constant strings; no held-out-item evaluation was run to test whether it generalizes.
+
+## 4. Redesign (instead of training)
+
+1. **Parameterized, not fixed, hard negatives.** Generate the completing-invalid edits per incident from a family (sampler
+   restored off by k batches or from a different rank's position; momentum scaled or partially restored; gradients
+   divided by the wrong world size or averaged over a subset of buckets), so no fixed text is always wrong, and hold
+   out whole families for evaluation.
+2. **Make the valid repair non-canonical.** Mix tasks where the conventional-looking code is the wrong one (for example a
+   reduce-broadcast job whose all-reduce rewrite drops the division), so "pick the plain code" stops being a shortcut.
+3. **Harden the healthy control and A2.** Codex fails mainly on B_OK labels (V1 6/24) and A2 has no semantic trap;
+   make the data service own the batch order (as proposed for A2v2) so a stall can be bypassed wrongly.
+
+Limitations: one development seed range, one strong agent and three checkpoints from one training seed (`csft`, `g_v0`, `g_v2`, as named in
+`evidence/prereg/test_protocol.md`); outcomes are
+sandboxed but the incidents were executed locally; Codex answered from the prompt only.

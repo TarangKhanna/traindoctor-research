@@ -1,0 +1,32 @@
+{
+  "run": "dev1_modal_s1",
+  "seeds": [
+    50000,
+    50003,
+    50001,
+    50004,
+    50002,
+    50008,
+    50006,
+    50007,
+    50015,
+    50016
+  ],
+  "per_kind": 12,
+  "menu_version": "v3",
+  "prompt_version": "v2",
+  "checks": [
+    "v1",
+    "v1.1",
+    "v1.2"
+  ],
+  "exec_mode": "modal_sandbox",
+  "library_commit": "9dee8be8d8dd28ba1475ce91772097e7535cb393",
+  "library_dirty": false,
+  "td_key_sha256": "1b4ed4bc0e1cfa59a151ea90f0ddf4c8d7cb846941e584f49042992d1492058a",
+  "python": "3.12.9",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "started": "2026-10-20T19:24:39+0700",
+  "workers": 4,
+  "source": "executed"
+}

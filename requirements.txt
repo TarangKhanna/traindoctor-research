@@ -1,6 +1,6 @@
 # Library (environment, jobs runtime, verifier): pinned to an exact commit.
 # Pinned to the traindoctor-env commit this repository was validated against.
-traindoctor-env @ git+https://github.com/TarangKhanna/traindoctor-env@9dee8be8d8dd28ba1475ce91772097e7535cb393
+traindoctor-env @ git+https://github.com/TarangKhanna/traindoctor-env@c7d88e9767721cbafaf199cc75c0434a7cb75323
 # CPU test and analysis dependencies (versions equal the library's uv.lock).
 # On Linux add: --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.14.1

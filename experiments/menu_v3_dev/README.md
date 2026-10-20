@@ -46,8 +46,13 @@ and A2v2 S02 behaviourally valid (see `docs/A2V2_STATUS.md`).
 
 **Execution mode.** Every outcome in `dev1` is `local_unsandboxed_trusted`: the candidates are repo-authored code, run on
 a development Mac without OS isolation. These outcomes are exploratory. The library's strict V2 requires a sandboxed run,
-so it is 0 for every answer here; the analysis reports `v2_exploratory` (the same verdict with the isolation requirement
-waived) and never calls it verified. The verified rerun is `RUN_PLAN_MODAL.md` (not run; needs approval for spend).
+so it is 0 for answers scored against local `dev1`; that analysis reports `v2_exploratory` (the same verdict with the isolation requirement
+waived) and never calls it verified. The Modal verification subsequently ran as `dev1_modal_s1b` and `dev1_modal_s2`:
+720 sandboxed rows match the local verdicts 720/720 under v1, v1.1 and v1.2. Verified scoring is in
+`results/dev1/analysis_verified/`. The result is **NO-GO for RL**; see [REPORT.md](REPORT.md),
+[ACCOUNTING.md](ACCOUNTING.md) and the completed [Modal run plan](RUN_PLAN_MODAL.md).
+Actual sandbox spend was $2.92610876, including the stalled `dev1_modal_s1` attempt and one probe, as recorded in the
+Modal billing report for 2026-10-20, app `traindoctor-sandbox` (the local spend ledger is not published); this is not solely the cost of the 720 rows.
 
 ## Criteria, stated before the results were read
 
@@ -66,5 +71,5 @@ waived) and never calls it verified. The verified rerun is `RUN_PLAN_MODAL.md` (
   reasoning about semantics; the analysis reports how much of the V1-pass/V2-fail mass a menu-only avoid-list learner
   (leave-one-seed-out) removes. If it removes all of it, the reward teaches item identities, not training semantics, and
   an RL run on this menu could not support a claim about semantic repair learning. Otherwise NO-GO with the evidence.
-  Results stay exploratory until the Modal rerun.
+  Modal verification is complete; the development result remains exploratory.
 - The task set is not tuned against these numbers: the 60 seeds and the menu were fixed before any agent answer was read.

@@ -4,9 +4,9 @@
 
 TrainDoctor is an environment where agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs: four executed fault kinds in two synthetic families (A1 mismatched collectives, A2 a rank stalled before communication, B_SKIP and B_DUP checkpoint and sampler state that disagree after a worker failure) plus a healthy control (B_OK). A verifier re-executes each repair in a sandbox. The environment, verifier and quickstart live in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)); this repository holds the training and evaluation code, held-out evaluation evidence, experiments and analysis scripts.
 
-**Findings (exploratory, partly negative).**
+**Historical v0.1 findings (exploratory, partly negative).**
 - **SFT and GRPO (Qwen3-4B, trained on Modal GPUs).** On a held-out evaluation set of 100 incidents, GRPO with the recovery-aware reward outscored GRPO with a diagnosis-only reward (33.4% vs 23.0%, mean of six training seeds). The gain came from evidence grounding. Repair selection did not improve (71.4% vs 71.5%), and continued SFT with similar compute is not distinguishable from the recovery-aware arm.
-- **Verifier audit.** None of 86 scripted fake repairs was accepted, but 38 failed during execution rather than being rejected by a correctness invariant, which shows they do not run, not that an invariant covers them. I wrote the attacks; there was no external review.
+- **Verifier audit.** None of 86 scripted fake repairs was accepted, but 38 failed during execution rather than being rejected by a correctness invariant, which shows they do not run, not that an invariant covers them. The verifier and attacks share an author; there was no external review.
 - **Coding agents (Claude Sonnet and Codex).** Existing agents, not trained here, evaluated separately from the Qwen3-4B results above. Both solved all six development tasks. The tasks are too easy to rank agents, and a mutation pilot confirmed it (Codex 24 of 24).
 
 [Evidence map](docs/EVIDENCE_MAP.md) · [Analysis commands](#recomputing-the-results) · [Limitations](#limitations) · [Library](https://github.com/TarangKhanna/traindoctor-env) · [Erratum](docs/ERRATUM_mmd.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
@@ -33,7 +33,7 @@ The trained model is Qwen3-4B (4 billion parameters), adapted with LoRA. It was 
 
 Terms used below. **V0** rewards a correct diagnosis label. **V1** also requires cited evidence that supports it. **V2** (the recovery-aware reward) additionally requires a repair that passes sandboxed re-execution. **Repair-selection accuracy** is how often the model picks the repair that recovers the job. The **held-out evaluation set** was reserved before evaluation; its scenarios come from the same generator and the same fault mechanisms as the training data, so it tests new seeds, not new failure mechanisms.
 
-## Results
+## Results (historical v0.1)
 
 **Training.** Qwen3-4B was fine-tuned with SFT and then GRPO, with a diagnosis-only reward (V0) or the recovery-aware reward (V2), six paired seeds each, and scored once on the held-out evaluation set of 100 incidents. Success is full-task success on the four faulted task kinds: correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2).
 
@@ -56,9 +56,24 @@ Reading the table:
 
 ![Full-task success and working-repair selection for the two reward arms](docs/figures/fig_reward_outcome.svg)
 
-**Attacking the verifier.** None of 86 fake repairs (swallow the exception, exit 0, shrink the world, raise timeouts, forge logs) was accepted: 48 were rejected by a correctness invariant and 38 failed during execution, which shows those cheats do not run, not that an invariant covers them. The reference repair was accepted 5/5 and alternative valid repairs 9/10 (one false rejection, fixed in a prepared v1.1 verifier). One scripted cheat, `world_size: 1` on the rank-divergence task, completes the job but leaves 72 missing and 8 duplicated samples. I wrote the attacks; there was no external review. See [REDTEAM_TABLE.md](evidence/results/REDTEAM_TABLE.md) and [the audit write-up](experiments/verifier_audit/VERIFIER_AUDIT.md).
+**Attacking the verifier.** None of 86 fake repairs (swallow the exception, exit 0, shrink the world, raise timeouts, forge logs) was accepted: 48 were rejected by a correctness invariant and 38 failed during execution, which shows those cheats do not run, not that an invariant covers them. The reference repair was accepted 5/5 and alternative valid repairs 9/10 (one false rejection, fixed in a prepared v1.1 verifier). One scripted cheat, `world_size: 1` on the rank-divergence task, completes the job but leaves 72 missing and 8 duplicated samples. The verifier and attacks share an author; there was no external review. See [REDTEAM_TABLE.md](evidence/results/REDTEAM_TABLE.md) and [the audit write-up](experiments/verifier_audit/VERIFIER_AUDIT.md).
 
 ![Outcomes of the fake repairs: rejected by a correctness invariant or failed during execution](docs/figures/fig_redteam_funnel.svg)
+
+## Menu v3 development result
+
+**NO-GO for RL on menu v3.** The 720 Modal-sandboxed candidate outcomes comprise 60 reference repairs, 115 valid alternatives, 271 incorrect-but-completed repairs, 274 non-completions and 0 infrastructure errors. Verifier v1.2 accepts 175/175 valid and 0/271 incorrect-but-completed repairs; v1 has 12 false rejections. See [ACCOUNTING.md](experiments/menu_v3_dev/ACCOUNTING.md) and [REPORT.md](experiments/menu_v3_dev/REPORT.md).
+
+| Policy | P(V1 != V2) | V1-pass/V2-fail (of V1-pass) | Avoid-list share of V1-pass/V2-fail |
+| --- | --- | --- | --- |
+| Codex CLI (gpt-6.1-sol, medium) | 0.0% (0/120) | 0/102 | Undefined (no failures) |
+| Qwen3-4B continued SFT (`csft`) | 2.9% [1.2, 5.0] | 7/24 | 6/7 |
+| Qwen3-4B GRPO-V0 (`g_v0`, seed 0) | 5.8% [2.5, 9.6] | 14/41 | 9/14 |
+| Qwen3-4B GRPO-V2 (`g_v2`, seed 0) | 7.1% [2.9, 12.1] | 17/40 | 14/17 |
+
+Intervals are 95% seed-clustered bootstrap. The avoid-list is learned leaving one seed out and contains four fixed items: `sync:align`, `ckpt:from_progress`, `ckpt:fresh_optimizer`, `exclude_rank`. Codex chose no completing-invalid repair with V1 credit; trained-model disagreement remains below the roughly 10% target and is mostly explained by those items. The expectation that RL would mostly teach item identities is an inference.
+
+Limitations: one development seed range, one strong agent and three checkpoints from one training seed, trained on menu v1 and evaluated here without retraining. V1-pass denominators are small, and no held-out-item evaluation tested generalization. Incidents ran locally; candidate repairs ran in sandboxes; Codex saw only the prompt. The semantic oracle shares launcher records with the verifier. These outcomes do not revise the historical v0.1 results. Details: [report](experiments/menu_v3_dev/REPORT.md).
 
 ## Coding-agent evaluation (Claude Sonnet and Codex)
 
@@ -81,7 +96,7 @@ The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; i
 ## Limitations
 
 - Two synthetic task families; splits differ by seed, not by failure mechanism.
-- Each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the held-out set). The results do not show that recovery-based reward improves repair selection.
+- In the historical v0.1 experiment, each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the held-out set). The results do not show that recovery-based reward improves repair selection.
 - Six paired seeds is enough to see whether the sign is stable, not enough for statistical power.
 - A post-hoc audit on 120 new development seeds found that the process-status records in the Tier A bundle separate A2 from A1 perfectly but not A1_src from A1_cfg ([report](https://github.com/TarangKhanna/traindoctor-env/blob/main/results/status_audit/run1/REPORT.md)). The bundles were not changed, and the audit does not measure whether the trained models used that shortcut.
 - Tier B is an interactive development environment, not a validated multi-turn RL benchmark; the training results are Tier A only.

@@ -15,7 +15,7 @@ Evaluation uses HF `generate` (sampling T=1.0, top_p 0.95), not the MLX sampler,
 
 ## Library source in the image
 
-`app.py` adds `traindoctor_env`, `jobs`, `rl` and `modal_train` with `add_local_python_source` (Python files only). `rl` and `modal_train` are this repository. `traindoctor_env` and `jobs` are not in this repository since the split; they come from the library commit pinned in `requirements.txt` (`0b0a36b`), so run `pip install -r requirements.txt` in the environment that launches `modal run`.
+`app.py` adds `traindoctor_env`, `jobs`, `rl` and `modal_train` with `add_local_python_source` (Python files only). `rl` and `modal_train` are this repository. `traindoctor_env` and `jobs` are not in this repository since the split; they come from the library commit pinned in `requirements.txt` (`9dee8be`), so run `pip install -r requirements.txt` in the environment that launches `modal run`.
 
 - Historical: the published runs were built before the split, when both packages sat in the same checkout as `modal_train/`.
 - Supported now: the pinned-library install above. Static check, no Modal build: both packages exist at that commit, every file under them is a `.py` file (so the extension filter in `_exclude` drops nothing), and every library module imported by this repository's `rl/`, `modal_train/`, `scripts/` and `tests/` exists there.

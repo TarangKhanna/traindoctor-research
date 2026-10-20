@@ -132,7 +132,7 @@ def main(argv=None) -> int:
                 else:
                     try:
                         cand = next(m for m in menu if m.id == c["rid"])
-                        live = reexec.verify_fix(snap, list(cand.edits), allow_unsandboxed=False)
+                        live = reexec.verify_fix(snap, list(cand.edits), allow_unsandboxed=False, format_check="v1")
                         row.update(live_ok=bool(live.ok), live_sandboxed=bool(live.sandboxed), live_exec_mode=live.exec_mode,
                                    live_path=live.path, live_lost_steps=live.lost_steps, live_detail=live.detail,
                                    live_fault_not_injected=bool(live.fault_not_injected),

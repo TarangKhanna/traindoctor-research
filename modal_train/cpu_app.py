@@ -174,7 +174,7 @@ with tempfile.TemporaryDirectory() as wd:
             t0 = time.time(); cell = table[c.id]
             row = dict(ep=i, seed=seeds[i], kind=make_scenario(seeds[i]).kind, cand=c.id, role=c.role, table={k: getattr(cell, k) for k in KEYS}, table_mode=cell.exec_mode)
             try:
-                o = reexec.verify_fix(snap, list(c.edits), allow_unsandboxed=False, backend="modal")
+                o = reexec.verify_fix(snap, list(c.edits), allow_unsandboxed=False, backend="modal", format_check="v1")
                 row.update(modal={k: getattr(o, k) for k in KEYS}, modal_mode=o.exec_mode, modal_sandboxed=o.sandboxed, modal_detail=o.detail[:200])
                 row["agree_ok"] = bool(o.ok) == bool(cell.ok)
                 row["agree_all"] = all(row["modal"][k] == row["table"][k] for k in KEYS)
@@ -308,7 +308,7 @@ with tempfile.TemporaryDirectory() as wd:
             if not same:
                 raise RuntimeError("rebuilt snapshot does not contain the bundle's record ids")
             c = next(c for c in menu if c.id == rid)
-            o = reexec.verify_fix(snap, list(c.edits), allow_unsandboxed=False, backend="modal")
+            o = reexec.verify_fix(snap, list(c.edits), allow_unsandboxed=False, backend="modal", format_check="v1")
             row["outcome"] = dataclasses.asdict(o)
         except BaseException as e:
             row["error"] = f"{type(e).__name__}: {e}"[:400]

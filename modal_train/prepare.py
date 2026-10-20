@@ -54,7 +54,7 @@ def main():
             for s in seeds:
                 snap = execute(make_scenario(s), Path(wd) / str(s)); truth = load_truth(snap)
                 menu = make_menu(snap, truth, MENU); b = make_bundle(snap, menu, truth)
-                eps.append((truth, b, menu, outcome_table(snap, menu)))
+                eps.append((truth, b, menu, outcome_table(snap, menu, format_check="v1")))
                 lab, ev, _ = reference_solution(snap, truth)
                 rep = next(c.id for c in menu if c.role == "correct")
                 sft.append(dict(seed=s, kind=make_scenario(s).kind, target=json.dumps(dict(label=lab, evidence=ev, repair=rep, claims_fixed=True))))

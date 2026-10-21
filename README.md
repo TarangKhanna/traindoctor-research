@@ -1,18 +1,23 @@
-# TrainDoctor research artifacts
+# TrainDoctor research
 
-Training and evaluation code and results for TrainDoctor, an environment where agents diagnose and repair failed multi-process PyTorch (Gloo) training jobs.
+**Question.** When an agent repairs a failed distributed training job, a repair can make the job finish while silently breaking training (skipped or duplicated samples, wrong optimizer state). Does rewarding *verified* recovery, rather than only a correct diagnosis, teach a model to avoid such repairs?
 
-The core problem: a job can restart cleanly and still skip or duplicate data or corrupt optimizer state, so the verifier checks recovery from launcher-owned evidence by re-executing each repair in a sandbox. The question here is whether rewarding verified recovery teaches a small model to debug such jobs better than rewarding only the diagnosis label.
+**Verification mechanism.** The environment and verifier are in [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). Each candidate repair is re-executed in a network-less Modal (gVisor) sandbox; a verifier outside the sandbox checks launcher-recorded sample delivery, launcher-captured checkpoint history, and committed optimizer state against an uninterrupted reference or an independent replay of the update rule. The workloads are small synthetic CPU/Gloo jobs (four fault kinds in two families plus a healthy control), not production FSDP/NCCL training.
 
-The environment has four executed fault kinds in two synthetic families (A1 mismatched collectives, A2 a rank stalled before communication, B_SKIP and B_DUP checkpoint and sampler state that disagree after a worker failure) plus a healthy control (B_OK). The environment, verifier and quickstart are in the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) ([task suite](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TASKS.md)). This repository holds the training and evaluation code, held-out evidence, experiments and analysis scripts.
+**Strongest measured findings** (all exploratory):
 
-Historical v0.1 findings (exploratory, partly negative): recovery-aware GRPO improved evidence grounding, but repair selection did not improve, and continued SFT at similar compute was not distinguishable. The tasks were too easy to rank strong agents.
+- Verifier on an author-designed development suite (menu v3, 720 Modal-sandboxed candidate outcomes): verifier v1.2 accepted 175/175 legitimate repairs and 0/271 repairs that complete but violate training semantics; 274 candidates did not complete and 0 hit infrastructure errors. This is not independent external validation, and the semantic oracle shares launcher records with the verifier ([accounting](experiments/menu_v3_dev/ACCOUNTING.md)).
+- Red team: 0 of 86 scripted fake repairs accepted, but 38 of the rejections were execution failures, not invariant catches ([table](evidence/results/REDTEAM_TABLE.md)).
+- Training (historical v0.1, Qwen3-4B, six paired seeds): GRPO with the recovery-aware reward scored 10.36 points above diagnosis-only reward on a held-out set, but the gain was evidence grounding, not better repair selection (71.4% vs 71.5%), and continued SFT at similar compute was statistically indistinguishable ([details](#results-historical-v01)).
+- Negative results: menu v3 was a NO-GO for RL; held-out splits used new seeds, not new failure mechanisms; existing coding agents solved the development tasks, so the tasks do not rank strong agents; the protocol's minimum meaningful difference (7.2 vs 20 points) was never reconciled ([erratum](docs/ERRATUM_mmd.md)).
 
-[Evidence map](docs/EVIDENCE_MAP.md) · [Analysis commands](#recomputing-the-results) · [Limitations](#limitations) · [Library](https://github.com/TarangKhanna/traindoctor-env) · [Erratum](docs/ERRATUM_mmd.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
+**What can be rerun.** From this repository on CPU: the policy table, repair-choice counts, red-team recount, figures, README number checks and checksums. Historical only: GPU training and evaluation and the sandbox replays (code is here, not re-run after the split). Not available: the held-out seed list (only its sha256), cross-agent prompts and transcripts, mutation-pilot receipts and per-run development JSON. See [Recomputing the results](#recomputing-the-results) and the [evidence map](docs/EVIDENCE_MAP.md).
+
+[Evidence map](docs/EVIDENCE_MAP.md) · [Test report](evidence/results/TEST_REPORT.md) · [Menu v3 report](experiments/menu_v3_dev/REPORT.md) · [Verifier audit](experiments/verifier_audit/VERIFIER_AUDIT.md) · [Limitations](#limitations) · [Erratum](docs/ERRATUM_mmd.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
 
 ![Four ranks: rank 2 calls broadcast while ranks 0, 1 and 3 call all_reduce, so every rank times out with the same error](docs/figures/fig_failure.svg)
 
-The figure shows the A1 kind. All results are exploratory. Raw results and checksums are in [`evidence/`](evidence/README.md).
+The figure shows the A1 kind (mismatched collectives). Raw results and checksums are in [`evidence/`](evidence/README.md).
 
 ## Install
 
@@ -23,7 +28,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements-rl.txt   # only for rl/ (Apple Silicon, MLX)
 export PYTHONPATH=. TD_KEY=$(python -c "import secrets;print(secrets.token_hex(16))")
-python -m pytest -q --ignore=tests/test_first_update.py   # that file needs MLX (Apple Silicon)
+python -m pytest -q   # tests/test_first_update.py skips without MLX and a Metal device
 ```
 
 ## Models and compute
@@ -80,7 +85,7 @@ In a separate mutation pilot, eight procedurally mutated tasks passed trusted re
 
 ## Recomputing the results
 
-The [evidence map](docs/EVIDENCE_MAP.md) links claims to sources and recount commands. `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts; `scripts/make_figures.py` redraws the figures; `scripts/check_readme.py` checks README numbers. Run `shasum -a 256 -c SHA256SUMS` in `evidence/results/` and the two experiment folders to verify their hash-pinned files.
+The [evidence map](docs/EVIDENCE_MAP.md) links claims to sources and recount commands. `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts; `scripts/make_figures.py` redraws the figures; `scripts/check_readme.py` checks README numbers. Run `shasum -a 256 -c SHA256SUMS` in `evidence/results/`, `experiments/cross_agent_dev6/` and `experiments/mutation_pilot/`, and `shasum -a 256 -c results/SHA256SUMS` from `experiments/menu_v3_dev/` (its paths are relative to that folder).
 
 - Recompute here (class A): the policy table, repair-choice counts, red-team recount, figures, README numbers and checksums.
 - Historical: GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays and `scripts/redteam_suite.py` ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md).

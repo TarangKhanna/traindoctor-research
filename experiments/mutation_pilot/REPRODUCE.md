@@ -1,6 +1,6 @@
 # Reproducing the mutation pilot from a clean clone
 
-The generator and pilot read `jobs/` and `traindoctor_env/` from a checkout of the library. `TD_REPO` is the path to a checkout at the pinned commit (the one in the top-level `requirements.txt`, 0b0a36b).
+The generator and pilot read `jobs/` and `traindoctor_env/` from a checkout of the library. `TD_REPO` is the path to a checkout at commit 0b0a36b, the library commit the pilot was recorded against (the top-level `requirements.txt` now pins a later commit).
 
 Offline tests (no Modal, no API calls; 31 passed in 0.3 s on Python 3.12):
 

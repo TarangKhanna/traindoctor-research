@@ -5,6 +5,11 @@ import pytest
 
 pytest.importorskip("mlx.core", reason="needs MLX (Apple Silicon)")
 import mlx.core as mx
+
+try:
+    mx.array([0.0]).tolist()
+except RuntimeError as e:   # MLX installed but no Metal device (headless or sandboxed macOS)
+    pytest.skip(f"needs a Metal device: {e}", allow_module_level=True)
 from mlxrl.algo.grpo import algorithm_by_name
 
 from rl.first_update import logprob_gap, mixed_groups, reload_reproduces

@@ -1,6 +1,6 @@
 # Rerunning one failure, a repair and a fake repair (CPU only)
 
-One fixed-seed example from the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) at the commit pinned in `requirements.txt` (0b0a36b). No GPU, API key or Modal account is needed. It uses the library's own `scripts/quickstart.py`; nothing in this repository wraps it.
+One fixed-seed example from the library, [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env) at commit 0b0a36b, the library commit this example was recorded against (`requirements.txt` now pins a later commit). No GPU, API key or Modal account is needed. It uses the library's own `scripts/quickstart.py`; nothing in this repository wraps it.
 
 ```bash
 git clone https://github.com/TarangKhanna/traindoctor-env && cd traindoctor-env

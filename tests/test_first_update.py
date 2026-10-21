@@ -8,13 +8,16 @@ import mlx.core as mx
 
 try:
     mx.array([0.0]).tolist()
-except RuntimeError as e:   # MLX installed but no Metal device (headless or sandboxed macOS)
-    pytest.skip(f"needs a Metal device: {e}", allow_module_level=True)
+    METAL = True
+except RuntimeError:   # MLX installed but no Metal device (headless or sandboxed macOS)
+    METAL = False
+needs_metal = pytest.mark.skipif(not METAL, reason="needs a Metal device")
 from mlxrl.algo.grpo import algorithm_by_name
 
 from rl.first_update import logprob_gap, mixed_groups, reload_reproduces
 
 
+@needs_metal
 def test_advantages_zero_mean_per_group_and_zero_for_equal_groups():
     r = mx.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0])
     adv = algorithm_by_name("grpo").compute_advantages(r, group_structure=4).tolist()
@@ -24,6 +27,7 @@ def test_advantages_zero_mean_per_group_and_zero_for_equal_groups():
     assert adv[4:8] == [0.0] * 4 and adv[8:12] == [0.0] * 4
 
 
+@needs_metal
 def test_mixed_groups_selects_exactly_the_groups_with_nonzero_advantage():
     r = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0]
     adv = algorithm_by_name("grpo").compute_advantages(mx.array(r), group_structure=4).tolist()

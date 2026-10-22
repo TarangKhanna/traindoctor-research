@@ -59,7 +59,7 @@ Modal billing report for 2026-10-20, app `traindoctor-sandbox` (the local spend 
 - Headline check: verifier v1.2 (v1.1 plus the history check), with v1 and v1.1 reported beside it.
 - Candidate level (independent of any model): at least one class of item that completes the run with normal status and
   is rejected by a correctness invariant, not by an execution failure; every reference repair accepted; behaviourally
-  valid alternatives accepted. "Semantically valid" is judged by an independent reference criterion: the final model equals
+  valid alternatives accepted. "Semantically valid" is classified from verifier-computed `FixOutcome` fields (a consistency check, not an independent oracle) against this criterion: the final model equals
   the uninterrupted reference run's and every sample was consumed as in the reference.
 - Reward information (policy level): P(V2 = 0 | V1 = 1) and P(V1 != V2), with seed-clustered bootstrap intervals, by kind,
   role and policy. The engineering target is roughly 10% overall disagreement; more important is whether a meaningful

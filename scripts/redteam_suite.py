@@ -4,7 +4,7 @@ For each Tier B-style task (A1 src/cfg variants, A2, B_SKIP, B_DUP) every contro
 every applicable cheat is a real diff to the EDITABLE job files, judged by the real verification path
 (traindoctor_env.reexec.Replay, backend='modal': the job runs in a network-less gVisor Modal Sandbox, every invariant is
 recomputed on the trusted side). Nothing here weakens or bypasses the verifier. Fail closed: a crash or timeout is recorded as `error`, never as a verified rejection, and is excluded from the
-rule-of-three denominators.
+verified-run counts (no population bounds).
 
   redteam_suite.py [--run NAME] [--tasks A2,B_DUP] [--workers N] [--cap-usd X] [--list]
 Needs TD_KEY (any hex) and TD_MODAL_SITE (site-packages holding the modal client) in the environment.
@@ -395,8 +395,6 @@ def summarize(rows: list[dict]) -> dict:
             continue
         c["n"] += 1
         c["accepted"] += bool(r["accepted"])
-    for c in classes.values():
-        c["upper_bound_95"] = rule_of_three(c["accepted"], c["n"])
     n = sum(c["n"] for c in classes.values())
     k = sum(c["accepted"] for c in classes.values())
     ctrl = [r for r in rows if r["role"] in ("gold", "alt") and not r.get("error")]
@@ -404,7 +402,7 @@ def summarize(rows: list[dict]) -> dict:
     null = [r for r in rows if r["role"] == "null" and not r.get("error")]
     return dict(cheat_classes=classes,
                 cheats_pooled=dict(n=n, accepted=k, errors=sum(c["errors"] for c in classes.values())),
-                legit_controls=dict(n=len(ctrl), false_rejections=fr, upper_bound_95=rule_of_three(fr, len(ctrl))),
+                legit_controls=dict(n=len(ctrl), false_rejections=fr),
                 null=dict(n=len(null), accepted=sum(bool(r["accepted"]) for r in null)),
                 errors_total=sum(1 for r in rows if r.get("error")))
 
@@ -418,19 +416,17 @@ def render_table(rows: list[dict], summary: dict) -> str:
         la = r.get("launch") or {}
         L.append(f"| {r['id']} | {r['task']} | {acc} | {r.get('rejection_class', '-')} | {inv} | {allf} | "
                  f"{la.get('status')}/{la.get('error_class')} | {r['wall_s']:.0f}s | {r.get('exec_mode') or '-'} |")
-    L += ["", "Per-class bounds are rule-of-three 95% bounds (accepted 0 of n verified runs => acceptance rate <= 3/n), per cheat",
-          "class (clustered across tasks); `error` rows (crash/timeout/build failure) count as rejected for safety but are",
+    L += ["", "Counts only: the cheat cases are author-selected and reuse a few task instances, so no population acceptance or",
+          "false-rejection bound is claimed. `error` rows (crash/timeout/build failure) count as rejected for safety but are",
           "excluded from n and are not verified rejections. No claim of completeness over unlisted cheat classes.", "",
-          "| cheat class | n verified | accepted | errors | upper bound |", "|---|---|---|---|---|"]
+          "| cheat class | n verified | accepted | errors |", "|---|---|---|---|"]
     for cid in CHEAT_ORDER:
         c = summary["cheat_classes"].get(cid)
         if c:
-            ub = "n/a (accepted>0)" if c["upper_bound_95"] is None else f"<= {c['upper_bound_95']:.2f}"
-            L.append(f"| {cid} {CHEAT_NAMES[cid]} | {c['n']} | {c['accepted']} | {c['errors']} | {ub} |")
+            L.append(f"| {cid} {CHEAT_NAMES[cid]} | {c['n']} | {c['accepted']} | {c['errors']} |")
     p, lc, nl = summary["cheats_pooled"], summary["legit_controls"], summary["null"]
     L += ["", f"Pooled cheats: {p['accepted']} accepted of {p['n']} verified ({p['errors']} errors); no pooled population bound (attacks are author-chosen, not independent trials)",
-          f"Gold + alt-gold: {lc['false_rejections']} false rejections of {lc['n']}; "
-          + ("bound n/a" if lc["upper_bound_95"] is None else f"false-rejection rate <= {lc['upper_bound_95']:.3f}"),
+          f"Gold + alt-gold: {lc['false_rejections']} false rejections of {lc['n']}",
           f"Null (no diff): {nl['accepted']} accepted of {nl['n']}"]
     return "\n".join(L) + "\n"
 

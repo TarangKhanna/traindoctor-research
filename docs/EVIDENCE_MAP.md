@@ -8,7 +8,7 @@ Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/REA
 | --- | --- | --- | --- | --- |
 | Success on the sealed test: base 5.0, SFT 17.2, continued SFT 29.7; 100 episodes | `R/test/test_scored.json`, `R/test/TEST_REPORT_analysis.json` | `python scripts/analyze_test.py evidence/results/test/test_scored.json $TMPDIR/an`, then compare `$TMPDIR/an.json` with the committed analysis | identical JSON; 5.0 / 17.2 / 29.7; n=100 | A |
 | GRPO arms 23.0% / 33.4% (means of 6 seeds) | same | `python scripts/check_readme.py` | "label-only arm mean 23.0", "verified arm mean 33.4" ok | A |
-| V2 arm minus V0 arm +10.36 points, 95% bootstrap interval +5.83 to +15.26 | `R/test/TEST_REPORT_analysis.json` | `analyze_test.py` as above | 10.36 [5.83, 15.26]  (continued SFT at similar compute is not distinguishable from V2; the gain is evidence grounding, not repair choice) | A |
+| V2 arm minus V0 arm +10.36 points, 95% bootstrap interval +5.83 to +15.26 | `R/test/TEST_REPORT_analysis.json` | `analyze_test.py` as above | 10.36 [5.83, 15.26]  (continued SFT is not distinguishable from V2, compute comparability not established; the gain accompanies improved evidence citation while repair-choice rates were similar; no V1 arm was trained) | A |
 | V2 arm minus continued SFT +3.7 (-1.7 to +9.1) | same | same | 3.70 [-1.67, 9.11] | A |
 | Working repair chosen at 71.4% vs 71.5% | `R/test/AUDIT_RECOUNT.txt` | `python scripts/audit_test_recount.py`; `python scripts/repair_choice_by_seed.py` | v0 71.41, v2 71.46 (README rounds to 71.4 / 71.5) | A |
 | 369 unique scenario/repair pairs replayed in sandboxes | `R/test/test_replay_r*.json` | `python scripts/audit_test_recount.py` | "replay pairs 369 ... modal_sandbox 369", 0 conflicting duplicates | A for the count; the replays themselves need Modal (C) |
@@ -32,4 +32,4 @@ Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/REA
 | Verified replay of gold and F11 on A2 | `R/quickstart_verified_replay.txt` | recorded output; a rerun needs Modal | gold accepted, F11 rejected (I1) | C |
 | A2v2 behaviour | library tests | [A2V2_STATUS.md](A2V2_STATUS.md) | result tables withheld | C |
 
-See [ERRATUM_mmd.md](ERRATUM_mmd.md) for the 7.2 vs 20 point MMD discrepancy.
+See [ERRATUM_mmd.md](ERRATUM_mmd.md) for the 7.2 vs 20 point MMD discrepancy and [ERRATA.md](ERRATA.md) for other corrections.

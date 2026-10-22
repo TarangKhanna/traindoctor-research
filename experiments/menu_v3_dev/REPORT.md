@@ -24,8 +24,10 @@ verifier's tolerance; `ok` is unaffected); a recheck of the two seeds that ran w
   incorrect but completed 271, non-completion 274, infrastructure error 0; total 720.
 - v1.2 against the oracle: accepted 175/175 valid, 0/271 incorrect-completed, 0/274 non-completions. v1: 163/175 valid
   (12 false rejections, all `ckpt:from_step` on B_DUP, whose checkpoints store no sampler position), 0/271 incorrect.
-  These hold for these 720 outcomes; the oracle reads the same launcher records as the verifier, so it is independent of
-  the verifier's checks and of item roles, not of the execution.
+  These hold for these 720 outcomes under the suite's reference-based criteria. The classification is derived from the
+  verifier's own computed outcome fields (`ckpt_valid`, `params_match_reference`, `samples_match_reference`,
+  `ranks_consistent`, `detail`) and shared execution records, so this is a consistency check, not an independent
+  false-acceptance rate.
 - Completing-but-invalid items rejected by a correctness invariant, not by a crash: `sync:align` on A1 v0 (5/5,
   optimizer transition), `ckpt:from_progress` (sample accounting) and `ckpt:fresh_optimizer` (optimizer transition) on all
   36 Task B incidents each, and `sync:align` on B_SKIP, B_DUP and B_OK.

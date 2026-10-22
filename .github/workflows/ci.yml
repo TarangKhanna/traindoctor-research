@@ -21,6 +21,9 @@ jobs:
           for d in evidence/results experiments/cross_agent_dev6 experiments/mutation_pilot; do
             (cd "$d" && sha256sum -c SHA256SUMS)
           done
+          (cd experiments/menu_v3_dev && sha256sum -c results/SHA256SUMS)
+      - name: Menu v3 accounting recount
+        run: python experiments/menu_v3_dev/accounting.py --check
       - name: Markdown relative links
         run: |
           python - <<'PY'

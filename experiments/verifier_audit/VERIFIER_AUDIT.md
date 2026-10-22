@@ -11,7 +11,7 @@ Setup: 400 development seeds (10000..10399), 5-fold cross-validation across seed
 - First validation: failed for one isolated cause. Boosted stumps on menu-only features reached 0.495 (repair slot) and 0.485 (label) against 0.360, because two menu items drew context lines from the buggy job text while the others used clean text. A second finding: candidate ids were a public hash of (seed, role), which recovered the seed in 100/100 menus.
 - Fix (`traindoctor_env/bundle.py`): every menu item context is rendered from the clean text in one neutral form; candidate ids are keyed with a per-scenario secret derived from `TD_KEY`.
 - Re-validation: menu-only out-of-fold accuracy for boosted stumps is 0.333 [0.288, 0.380] (repair slot) and 0.300 [0.257, 0.347] (label); counterfactual groups (200 groups x 6 variants, chance 0.333) give 0.273 and 0.266; the old id formula recovers the seed from 0/100 menus. This validation was run by the same author as the fix.
-- Known and kept, not a menu leak: the bundle config alone reveals the config-level collective bug (`reduce_bcast`) and the A2 shard directory (`part-<world>`). A config-only rule scores 1.000 label accuracy on config-obvious training scenarios (n=124) and 0.533 on evidence-ambiguous ones (n=276), so results are reported overall and by those two strata ([`evidence/prereg/strata_v0_v2.md`](../../evidence/prereg/strata_v0_v2.md)). `tests/test_config_swap.py` guards that no config key encodes a label.
+- Known and kept, not a menu leak: the bundle config alone reveals the config-level collective bug (`reduce_bcast`) and the A2 shard directory (`part-<world>`). A config-only rule scores 1.000 label accuracy on config-obvious training scenarios (n=124) and 0.533 on evidence-ambiguous ones (n=276), so the strata were prespecified ([`evidence/prereg/strata_v0_v2.md`](../../evidence/prereg/strata_v0_v2.md)). `tests/test_config_swap.py` guards that no config key encodes a label.
 
 ## 2. Mutation check of the leak tests
 
@@ -35,7 +35,7 @@ Source: [`evidence/results/REDTEAM_TABLE.md`](../../evidence/results/REDTEAM_TAB
 | reference repairs | 5 of 5 accepted |
 | alternative valid repairs | 9 of 10 accepted; the false reject is B_DUP alt2 (sampler position recomputed in `restore()`), rejected only by the checkpoint-format check |
 | borderline S01 (A2: skip the shard wait) | accepted; a surface patch that removes the injected cause, not counted as a cheat; motivated A2v2 |
-| cheats (19 classes) | **0 of 86 accepted**; pooled rule-of-three 95% bound <= 0.035; per-class n is 2 to 5 |
+| cheats (19 classes) | **0 of 86 accepted**; the 86 are author-chosen attacks over 5 task instances, not independent population trials, so no population bound is given; per-class n is 2 to 5 |
 | by rejection class | **48 by an artifact invariant, 38 by execution failure** |
 
 Execution failures show the cheats do not work, not that invariants would catch them; invariant coverage is claimed for the 48 only. Verifier v1.1 (opt-in, not active) accepts the B_DUP alt2 repair and still rejects all verified cheats (0 of 85): [`REDTEAM_TABLE_v11.md`](../../evidence/results/REDTEAM_TABLE_v11.md), [`VERIFIER_V11.md`](../../evidence/results/VERIFIER_V11.md). A2v2, a separately versioned scenario with a real producer thread, is in `A2V2_SCENARIO.md` (library); the Modal Sandbox properties (network blocked, loopback Gloo works) are in `MODAL_SANDBOX_PROOF.md` (library).
@@ -50,6 +50,7 @@ Execution failures show the cheats do not work, not that invariants would catch 
 
 ## 8. Not verified
 
+- Results by the two prespecified strata (config-obvious, evidence-ambiguous): the stratified contrasts were not reported.
 - Live re-execution of decoy repairs, and executed true-token counts at the 3,072 cap.
 - Independence of the leak validation (same author as the fix); the stumps were not run under a label-permutation null.
 - Linux executed-suite results: see [`docs/TESTING.md`](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TESTING.md).

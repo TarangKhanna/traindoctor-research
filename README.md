@@ -1,4 +1,4 @@
-# TrainDoctor research
+# TrainDoctor Research - Qwen3-4B SFT/GRPO and Recovery-Verifier Audits
 
 **Question.** When an agent repairs a failed distributed training job, a repair can make the job finish while silently breaking training (skipped or duplicated samples, wrong optimizer state). Does rewarding *verified* recovery, rather than only a correct diagnosis, teach a model to avoid such repairs?
 
@@ -6,14 +6,14 @@
 
 **Strongest measured findings** (all exploratory):
 
-- Verifier on an author-designed development suite (menu v3, 720 Modal-sandboxed candidate outcomes): verifier v1.2 accepted 175/175 legitimate repairs and 0/271 repairs that complete but violate training semantics; 274 candidates did not complete and 0 hit infrastructure errors. This is not independent external validation, and the semantic oracle shares launcher records with the verifier ([accounting](experiments/menu_v3_dev/ACCOUNTING.md)).
+- Verifier on an author-designed development suite (menu v3, 720 Modal-sandboxed candidate outcomes): verifier v1.2 accepted all 175 repairs classified valid and rejected all 271 completed-but-invalid ones under the suite's reference-based criteria; 274 candidates did not complete and 0 hit infrastructure errors. Classification is derived from the verifier's own computed outcome fields and shared execution records, so this is a consistency check, not an independent false-acceptance rate or external validation ([accounting](experiments/menu_v3_dev/ACCOUNTING.md)).
 - Red team: 0 of 86 scripted fake repairs accepted, but 38 of the rejections were execution failures, not invariant catches ([table](evidence/results/REDTEAM_TABLE.md)).
-- Training (historical v0.1, Qwen3-4B, six paired seeds): GRPO with the recovery-aware reward scored 10.36 points above diagnosis-only reward on a held-out set, but the gain was evidence grounding, not better repair selection (71.4% vs 71.5%), and continued SFT at similar compute was statistically indistinguishable ([details](#results-historical-v01)).
+- Training (historical v0.1, Qwen3-4B, six paired seeds): GRPO with the recovery-aware reward scored 10.36 points above diagnosis-only reward on a held-out set, but the score gain accompanied improved evidence citation while repair-choice rates were similar (71.4% vs 71.5%); the whole interval (+5.83 to +15.26) lies below the amendment's 20-point minimum meaningful difference ([erratum](docs/ERRATUM_mmd.md)), and no evidence-only (V1) arm was trained, so evidence and recovery reward are not separated. Continued SFT was statistically indistinguishable, and compute comparability was not established ([details](#results-historical-v01)).
 - Negative results: menu v3 was a NO-GO for RL; held-out splits used new seeds, not new failure mechanisms; existing coding agents solved the development tasks, so the tasks do not rank strong agents; the protocol's minimum meaningful difference (7.2 vs 20 points) was never reconciled ([erratum](docs/ERRATUM_mmd.md)).
 
 **What can be rerun.** From this repository on CPU: the policy table, repair-choice counts, red-team recount, figures, README number checks and checksums. Historical only: GPU training and evaluation and the sandbox replays (code is here, not re-run after the split). Not available: the held-out seed list (only its sha256), cross-agent prompts and transcripts, mutation-pilot receipts and per-run development JSON. See [Recomputing the results](#recomputing-the-results) and the [evidence map](docs/EVIDENCE_MAP.md).
 
-[Evidence map](docs/EVIDENCE_MAP.md) · [Test report](evidence/results/TEST_REPORT.md) · [Menu v3 report](experiments/menu_v3_dev/REPORT.md) · [Verifier audit](experiments/verifier_audit/VERIFIER_AUDIT.md) · [Limitations](#limitations) · [Erratum](docs/ERRATUM_mmd.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
+[Evidence map](docs/EVIDENCE_MAP.md) · [Test report](evidence/results/TEST_REPORT.md) · [Menu v3 report](experiments/menu_v3_dev/REPORT.md) · [Verifier audit](experiments/verifier_audit/VERIFIER_AUDIT.md) · [Limitations](#limitations) · [Erratum](docs/ERRATUM_mmd.md) · [Errata](docs/ERRATA.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
 
 ![Four ranks: rank 2 calls broadcast while ranks 0, 1 and 3 call all_reduce, so every rank times out with the same error](docs/figures/fig_failure.svg)
 
@@ -45,13 +45,13 @@ Training. After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery
 | --- | ---: |
 | Base model | 5.0% |
 | SFT | 17.2% |
-| Continued SFT, similar compute | 29.7% |
+| Continued SFT (compute comparability not established) | 29.7% |
 | GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
 | GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
 
 - Reward comparison: the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
-- Where the gain came from: evidence grounding, not better repair selection. Both arms chose the recovering repair at the same rate (71.4% vs 71.5%) and label accuracy did not change.
-- Continued SFT: a single run with similar compute is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats spending the same compute on more SFT.
+- The observed score gain accompanies improved evidence citation; repair-choice rates were similar (71.4% vs 71.5%) and label accuracy did not change. No V1 (evidence-only) arm was trained, so V2-vs-V0 cannot separate evidence from recovery reward.
+- Continued SFT: a single run, with compute comparability not established, is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats more SFT.
 - Development split: the same V2-minus-V0 comparison was +4.64 points (interval −0.69 to +9.98), inconclusive.
 - Minimum meaningful difference: the frozen protocol states 7.2 points and its power-analysis amendment states 20. The 10.36-point gain is above the first and below the second, and the two were not reconciled ([ERRATUM_mmd.md](docs/ERRATUM_mmd.md)).
 - How scores were produced: training used precomputed outcomes from a development container; held-out scores come from 369 live sandbox replays. Report: [evidence/results/TEST_REPORT.md](evidence/results/TEST_REPORT.md).
@@ -64,7 +64,7 @@ Attacking the verifier. None of 86 fake repairs (swallow the exception, exit 0, 
 
 ## Menu v3 development result
 
-NO-GO for RL on menu v3. The 720 Modal-sandboxed candidate outcomes comprise 60 reference repairs, 115 valid alternatives, 271 incorrect-but-completed repairs, 274 non-completions and 0 infrastructure errors. Verifier v1.2 accepts 175/175 valid and 0/271 incorrect-but-completed repairs; v1 has 12 false rejections. See [ACCOUNTING.md](experiments/menu_v3_dev/ACCOUNTING.md) and [REPORT.md](experiments/menu_v3_dev/REPORT.md).
+NO-GO for RL on menu v3. The 720 Modal-sandboxed candidate outcomes comprise 60 reference repairs, 115 valid alternatives, 271 incorrect-but-completed repairs, 274 non-completions and 0 infrastructure errors. Verifier v1.2 accepts 175/175 valid and 0/271 incorrect-but-completed repairs under the suite's reference-based criteria (a consistency check: the classification uses the verifier's own outcome fields); v1 has 12 false rejections. See [ACCOUNTING.md](experiments/menu_v3_dev/ACCOUNTING.md) and [REPORT.md](experiments/menu_v3_dev/REPORT.md).
 
 | Policy | P(V1 != V2) | V1-pass/V2-fail (of V1-pass) | Avoid-list share of V1-pass/V2-fail |
 | --- | --- | --- | --- |
@@ -75,7 +75,7 @@ NO-GO for RL on menu v3. The 720 Modal-sandboxed candidate outcomes comprise 60 
 
 Intervals are 95% seed-clustered bootstrap. The avoid-list is learned leaving one seed out and contains four fixed items: `sync:align`, `ckpt:from_progress`, `ckpt:fresh_optimizer`, `exclude_rank`. Codex chose no completing-invalid repair with V1 credit; trained-model disagreement remains below the roughly 10% target and is mostly explained by those items. The expectation that RL would mostly teach item identities is an inference.
 
-Limitations: one development seed range, one strong agent and three checkpoints from one training seed, trained on menu v1 and evaluated here without retraining. V1-pass denominators are small, and no held-out-item evaluation tested generalization. Incidents ran locally; candidate repairs ran in sandboxes; Codex saw only the prompt. The semantic oracle shares launcher records with the verifier. These outcomes do not revise the historical v0.1 results. Details: [report](experiments/menu_v3_dev/REPORT.md).
+Limitations: one development seed range, one strong agent and three checkpoints from one training seed, trained on menu v1 and evaluated here without retraining. V1-pass denominators are small, and no held-out-item evaluation tested generalization. Incidents ran locally; candidate repairs ran in sandboxes; Codex saw only the prompt. The semantic classification is derived from the verifier's own computed outcome fields and shared execution records. These outcomes do not revise the historical v0.1 results. Details: [report](experiments/menu_v3_dev/REPORT.md).
 
 ## Coding-agent evaluation (Claude Sonnet and Codex)
 

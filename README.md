@@ -1,10 +1,10 @@
 # TrainDoctor Research - Qwen3-4B SFT/GRPO and Recovery-Verifier Audits
 
-**Question.** When an agent repairs a failed distributed training job, a repair can make the job finish while silently breaking training (skipped or duplicated samples, wrong optimizer state). Does rewarding *verified* recovery, rather than only a correct diagnosis, teach a model to avoid such repairs?
+Question. When an agent repairs a failed distributed training job, a repair can make the job finish while silently breaking training (skipped or duplicated samples, wrong optimizer state). Does rewarding *verified* recovery, rather than only a correct diagnosis, teach a model to avoid such repairs?
 
-**Verification mechanism.** The environment and verifier are in [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). Each candidate repair is re-executed in a network-less Modal (gVisor) sandbox; a verifier outside the sandbox checks launcher-recorded sample delivery, launcher-captured checkpoint history, and committed optimizer state against an uninterrupted reference or an independent replay of the update rule. The workloads are small synthetic CPU/Gloo jobs (four fault kinds in two families plus a healthy control), not production FSDP/NCCL training.
+The environment and verifier are in [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). Each candidate repair is re-executed in a network-less Modal (gVisor) sandbox; a verifier outside the sandbox checks launcher-recorded sample delivery, launcher-captured checkpoint history, and committed optimizer state against an uninterrupted reference or an independent replay of the update rule. The workloads are small synthetic CPU/Gloo jobs (four fault kinds in two families plus a healthy control), not production FSDP/NCCL training.
 
-**Main result.** Held-out set of 100 incidents, full-task success (correct diagnosis, supporting evidence and a repair that passes live sandbox replay) on the four faulted task kinds. Historical v0.1, Qwen3-4B, exploratory:
+Held-out set of 100 incidents, full-task success (correct diagnosis, supporting evidence and a repair that passes live sandbox replay) on the four faulted task kinds. Historical v0.1, Qwen3-4B, exploratory:
 
 | Policy | Success |
 | --- | ---: |
@@ -14,13 +14,11 @@
 | GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
 | GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
 
-**Interpretation (not causal).** The recovery-aware arm scored 10.36 points above the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26), but the whole interval lies below the amendment's 20-point minimum meaningful difference ([erratum](docs/ERRATUM_mmd.md)). The gain accompanied improved evidence citation while repair-choice rates were similar (71.4% vs 71.5%). No evidence-only (V1) arm was trained, so evidence and recovery reward are not separated. Continued SFT was statistically indistinguishable, and compute comparability was not established ([details](#results-historical-v01)).
+V2 outperformed V0, but without a V1 (evidence-only) arm the experiment cannot isolate the contribution of recovery verification; repair-choice rates were similar (71.4% vs 71.5%). The 10.36-point gain lies below the amendment's 20-point minimum meaningful difference ([erratum](docs/ERRATUM_mmd.md)), and continued SFT was statistically indistinguishable ([details](#results-historical-v01)).
 
-**Verifier audit (consistency result).** On an author-designed development suite (menu v3, 720 Modal-sandboxed candidate outcomes), verifier v1.2 accepted all 175 repairs classified valid and rejected all 271 completed-but-invalid ones under the suite's reference-based criteria; 274 candidates did not complete and 0 hit infrastructure errors. Classification is derived from the verifier's own computed outcome fields and shared execution records, so this is a consistency check, not an independent false-acceptance rate or external validation ([accounting](experiments/menu_v3_dev/ACCOUNTING.md)). In the red team, 0 of 86 scripted fake repairs were accepted, but 38 of the rejections were execution failures, not invariant catches ([table](evidence/results/REDTEAM_TABLE.md)).
+The verifier audits (menu v3 development suite and red team) are author-designed consistency checks, not external validation or independent false-acceptance rates; see [Results](#results-historical-v01) and [Menu v3 development result](#menu-v3-development-result). Menu v3 was a NO-GO for RL, existing coding agents solved the development tasks, and held-out splits used new seeds, not new failure mechanisms ([Limitations](#limitations)).
 
-**Scope and negative results.** Menu v3 was a NO-GO for RL; held-out splits used new seeds, not new failure mechanisms; existing coding agents solved the development tasks, so the tasks do not rank strong agents; the protocol's minimum meaningful difference (7.2 vs 20 points) was never reconciled ([erratum](docs/ERRATUM_mmd.md)). See [Limitations](#limitations).
-
-**Read these before the numbers.**
+Read these before the numbers:
 
 - The base model's 5.0% partly reflects the JSON format gate: valid-format rate was 51.7% for base vs 99.8% for SFT ([TEST_REPORT.md](evidence/results/TEST_REPORT.md)).
 - Training used cached dev-container outcomes; held-out scoring used 369 live sandbox replays (diagram below).
@@ -59,22 +57,17 @@ python -m pytest -q   # tests/test_first_update.py skips without MLX and a Metal
 
 ## Models and compute
 
-The trained model is Qwen3-4B (4 billion parameters), adapted with LoRA. It was first trained with supervised fine-tuning (SFT) on reference answers, then with GRPO (group-relative policy optimization, a reinforcement-learning method). Training and evaluation ran on Modal cloud GPUs (A100 and L40S), not on a laptop: evaluation used GPU inference, and repairs on the held-out set were verified by replay in Modal Sandboxes. Claude Sonnet and Codex were not trained or fine-tuned; they appear only in [Coding-agent evaluation](#coding-agent-evaluation-claude-sonnet-and-codex).
-
-Terms used below. V0 rewards a correct diagnosis label. V1 also requires cited evidence that supports it. V2 (the recovery-aware reward) additionally requires a repair that passes sandboxed re-execution. Repair-selection accuracy is how often the model picks the repair that recovers the job. The held-out evaluation set was reserved before evaluation; its scenarios come from the same generator and the same fault mechanisms as the training data, so it tests new seeds, not new failure mechanisms.
+The trained model is Qwen3-4B (4 billion parameters), adapted with LoRA. It was first trained with supervised fine-tuning (SFT) on reference answers, then with GRPO (group-relative policy optimization, a reinforcement-learning method). Training and evaluation ran on Modal cloud GPUs (A100 and L40S), not on a laptop: evaluation used GPU inference, and repairs on the held-out set were verified by replay in Modal Sandboxes. Claude Sonnet and Codex were not trained or fine-tuned; they appear only in [Coding-agent evaluation](#coding-agent-evaluation-claude-sonnet-and-codex). Terms: V0 rewards a correct diagnosis label. V1 also requires cited evidence that supports it. V2 (the recovery-aware reward) additionally requires a repair that passes sandboxed re-execution. Repair-selection accuracy is how often the model picks the repair that recovers the job. The held-out evaluation set was reserved before evaluation; its scenarios come from the same generator and the same fault mechanisms as the training data, so it tests new seeds, not new failure mechanisms.
 
 ## Results (historical v0.1)
 
-Training. After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents. Full-task success requires correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2) on the four faulted task kinds.
-
-Scores are in the table at the top of this page.
+Training. After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents.
 
 - Reward comparison: the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
-- The observed score gain accompanies improved evidence citation; repair-choice rates were similar (71.4% vs 71.5%) and label accuracy did not change. No V1 (evidence-only) arm was trained, so V2-vs-V0 cannot separate evidence from recovery reward.
+- The gain accompanied improved evidence citation; label accuracy did not change. The V1 caveat and repair-choice rates are stated at the top.
 - Continued SFT: a single run, with compute comparability not established, is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats more SFT.
 - Development split: the same V2-minus-V0 comparison was +4.64 points (interval −0.69 to +9.98), inconclusive.
 - Minimum meaningful difference: the frozen protocol states 7.2 points and its power-analysis amendment states 20. The 10.36-point gain is above the first and below the second, and the two were not reconciled ([ERRATUM_mmd.md](docs/ERRATUM_mmd.md)).
-- How scores were produced: training used precomputed outcomes from a development container; held-out scores come from 369 live sandbox replays. Report: [evidence/results/TEST_REPORT.md](evidence/results/TEST_REPORT.md).
 
 ![Full-task success and working-repair selection for the two reward arms](docs/figures/fig_reward_outcome.svg)
 
@@ -95,7 +88,7 @@ NO-GO for RL on menu v3. The 720 Modal-sandboxed candidate outcomes comprise 60 
 
 Intervals are 95% seed-clustered bootstrap. The avoid-list is learned leaving one seed out and contains four fixed items: `sync:align`, `ckpt:from_progress`, `ckpt:fresh_optimizer`, `exclude_rank`. Codex chose no completing-invalid repair with V1 credit; trained-model disagreement remains below the roughly 10% target and is mostly explained by those items. The expectation that RL would mostly teach item identities is an inference.
 
-Limitations: one development seed range, one strong agent and three checkpoints from one training seed, trained on menu v1 and evaluated here without retraining. V1-pass denominators are small, and no held-out-item evaluation tested generalization. Incidents ran locally; candidate repairs ran in sandboxes; Codex saw only the prompt. The semantic classification is derived from the verifier's own computed outcome fields and shared execution records. These outcomes do not revise the historical v0.1 results. Details: [report](experiments/menu_v3_dev/REPORT.md).
+Limitations: one development seed range, one strong agent and three checkpoints from one training seed, trained on menu v1 and evaluated here without retraining. V1-pass denominators are small, and no held-out-item evaluation tested generalization. Incidents ran locally; candidate repairs ran in sandboxes; Codex saw only the prompt. These outcomes do not revise the historical v0.1 results. Details: [report](experiments/menu_v3_dev/REPORT.md).
 
 ## Coding-agent evaluation (Claude Sonnet and Codex)
 
@@ -118,7 +111,6 @@ The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; i
 
 ## Limitations
 
-- Two synthetic task families; splits differ by seed, not by failure mechanism.
 - In the historical v0.1 experiment, each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the held-out set). The results do not show that recovery-based reward improves repair selection.
 - Six paired seeds is enough to see whether the sign is stable, not enough for statistical power.
 - A post-hoc audit on 120 new development seeds found that the process-status records in the Tier A bundle separate A2 from A1 perfectly but not A1_src from A1_cfg ([report](https://github.com/TarangKhanna/traindoctor-env/blob/main/results/status_audit/run1/REPORT.md)). The bundles were not changed, and the audit does not measure whether the trained models used that shortcut.

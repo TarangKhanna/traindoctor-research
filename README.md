@@ -4,16 +4,42 @@
 
 **Verification mechanism.** The environment and verifier are in [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). Each candidate repair is re-executed in a network-less Modal (gVisor) sandbox; a verifier outside the sandbox checks launcher-recorded sample delivery, launcher-captured checkpoint history, and committed optimizer state against an uninterrupted reference or an independent replay of the update rule. The workloads are small synthetic CPU/Gloo jobs (four fault kinds in two families plus a healthy control), not production FSDP/NCCL training.
 
-**Strongest measured findings** (all exploratory):
+**Main result.** Held-out set of 100 incidents, full-task success (correct diagnosis, supporting evidence and a repair that passes live sandbox replay) on the four faulted task kinds. Historical v0.1, Qwen3-4B, exploratory:
 
-- Verifier on an author-designed development suite (menu v3, 720 Modal-sandboxed candidate outcomes): verifier v1.2 accepted all 175 repairs classified valid and rejected all 271 completed-but-invalid ones under the suite's reference-based criteria; 274 candidates did not complete and 0 hit infrastructure errors. Classification is derived from the verifier's own computed outcome fields and shared execution records, so this is a consistency check, not an independent false-acceptance rate or external validation ([accounting](experiments/menu_v3_dev/ACCOUNTING.md)).
-- Red team: 0 of 86 scripted fake repairs accepted, but 38 of the rejections were execution failures, not invariant catches ([table](evidence/results/REDTEAM_TABLE.md)).
-- Training (historical v0.1, Qwen3-4B, six paired seeds): GRPO with the recovery-aware reward scored 10.36 points above diagnosis-only reward on a held-out set, but the score gain accompanied improved evidence citation while repair-choice rates were similar (71.4% vs 71.5%); the whole interval (+5.83 to +15.26) lies below the amendment's 20-point minimum meaningful difference ([erratum](docs/ERRATUM_mmd.md)), and no evidence-only (V1) arm was trained, so evidence and recovery reward are not separated. Continued SFT was statistically indistinguishable, and compute comparability was not established ([details](#results-historical-v01)).
-- Negative results: menu v3 was a NO-GO for RL; held-out splits used new seeds, not new failure mechanisms; existing coding agents solved the development tasks, so the tasks do not rank strong agents; the protocol's minimum meaningful difference (7.2 vs 20 points) was never reconciled ([erratum](docs/ERRATUM_mmd.md)).
+| Policy | Success |
+| --- | ---: |
+| Base model | 5.0% |
+| SFT | 17.2% |
+| Continued SFT (compute comparability not established) | 29.7% |
+| GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
+| GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
 
-**What can be rerun.** From this repository on CPU: the policy table, repair-choice counts, red-team recount, figures, README number checks and checksums. Historical only: GPU training and evaluation and the sandbox replays (code is here, not re-run after the split). Not available: the held-out seed list (only its sha256), cross-agent prompts and transcripts, mutation-pilot receipts and per-run development JSON. See [Recomputing the results](#recomputing-the-results) and the [evidence map](docs/EVIDENCE_MAP.md).
+**Interpretation (not causal).** The recovery-aware arm scored 10.36 points above the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26), but the whole interval lies below the amendment's 20-point minimum meaningful difference ([erratum](docs/ERRATUM_mmd.md)). The gain accompanied improved evidence citation while repair-choice rates were similar (71.4% vs 71.5%). No evidence-only (V1) arm was trained, so evidence and recovery reward are not separated. Continued SFT was statistically indistinguishable, and compute comparability was not established ([details](#results-historical-v01)).
 
-[Evidence map](docs/EVIDENCE_MAP.md) · [Test report](evidence/results/TEST_REPORT.md) · [Menu v3 report](experiments/menu_v3_dev/REPORT.md) · [Verifier audit](experiments/verifier_audit/VERIFIER_AUDIT.md) · [Limitations](#limitations) · [Erratum](docs/ERRATUM_mmd.md) · [Errata](docs/ERRATA.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history)
+**Verifier audit (consistency result).** On an author-designed development suite (menu v3, 720 Modal-sandboxed candidate outcomes), verifier v1.2 accepted all 175 repairs classified valid and rejected all 271 completed-but-invalid ones under the suite's reference-based criteria; 274 candidates did not complete and 0 hit infrastructure errors. Classification is derived from the verifier's own computed outcome fields and shared execution records, so this is a consistency check, not an independent false-acceptance rate or external validation ([accounting](experiments/menu_v3_dev/ACCOUNTING.md)). In the red team, 0 of 86 scripted fake repairs were accepted, but 38 of the rejections were execution failures, not invariant catches ([table](evidence/results/REDTEAM_TABLE.md)).
+
+**Scope and negative results.** Menu v3 was a NO-GO for RL; held-out splits used new seeds, not new failure mechanisms; existing coding agents solved the development tasks, so the tasks do not rank strong agents; the protocol's minimum meaningful difference (7.2 vs 20 points) was never reconciled ([erratum](docs/ERRATUM_mmd.md)). See [Limitations](#limitations).
+
+**Read these before the numbers.**
+
+- The base model's 5.0% partly reflects the JSON format gate: valid-format rate was 51.7% for base vs 99.8% for SFT ([TEST_REPORT.md](evidence/results/TEST_REPORT.md)).
+- Training used cached dev-container outcomes; held-out scoring used 369 live sandbox replays (diagram below).
+- The batch size of the historical held-out evaluations is unknown (protocol 2, launcher default 8, launch commands not kept; [modal_train/README.md](modal_train/README.md)).
+- The generator has a seed-to-label leak (see the [library README](https://github.com/TarangKhanna/traindoctor-env/blob/main/README.md)).
+- Test levels differ: unit CI, the executed suite and the Modal regression are separate ([library docs/TESTING.md](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TESTING.md)).
+
+```mermaid
+flowchart LR
+  G["Generator scenarios"] --> D["Cached dev-container outcomes"]
+  D --> T["Training reward (V0, V2)"]
+  T --> M["Trained policy"]
+  G --> H["Held-out incidents"]
+  M --> S["Live Modal sandbox replay (369)"]
+  H --> S
+  S --> R["Held-out scores"]
+```
+
+Links: [Evidence map](docs/EVIDENCE_MAP.md) · [Test report](evidence/results/TEST_REPORT.md) · [Menu v3 report](experiments/menu_v3_dev/REPORT.md) · [Verifier audit](experiments/verifier_audit/VERIFIER_AUDIT.md) · [Limitations](#limitations) · [Erratum](docs/ERRATUM_mmd.md) · [Errata](docs/ERRATA.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history). Reproducibility is summarized in [Recomputing the results](#recomputing-the-results).
 
 ![Four ranks: rank 2 calls broadcast while ranks 0, 1 and 3 call all_reduce, so every rank times out with the same error](docs/figures/fig_failure.svg)
 
@@ -41,13 +67,7 @@ Terms used below. V0 rewards a correct diagnosis label. V1 also requires cited e
 
 Training. After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents. Full-task success requires correct diagnosis, supporting evidence and a repair that passes live sandbox replay (V2) on the four faulted task kinds.
 
-| Policy | Success |
-| --- | ---: |
-| Base model | 5.0% |
-| SFT | 17.2% |
-| Continued SFT (compute comparability not established) | 29.7% |
-| GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
-| GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
+Scores are in the table at the top of this page.
 
 - Reward comparison: the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
 - The observed score gain accompanies improved evidence citation; repair-choice rates were similar (71.4% vs 71.5%) and label accuracy did not change. No V1 (evidence-only) arm was trained, so V2-vs-V0 cannot separate evidence from recovery reward.
@@ -87,9 +107,12 @@ In a separate mutation pilot, eight procedurally mutated tasks passed trusted re
 
 The [evidence map](docs/EVIDENCE_MAP.md) links claims to sources and recount commands. `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts; `scripts/make_figures.py` redraws the figures; `scripts/check_readme.py` checks README numbers. Run `shasum -a 256 -c SHA256SUMS` in `evidence/results/`, `experiments/cross_agent_dev6/` and `experiments/mutation_pilot/`, and `shasum -a 256 -c results/SHA256SUMS` from `experiments/menu_v3_dev/` (its paths are relative to that folder).
 
-- Recompute here (class A): the policy table, repair-choice counts, red-team recount, figures, README numbers and checksums.
-- Historical: GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays and `scripts/redteam_suite.py` ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md).
-- Cannot be regenerated: the held-out evaluation set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison. These are withheld or lost; see evidence map class C.
+| Status | What | Notes |
+| --- | --- | --- |
+| Recomputable here | Policy table, repair-choice counts, red-team recount, figures, README numbers, checksums | CPU only; commands above |
+| Needs prerequisites | MLX tests such as `tests/test_first_update.py` | Apple Silicon with a Metal device (`requirements-rl.txt`); skipped otherwise |
+| Historical only | GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays, `scripts/redteam_suite.py` | Ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md) |
+| Unavailable | Held-out evaluation set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison | Withheld or lost; see evidence map class C |
 
 The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; its sha256 is in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so neither the copy nor its hash establishes when the freeze happened, and this repository's commit dates are not evidence of preregistration.
 

@@ -178,7 +178,16 @@ def execute(args):
     persist()
 
     def guard():
-        if psutil.virtual_memory().available < 8 * 1024**3 or psutil.swap_memory().used - swap0 > 128 * 1024**2:
+        available = psutil.virtual_memory().available
+        swap_used = psutil.swap_memory().used
+        low_ram = available < 8 * 1024**3
+        swap_growth = swap_used - swap0 > 128 * 1024**2
+        if low_ram or swap_growth:
+            state["resource_guard_failure"] = {"sampled_epoch": time.time(),
+                "available_bytes": available, "swap_used_bytes": swap_used,
+                "swap_baseline_bytes": swap0, "swap_growth_bytes": swap_used - swap0,
+                "below_ram_floor": low_ram, "above_swap_growth_limit": swap_growth}
+            persist()
             raise RuntimeError("local resource guard")
 
     guard()

@@ -53,6 +53,39 @@ def test_outer_runtime_failure_persists_an_unscored_result(monkeypatch, tmp_path
     assert state["result"]["terminal_reward"] is None and state["status"] == "infrastructure_error"
 
 
+@pytest.mark.parametrize("available,growth,low_ram,high_swap", [
+    (7 * 1024**3, 0, True, False),
+    (9 * 1024**3, 129 * 1024**2, False, True),
+])
+def test_resource_stop_preserves_trigger_and_null_reward_before_model_load(
+        monkeypatch, tmp_path, available, growth, low_ram, high_swap):
+    import sys
+    from types import SimpleNamespace
+    from experiments.local_agent_v1 import run
+    out, model = tmp_path / "episode", tmp_path / "model"
+    model.mkdir()
+    monkeypatch.setenv("TD_KEY", "state-recovery-demo-key")
+    monkeypatch.setattr(run, "read_source", lambda _: "unchanged")
+    def episode(*a, **k):
+        out.mkdir()
+        return SimpleNamespace(done=False, state=lambda: {}, tool_calls=0, relaunches=0,
+                               last_execution=None, phase=0, records=[], phase_records=[])
+    monkeypatch.setattr(run, "RepairEpisode", episode)
+    swap_samples = iter((1024**3, 1024**3 + growth))
+    monkeypatch.setattr(run.psutil, "virtual_memory", lambda: SimpleNamespace(available=available))
+    monkeypatch.setattr(run.psutil, "swap_memory", lambda: SimpleNamespace(used=next(swap_samples)))
+    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", "unused", "--model", str(model),
+                                    "--out", str(out)])
+    with pytest.raises(RuntimeError, match="local resource guard"):
+        run.main()
+    state = json.loads((out / "trajectory.json").read_text())
+    counters = state["resource_guard_failure"]
+    assert counters["available_bytes"] == available and counters["swap_growth_bytes"] == growth
+    assert counters["below_ram_floor"] is low_ram
+    assert counters["above_swap_growth_limit"] is high_swap
+    assert state["result"]["terminal_reward"] is None and state["loads"] == []
+
+
 def test_bad_security_approval_preserves_pending_trajectory(monkeypatch, tmp_path):
     import sys
     from experiments.local_agent_v1 import run

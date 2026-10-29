@@ -210,7 +210,7 @@ before a single model completes the task, and do not present AI review as adopti
 full-evidence episode through an actual proposed patch and trusted outcome. Stop
 after the bounded four-condition milestone; do not expand tasks or train to work
 around this infrastructure failure. The assistant requested memory relief rather
-than terminating unrelated work. No monitoring automation or external action exists.
+than terminating unrelated work. At the earlier closure, no monitoring automation or external action had been scheduled. A later owner-requested one-time memory check is now scheduled in this thread; it is read-only and cannot restart models or stop processes.
 
 ## 2026-10-29 bounded Qwen follow-up
 

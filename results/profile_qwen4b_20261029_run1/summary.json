@@ -1,0 +1,63 @@
+{
+  "source": "executed",
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "load_s": 1.0424355000141077,
+  "multi_turn": {
+    "case0": {
+      "calls": [
+        {
+          "tool": "recover",
+          "args": {
+            "action": "restore_optimizer"
+          }
+        }
+      ],
+      "selected": "restore_optimizer",
+      "format_error": null,
+      "semantic_valid_from_executed_table": false,
+      "cost_score_from_executed_table": 0.0,
+      "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+    },
+    "case1": {
+      "calls": [
+        {
+          "tool": "recover",
+          "args": {
+            "action": "restore_optimizer"
+          }
+        }
+      ],
+      "selected": "restore_optimizer",
+      "format_error": null,
+      "semantic_valid_from_executed_table": true,
+      "cost_score_from_executed_table": 0.8333333333333334,
+      "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+    }
+  },
+  "code_repair": {
+    "format_valid": true,
+    "applies": true,
+    "ast_equivalent_to_pristine": false,
+    "executed": false,
+    "note": "text only here; separate sandboxed validation required"
+  },
+  "throughput": {
+    "2048": {
+      "ttft_s": 17.234244959021453,
+      "wall_s": 24.74297183402814,
+      "prefill_tokens_s": 122.38167221078895,
+      "decode_tokens_s": 17.175347495477514,
+      "peak_mlx_gb": 3.179060348,
+      "prompt_tokens": 2068
+    },
+    "8192": {
+      "ttft_s": 79.34980025002733,
+      "wall_s": 89.0764644999872,
+      "prefill_tokens_s": 103.87194578407541,
+      "decode_tokens_s": 13.542010245015678,
+      "peak_mlx_gb": 4.001184808,
+      "prompt_tokens": 8212
+    }
+  },
+  "swap_growth_bytes": 0
+}

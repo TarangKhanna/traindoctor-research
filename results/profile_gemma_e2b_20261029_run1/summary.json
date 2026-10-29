@@ -1,0 +1,57 @@
+{
+  "source": "executed",
+  "model": "mlx-community/gemma-4-e2b-it-4bit",
+  "load_s": 2.9903679999988526,
+  "multi_turn": {
+    "case0": {
+      "calls": [],
+      "selected": null,
+      "format_error": "Expecting value: line 1 column 1 (char 0)",
+      "semantic_valid_from_executed_table": null,
+      "cost_score_from_executed_table": null,
+      "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+    },
+    "case1": {
+      "calls": [],
+      "selected": null,
+      "format_error": "Expecting value: line 1 column 1 (char 0)",
+      "semantic_valid_from_executed_table": null,
+      "cost_score_from_executed_table": null,
+      "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+    }
+  },
+  "code_repair": {
+    "format_valid": false,
+    "applies": false,
+    "ast_equivalent_to_pristine": false,
+    "executed": false,
+    "note": "text only here; separate sandboxed validation required"
+  },
+  "throughput": {
+    "2048": {
+      "ttft_s": 3.2010557500179857,
+      "wall_s": 6.863958999980241,
+      "prefill_tokens_s": 762.0416062960575,
+      "decode_tokens_s": 35.14434073239938,
+      "peak_mlx_gb": 3.32868577,
+      "prompt_tokens": 2062
+    },
+    "8192": {
+      "ttft_s": 12.325984166993294,
+      "wall_s": 16.28917966701556,
+      "prefill_tokens_s": 693.1985786042185,
+      "decode_tokens_s": 32.57541276706008,
+      "peak_mlx_gb": 3.510630062,
+      "prompt_tokens": 8224
+    }
+  },
+  "swap_growth_bytes": 0,
+  "prefix_cache": {
+    "setup_s": 2.9236754999728873,
+    "n": 5,
+    "all_outputs_match_uncached": true,
+    "uncached_total_s": 34.278372710046824,
+    "cached_total_including_setup_s": 23.096803749969695,
+    "cached_median_ttft_s": 0.5698048339691013
+  }
+}

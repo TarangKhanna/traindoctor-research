@@ -1,0 +1,9 @@
+{
+  "source": "executed",
+  "operation": "read-only saved-profile recount",
+  "profile_directories": [
+    "profile_qwen4b_20261029_run1",
+    "profile_gemma_e2b_20261029_thinking_off"
+  ],
+  "historical_bench_included": true
+}

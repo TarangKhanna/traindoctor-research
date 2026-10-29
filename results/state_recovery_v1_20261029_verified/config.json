@@ -1,0 +1,19 @@
+{
+  "authored_controls_not_model_answers": true,
+  "checkpoint_every": 4,
+  "cost": "raw repeated optimizer steps; no scratch exemption",
+  "exec_mode": "local_os_sandbox",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "salt_boundary": 8,
+  "same_schedule_for_all_actions": true,
+  "score": "0 if semantically invalid, otherwise max(0, 1-redone_steps/12)",
+  "seed": 777,
+  "source": "executed",
+  "steps": 12,
+  "version": "state_recovery_v1",
+  "worker_failure": [
+    0,
+    9
+  ],
+  "world": 2
+}

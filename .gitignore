@@ -29,3 +29,14 @@ INTERVIEW*
 .handoff/
 .research/
 HANDOFF*.md
+
+# Retained preliminary local run; superseded by the verified execution packet.
+/results/state_recovery_v1_20261029_run1/
+# Runtime tracebacks can contain local interpreter paths; raw ledgers/captures remain.
+/results/**/stderr/
+# Raw execution trees are retained locally and distributed as checksummed archives.
+/results/state_recovery_v1_20261029_verified/base/
+/results/state_recovery_v1_20261029_verified/case0/
+/results/state_recovery_v1_20261029_verified/case1/
+/results/state_recovery_v1_20261029_verified/SHA256SUMS
+/results/reviewed_qwen_code_20261029/incident/

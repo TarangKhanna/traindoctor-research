@@ -1,0 +1,323 @@
+{
+  "source": "executed",
+  "continuations_recounted": 12,
+  "captured_hashes_checked": 60,
+  "common_optimal_actions": [
+    "restore_full"
+  ],
+  "rows": [
+    {
+      "case": "case0",
+      "action": "resume",
+      "semantic_valid": false,
+      "redone_steps": 2,
+      "cost_score": 0,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": false,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 0.06533919062892589,
+        "momentum_max_abs_error": 0.2348765521049382,
+        "sampler_matches": false,
+        "step_matches": true,
+        "sample_history_mismatches": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            11
+          ]
+        ],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case0",
+      "action": "restore_sampler",
+      "semantic_valid": true,
+      "redone_steps": 2,
+      "cost_score": 0.8333333333333334,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case0",
+      "action": "restore_optimizer",
+      "semantic_valid": false,
+      "redone_steps": 2,
+      "cost_score": 0,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": false,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 0.06533919062892589,
+        "momentum_max_abs_error": 0.2348765521049382,
+        "sampler_matches": false,
+        "step_matches": true,
+        "sample_history_mismatches": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            11
+          ]
+        ],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case0",
+      "action": "restore_full",
+      "semantic_valid": true,
+      "redone_steps": 2,
+      "cost_score": 0.8333333333333334,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case0",
+      "action": "older",
+      "semantic_valid": true,
+      "redone_steps": 6,
+      "cost_score": 0.5,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case0",
+      "action": "scratch",
+      "semantic_valid": true,
+      "redone_steps": 10,
+      "cost_score": 0.16666666666666663,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case1",
+      "action": "resume",
+      "semantic_valid": false,
+      "redone_steps": 2,
+      "cost_score": 0,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": false,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 0.1651235681729516,
+        "momentum_max_abs_error": 0.1397976787090419,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case1",
+      "action": "restore_sampler",
+      "semantic_valid": false,
+      "redone_steps": 2,
+      "cost_score": 0,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": false,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 0.1651235681729516,
+        "momentum_max_abs_error": 0.1397976787090419,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case1",
+      "action": "restore_optimizer",
+      "semantic_valid": true,
+      "redone_steps": 2,
+      "cost_score": 0.8333333333333334,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case1",
+      "action": "restore_full",
+      "semantic_valid": true,
+      "redone_steps": 2,
+      "cost_score": 0.8333333333333334,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case1",
+      "action": "older",
+      "semantic_valid": true,
+      "redone_steps": 6,
+      "cost_score": 0.5,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    },
+    {
+      "case": "case1",
+      "action": "scratch",
+      "semantic_valid": true,
+      "redone_steps": 10,
+      "cost_score": 0.16666666666666663,
+      "oracle": {
+        "source": "executed",
+        "semantic_valid": true,
+        "completed": true,
+        "prefix_max_abs_error": 7.561030429537041e-08,
+        "parameter_max_abs_error": 3.73132204023463e-08,
+        "momentum_max_abs_error": 5.2193850685888776e-08,
+        "sampler_matches": true,
+        "step_matches": true,
+        "sample_history_mismatches": [],
+        "tolerance": 1e-05,
+        "arithmetic": "NumPy float64 manual gradients and SGD"
+      }
+    }
+  ],
+  "state_rule": [
+    "restore_sampler",
+    "restore_optimizer"
+  ],
+  "reference_backend": "trusted local subprocess, local_unsandboxed_trusted",
+  "continuation_backend": "macOS sandbox-exec, local_os_sandbox",
+  "oracle_scope": "independent NumPy continuation computation conditional on genuine anchors and shared input generation"
+}

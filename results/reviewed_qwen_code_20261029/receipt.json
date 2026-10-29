@@ -1,0 +1,33 @@
+{
+  "source": "executed",
+  "model": "Qwen3-4B-Instruct-2507-4bit",
+  "control": "one exact reviewed free-form proposal on existing B_DUP",
+  "scope": "no general code execution; no capability population estimate",
+  "isolation_backend": "macOS sandbox-exec",
+  "outcome": {
+    "ok": false,
+    "bit_identical": false,
+    "params_match_reference": false,
+    "samples_match_reference": false,
+    "restores_consistent": true,
+    "no_duplicate_updates": true,
+    "lost_steps": 3,
+    "ranks_consistent": true,
+    "tampered": [],
+    "detail": "",
+    "steps_completed": 12,
+    "ckpt_valid": true,
+    "sample_gaps": 32,
+    "sample_dups": 32,
+    "states_match_reference": false,
+    "transitions_consistent": true,
+    "path": "",
+    "relaunches": 2,
+    "sandboxed": true,
+    "exec_mode": "sandboxed",
+    "fault_not_injected": false,
+    "sampler_behaviour": false,
+    "history_intact": true,
+    "format_check": "v1.2"
+  }
+}

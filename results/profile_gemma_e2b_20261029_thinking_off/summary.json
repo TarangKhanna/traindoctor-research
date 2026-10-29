@@ -1,0 +1,71 @@
+{
+  "source": "executed",
+  "model": "mlx-community/gemma-4-e2b-it-4bit",
+  "load_s": 1.9039174590143375,
+  "multi_turn": {
+    "case0": {
+      "calls": [
+        {
+          "tool": "recover",
+          "args": {
+            "action": "restore_full"
+          }
+        }
+      ],
+      "selected": "restore_full",
+      "format_error": null,
+      "semantic_valid_from_executed_table": true,
+      "cost_score_from_executed_table": 0.8333333333333334,
+      "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+    },
+    "case1": {
+      "calls": [
+        {
+          "tool": "recover",
+          "args": {
+            "action": "restore_full"
+          }
+        }
+      ],
+      "selected": "restore_full",
+      "format_error": null,
+      "semantic_valid_from_executed_table": true,
+      "cost_score_from_executed_table": 0.8333333333333334,
+      "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+    }
+  },
+  "code_repair": {
+    "format_valid": false,
+    "applies": false,
+    "ast_equivalent_to_pristine": false,
+    "executed": false,
+    "note": "text only here; separate sandboxed validation required"
+  },
+  "throughput": {
+    "2048": {
+      "ttft_s": 3.2578589170007035,
+      "wall_s": 7.178072834038176,
+      "prefill_tokens_s": 713.0959403613332,
+      "decode_tokens_s": 33.12181697027806,
+      "peak_mlx_gb": 3.328685742,
+      "prompt_tokens": 2055
+    },
+    "8192": {
+      "ttft_s": 13.466872124990914,
+      "wall_s": 17.66157945798477,
+      "prefill_tokens_s": 631.0771472127258,
+      "decode_tokens_s": 29.898051729130348,
+      "peak_mlx_gb": 3.510630062,
+      "prompt_tokens": 8217
+    }
+  },
+  "swap_growth_bytes": 0,
+  "prefix_cache": {
+    "setup_s": 3.101052083016839,
+    "n": 5,
+    "all_outputs_match_uncached": true,
+    "uncached_total_s": 35.759432334045414,
+    "cached_total_including_setup_s": 24.301066751009785,
+    "cached_median_ttft_s": 0.5170514580095187
+  }
+}

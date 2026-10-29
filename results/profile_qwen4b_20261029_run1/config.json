@@ -1,0 +1,24 @@
+{
+  "source": "executed",
+  "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+  "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "backend": "MLX Metal",
+  "trust_remote_code": false,
+  "offline": true,
+  "warmups_per_shape": 1,
+  "repetitions": 5,
+  "max_decode_tokens": 128,
+  "sampler": "greedy",
+  "prefix_reuse": false,
+  "versions": {
+    "mlx": "0.31.2",
+    "mlx-lm": "0.31.3",
+    "transformers": "5.20.1"
+  },
+  "memory_available_before": 13703348224,
+  "swap_used_before": 983760896,
+  "min_available_gib": 8,
+  "max_swap_growth_mib": 128
+}

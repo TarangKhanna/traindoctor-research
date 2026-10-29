@@ -1,0 +1,33 @@
+{
+  "source": "executed",
+  "model": "mlx-community/gemma-4-e2b-it-4bit",
+  "revision": "238767527555cb75a05732a84dff5d6ba0dd6809",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "backend": "MLX Metal",
+  "trust_remote_code": false,
+  "offline": true,
+  "device": "Device(gpu, 0)",
+  "device_info": {
+    "device_name": "Apple M4",
+    "max_recommended_working_set_size": 26800603136,
+    "memory_size": 34359738368,
+    "architecture": "applegpu_g16g",
+    "max_buffer_length": 20100448256,
+    "resource_limit": 499000
+  },
+  "warmups_per_shape": 1,
+  "repetitions": 5,
+  "max_decode_tokens": 128,
+  "sampler": "greedy",
+  "prefix_reuse": false,
+  "versions": {
+    "mlx": "0.31.2",
+    "mlx-lm": "0.31.3",
+    "transformers": "5.20.1"
+  },
+  "memory_available_before": 14913552384,
+  "swap_used_before": 983760896,
+  "min_available_gib": 8,
+  "max_swap_growth_mib": 128
+}

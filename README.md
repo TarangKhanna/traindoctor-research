@@ -18,6 +18,8 @@ V2 outperformed V0, but without a V1 (evidence-only) arm the experiment cannot i
 
 The verifier audits (menu v3 development suite and red team) are author-designed consistency checks, not external validation or independent false-acceptance rates; see [Results](#results-historical-v01) and [Menu v3 development result](#menu-v3-development-result). Menu v3 was a NO-GO for RL, existing coding agents solved the development tasks, and held-out splits used new seeds, not new failure mechanisms ([Limitations](#limitations)).
 
+A separate local [state-only recovery demonstration](experiments/state_recovery_v1/REPORT.md) keeps the training source correct, changes delivered checkpoint components, and grades the actual selected continuation. It reports correctness separately from repeated optimizer work and retains full restore and scratch as legitimate options. The worked pair supports an engineering example; full restore remains optimal in both states, so it does not establish a challenging conditional-selection task. Local model profiles and the independent continuation-oracle evidence are reported separately from the historical SFT/GRPO results.
+
 Read these before the numbers:
 
 - The base model's 5.0% partly reflects the JSON format gate: valid-format rate was 51.7% for base vs 99.8% for SFT ([TEST_REPORT.md](evidence/results/TEST_REPORT.md)).

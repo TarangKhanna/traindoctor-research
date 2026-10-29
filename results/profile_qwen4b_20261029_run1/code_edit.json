@@ -1,0 +1,5 @@
+{
+  "path": "job/ckpt.py",
+  "old": "    if \"sampler\" in state:  # checkpoints from before the sampler was tracked have no position\n        sampler.load_state(state[\"sampler\"])\n    return int(state[\"step\"])",
+  "new": "    if \"sampler\" in state:  # checkpoints from before the sampler was tracked have no position\n        sampler.load_state(state[\"sampler\"]) if \"sampler\" in state else None\n    return int(state[\"step\"])"
+}

@@ -1,0 +1,347 @@
+{
+  "source": "executed",
+  "profiles": [
+    {
+      "directory": "profile_qwen4b_20261029_run1",
+      "summary": {
+        "source": "executed",
+        "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+        "load_s": 1.0424355000141077,
+        "multi_turn": {
+          "case0": {
+            "calls": [
+              {
+                "tool": "recover",
+                "args": {
+                  "action": "restore_optimizer"
+                }
+              }
+            ],
+            "selected": "restore_optimizer",
+            "format_error": null,
+            "semantic_valid_from_executed_table": false,
+            "cost_score_from_executed_table": 0.0,
+            "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+          },
+          "case1": {
+            "calls": [
+              {
+                "tool": "recover",
+                "args": {
+                  "action": "restore_optimizer"
+                }
+              }
+            ],
+            "selected": "restore_optimizer",
+            "format_error": null,
+            "semantic_valid_from_executed_table": true,
+            "cost_score_from_executed_table": 0.8333333333333334,
+            "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+          }
+        },
+        "code_repair": {
+          "format_valid": true,
+          "applies": true,
+          "ast_equivalent_to_pristine": false,
+          "executed": false,
+          "note": "text only here; separate sandboxed validation required"
+        },
+        "throughput": {
+          "2048": {
+            "ttft_s": 17.234244959021453,
+            "wall_s": 24.74297183402814,
+            "prefill_tokens_s": 122.38167221078895,
+            "decode_tokens_s": 17.175347495477514,
+            "peak_mlx_gb": 3.179060348,
+            "prompt_tokens": 2068
+          },
+          "8192": {
+            "ttft_s": 79.34980025002733,
+            "wall_s": 89.0764644999872,
+            "prefill_tokens_s": 103.87194578407541,
+            "decode_tokens_s": 13.542010245015678,
+            "peak_mlx_gb": 4.001184808,
+            "prompt_tokens": 8212
+          }
+        },
+        "swap_growth_bytes": 0
+      },
+      "minimum_available_gib": 10.763412475585938,
+      "max_swap_growth_bytes": 0
+    },
+    {
+      "directory": "profile_gemma_e2b_20261029_thinking_off",
+      "summary": {
+        "source": "executed",
+        "model": "mlx-community/gemma-4-e2b-it-4bit",
+        "load_s": 1.9039174590143375,
+        "multi_turn": {
+          "case0": {
+            "calls": [
+              {
+                "tool": "recover",
+                "args": {
+                  "action": "restore_full"
+                }
+              }
+            ],
+            "selected": "restore_full",
+            "format_error": null,
+            "semantic_valid_from_executed_table": true,
+            "cost_score_from_executed_table": 0.8333333333333334,
+            "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+          },
+          "case1": {
+            "calls": [
+              {
+                "tool": "recover",
+                "args": {
+                  "action": "restore_full"
+                }
+              }
+            ],
+            "selected": "restore_full",
+            "format_error": null,
+            "semantic_valid_from_executed_table": true,
+            "cost_score_from_executed_table": 0.8333333333333334,
+            "evaluation": "one greedy trajectory, cached actual controls; not a live-agent benchmark"
+          }
+        },
+        "code_repair": {
+          "format_valid": false,
+          "applies": false,
+          "ast_equivalent_to_pristine": false,
+          "executed": false,
+          "note": "text only here; separate sandboxed validation required"
+        },
+        "throughput": {
+          "2048": {
+            "ttft_s": 3.2578589170007035,
+            "wall_s": 7.178072834038176,
+            "prefill_tokens_s": 713.0959403613332,
+            "decode_tokens_s": 33.12181697027806,
+            "peak_mlx_gb": 3.328685742,
+            "prompt_tokens": 2055
+          },
+          "8192": {
+            "ttft_s": 13.466872124990914,
+            "wall_s": 17.66157945798477,
+            "prefill_tokens_s": 631.0771472127258,
+            "decode_tokens_s": 29.898051729130348,
+            "peak_mlx_gb": 3.510630062,
+            "prompt_tokens": 8217
+          }
+        },
+        "swap_growth_bytes": 0,
+        "prefix_cache": {
+          "setup_s": 3.101052083016839,
+          "n": 5,
+          "all_outputs_match_uncached": true,
+          "uncached_total_s": 35.759432334045414,
+          "cached_total_including_setup_s": 24.301066751009785,
+          "cached_median_ttft_s": 0.5170514580095187
+        }
+      },
+      "minimum_available_gib": 10.941986083984375,
+      "max_swap_growth_bytes": 0,
+      "cache_group_speedup_including_setup": 1.4715169790873275
+    }
+  ],
+  "historical_kernel_bench": {
+    "file": "bench_pr_a_results.jsonl",
+    "sha256": "bef58ba9b0a24e1ce48b70c0064a71880fcfb28274cee3275f79232aa1ac27d0",
+    "sanitized_rows": [
+      {
+        "job": "pra_bench_stock-20261018T031942-18404",
+        "pass": 1,
+        "variant": "stock",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 1,
+        "median_step_s": 14.406172167509794,
+        "step_s": [
+          14.924,
+          14.496,
+          14.406,
+          14.119,
+          13.996
+        ],
+        "max_peak_gb": 3.076071972,
+        "swap_growth_mb": 0.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "7b50968ff71fa515c3a8de6b6fccf586deabfbe9"
+      },
+      {
+        "job": "pra_bench_patched-20261018T032146-19237",
+        "pass": 1,
+        "variant": "patched",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 1,
+        "median_step_s": 12.45375133305788,
+        "step_s": [
+          12.662,
+          12.526,
+          12.454,
+          12.4,
+          12.266
+        ],
+        "max_peak_gb": 1.794792402,
+        "swap_growth_mb": 0.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "d6e49d627228f91c0f69bc38894ec42f2f656ffb"
+      },
+      {
+        "job": "pra_bench_patched-20261018T032328-19663",
+        "pass": 2,
+        "variant": "patched",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 1,
+        "median_step_s": 12.118423167616129,
+        "step_s": [
+          12.262,
+          12.15,
+          12.118,
+          12.01,
+          12.017
+        ],
+        "max_peak_gb": 1.794792402,
+        "swap_growth_mb": 0.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "d6e49d627228f91c0f69bc38894ec42f2f656ffb"
+      },
+      {
+        "job": "pra_bench_stock-20261018T032536-20236",
+        "pass": 2,
+        "variant": "stock",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 1,
+        "median_step_s": 13.669863083399832,
+        "step_s": [
+          13.839,
+          13.754,
+          13.585,
+          13.67,
+          13.434
+        ],
+        "max_peak_gb": 3.076071972,
+        "swap_growth_mb": 0.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "7b50968ff71fa515c3a8de6b6fccf586deabfbe9"
+      },
+      {
+        "job": "pra_bench_stock-20261018T032759-20879",
+        "pass": 1,
+        "variant": "stock",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 2,
+        "median_step_s": 26.10300829168409,
+        "step_s": [
+          26.627,
+          26.081,
+          26.103,
+          26.034,
+          26.26
+        ],
+        "max_peak_gb": 5.511190752,
+        "swap_growth_mb": 0.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "7b50968ff71fa515c3a8de6b6fccf586deabfbe9"
+      },
+      {
+        "job": "pra_bench_patched-20261018T033218-22303",
+        "pass": 1,
+        "variant": "patched",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 2,
+        "median_step_s": 23.629569084383547,
+        "step_s": [
+          23.952,
+          23.878,
+          23.491,
+          23.557,
+          23.63
+        ],
+        "max_peak_gb": 2.765528608,
+        "swap_growth_mb": 0.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "d6e49d627228f91c0f69bc38894ec42f2f656ffb"
+      },
+      {
+        "job": "pra_bench_patched-20261018T033537-23214",
+        "pass": 2,
+        "variant": "patched",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 2,
+        "median_step_s": 24.026448083110154,
+        "step_s": [
+          24.033,
+          24.052,
+          24.026,
+          23.694,
+          23.513
+        ],
+        "max_peak_gb": 2.765528608,
+        "swap_growth_mb": -8.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "d6e49d627228f91c0f69bc38894ec42f2f656ffb"
+      },
+      {
+        "job": "pra_bench_stock-20261018T033929-24200",
+        "pass": 2,
+        "variant": "stock",
+        "model": "mlx-community/Qwen3-0.6B-4bit",
+        "G": 2,
+        "median_step_s": 27.842115292325616,
+        "step_s": [
+          28.324,
+          28.015,
+          27.719,
+          27.751,
+          27.842
+        ],
+        "max_peak_gb": 5.511190752,
+        "swap_growth_mb": -8.0,
+        "mlx": "0.31.2",
+        "mlx_lm": "0.31.3",
+        "commit": "7b50968ff71fa515c3a8de6b6fccf586deabfbe9"
+      }
+    ],
+    "statistics": [
+      {
+        "group": 1,
+        "variant": "stock",
+        "runs": 2,
+        "median_of_run_median_s": 14.038017625454813,
+        "max_peak_mlx_gb": 3.076071972
+      },
+      {
+        "group": 1,
+        "variant": "patched",
+        "runs": 2,
+        "median_of_run_median_s": 12.286087250337005,
+        "max_peak_mlx_gb": 1.794792402
+      },
+      {
+        "group": 2,
+        "variant": "stock",
+        "runs": 2,
+        "median_of_run_median_s": 26.972561792004853,
+        "max_peak_mlx_gb": 5.511190752
+      },
+      {
+        "group": 2,
+        "variant": "patched",
+        "runs": 2,
+        "median_of_run_median_s": 23.82800858374685,
+        "max_peak_mlx_gb": 2.765528608
+      }
+    ],
+    "scope": "historical 0.6B plumbing microbenchmarks, not a new training result or end-to-end RL speed claim"
+  }
+}

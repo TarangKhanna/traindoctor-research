@@ -1,0 +1,7 @@
+{
+  "source": "executed",
+  "sampled_epoch": 1793286195.4864352,
+  "available_bytes": 14705311744,
+  "swap_used_bytes": 1742733312,
+  "note": "Separately timed host observation after resource interruption; not failing-guard counters. No process stopped manually."
+}

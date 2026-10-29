@@ -229,3 +229,34 @@ that earlier instant. The cause of the intervening memory change is unresolved;
 no unrelated research was inspected beyond process-name preflight, stopped or
 modified. Focused harness checks: 10 passed. The matched agent comparison remains
 unrun and a model-generated executed repair remains unestablished.
+
+## 2026-10-29 Qwen attempt after memory wake-up
+
+The owner authorized proceeding, including local training. Training was not
+started: the bounded agent baseline and task/evaluation gates remain unresolved.
+A new full-evidence Qwen episode reused the unchanged controller at `a2aefd6`,
+with the original prompt, cached snapshot and budgets. Preflight showed
+13.75115966796875 GiB available, 1.646484375 GiB swap and no matching model process.
+
+This attempt loaded the model in 1.67607158300234 seconds and completed eight
+response turns: seven schema-valid inspection calls, including a mistaken file-as-
+directory request, followed by one malformed patch response. The model read the
+actual writer/restore source, then repeated newline escapes inside a tool argument
+until the 512-token output cap; the native parser rejected the incomplete block.
+No patch was applied, no recovery ran and no semantic outcome was graded.
+
+The next generation was interrupted by the existing resource guard after 352
+partial tokens. Its terminal reward is null (infrastructure error), not zero.
+The earlier malformed patch is directly observed, but does not establish inability
+to repair. Complete-turn generation totaled 687 tokens and 306.1709249590058 s;
+the partial generation took 131.64127845899202 s. This is an episode workload,
+including prefill; it is not a decode-only throughput measurement. Completed-turn
+MLX peak reached 3.196637612 GB. Resource counters at the exact failing guard
+sample were not saved, so RAM-floor versus swap-growth attribution is unresolved.
+No guard was relaxed, no model downloaded and no unrelated process changed.
+
+[Summary](../results/local_agent_v1_qwen_full_20261029_attempt2/summary.json),
+[actual transcript](../results/local_agent_v1_qwen_full_20261029_attempt2/TRANSCRIPT.md)
+and raw trajectory preserve this unsuccessful partial attempt. No further condition
+was launched after resource interruption. Full/reduced-evidence comparison,
+model-executed repair and justified training comparison remain outstanding.

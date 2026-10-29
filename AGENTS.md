@@ -5,7 +5,9 @@
 Make the recovery mechanism and negative learning results independently assessable.
 Current authorized milestone: [local tool-using code repair](docs/LOCAL_AGENT_V1_SPEC.md).
 The owner explicitly authorizes bounded cached Qwen/Gemma inference for this
-milestone; no model training. Preserve the completed reference-free audit and its
+milestone. The owner subsequently authorized local training; do not start it until
+task/evaluation validity and stable local execution justify a concrete comparison.
+Preserve the completed reference-free audit and its
 novelty NO-GO. Stop after one worked code incident, bounded full/reduced-evidence
 trajectories, executable controls and report. Do not build a swarm or training system.
 Read [current status](docs/STATUS.md), [the worked report](experiments/state_recovery_v1/REPORT.md)

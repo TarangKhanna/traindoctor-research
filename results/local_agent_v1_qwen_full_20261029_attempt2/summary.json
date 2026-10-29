@@ -1,0 +1,27 @@
+{
+  "source": "executed",
+  "controller_commit": "a2aefd6",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "condition": "full",
+  "status": "infrastructure_error",
+  "terminal_reward": null,
+  "completed_turns": 8,
+  "schema_valid_calls": 7,
+  "proposed_applicable_patches": 0,
+  "relaunches": 0,
+  "complete_turn_generated_tokens": 687,
+  "partial_generated_tokens": 352,
+  "load_s": 1.67607158300234,
+  "complete_turn_generation_s": 306.1709249590058,
+  "partial_generation_s": 131.64127845899202,
+  "minimum_completed_turn_available_bytes": 10050011136,
+  "peak_completed_turn_mlx_gb": 3.196637612,
+  "maximum_completed_turn_swap_growth_bytes": 0,
+  "error": {
+    "error": "local resource guard",
+    "error_type": "RuntimeError",
+    "status": "infrastructure_error",
+    "terminal_reward": null
+  },
+  "limits": "Guard-trigger counters are not persisted at the failing sample. Completed-turn counters do not measure the interruption. No model patch executed."
+}

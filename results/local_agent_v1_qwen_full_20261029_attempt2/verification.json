@@ -1,0 +1,15 @@
+{
+  "source": "executed",
+  "controller_commit": "a2aefd6",
+  "baseline_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+  "source_unchanged": true,
+  "no_relaunch": true,
+  "no_pending_patch": true,
+  "receipt_consistency": "pass",
+  "files_sha256": {
+    "summary.json": "fe4154d8e64311241b6e8666f10e6bf208105b1812bc819520788906ed0af96b",
+    "trajectory.json": "1a9e40f192417c63fd7d5ed6ae373597d3eb7ad2dda7a916575b9f86a715ffab",
+    "resource_check_after_stop.json": "335ed5c4754e5799597e1fa6d2e92c7688cf2b45481b7229f3e58154f8d0871a",
+    "TRANSCRIPT.md": "66f6a8aecf8105b92c497a398b31155b3e094585289a23184da07444cdc2bbe8"
+  }
+}

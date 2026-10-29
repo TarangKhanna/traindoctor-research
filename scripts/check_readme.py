@@ -18,7 +18,7 @@ def check(cond, msg):
 
 
 # 1. links and images
-for doc in ("README.md", "evidence/README.md"):
+for doc in ("README.md", "docs/PROJECT_DETAIL.md", "evidence/README.md"):
     p = ROOT / doc
     txt = p.read_text()
     bad = []
@@ -42,7 +42,12 @@ for f in sorted((ROOT / "docs/figures").glob("*.svg")):
     check(ok, f"{f.name} well-formed")
 
 # 3. numbers
-R = (ROOT / "README.md").read_text()
+R = (ROOT / "docs/PROJECT_DETAIL.md").read_text()
+# Preserve the full historical evidence checks after moving detail off the landing page.
+L = (ROOT / "README.md").read_text()
+for value in ("5.0%", "17.2%", "29.7%", "23.0%", "33.4%", "10.36 percentage points",
+              "+5.83 to +15.26", "71.4%", "71.5%", "+3.7 points; interval \u22121.7 to +9.1"):
+    check(value in L and value in R, f"landing-page result retained in historical detail: {value}")
 A = json.loads((ROOT / "evidence/results/test/TEST_REPORT_analysis.json").read_text())
 RC = json.loads((ROOT / "evidence/results/test/AUDIT_RECOUNT.json").read_text())
 RT = (ROOT / "evidence/results/REDTEAM_TABLE.md").read_text()

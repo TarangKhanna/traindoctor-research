@@ -158,3 +158,5 @@ new distributed jobs, model inference or a cloud account. README should distingu
 historical Modal isolation from the local backend and completed artifacts from
 unfinished agent work. A read-only critic caught both installation and backend
 wording issues before release. No result or historical receipt was changed.
+
+2026-10-29 README compression: lead with checksum-valid inconsistent recovery; move the previous detailed landing page intact (relative links rebased) to docs/PROJECT_DETAIL.md. Retain historical evidence and numerical checks. Critic caught that structural well-formedness does not imply checksum validation; wording now explicitly describes recomputed manifest checksums. Documentation changes only.

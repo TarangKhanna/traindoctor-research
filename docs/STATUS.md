@@ -9,3 +9,5 @@ Verdict: engineering demonstration GO; conditional-selection RL benchmark NO-GO.
 Frozen source commits: environment d568f69, research 6e158ce. Fresh local clones pass 36 focused tests, archive checksum and README checks. A fresh sandboxed execution and independent recount again pass all twelve continuations. The prepared local dependency environment was reused; external-machine reproduction remains outstanding.
 
 Final transport hardening: environment 65e4bea fixes a live-observed wildcard TCPStore bind with a launcher-owned loopback store. Live lsof regression and 241 focused tests pass; all twelve continuations and their recount pass again with unchanged observations and outcomes. Final evidence is results/state_recovery_v1_loopback_verified; earlier packets are preserved.
+
+Local follow-up: [scoped agent instructions](../AGENTS.md) and [append-only learning notes](STATE_RECOVERY_LEARNINGS.md) capture the scientific corrections, discarded unsafe approach and measured performance limits. They require reuse before new infrastructure and preserve the current stop decision. This is a documentation-only update.

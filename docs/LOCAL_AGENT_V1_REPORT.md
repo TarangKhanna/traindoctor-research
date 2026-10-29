@@ -211,3 +211,21 @@ full-evidence episode through an actual proposed patch and trusted outcome. Stop
 after the bounded four-condition milestone; do not expand tasks or train to work
 around this infrastructure failure. The assistant requested memory relief rather
 than terminating unrelated work. No monitoring automation or external action exists.
+
+## 2026-10-29 bounded Qwen follow-up
+
+After a host preflight reported 12.66 GiB available RAM and 3.35 GiB swap in use,
+no matching model process was found. The unchanged runner was invoked once with
+the cached Qwen3-4B snapshot, full evidence, a fresh output directory and the
+existing resource guard. Its pre-load guard stopped the episode: zero model loads,
+zero generated tokens, zero tool calls, no proposed edit and no recovery execution.
+The result is unscored infrastructure error, not Qwen repair failure. The controller
+source remains `5221626` (report closure `59d55c1`); no harness change or retry.
+
+Receipt: `results/local_agent_v1_qwen_full_20261029/trajectory.json`.
+A separately timed post-stop host snapshot reports 5.1192169189453125 GiB available
+and 8.299072265625 GiB swap. It does not identify which guard condition fired at
+that earlier instant. The cause of the intervening memory change is unresolved;
+no unrelated research was inspected beyond process-name preflight, stopped or
+modified. Focused harness checks: 10 passed. The matched agent comparison remains
+unrun and a model-generated executed repair remains unestablished.

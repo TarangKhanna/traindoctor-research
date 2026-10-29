@@ -178,3 +178,5 @@ linked raw matrix, source manifest, verification output and two static reviews.
   No model training or multi-agent execution is justified by the stopped run.
 
 Evidence and remaining work: [local-agent report](LOCAL_AGENT_V1_REPORT.md).
+
+2026-10-29 resource catch: an adequate external preflight did not guarantee capacity at the runner pre-load guard a few minutes later. Cached Qwen invocation stopped before loading (zero loads/turns); post-stop available RAM 5.1192169189453125 GiB and swap 8.299072265625 GiB are later observations, not the failing-guard measurement. Root cause unresolved. Preserve the unscored result and stop; do not reduce guards or attribute model ability to this infrastructure outcome.

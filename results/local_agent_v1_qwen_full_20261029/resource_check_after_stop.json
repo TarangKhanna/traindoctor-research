@@ -1,0 +1,6 @@
+{
+  "sampled_epoch": 1793281936.582061,
+  "available_bytes": 5496717312,
+  "swap_used_bytes": 8911060992,
+  "note": "Post-stop host snapshot; not a measurement at the failing guard. No model loaded or generated tokens."
+}

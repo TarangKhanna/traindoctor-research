@@ -1,0 +1,31 @@
+{
+  "source": "executed",
+  "controller_commit": "895f0df",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "condition": "full",
+  "status": "infrastructure_error",
+  "terminal_reward": null,
+  "completed_turns": 9,
+  "schema_valid_calls": 7,
+  "malformed_complete_responses": 2,
+  "applied_patch_count": 0,
+  "relaunches": 0,
+  "complete_turn_generated_tokens": 1199,
+  "partial_generated_tokens": 304,
+  "load_s": 3.2298043749760836,
+  "complete_turn_generation_s": 367.5377222909592,
+  "partial_generation_s": 97.44524208304938,
+  "peak_completed_turn_mlx_gb": 3.198379608,
+  "resource_guard_failure": {
+    "above_swap_growth_limit": false,
+    "available_bytes": 8301363200,
+    "below_ram_floor": true,
+    "sampled_epoch": 1793288861.305616,
+    "swap_baseline_bytes": 1616904192,
+    "swap_growth_bytes": -41943040,
+    "swap_used_bytes": 1574961152
+  },
+  "previous_run_compared_turns": 8,
+  "previous_run_identical_raw_responses": 8,
+  "limits": "The RAM predicate fired; the responsible process/cause of RAM decline is not established. Repeated greedy responses are dependent. No repair or training outcome."
+}

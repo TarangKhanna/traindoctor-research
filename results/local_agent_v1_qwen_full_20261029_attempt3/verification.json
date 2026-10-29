@@ -1,0 +1,11 @@
+{
+  "source": "executed",
+  "source_unchanged": true,
+  "source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+  "receipt_consistency": "pass",
+  "files_sha256": {
+    "summary.json": "27eff3a92a61c9c128edbd3b640fd16b6b35d9b2f826e03c69934f4d88a0bac6",
+    "trajectory.json": "e9c16b43d6e391c6c58156c10e4faf21a07fe9c060e3959e89bf69ea0d39946e",
+    "TRANSCRIPT.md": "62ce4d8d0e5079d296b5f257d85d3cad766a15268f2231e7d2ec7d3d2383fb9c"
+  }
+}

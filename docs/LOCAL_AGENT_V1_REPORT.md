@@ -260,3 +260,38 @@ No guard was relaxed, no model downloaded and no unrelated process changed.
 and raw trajectory preserve this unsuccessful partial attempt. No further condition
 was launched after resource interruption. Full/reduced-evidence comparison,
 model-executed repair and justified training comparison remain outstanding.
+
+## 2026-10-29 owner-requested retry with guard telemetry
+
+One new Qwen full-evidence episode reused the same model, greedy decoding, prompt,
+fixture and tool/token limits. The only controller change (`895f0df`) records the
+readings that trigger the existing resource guard; thresholds remain unchanged.
+The RAM/swap denial tests pass (12 focused tests total); a read-only critic found
+no limit or persistence change. The first test run's two new cases failed because
+the mock omitted the real episode constructor's directory creation; the fixture
+was corrected before the successful test run and model execution.
+
+The model completed nine responses: seven schema-valid inspections and two
+length-truncated malformed patch blocks. No patch was applied and no recovery
+executed. All eight responses comparable with the preceding attempt are byte-
+identical; these greedy repeats are dependent observations, not new independent
+accuracy samples. The next generation stopped after 304 partial tokens.
+
+The captured failing guard sample is decisive about the stop condition:
+`available_bytes=8301363200` (7.7312469482421875 GiB),
+`swap_growth_bytes=-41943040` (-40 MiB), `below_ram_floor=true`,
+`above_swap_growth_limit=false`. RAM below 8 GiB triggered the interruption;
+this does not establish which process caused the decline. Terminal reward remains
+null infrastructure error, not a semantic-repair failure. No guard relaxed,
+other process stopped, model downloaded, training started or publication performed.
+
+Completed-turn generation: 1199 tokens in 367.5377222909592 s; partial generation:
+304 tokens in 97.44524208304938 s. Model load: 3.2298043749760836 s; completed-turn
+MLX peak: 3.198379608 GB. Timings include prefill and are not decode-only throughput.
+[Summary](../results/local_agent_v1_qwen_full_20261029_attempt3/summary.json),
+[transcript](../results/local_agent_v1_qwen_full_20261029_attempt3/TRANSCRIPT.md)
+and raw trajectory preserve the attempt. Receipt checks confirm unchanged source,
+zero relaunches and the unscored result. Stop this focused retry here. Another
+unchanged greedy retry has little information value; a bounded saved-context
+patch-generation probe would isolate decoding/model behavior before another full
+agent episode. No SFT/RL recommendation follows.

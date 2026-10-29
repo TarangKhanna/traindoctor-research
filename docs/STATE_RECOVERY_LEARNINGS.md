@@ -87,3 +87,63 @@ is independent reproduction and technical critique of the existing artifact.
 External reproduction, Linux behavior, larger-model quality, stochastic group
 variation and fresh training speed remain unverified. No new experiment is implied
 by adding this log. New findings should be appended with receipts and limitations.
+
+## 2026-10-29 — Reference-free gate and bounded validation
+
+- **Prior art defeats the proposed method novelty.** Proof-of-Learning (IEEE S&P
+  2021) already replays recorded batches between checkpoints; actual author code
+  `verify_all` implements it. TorchTitan and Megatron also have runtime replay
+  diagnostics. The prior-art gate finished before new experimental implementation.
+  [Inspected sources and novelty boundary](REFERENCE_FREE_PRIOR_ART.md).
+- **The old NumPy continuation calculation was already reference-free in a narrow
+  sense.** The new assay makes input isolation explicit: twelve saved-artifact
+  checks read no uninterrupted reference or correctness flags; eight accept and
+  four reject. Agreement with the same reused NumPy kernel is not a new independent
+  validator. All four invalid examples are also caught by archived-component
+  comparison; replay adds no detection coverage on this pair.
+- **Correct the numerical shorthand.** Accepted final momentum discrepancy is
+  exactly `5.2193850685888776e-08`, but the original 4→8 transition discrepancy is
+  `7.561030429537041e-08`. The latter is the largest accepted replay error. Preserve
+  both and the unchanged absolute `1e-5` tolerance; distinguish tensors from
+  discrete-state errors and relative diagnostics near zero.
+- **A loaded-byte provenance field was weaker than its comment.** Legacy
+  `resume_sha256` looks up an older archived capture by ID. It names the clean
+  checkpoint even when the delivered bytes were mixed. The assay does not use it
+  as actual per-rank load attestation. Observed continuation captures, correct-source
+  and single-writer assumptions remain narrower evidence; v1.2 was not changed.
+- **Inputs are reconstructible, not independently byte-attested.** Saved IDs and
+  a fixed public demo key/recipe suffice here. Input-value bytes/salt are not
+  independently committed by the ledger. Stochastic transforms, mutable datasets,
+  scheduler/RNG state and production sharding need stronger instrumentation.
+- **Trust cannot be manufactured by replay.** A constructed poisoned anchor with
+  coherent later transitions passes relative checks although it differs from the
+  original final state by `0.09537724040869114`; pinning original anchor state
+  rejects it. Missing input history is inconclusive, conflicting history rejects.
+  These controls are not empirical security guarantees or new training incidents.
+- **Local feasibility is not scale evidence.** Twelve artifact checks took a total
+  `0.21975845692213625` seconds excluding imports/extraction. Two sandboxed CPU/Gloo
+  8→12 continuations matched saved tensors bitwise. No inference about NCCL/FSDP/GPU
+  tolerances or large-model replay cost follows.
+
+Evidence, exact reproduction commands and remaining unknowns:
+[reference-free report](REFERENCE_FREE_REPORT.md). Next action remains independent
+human reproduction and assessment of a concrete unmet resume regression. No novel
+method, paper readiness, independent recognition or RL benefit is claimed.
+
+### Same milestone — review catches and final evidence supersession
+
+Static review found that removing scratch's step-4 capture could leave only a
+final-state check, empty/missing ledgers were not classified, and historical
+disagreement could suppress the primary matrix. The bounded fixes now require
+scratch checkpoint 4, classify missing required ledger evidence as inconclusive,
+and persist primary results before reading old labels. Regression tests cover these
+paths; final research gate is 28 passed. Follow-up review found no remaining
+false-acceptance blocker within the frozen-artifact contract. Arbitrary malformed
+schemas and full load-time attestation remain outside scope.
+
+The earlier `0.21975845692213625`-second assay above is retained locally as a
+preliminary packet. The reviewed packet totals `0.21627999999327585` seconds, with
+unchanged twelve classifications and numerical discrepancies. This timing variation
+is not a performance improvement claim. Both repeatability continuations were reused,
+not rerun after the evidence-classification fixes. See the final report and its
+linked raw matrix, source manifest, verification output and two static reviews.

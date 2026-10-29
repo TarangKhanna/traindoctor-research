@@ -122,13 +122,13 @@ def continuation(fixture, out, source, legacy=False):
 class RepairEpisode(Episode):
     """A single experiment's grading override, not a new agent framework."""
 
-    def __init__(self, fixture, out, approved, reduced=False):
+    def __init__(self, fixture, out, approved, reduced=False, max_tool_calls=12):
         self.fixture, self.out = Path(fixture), Path(out)
         self.jd, self.approved, self.reduced = self.out / "jobdir", set(approved), reduced
         if not self.jd.exists():
             self.out.mkdir(parents=True, exist_ok=True)
             trusted.copy_job(self.fixture / "baseline/jobdir", self.jd)
-        super().__init__(max_tool_calls=12, max_relaunches=2)
+        super().__init__(max_tool_calls=max_tool_calls, max_relaunches=2)
         snapshot = Snapshot(self.out, 777, tuple(public_records(self.jd, 777)), {}, [], {})
         self.reset(snapshot)
         self.last_execution = None

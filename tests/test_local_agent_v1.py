@@ -218,3 +218,40 @@ def test_v2_resume_cannot_change_decoding_configuration(tmp_path, monkeypatch):
         run.execute(SimpleNamespace(model=model,out=out,fixture=tmp_path/'unused',reduced=False,
                                     approve_hash=None,temperature=0,seed=0))
     assert json.loads(p.read_text())==original
+
+
+def test_v2_group_diagnostics_exclude_infrastructure_and_empty_groups():
+    from experiments.local_agent_v1.audit_v2 import group_information
+    result=group_information([[1,0,1,0],[0,0,0,0],[1,None,0,1]],4)
+    assert result['groups']==3 and result['scored_groups']==2 and result['infrastructure_groups']==1
+    assert result['mixed_fraction']==0.5 and result['zero_advantage_fraction']==0.5
+    assert group_information([],8)['mixed_fraction'] is None
+    with pytest.raises(ValueError):group_information([[0,1]],4)
+
+
+def test_v2_line_editor_preserves_surviving_line_boundary_without_changing_content():
+    from experiments.local_agent_v1.run import edit_lines
+    from experiments.local_agent_v1.task import source_sha
+    source='a = 1\nb = 2\nc = 3\n'
+    def edit(start,end,content):return edit_lines(source,dict(start=start,end=end,content=content,source_sha256=source_sha(source)))
+    assert edit(2,2,'b = 9')=='a = 1\nb = 9\nc = 3\n'
+    assert edit(2,2,'')=='a = 1\nc = 3\n'
+    assert edit(3,3,'c = 9')=='a = 1\nb = 2\nc = 9'
+
+
+def test_v2_exhausted_response_budget_finalizes_without_model_load(monkeypatch,tmp_path):
+    from types import SimpleNamespace
+    from experiments.local_agent_v1 import run
+    model,out=tmp_path/'model',tmp_path/'out';model.mkdir();out.mkdir()
+    state={'model_path':str(model),'reduced':False,'status':'running','approved':[],
+           'rows':[{'wall_s':0} for _ in range(12)],'loads':[],'pending':None}
+    (out/'trajectory.json').write_text(json.dumps(state))
+    e=SimpleNamespace(done=False,result=None,state=lambda:{},tool_calls=12,relaunches=0,
+        last_execution=None,phase=0,records=[],phase_records=[],
+        finish_actual=lambda:{'terminal_reward':0,'status':'unsuccessful_repair'})
+    monkeypatch.setenv('TD_KEY','state-recovery-demo-key')
+    monkeypatch.setattr(run,'RepairEpisode',lambda *a,**k:e)
+    monkeypatch.setattr(run.psutil,'swap_memory',lambda:pytest.fail('must finalize before memory/model loading'))
+    run.execute(SimpleNamespace(model=model,out=out,fixture=tmp_path/'unused',reduced=False,approve_hash=None))
+    actual=json.loads((out/'trajectory.json').read_text())
+    assert actual['status']=='turn_budget' and actual['result']['terminal_reward']==0 and actual['loads']==[]

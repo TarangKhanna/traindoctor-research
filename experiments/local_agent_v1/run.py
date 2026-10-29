@@ -57,6 +57,22 @@ def timing_totals(state):
         + state.get("terminal_verification_wall_s", 0) + sum(r["wall_s"] for r in state.get("interrupted", []))
 
 
+def finish_episode(episode, state, persist):
+    terminal_start = time.perf_counter()
+    try:
+        state["result"] = episode.finish_actual()
+        if state["result"].get("status") == "infrastructure_error":
+            state["status"] = "infrastructure_error"
+    except Exception as exc:
+        state["result"] = {"source": "executed", "terminal_reward": None, "status": "infrastructure_error", "error_type": type(exc).__name__}
+        state["status"] = "infrastructure_error"
+        episode.done, episode.result = True, state["result"]
+    state["terminal_verification_wall_s"] = time.perf_counter() - terminal_start
+    persist()
+    timing_totals(state)
+    persist()
+    print("RESULT", json.dumps(state["result"], sort_keys=True), flush=True)
+
 def tools():
     types = {str: "string", int: "integer", list: "array", bool: "boolean"}
     result = []
@@ -122,7 +138,10 @@ def edit_lines(source, args):
     start, end = args["start"], args["end"]
     if type(start) is not int or type(end) is not int or not 1 <= start <= end <= len(lines):
         raise ValueError("invalid inclusive line range")
-    changed = "".join(lines[:start - 1]) + args["content"] + "".join(lines[end:])
+    content = args["content"]
+    if content and not content.endswith(("\n", "\r")) and end < len(lines):
+        content += "\n"
+    changed = "".join(lines[:start - 1]) + content + "".join(lines[end:])
     if changed == source or len(changed.encode()) > 65536:
         raise ValueError("edit must change source within 64 KiB")
     return changed
@@ -137,6 +156,7 @@ def main():
     ap.add_argument("--approve-hash")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--turns", type=int, default=12)
     args = ap.parse_args()
     try:
         execute(args)
@@ -161,6 +181,9 @@ def main():
 
 
 def execute(args):
+    turn_limit = getattr(args, "turns", 12)
+    if not 1 <= turn_limit <= 16:
+        raise InputError("response-turn limit must be between one and sixteen")
     generation = {"temperature": getattr(args, "temperature", 0.0),
                   "seed": getattr(args, "seed", 0), "max_tokens": 512}
     if not 0 <= generation["temperature"] <= 2:
@@ -177,15 +200,18 @@ def execute(args):
             raise InputError("resume must preserve model and evidence condition")
         if state.get("generation_config", {"temperature": 0.0, "seed": 0, "max_tokens": 512}) != generation:
             raise InputError("resume must preserve generation configuration")
+        if state.get("turn_limit", 12) != turn_limit:
+            raise InputError("resume must preserve response-turn budget")
     else:
         if args.out.exists():
             raise InputError("output exists without a trajectory")
         base_sha = source_sha(read_source(args.fixture / "prefix"))
         state = {"source": "executed", "model_path": str(args.model), "revision": args.model.name,
                  "reduced": args.reduced, "approved": [base_sha], "rows": [], "loads": [],
-                 "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": USER}],
+                 "messages": [{"role": "system", "content": SYSTEM.replace('Budget: 12', f'Budget: {turn_limit}')}, {"role": "user", "content": USER}],
                  "pending": None, "status": "running", "created_epoch": time.time()}
         state["generation_config"] = generation
+        state["turn_limit"] = turn_limit
         state["controller_sha256"] = source_sha(Path(__file__).read_text())
         state["task_sha256"] = source_sha(Path(__file__).with_name("task.py").read_text())
     if state["status"] == "infrastructure_error":
@@ -195,7 +221,7 @@ def execute(args):
         if not pending or source_sha(pending["source"]) != args.approve_hash:
             raise InputError("approval does not match exact pending source")
         state["approved"].append(args.approve_hash)
-    episode = RepairEpisode(args.fixture, args.out, state["approved"], args.reduced)
+    episode = RepairEpisode(args.fixture, args.out, state["approved"], args.reduced, max_tool_calls=turn_limit)
     if "episode" in state:
         for key, value in state["episode"].items():
             if key != "observed_ids":
@@ -229,6 +255,10 @@ def execute(args):
     if episode.done:
         print("Already finished")
         return
+    if len(state["rows"]) >= turn_limit:
+        state["status"] = "turn_budget"
+        finish_episode(episode, state, persist)
+        return
     swap0 = psutil.swap_memory().used
     persist()
 
@@ -256,13 +286,15 @@ def execute(args):
     mx.eval(model.parameters())
     mx.synchronize()
     assert tok.has_tool_calling, "native tool parser required"
-    state["loads"].append({"wall_s": time.perf_counter() - started, "platform": platform.platform(),
+    state["loads"].append({"controller_sha256": source_sha(Path(__file__).read_text()),
+                           "task_sha256": source_sha(Path(__file__).with_name("task.py").read_text()),
+                           "wall_s": time.perf_counter() - started, "platform": platform.platform(),
                            "versions": {n: importlib.metadata.version(n) for n in ("mlx", "mlx-lm", "transformers")},
                            "backend": "MLX Metal", "offline": True, "trust_remote_code": False,
                            "swap_used_before": swap0, "thinking": False, **generation})
     state["inflight"] = None
     persist()
-    for turn in range(len(state["rows"]), 12):
+    for turn in range(len(state["rows"]), turn_limit):
         guard()
         prompt = tok.apply_chat_template(state["messages"], tools=tools(), tokenize=False,
                                          add_generation_prompt=True, enable_thinking=False)
@@ -345,6 +377,7 @@ def execute(args):
                 observation, done = episode.checkpoint_summary(**tool_args), False
             else:
                 observation, done = episode.step({"tool": name, "args": tool_args})
+            observation += f"\nBudget: {turn_limit-turn-1} response turns and {2-episode.relaunches} relaunches remain."
             row["observation"] = observation
             row["tool_wall_s"] = time.perf_counter() - started_tool
             state["messages"].append({"role": "tool", "tool_call_id": call_id, "name": name, "content": observation})
@@ -364,20 +397,7 @@ def execute(args):
         mx.clear_cache()
     else:
         state["status"] = "turn_budget"
-    terminal_start = time.perf_counter()
-    try:
-        state["result"] = episode.finish_actual()
-        if state["result"].get("status") == "infrastructure_error":
-            state["status"] = "infrastructure_error"
-    except Exception as exc:
-        state["result"] = {"source": "executed", "terminal_reward": None, "status": "infrastructure_error", "error_type": type(exc).__name__}
-        state["status"] = "infrastructure_error"
-        episode.done, episode.result = True, state["result"]
-    state["terminal_verification_wall_s"] = time.perf_counter() - terminal_start
-    persist()
-    timing_totals(state)
-    persist()
-    print("RESULT", json.dumps(state["result"], sort_keys=True), flush=True)
+    finish_episode(episode, state, persist)
 
 
 if __name__ == "__main__":

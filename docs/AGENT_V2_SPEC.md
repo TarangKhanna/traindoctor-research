@@ -37,3 +37,12 @@ Prior greedy Qwen evidence remains separate; this is not a controlled model rank
 For the task-quality audit, reuse the existing state-only incident as the second
 case before creating any new gradient-normalization incident. Stop expansion if
 fixed-source or full-restoration baselines already settle the learning question.
+
+Observed concrete editor defect: inclusive replacement lacking a final newline
+was concatenated with the next statement. Preserve/replay the original proposal;
+fix only line-boundary handling and test interior/deletion/EOF behavior. One fresh
+Qwen retest may use sixteen response/tool calls with remaining-budget feedback,
+otherwise same sampled decoding and limits. This is a new usability configuration,
+not retroactive success or a controlled improvement over twelve-call episodes.
+The earlier owner add-on requests ONE Harbor separate-verifier compatibility task
+in its own env worktree, subject to isolated installation/backend approval.

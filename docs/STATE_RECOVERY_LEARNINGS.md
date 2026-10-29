@@ -147,3 +147,34 @@ unchanged twelve classifications and numerical discrepancies. This timing variat
 is not a performance improvement claim. Both repeatability continuations were reused,
 not rerun after the evidence-classification fixes. See the final report and its
 linked raw matrix, source manifest, verification output and two static reviews.
+
+## 2026-10-29 — Actual local native-tool agent, resource-blocked repair
+
+- The owner authorized one code-agent milestone after the verifier audit; this is
+  an explicit scope change, not reversal of the failed novelty/RL conclusions.
+  Reuse existing Tier B reads, MLX-LM native templates/parsers, isolated launcher,
+  trusted captures and NumPy math; no new framework/dependencies.
+- One constructed checkpoint migration bug really completes with wrong momentum.
+  An authored fix passes current and legacy restarts; skipping work fails trusted
+  validation. Scratch remains semantically correct but does not repair the loader.
+  Scripted positive controls are not model-agent achievements.
+- Cached Gemma performed three actual native calls. Schema-valid tool use is not
+  automatically useful inspection: it used a file path with a directory-list tool.
+  No patch was proposed or executed before the resource stop.
+- The first run encountered available RAM below 8 GiB and swap growth above the
+  guard. Subsequent low-memory observations persisted without a matching model
+  process. Root cause is unresolved; do not infer a model memory bug, blame an
+  uninspected process, lower guards or convert infrastructure failure to reward zero.
+  The initial runner failed to persist that terminal status automatically; its
+  raw transcript was preserved and explicitly closed as unscored. Later exception
+  accounting and mid-generation checks address this implementation gap.
+- Review caught a causal reward bug: an earlier successful patch/run could otherwise
+  be credited to a different final patch. Bind the final file hash to actual
+  execution and both hidden restarts. Preserve evidence IDs across security-review
+  pauses, reject extra native call blocks, preserve pending state on CLI validation
+  failure, and record failure/verification timing without fabricating missing data.
+- Source-only repair may be enough for this small defect; four planned greedy
+  conditions cannot establish GRPO group variation or held-out generalization.
+  No model training or multi-agent execution is justified by the stopped run.
+
+Evidence and remaining work: [local-agent report](LOCAL_AGENT_V1_REPORT.md).

@@ -207,6 +207,8 @@ class RepairEpisode(Episode):
             result = self.finish_actual()
             return json.dumps({"status": result["status"], "terminal_reward": result["terminal_reward"]}), True
         result = super()._dispatch(name, args)
+        if name == "read_file" and args.get("path", "").strip("/") == "job/ckpt.py":
+            return "source_sha256=" + source_sha(read_source(self.jd)) + "\n" + result[0], result[1]
         if name == "relaunch" and result[0] == ACK and self.last_execution:
             return json.dumps({"completed": self.last_execution["completed"],
                                "status": self.last_execution["execution_status"],

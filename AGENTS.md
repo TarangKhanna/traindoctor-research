@@ -3,13 +3,11 @@
 ## Scientific goal
 
 Make the recovery mechanism and negative learning results independently assessable.
-Current authorized milestone: [local tool-using code repair](docs/LOCAL_AGENT_V1_SPEC.md).
-The owner explicitly authorizes bounded cached Qwen/Gemma inference for this
-milestone. The owner subsequently authorized local training; do not start it until
-task/evaluation validity and stable local execution justify a concrete comparison.
-Preserve the completed reference-free audit and its
-novelty NO-GO. Stop after one worked code incident, bounded full/reduced-evidence
-trajectories, executable controls and report. Do not build a swarm or training system.
+Current authorized milestone: [TrainDoctor v2](docs/AGENT_V2_SPEC.md), superseding
+older one-incident/no-expansion limits only for the explicitly gated upgrade.
+Reuse the local loop, fix the smallest blocker and move sequentially through gates.
+No policy-model training, cloud computation, publishing or generic orchestration.
+Preserve the completed reference-free audit and its novelty NO-GO.
 Read [current status](docs/STATUS.md), [the worked report](experiments/state_recovery_v1/REPORT.md)
 and [the learning log](docs/STATE_RECOVERY_LEARNINGS.md) before proposing more work.
 One state-only incident pair is complete. Do not expand it into a benchmark,

@@ -155,3 +155,47 @@ def test_final_patch_must_be_the_patch_that_actually_executed(monkeypatch, tmp_p
     monkeypatch.setattr(task, "continuation", lambda *a, **k: pytest.fail("must not credit stale actual run"))
     result = episode.finish_actual()
     assert result["terminal_reward"] == 0 and not result["final_patch_bound_to_actual_execution"]
+
+
+def test_v2_complete_json_fallback_rejects_truncation_extras_and_multiple_calls():
+    from types import SimpleNamespace
+    tok = SimpleNamespace(tool_call_start='<tool>', tool_call_end='</tool>')
+    call = '{"name":"job_status","arguments":{}}'
+    assert native_call(tok, call)['name'] == 'job_status'
+    assert native_call(tok, '```json\n' + call + '\n```')['name'] == 'job_status'
+    for raw in (call[:-1], call + call, call[:-1] + ',"extra":0}', '{"name":"job_status"}',
+                '{"name":"job_status","name":"finish","arguments":{}}', '```json\n'+call):
+        with pytest.raises(ValueError):
+            native_call(tok, raw)
+    assert native_call(tok, 'I cannot repair this job.') is None
+
+
+def test_v2_line_edits_require_current_hash_and_valid_bounds():
+    from experiments.local_agent_v1.run import edit_lines
+    from experiments.local_agent_v1.task import source_sha
+    source = 'one\ntwo\nthree\n'
+    args = dict(start=2, end=2, content='replacement\n', source_sha256=source_sha(source))
+    assert edit_lines(source, args) == 'one\nreplacement\nthree\n'
+    assert edit_lines(source, dict(args, content='')) == 'one\nthree\n'
+    for changes in (dict(source_sha256='stale'), dict(start=0), dict(end=4), dict(start=True)):
+        with pytest.raises(ValueError):
+            edit_lines(source, dict(args, **changes))
+
+
+def test_v2_premature_finish_and_repeated_finish_do_not_claim_repair(monkeypatch, tmp_path):
+    from experiments.local_agent_v1 import task
+    e = object.__new__(RepairEpisode)
+    e.done, e.result, e.diagnosis, e.last_execution = False, None, None, None
+    e.jd, e.fixture, e.out, e.approved = tmp_path/'job', tmp_path/'fixture', tmp_path, set()
+    monkeypatch.setattr(task, 'read_source', lambda _: 'unchanged')
+    monkeypatch.setattr(task, 'continuation', lambda *a, **k: pytest.fail('premature finish must not execute'))
+    first = e.finish_actual()
+    assert first['terminal_reward'] == 0 and first['actual_continuation'] is None
+    monkeypatch.setattr(task, 'read_source', lambda _: pytest.fail('repeated finish must be idempotent'))
+    assert e.finish_actual() is first
+
+
+def test_v2_diagnosis_schema_uses_strings_for_evidence_and_boolean_claim():
+    schema = next(s['function']['parameters'] for s in tools() if s['function']['name']=='submit_diagnosis')
+    assert schema['properties']['evidence_ids']['items']['type'] == 'string'
+    assert schema['properties']['claimed_fixed']['type'] == 'boolean'

@@ -29,3 +29,11 @@ Keep >=8 GiB available, stop on >128 MiB swap growth, serialize models. Do not
 stop other research. Historical v1.2 and receipts unchanged. No dependencies,
 frameworks, broad refactors or cloud computation. A scheduled earlier probe was
 removed to prevent overlap. Record raw results, exact commits and limitations.
+
+Bounded retest after Gemma's completed zero-reward episode: one Qwen full episode,
+temperature 0.2 / seed 0, same twelve-turn/two-launch/512-token limits. No-op edit
+feedback now distinguishes unchanged source. No further decoder/prompt search.
+Prior greedy Qwen evidence remains separate; this is not a controlled model rank.
+For the task-quality audit, reuse the existing state-only incident as the second
+case before creating any new gradient-normalization incident. Stop expansion if
+fixed-source or full-restoration baselines already settle the learning question.

@@ -74,6 +74,8 @@ def tools():
 
 
 def proposed(source, args):
+    if args["old"] == args["new"]:
+        raise ValueError("replacement equals old text; no source change")
     if not args["old"] or source.count(args["old"]) != 1:
         raise ValueError("old text must match exactly once")
     changed = source.replace(args["old"], args["new"], 1)
@@ -133,6 +135,8 @@ def main():
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--reduced", action="store_true")
     ap.add_argument("--approve-hash")
+    ap.add_argument("--temperature", type=float, default=0.0)
+    ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
     try:
         execute(args)
@@ -157,6 +161,10 @@ def main():
 
 
 def execute(args):
+    generation = {"temperature": getattr(args, "temperature", 0.0),
+                  "seed": getattr(args, "seed", 0), "max_tokens": 512}
+    if not 0 <= generation["temperature"] <= 2:
+        raise InputError("temperature must be between zero and two")
     if os.environ.get("TD_KEY") != "state-recovery-demo-key" or not args.model.is_dir():
         raise InputError("require explicit demo key and cached model snapshot")
     state_path = args.out / "trajectory.json"
@@ -167,6 +175,8 @@ def execute(args):
             return
         if state["model_path"] != str(args.model) or state["reduced"] != args.reduced:
             raise InputError("resume must preserve model and evidence condition")
+        if state.get("generation_config", {"temperature": 0.0, "seed": 0, "max_tokens": 512}) != generation:
+            raise InputError("resume must preserve generation configuration")
     else:
         if args.out.exists():
             raise InputError("output exists without a trajectory")
@@ -175,6 +185,9 @@ def execute(args):
                  "reduced": args.reduced, "approved": [base_sha], "rows": [], "loads": [],
                  "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": USER}],
                  "pending": None, "status": "running", "created_epoch": time.time()}
+        state["generation_config"] = generation
+        state["controller_sha256"] = source_sha(Path(__file__).read_text())
+        state["task_sha256"] = source_sha(Path(__file__).with_name("task.py").read_text())
     if state["status"] == "infrastructure_error":
         raise InputError("cannot silently retry an infrastructure-terminated episode")
     if args.approve_hash:
@@ -246,7 +259,7 @@ def execute(args):
     state["loads"].append({"wall_s": time.perf_counter() - started, "platform": platform.platform(),
                            "versions": {n: importlib.metadata.version(n) for n in ("mlx", "mlx-lm", "transformers")},
                            "backend": "MLX Metal", "offline": True, "trust_remote_code": False,
-                           "swap_used_before": swap0, "thinking": False, "temperature": 0, "seed": 0})
+                           "swap_used_before": swap0, "thinking": False, **generation})
     state["inflight"] = None
     persist()
     for turn in range(len(state["rows"]), 12):
@@ -257,13 +270,14 @@ def execute(args):
         if len(ids) > 8192 or sum(r["wall_s"] for r in state["rows"]) > 900:
             state["status"] = "context_or_time_budget"
             break
-        mx.random.seed(0)
+        mx.random.seed(generation["seed"] + turn)
         start = time.perf_counter()
         state["inflight"] = {"name": "generation", "started_epoch": time.time()}
         persist()
         token_ids, last, first = [], None, None
         try:
-            for resp in stream_generate(model, tok, ids, max_tokens=512, sampler=make_sampler(temp=0)):
+            for resp in stream_generate(model, tok, ids, max_tokens=generation["max_tokens"],
+                                        sampler=make_sampler(temp=generation["temperature"])):
                 if first is None:
                     first = time.perf_counter() - start
                 token_ids.append(resp.token)

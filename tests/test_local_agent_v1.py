@@ -199,3 +199,22 @@ def test_v2_diagnosis_schema_uses_strings_for_evidence_and_boolean_claim():
     schema = next(s['function']['parameters'] for s in tools() if s['function']['name']=='submit_diagnosis')
     assert schema['properties']['evidence_ids']['items']['type'] == 'string'
     assert schema['properties']['claimed_fixed']['type'] == 'boolean'
+
+
+def test_v2_identical_replacement_reports_no_change_before_match_error():
+    with pytest.raises(ValueError, match='no source change'):
+        proposed('same same', {'old':'same','new':'same'})
+
+
+def test_v2_resume_cannot_change_decoding_configuration(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from experiments.local_agent_v1 import run
+    model,out=tmp_path/'model',tmp_path/'out';model.mkdir();out.mkdir()
+    original={'model_path':str(model),'reduced':False,'status':'pending_security_review',
+              'generation_config':{'temperature':0.2,'seed':0,'max_tokens':512}}
+    p=out/'trajectory.json';p.write_text(json.dumps(original))
+    monkeypatch.setenv('TD_KEY','state-recovery-demo-key')
+    with pytest.raises(run.InputError,match='generation configuration'):
+        run.execute(SimpleNamespace(model=model,out=out,fixture=tmp_path/'unused',reduced=False,
+                                    approve_hash=None,temperature=0,seed=0))
+    assert json.loads(p.read_text())==original

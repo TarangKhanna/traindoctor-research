@@ -1,0 +1,44 @@
+{
+  "initial_observation_identical": true,
+  "metadata_perturbations": [
+    {
+      "action": "restore_sampler",
+      "case": "case0",
+      "display_name": "renamed-run"
+    },
+    {
+      "action": "restore_sampler",
+      "case": "case0",
+      "display_name": "unrelated-node-99"
+    },
+    {
+      "action": "restore_sampler",
+      "case": "case0",
+      "display_name": "case1"
+    },
+    {
+      "action": "restore_optimizer",
+      "case": "case1",
+      "display_name": "renamed-run"
+    },
+    {
+      "action": "restore_optimizer",
+      "case": "case1",
+      "display_name": "unrelated-node-99"
+    },
+    {
+      "action": "restore_optimizer",
+      "case": "case1",
+      "display_name": "case0"
+    }
+  ],
+  "oracle_agreement": {
+    "agree": 12,
+    "n": 12
+  },
+  "source": "executed",
+  "state_rule_actions": {
+    "case0": "restore_sampler",
+    "case1": "restore_optimizer"
+  }
+}

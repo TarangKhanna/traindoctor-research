@@ -40,3 +40,7 @@ HANDOFF*.md
 /results/state_recovery_v1_20261029_verified/case1/
 /results/state_recovery_v1_20261029_verified/SHA256SUMS
 /results/reviewed_qwen_code_20261029/incident/
+/results/state_recovery_v1_loopback_verified/base/
+/results/state_recovery_v1_loopback_verified/case0/
+/results/state_recovery_v1_loopback_verified/case1/
+/results/state_recovery_v1_loopback_verified/SHA256SUMS

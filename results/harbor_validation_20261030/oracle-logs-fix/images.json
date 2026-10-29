@@ -1,0 +1,105 @@
+{
+  "source": "executed",
+  "containers": [
+    {
+      "container_id": "6678e7b54b51f66a6772816f3b736f0e526603aaab2ebca46d088ec4f95b29fe",
+      "name": "/training-repair-01__dtyfe3u__verifier__trial-main-1",
+      "image_id": "sha256:2991bd3f389aecc7a76f40483889a1d2b2d47d009723ecec6fe0ba0b6c3fd86c",
+      "image": {
+        "Id": "sha256:2991bd3f389aecc7a76f40483889a1d2b2d47d009723ecec6fe0ba0b6c3fd86c",
+        "RepoDigests": [],
+        "RepoTags": [
+          "training-repair-01__dtyfe3u__verifier__trial-main:latest"
+        ],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:35:17.066652715Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "0",
+        "entrypoint": null,
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": [
+          "CAP_CHOWN",
+          "CAP_DAC_OVERRIDE",
+          "CAP_FOWNER",
+          "CAP_KILL",
+          "CAP_SETGID",
+          "CAP_SETPCAP",
+          "CAP_SETUID"
+        ],
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": []
+    },
+    {
+      "container_id": "a4c4b56ad844e7f3482192db89b0349ba6d6c100a860620795067f11a48809ce",
+      "name": "/training-repair-01__dtyfe3u__env-main-1",
+      "image_id": "sha256:3456cdd84319e9687591dd41670d5d0674edf48809656998be4fb742b3926573",
+      "image": {
+        "Id": "sha256:3456cdd84319e9687591dd41670d5d0674edf48809656998be4fb742b3926573",
+        "RepoDigests": [],
+        "RepoTags": [
+          "training-repair-01__dtyfe3u__env-main:latest"
+        ],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:31:23.26629926Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "1000",
+        "entrypoint": [
+          "/usr/local/bin/prepare-submission"
+        ],
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "Status": "running"
+      },
+      "mounts": []
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+    "task": {
+        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+    },
+    "trial_name": "training-repair-01__qSkmVdS",
+    "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/tamper-hardened/jobs/tamper-hardened",
+    "agent": {
+        "name": "experiments.harbor_smoke.controls:TamperNopAgent"
+    },
+    "environment": {
+        "type": "docker",
+        "delete": false,
+        "kwargs": {
+            "keep_containers": true
+        }
+    },
+    "job_id": "9d91c0fa-30a0-4d9d-bcda-267eb834205a"
+}

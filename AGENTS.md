@@ -62,5 +62,12 @@ Update status at closure. Keep this lightweight: no new memory/logging framework
 
 Read docs/AGENT_V2_REPORT.md before any further work. STOP training and task/benchmark
 expansion on current cases. The already authorized one-task Harbor interoperability
-proof remains pending isolated setup approval; it is not a learning task redesign.
+proof has owner-approved isolated setup and local execution; it is not a learning task redesign.
+The latest owner instruction prohibits push/publication and any new model runs.
 Do not restart model inference automatically or pool retries as RL reward groups.
+
+Harbor runtime gate is complete: read docs/HARBOR_VALIDATION.md and recount the
+saved final packet before repeating local trials. This is one interoperability
+smoke task; preserve STOP on training/benchmark expansion. No automatic model
+restart, publishing or Harbor Hub upload. Docker Desktop/images were retained;
+only our recorded trial containers/volumes were cleaned.

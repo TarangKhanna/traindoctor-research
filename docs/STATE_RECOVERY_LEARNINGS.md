@@ -210,3 +210,7 @@ Evidence and remaining work: [local-agent report](LOCAL_AGENT_V1_REPORT.md).
   a Docker runtime proof. Setup approval is pending; no fake compatibility claim.
 
 Exact receipts and provenance: AGENT_V2_REPORT.md and results/agent_v2_*.
+
+2026-10-30 — Harbor runtime gate passed on one existing task: correct1/no-op0/completing-invalid0/tamper0, with matching native source/verdict controls. Completing an optimizer-reset repair with valid hashes and sample history still fails semantic transitions. Shared-verifier cross-backend agreement is not independent mathematical validation. Integration fixes were limited to reproduced provider-policy, read-only transport, tmpfs-copy, dormant-interface and stale reward.txt issues. Default lint keeps its root-capability finding; the narrow exception and actual Docker isolation are explicit. See HARBOR_VALIDATION.md and the scripted raw packet. No autonomous agent or learning result was added; STOP training remains.
+
+Closure learning: static tests cannot establish SDK transport semantics, and a successful CLI exit can wrap an errored trial. Inspect actual trial/verifier receipts before claiming a result; keep failed setup receipts and exact image/source identities. Reusing Harbor's own transfer and separate-verifier contracts was sufficient—no generic adapter or scheduler was needed.

@@ -1,0 +1,1 @@
+{"error_type": "SandboxUnavailable", "execution_performed": null, "protocol": "harbor-training-repair-01-v1", "reason": "verifier must have network_mode:none (loopback only)", "source": "executed", "status": "infrastructure_error", "submitted_source_sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce", "terminal_reward": null, "verdict": null}

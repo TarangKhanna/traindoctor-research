@@ -1,0 +1,20 @@
+{
+  "source": "executed",
+  "date": "2026-10-30",
+  "environment_worktree": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env",
+  "environment_branch": "demo/harbor-v1",
+  "environment_start": "cc69e14564f8be17bf463083873a3c117b89258b",
+  "research_worktree": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research",
+  "research_branch": "demo/agent-v2",
+  "research_start": "308ab3d6bbe1e5ed836f1d45fec1e2eb0d9a3e4c",
+  "public_heads_observed": {
+    "environment": "c5a8a9bdb32022cedad6127844abdef580302f68",
+    "research": "4eea735e728eb338130e2f062cbb512445fd796d"
+  },
+  "remote_check": "git -c credential.helper= ls-remote public HTTPS URLs refs/heads/main; isolated clones have no configured remote",
+  "model_used": false,
+  "push_authorized": false,
+  "receipt": "summary-hardened.json",
+  "archived_source": "environment-source.tar.gz",
+  "environment_final_commit": "26ed1ff6022a927764598a67699dc8f80301daed"
+}

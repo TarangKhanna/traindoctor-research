@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+    },
+    "trial_name": "training-repair-01__RjSFGSM",
+    "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-solution-fix/jobs/oracle-solution-fix",
+    "environment": {
+        "type": "docker",
+        "delete": false
+    },
+    "job_id": "b3e21645-fb0e-4531-9b14-d5923b95771d"
+}

@@ -1,0 +1,37 @@
+{
+  "source": "executed",
+  "removed_container_ids": [
+    "3635d6691921df5e758017fe5d8c43e59f9ac6af92fdeea5aeaa2cac60b90c48",
+    "4291ed0eb892423e3953affd221fba500a991c035744401527496cf5062c35ae",
+    "8c7e3f1ea50f3900a0a3445e1da1863c1334043e53199d8088d6e4002ce6919a",
+    "a115599c143a3443b496895ade7962e773b1bc866217b2580b804bb207ba636c",
+    "b06a562950962b97971d96e2aab83eae3f5bb064211584548c5a64c473f24ae6",
+    "b61013a2813d17de737947b5ac612eb99c266b25386a029d74aa68cee8e1530c",
+    "b9ac928daba28c92d9262197350cb0c89851116e3b968a4fd2c474b6c2e0b5bf",
+    "ffd517a065db8399fb6476c05a494f5d49fb09181d30f5b40991ce1199a50197"
+  ],
+  "removed_volume_names": [
+    "training-repair-01__8b8qfwt__env_logs",
+    "training-repair-01__8b8qfwt__env_solution",
+    "training-repair-01__8b8qfwt__env_submission",
+    "training-repair-01__8b8qfwt__verifier__trial_logs",
+    "training-repair-01__8b8qfwt__verifier__trial_submission",
+    "training-repair-01__aegqmih__env_logs",
+    "training-repair-01__aegqmih__env_solution",
+    "training-repair-01__aegqmih__env_submission",
+    "training-repair-01__aegqmih__verifier__trial_logs",
+    "training-repair-01__aegqmih__verifier__trial_submission",
+    "training-repair-01__nbogwq3__env_logs",
+    "training-repair-01__nbogwq3__env_solution",
+    "training-repair-01__nbogwq3__env_submission",
+    "training-repair-01__nbogwq3__verifier__trial_logs",
+    "training-repair-01__nbogwq3__verifier__trial_submission",
+    "training-repair-01__qskmvds__env_logs",
+    "training-repair-01__qskmvds__env_solution",
+    "training-repair-01__qskmvds__env_submission",
+    "training-repair-01__qskmvds__verifier__trial_logs",
+    "training-repair-01__qskmvds__verifier__trial_submission"
+  ],
+  "images_retained": true,
+  "docker_desktop_left_running": true
+}

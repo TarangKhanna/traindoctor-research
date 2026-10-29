@@ -1,0 +1,22 @@
+{
+    "job_name": "nop-hardened",
+    "jobs_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/nop-hardened/jobs",
+    "n_concurrent_trials": 1,
+    "environment": {
+        "type": "docker",
+        "delete": false,
+        "kwargs": {
+            "keep_containers": true
+        }
+    },
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+        }
+    ]
+}

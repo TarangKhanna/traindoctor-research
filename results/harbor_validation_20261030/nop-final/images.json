@@ -1,0 +1,133 @@
+{
+  "source": "executed",
+  "containers": [
+    {
+      "container_id": "8165a3811aaa392a085507780b8a8ec51f800040a6ac56a0f4664c2bf68451d8",
+      "name": "/training-repair-01__wta5sev__verifier__trial-main-1",
+      "image_id": "sha256:27b6bc2d81746fcdbcf57e9a957ad462f2e9feaa8a574c18ab9fcf22053dfea2",
+      "image": {
+        "Id": "sha256:27b6bc2d81746fcdbcf57e9a957ad462f2e9feaa8a574c18ab9fcf22053dfea2",
+        "RepoDigests": [],
+        "RepoTags": [],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:48:57.728142679Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "0",
+        "entrypoint": null,
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": [
+          "CAP_CHOWN",
+          "CAP_DAC_OVERRIDE",
+          "CAP_FOWNER",
+          "CAP_KILL",
+          "CAP_SETGID",
+          "CAP_SETPCAP",
+          "CAP_SETUID"
+        ],
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__wta5sev__verifier__trial_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__wta5sev__verifier__trial_logs",
+          "Destination": "/logs",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "container_id": "446483d00329e71c73402da7777b69bfc6babd0e135875826e3da2d35a3487e8",
+      "name": "/training-repair-01__wta5sev__env-main-1",
+      "image_id": "sha256:e91d6d7e9484b5ab52818243dae02bd3f8c889f4f4ba52fcaf370c49efd60a44",
+      "image": {
+        "Id": "sha256:e91d6d7e9484b5ab52818243dae02bd3f8c889f4f4ba52fcaf370c49efd60a44",
+        "RepoDigests": [],
+        "RepoTags": [],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:43:30.02573793Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "1000",
+        "entrypoint": [
+          "/usr/local/bin/prepare-submission"
+        ],
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__wta5sev__env_logs",
+          "Destination": "/logs",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__wta5sev__env_solution",
+          "Destination": "/solution",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__wta5sev__env_submission",
+          "Destination": "/submission",
+          "RW": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "source": "executed",
+  "control": "oracle-volume-fix",
+  "scripted_control": true,
+  "model_used": false,
+  "command": [
+    "/private/tmp/traindoctor-harbor-venv-20261030/bin/harbor",
+    "run",
+    "-p",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
+    "-a",
+    "oracle",
+    "-e",
+    "docker",
+    "-n",
+    "1",
+    "-k",
+    "1",
+    "-r",
+    "0",
+    "-o",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs",
+    "--job-name",
+    "oracle-volume-fix",
+    "--no-delete",
+    "--ek",
+    "keep_containers=true"
+  ],
+  "wall_s": 22.123913749994244,
+  "returncode": 0,
+  "guard_stop": null,
+  "swap_baseline_bytes": 1440743424,
+  "minimum_available_bytes": 12081725440,
+  "maximum_swap_growth_bytes": 0,
+  "samples": [
+    {
+      "elapsed_s": 0.0012744590057991445,
+      "available_bytes": 12785254400,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 1.001865291967988,
+      "available_bytes": 12463734784,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 2.009231499978341,
+      "available_bytes": 12408438784,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 3.0139738339930773,
+      "available_bytes": 12410535936,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 4.0154270000057295,
+      "available_bytes": 12451676160,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 5.018980374967214,
+      "available_bytes": 12452642816,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 6.029139166988898,
+      "available_bytes": 12440027136,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 7.039329292019829,
+      "available_bytes": 12425691136,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 8.047758416971192,
+      "available_bytes": 12386271232,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 9.057953374984208,
+      "available_bytes": 12334104576,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 10.067404041998088,
+      "available_bytes": 12236324864,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 11.06773437501397,
+      "available_bytes": 12321013760,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 12.077827624976635,
+      "available_bytes": 12291325952,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 13.081166499992833,
+      "available_bytes": 12264456192,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 14.091259041975718,
+      "available_bytes": 12281626624,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 15.09532995900372,
+      "available_bytes": 12173361152,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 16.096171625016723,
+      "available_bytes": 12199821312,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 17.106254416983575,
+      "available_bytes": 12172902400,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 18.106538874970283,
+      "available_bytes": 12081725440,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 19.10691020899685,
+      "available_bytes": 12138708992,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 20.114864791976288,
+      "available_bytes": 12136595456,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 21.115127916971687,
+      "available_bytes": 12150030336,
+      "swap_used_bytes": 1440743424
+    }
+  ],
+  "harbor_source_commit": "509b119db0d97b141dcd9c80f4f7ab861c47c2d6",
+  "dotenv_disabled": true,
+  "telemetry_disabled": true
+}

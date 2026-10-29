@@ -1,0 +1,133 @@
+{
+  "source": "executed",
+  "containers": [
+    {
+      "container_id": "8d2baa08ddd62d5eefd0fd9fc681d97bba5ecc4870fc4345791dbe16ceb17b8d",
+      "name": "/training-repair-01__npw2ukt__verifier__trial-main-1",
+      "image_id": "sha256:7f814034cc4373e22edbb8de022f4501a2cdfaf696655588bd9fda2b4f56a512",
+      "image": {
+        "Id": "sha256:7f814034cc4373e22edbb8de022f4501a2cdfaf696655588bd9fda2b4f56a512",
+        "RepoDigests": [],
+        "RepoTags": [],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:48:57.728142679Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "0",
+        "entrypoint": null,
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": [
+          "CAP_CHOWN",
+          "CAP_DAC_OVERRIDE",
+          "CAP_FOWNER",
+          "CAP_KILL",
+          "CAP_SETGID",
+          "CAP_SETPCAP",
+          "CAP_SETUID"
+        ],
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__npw2ukt__verifier__trial_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__npw2ukt__verifier__trial_logs",
+          "Destination": "/logs",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "container_id": "4d131f3d51855d6ad9696162a662d58d7bd650bf95743cf4091aa47e2e685a14",
+      "name": "/training-repair-01__npw2ukt__env-main-1",
+      "image_id": "sha256:8d91d6779d7fef1f269786b991cdc00e9b0b2cf256ee81ab566a5f38c6e624a6",
+      "image": {
+        "Id": "sha256:8d91d6779d7fef1f269786b991cdc00e9b0b2cf256ee81ab566a5f38c6e624a6",
+        "RepoDigests": [],
+        "RepoTags": [],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:43:30.02573793Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "1000",
+        "entrypoint": [
+          "/usr/local/bin/prepare-submission"
+        ],
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__npw2ukt__env_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__npw2ukt__env_logs",
+          "Destination": "/logs",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__npw2ukt__env_solution",
+          "Destination": "/solution",
+          "RW": true
+        }
+      ]
+    }
+  ]
+}

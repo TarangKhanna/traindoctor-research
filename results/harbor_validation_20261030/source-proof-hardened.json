@@ -1,0 +1,24 @@
+{
+  "source": "executed",
+  "image": "sha256:37f7593c0083423a0a89b85aff7fe471bc5d458909763854d40e77d63205f30a",
+  "files": [
+    {
+      "container_path": "/tests/worker_bridge.py",
+      "repository_path": "harbor/tasks/training-repair-01/tests/worker_bridge.py",
+      "sha256": "a19f40834cd7f0eb0e0769a520e9cd8964d1bb388182eb606c0e01fe8f77dd09",
+      "matches": true
+    },
+    {
+      "container_path": "/tests/grade.py",
+      "repository_path": "harbor/tasks/training-repair-01/tests/grade.py",
+      "sha256": "d3b80a59e89c3fc0a0b4779527fa71caabf1aba68624266c888c6bea0010b194",
+      "matches": true
+    },
+    {
+      "container_path": "/opt/traindoctor/traindoctor_env/reexec.py",
+      "repository_path": "traindoctor_env/reexec.py",
+      "sha256": "af7ec83eb02f1c9b95eaffc06baff6dc37e09b77f0b71609b74cee591750df9c",
+      "matches": true
+    }
+  ]
+}

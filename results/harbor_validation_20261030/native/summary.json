@@ -1,0 +1,132 @@
+{
+  "cases": [
+    {
+      "case": "oracle",
+      "memory_after": {
+        "available_bytes": 14386003968,
+        "swap_used_bytes": 1120468992
+      },
+      "memory_before": {
+        "available_bytes": 13132677120,
+        "swap_used_bytes": 1120468992
+      },
+      "outcome": {
+        "bit_identical": true,
+        "ckpt_valid": true,
+        "detail": "",
+        "exec_mode": "sandboxed",
+        "fault_not_injected": false,
+        "format_check": "v1.2",
+        "history_intact": true,
+        "lost_steps": 3,
+        "no_duplicate_updates": true,
+        "ok": true,
+        "params_match_reference": true,
+        "path": "state_equal",
+        "ranks_consistent": true,
+        "relaunches": 2,
+        "restores_consistent": true,
+        "sample_dups": 0,
+        "sample_gaps": 0,
+        "sampler_behaviour": true,
+        "samples_match_reference": true,
+        "sandboxed": true,
+        "states_match_reference": true,
+        "steps_completed": 12,
+        "tampered": [],
+        "transitions_consistent": true
+      },
+      "source": "executed",
+      "source_sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce",
+      "wall_s": 12.465786083019339
+    },
+    {
+      "case": "nop",
+      "memory_after": {
+        "available_bytes": 14403715072,
+        "swap_used_bytes": 1120468992
+      },
+      "memory_before": {
+        "available_bytes": 14385987584,
+        "swap_used_bytes": 1120468992
+      },
+      "outcome": {
+        "bit_identical": false,
+        "ckpt_valid": true,
+        "detail": "",
+        "exec_mode": "sandboxed",
+        "fault_not_injected": false,
+        "format_check": "v1.2",
+        "history_intact": true,
+        "lost_steps": 3,
+        "no_duplicate_updates": true,
+        "ok": false,
+        "params_match_reference": false,
+        "path": "",
+        "ranks_consistent": true,
+        "relaunches": 2,
+        "restores_consistent": true,
+        "sample_dups": 32,
+        "sample_gaps": 32,
+        "sampler_behaviour": false,
+        "samples_match_reference": false,
+        "sandboxed": true,
+        "states_match_reference": false,
+        "steps_completed": 12,
+        "tampered": [],
+        "transitions_consistent": true
+      },
+      "source": "executed",
+      "source_sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+      "wall_s": 9.998731624975335
+    },
+    {
+      "case": "invalid",
+      "memory_after": {
+        "available_bytes": 14333542400,
+        "swap_used_bytes": 1120468992
+      },
+      "memory_before": {
+        "available_bytes": 14403715072,
+        "swap_used_bytes": 1120468992
+      },
+      "outcome": {
+        "bit_identical": false,
+        "ckpt_valid": true,
+        "detail": "",
+        "exec_mode": "sandboxed",
+        "fault_not_injected": false,
+        "format_check": "v1.2",
+        "history_intact": true,
+        "lost_steps": 3,
+        "no_duplicate_updates": true,
+        "ok": false,
+        "params_match_reference": false,
+        "path": "",
+        "ranks_consistent": true,
+        "relaunches": 2,
+        "restores_consistent": false,
+        "sample_dups": 0,
+        "sample_gaps": 0,
+        "sampler_behaviour": true,
+        "samples_match_reference": true,
+        "sandboxed": true,
+        "states_match_reference": false,
+        "steps_completed": 12,
+        "tampered": [],
+        "transitions_consistent": false
+      },
+      "source": "executed",
+      "source_sha256": "132d1ad80b86206349b86025d9930fd64ef391deb131310d552d786709c8c507",
+      "wall_s": 10.027600084024016
+    }
+  ],
+  "expected_rewards": {
+    "invalid": 0,
+    "nop": 0,
+    "oracle": 1
+  },
+  "source": "executed",
+  "status": "pass",
+  "trusted_fixture_wall_s": 13.239260000002105
+}

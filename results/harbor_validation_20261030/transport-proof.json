@@ -1,0 +1,12 @@
+{
+  "tmpfs": {
+    "exists_inside_returncode": 0,
+    "docker_cp_returncode": 1,
+    "copy_error": "Error response from daemon: Could not find the file /submission/ckpt.py in container a4c4b56ad844"
+  },
+  "named_volume": {
+    "exists_inside_returncode": 0,
+    "docker_cp_returncode": 0,
+    "copy_error": ""
+  }
+}

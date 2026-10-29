@@ -1,0 +1,197 @@
+{
+  "source": "executed",
+  "files": [
+    {
+      "path": "harbor/tasks/training-repair-01/environment/Dockerfile",
+      "sha256": "dc0d90c4cac301890f5b2aa7ec09a4e3bc87f24945f3ca5170b47470cd1831fa"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/environment/Dockerfile.dockerignore",
+      "sha256": "7e5cd902e39de24526bbcf780018c160f3bda921d67041abb0d1d39043c98806"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/environment/docker-compose.yaml",
+      "sha256": "d28e378909b3db40979db058142e67b8e72c74ce985bf12de9b78070f491ffa6"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/instruction.md",
+      "sha256": "3c03e89334ab6caeeeea7cd5d9285d16aa94ef082447988617b44b26739401fb"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/solution/solve.sh",
+      "sha256": "136f3088b8588c580e251f8e4c1d532f8813a40ae50750b66f509023cb1d4b27"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/task.toml",
+      "sha256": "fb31195513b11f305156d503f58af6ee4405854773f7d7530c256e0fa7f9ca1b"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/tests/Dockerfile",
+      "sha256": "089b6de4c1e1fadb489d5587a5731bd0aad439b943ac8e671e43ffb5c137709f"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/tests/Dockerfile.dockerignore",
+      "sha256": "e37d792ae02b30d4e3e2581771f2b1b4636ab669f92f167aecb73330458391cd"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/tests/docker-compose.yaml",
+      "sha256": "a770f4012628d91b51e37a8c0ac163b3c21099aecad16f26db9a2bf9c0e581e7"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/tests/grade.py",
+      "sha256": "d3b80a59e89c3fc0a0b4779527fa71caabf1aba68624266c888c6bea0010b194"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/tests/test.sh",
+      "sha256": "1e1f0641d4bb2e47632f0f8da4cf2218313be418268c82bd1017a203e5ea208c"
+    },
+    {
+      "path": "harbor/tasks/training-repair-01/tests/worker_bridge.py",
+      "sha256": "a19f40834cd7f0eb0e0769a520e9cd8964d1bb388182eb606c0e01fe8f77dd09"
+    },
+    {
+      "path": "jobs/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jobs/a2v2.py",
+      "sha256": "d6df1515c2c03939ff901d8666b4a6459322ef62a8ae0872320305c48a5fa8d2"
+    },
+    {
+      "path": "jobs/build.py",
+      "sha256": "f1952afa6a21e7f43b8d5cf116f18197503edce3aa2e91e38ebd4c0e8ad212cd"
+    },
+    {
+      "path": "jobs/config.py",
+      "sha256": "421d26486e9e84918e8f1a658fe4d1756c158c9e0f3eaea87781f1697161620f"
+    },
+    {
+      "path": "jobs/dataserver.py",
+      "sha256": "be89151dd98b5013535766cdb176bc51f6727458ce11b0aed4d6c59848abde1c"
+    },
+    {
+      "path": "jobs/launcher.py",
+      "sha256": "585212642f48cb7250c4fb954862acf98009c02136076e4dbf799e18e9f78c72"
+    },
+    {
+      "path": "jobs/manifest.py",
+      "sha256": "da3d6b65208a60a19a97cbf146e4c692d2847a63b7d080e256ba49115b985593"
+    },
+    {
+      "path": "jobs/resubmit.py",
+      "sha256": "c0c9bb6527bf341056b6790d1941b9ffb12891c6da03f053976154a936d9330c"
+    },
+    {
+      "path": "jobs/runtime/harness.py",
+      "sha256": "d88de197b9aadb429a61a5a97b1f47fd6ac03d99284296404fd872dc4e6a56b3"
+    },
+    {
+      "path": "jobs/runtime/td_client.py",
+      "sha256": "baca0a512a2108951d8c7508144b204c3c7921e463872505c462e0465d883810"
+    },
+    {
+      "path": "jobs/safefs.py",
+      "sha256": "ed4c4e36ac2d437235ae9ad8b55f82dfcd02afcc6767907fe06be6bff7d76935"
+    },
+    {
+      "path": "jobs/sandbox.py",
+      "sha256": "ad312b79d6692d7e5920631172d6cf87eea77e3e9cd0fc959e2a83db46dd5779"
+    },
+    {
+      "path": "jobs/template/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jobs/template/ckpt.py",
+      "sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce"
+    },
+    {
+      "path": "jobs/template/config.py",
+      "sha256": "1d90d5d887945f563a443625e6e1772f91b7e0f2867cb78b25a0ae8243dfba08"
+    },
+    {
+      "path": "jobs/template/data.py",
+      "sha256": "49b4b04bef66cc36b8a72bef8ed94b90497754698485e9ae372c370f25fe0e60"
+    },
+    {
+      "path": "jobs/template/train.py",
+      "sha256": "dfd11225e18f6ac2f2cc3376a0c8736d8a34135860c15b71b7db8efd336e7695"
+    },
+    {
+      "path": "jobs/template_a2v2/data.py",
+      "sha256": "2ee3b4697c3feda004eacc76b0c0e5a4356d6e8685f93a58f3b10176f2f928ae"
+    },
+    {
+      "path": "jobs/template_a2v2/train.py",
+      "sha256": "3dfb904568b0c4c3c5881dc51e5637d0602f198e12bedfaa80d25eed024a3d81"
+    },
+    {
+      "path": "jobs/trusted.py",
+      "sha256": "de47c70145021e93171993875da5e83d1a2c373f5be74dc7ee01e3ed62c54c66"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "54da43a6b3e205f814cc37bf2417dd1f0f40a56143bffa68d291be0b443e8c43"
+    },
+    {
+      "path": "tests/test_harbor_grader.py",
+      "sha256": "b2541cc10298a7ae95c9a9dcf6b5027478a3789bf9fa167c9fbeea1bf9b8c94f"
+    },
+    {
+      "path": "traindoctor_env/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "traindoctor_env/bundle.py",
+      "sha256": "4b2cc4635ac1e85eaae652c7ebef9371d313e6997d6b8c73c007c568887dc365"
+    },
+    {
+      "path": "traindoctor_env/menu_v3.py",
+      "sha256": "d91cdab7061c9b563bd44cda1628d74f616c48c6f757dd5c24f330aef803bce4"
+    },
+    {
+      "path": "traindoctor_env/modal_backend.py",
+      "sha256": "1ff73c6c94631b23089a51ef59761d3bff2f6106e9bb4d2ac57ccc5385553445"
+    },
+    {
+      "path": "traindoctor_env/oracle.py",
+      "sha256": "b65a8708560d852ed4a1ed9ffd8eddfd80415abc7df46bd8756e58dbb30ef07c"
+    },
+    {
+      "path": "traindoctor_env/pilot.py",
+      "sha256": "c571d17983254c30379ab6726a3563086fcdde9ddcb7168f8986e39282158de1"
+    },
+    {
+      "path": "traindoctor_env/reexec.py",
+      "sha256": "af7ec83eb02f1c9b95eaffc06baff6dc37e09b77f0b71609b74cee591750df9c"
+    },
+    {
+      "path": "traindoctor_env/scenario.py",
+      "sha256": "027f9882badf5b84f1cbe84f40bdb5dce06f4700b21445946f60e2bb0bb8db62"
+    },
+    {
+      "path": "traindoctor_env/snapshot.py",
+      "sha256": "fd3fd564ee69911b0aa3ff254e84087bc962e1dc51f39094ef365e9887415859"
+    },
+    {
+      "path": "traindoctor_env/state_recovery_v1.py",
+      "sha256": "b146621256c38f7b00b5de8c594b82f237a4150cc710cfab53d4c5678c86da3a"
+    },
+    {
+      "path": "traindoctor_env/tiera.py",
+      "sha256": "d27d0e1f060b13c6478a96481a0e3ef2c926f3b30f094dab116cc81072708d63"
+    },
+    {
+      "path": "traindoctor_env/tools.py",
+      "sha256": "3dc10b1442213312a92e69b6b0a10f374cf81ec6ccd6f9c7a915dbda35c709e9"
+    },
+    {
+      "path": "traindoctor_env/verifiers.py",
+      "sha256": "d1642fc08817ab771cae398d0360ce62836637745baf90993b2f3f40230815b0"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "55cdef1be9bf1915ea7850c80d42fb5090fef0c75d94116f5f95a6020dbbe9cd"
+    }
+  ]
+}

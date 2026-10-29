@@ -1,0 +1,26 @@
+  1/1 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:01:02 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1      │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 1m 2s
+Results written to 
+/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+ation_20261030/oracle-hardened-proof/jobs/oracle-hardened-proof/result.json
+Inspect results by running `harbor view 
+/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+ation_20261030/oracle-hardened-proof/jobs`
+Share results by running `harbor upload 
+/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+ation_20261030/oracle-hardened-proof/jobs/oracle-hardened-proof`
+

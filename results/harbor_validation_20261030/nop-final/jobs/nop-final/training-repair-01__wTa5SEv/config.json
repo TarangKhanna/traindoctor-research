@@ -1,0 +1,18 @@
+{
+    "task": {
+        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+    },
+    "trial_name": "training-repair-01__wTa5SEv",
+    "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/nop-final/jobs/nop-final",
+    "agent": {
+        "name": "nop"
+    },
+    "environment": {
+        "type": "docker",
+        "delete": false,
+        "kwargs": {
+            "keep_containers": true
+        }
+    },
+    "job_id": "969e7a26-c5d2-486d-991c-2da6a8c2f21c"
+}

@@ -1,0 +1,307 @@
+Tip: There are many benchmarks available in Harbor's registry.
+Run `harbor datasets list` to see all available datasets.
+
+⠋ 0/1 Running trials...                                          0:00:10 -:--:--╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/cli/jobs.py:2071 in start                                              │
+│                                                                              │
+│   2068 │   options.apply_defaults()                                          │
+│   2069 │   try:                                                              │
+│   2070 │   │   config = build_job_config(**options.arguments)                │
+│ ❱ 2071 │   │   return _execute_job(                                          │
+│   2072 │   │   │   config,                                                   │
+│   2073 │   │   │   diff_sources=options.arguments["diff_sources"],           │
+│   2074 │   │   │   print_config=options.arguments["print_config"],           │
+│                                                                              │
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/cli/jobs.py:2406 in _execute_job                                       │
+│                                                                              │
+│   2403 │   # (when --upload is set) so everything stays on one event loop.   │
+│        See                                                                   │
+│   2404 │   # the long comment in `HarborHubUploadPlugin.on_job_end` for why  │
+│        this matters.                                                         │
+│   2405 │   try:                                                              │
+│ ❱ 2406 │   │   job, job_result = run_async(_run_job())                       │
+│   2407 │   except DATASET_RESOLUTION_ERRORS as exc:                          │
+│   2408 │   │   abort_dataset_resolution(console, exc, "No job was started.") │
+│   2409                                                                       │
+│                                                                              │
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/cli/utils.py:111 in run_async                                          │
+│                                                                              │
+│   108 │   │   return asyncio.run(                                            │
+│   109 │   │   │   with_async_cleanup(coro),                                  │
+│       loop_factory=asyncio.ProactorEventLoop                                 │
+│   110 │   │   )                                                              │
+│ ❱ 111 │   return asyncio.run(with_async_cleanup(coro))                       │
+│   112                                                                        │
+│   113                                                                        │
+│   114 def parse_kwargs(kwargs_list: list[str] | None) -> dict[str, Any]:     │
+│                                                                              │
+│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ /lib/python3.12/asyncio/runners.py:195 in run                                │
+│                                                                              │
+│   192 │   │   │   "asyncio.run() cannot be called from a running event       │
+│       loop")                                                                 │
+│   193 │                                                                      │
+│   194 │   with Runner(debug=debug, loop_factory=loop_factory) as runner:     │
+│ ❱ 195 │   │   return runner.run(main)                                        │
+│   196                                                                        │
+│   197                                                                        │
+│   198 def _cancel_all_tasks(loop):                                           │
+│                                                                              │
+│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ /lib/python3.12/asyncio/runners.py:118 in run                                │
+│                                                                              │
+│   115 │   │                                                                  │
+│   116 │   │   self._interrupt_count = 0                                      │
+│   117 │   │   try:                                                           │
+│ ❱ 118 │   │   │   return self._loop.run_until_complete(task)                 │
+│   119 │   │   except exceptions.CancelledError:                              │
+│   120 │   │   │   if self._interrupt_count > 0:                              │
+│   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
+│                                                                              │
+│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ /lib/python3.12/asyncio/base_events.py:691 in run_until_complete             │
+│                                                                              │
+│    688 │   │   if not future.done():                                         │
+│    689 │   │   │   raise RuntimeError('Event loop stopped before Future      │
+│        completed.')                                                          │
+│    690 │   │                                                                 │
+│ ❱  691 │   │   return future.result()                                        │
+│    692 │                                                                     │
+│    693 │   def stop(self):                                                   │
+│    694 │   │   """Stop running the event loop.                               │
+│                                                                              │
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/utils/async_cleanup.py:20 in with_async_cleanup                        │
+│                                                                              │
+│   17 │   async with AsyncExitStack() as stack:                               │
+│   18 │   │   token = _exit_stack.set(stack)                                  │
+│   19 │   │   try:                                                            │
+│ ❱ 20 │   │   │   return await coro                                           │
+│   21 │   │   finally:                                                        │
+│   22 │   │   │   _exit_stack.reset(token)                                    │
+│   23                                                                         │
+│                                                                              │
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/cli/jobs.py:2363 in _run_job                                           │
+│                                                                              │
+│   2360 │   │   │   )                                                         │
+│   2361 │   │   │   await hub_plugin.on_job_start(job)                        │
+│   2362 │   │                                                                 │
+│ ❱ 2363 │   │   job_result = await job.run()                                  │
+│   2364 │   │                                                                 │
+│   2365 │   │   # Print the run summary BEFORE plugin and Harbor Hub finalize │
+│        so users                                                              │
+│   2366 │   │   # see results even if downstream operations fail.             │
+│                                                                              │
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/job.py:1161 in run                                                     │
+│                                                                              │
+│   1158 │   │   │   │   │   │   completed=n_existing,                         │
+│   1159 │   │   │   │   │   )                                                 │
+│   1160 │   │   │   │   │                                                     │
+│ ❱ 1161 │   │   │   │   │   trial_results = await                             │
+│        self._run_trials_with_queue(                                          │
+│   1162 │   │   │   │   │   │   loading_progress, progress_task,              │
+│        running_progress                                                      │
+│   1163 │   │   │   │   │   )                                                 │
+│   1164                                                                       │
+│                                                                              │
+│ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/h │
+│ arbor/job.py:1311 in _run_trials_with_queue                                  │
+│                                                                              │
+│   1308 │   │                                                                 │
+│   1309 │   │   coros =                                                       │
+│        self._trial_queue.submit_batch(self._remaining_trial_configs)         │
+│   1310 │   │                                                                 │
+│ ❱ 1311 │   │   async with asyncio.TaskGroup() as tg:                         │
+│   1312 │   │   │   tasks = [tg.create_task(coro) for coro in coros]          │
+│   1313 │   │                                                                 │
+│   1314 │   │   return [t.result() for t in tasks]                            │
+│                                                                              │
+│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ /lib/python3.12/asyncio/taskgroups.py:71 in __aexit__                        │
+│                                                                              │
+│    68 │   async def __aexit__(self, et, exc, tb):                            │
+│    69 │   │   tb = None                                                      │
+│    70 │   │   try:                                                           │
+│ ❱  71 │   │   │   return await self._aexit(et, exc)                          │
+│    72 │   │   finally:                                                       │
+│    73 │   │   │   # Exceptions are heavy objects that can have object        │
+│    74 │   │   │   # cycles (bad for GC); let's not keep a reference to       │
+│                                                                              │
+│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ /lib/python3.12/asyncio/taskgroups.py:164 in _aexit                          │
+│                                                                              │
+│   161 │   │                                                                  │
+│   162 │   │   if self._errors:                                               │
+│   163 │   │   │   try:                                                       │
+│ ❱ 164 │   │   │   │   raise BaseExceptionGroup(                              │
+│   165 │   │   │   │   │   'unhandled errors in a TaskGroup',                 │
+│   166 │   │   │   │   │   self._errors,                                      │
+│   167 │   │   │   │   ) from None                                            │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+
+╭────────────────────────────── Sub-exception #1 ──────────────────────────────╮
+│ ╭─────────────────── Traceback (most recent call last) ────────────────────╮ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/trial/queue.py:242 in _run_trial                               │ │
+│ │                                                                          │ │
+│ │   239 │   async def _run_trial(self, trial_config: TrialConfig) ->       │ │
+│ │       TrialResult:                                                       │ │
+│ │   240 │   │   """Execute a single trial, acquiring the semaphore for     │ │
+│ │       concurrency control."""                                            │ │
+│ │   241 │   │   async with self._semaphore:                                │ │
+│ │ ❱ 242 │   │   │   return await                                           │ │
+│ │       self._execute_trial_with_retries(trial_config)                     │ │
+│ │   243 │                                                                  │ │
+│ │   244 │   def submit(self, trial_config: TrialConfig) -> Coroutine[Any,  │ │
+│ │       Any, TrialResult]:                                                 │ │
+│ │   245 │   │   """                                                        │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/trial/queue.py:201 in _execute_trial_with_retries              │ │
+│ │                                                                          │ │
+│ │   198 │   │   from harbor.trial.trial import Trial                       │ │
+│ │   199 │   │                                                              │ │
+│ │   200 │   │   for attempt in range(self._retry_config.max_retries + 1):  │ │
+│ │ ❱ 201 │   │   │   trial = await Trial.create(trial_config)               │ │
+│ │   202 │   │   │   self._setup_hooks(trial)                               │ │
+│ │   203 │   │   │   result = await trial.run()                             │ │
+│ │   204                                                                    │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/trial/trial.py:518 in create                                   │ │
+│ │                                                                          │ │
+│ │    515 │   │   else:                                                     │ │
+│ │    516 │   │   │   from harbor.trial.single_step import SingleStepTrial  │ │
+│ │    517 │   │   │                                                         │ │
+│ │ ❱  518 │   │   │   trial = SingleStepTrial(                              │ │
+│ │    519 │   │   │   │   config,                                           │ │
+│ │    520 │   │   │   │   _task=task,                                       │ │
+│ │    521 │   │   │   │   _task_download_result=task_download_result,       │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/trial/single_step.py:29 in __init__                            │ │
+│ │                                                                          │ │
+│ │    26 │   ):                                                             │ │
+│ │    27 │   │   if _task is not None and _task.has_steps:                  │ │
+│ │    28 │   │   │   raise ValueError("SingleStepTrial requires a task      │ │
+│ │       without [[steps]].")                                               │ │
+│ │ ❱  29 │   │   super().__init__(                                          │ │
+│ │    30 │   │   │   config,                                                │ │
+│ │    31 │   │   │   _task=_task,                                           │ │
+│ │    32 │   │   │   _task_download_result=_task_download_result,           │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/trial/trial.py:212 in __init__                                 │ │
+│ │                                                                          │ │
+│ │    209 │   │   │   self._init_timeouts()                                 │ │
+│ │    210 │   │   │   self._init_agent()                                    │ │
+│ │    211 │   │   │   self._init_user_agent()                               │ │
+│ │ ❱  212 │   │   │   self._init_agent_environment()                        │ │
+│ │    213 │   │   │   self._init_artifact_handler()                         │ │
+│ │    214 │   │   │   self._validate_network_policy_modes()                 │ │
+│ │    215 │   │   except BaseException:                                     │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/trial/trial.py:1464 in _init_agent_environment                 │ │
+│ │                                                                          │ │
+│ │   1461 │   │   │   for step in steps                                     │ │
+│ │   1462 │   │   │   if not self.config.is_regrade                         │ │
+│ │   1463 │   │   ]                                                         │ │
+│ │ ❱ 1464 │   │   self.agent_environment =                                  │ │
+│ │        EnvironmentFactory.create_environment_from_config(                │ │
+│ │   1465 │   │   │   config=self.config.environment,                       │ │
+│ │   1466 │   │   │   environment_dir=self.task.paths.environment_dir,      │ │
+│ │   1467 │   │   │   environment_name=self.task.short_name,                │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/factory.py:429 in create_environment_from_config  │ │
+│ │                                                                          │ │
+│ │   426 │   │   │   │   **env_constructor_kwargs,                          │ │
+│ │   427 │   │   │   )                                                      │ │
+│ │   428 │   │   elif config.type is not None:                              │ │
+│ │ ❱ 429 │   │   │   return cls.create_environment(                         │ │
+│ │   430 │   │   │   │   type=config.type,                                  │ │
+│ │   431 │   │   │   │   environment_dir=environment_dir,                   │ │
+│ │   432 │   │   │   │   environment_name=environment_name,                 │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/factory.py:259 in create_environment              │ │
+│ │                                                                          │ │
+│ │   256 │   ) -> BaseEnvironment:                                          │ │
+│ │   257 │   │   environment_class = _load_environment_class(type)          │ │
+│ │   258 │   │                                                              │ │
+│ │ ❱ 259 │   │   return environment_class(                                  │ │
+│ │   260 │   │   │   environment_dir=environment_dir,                       │ │
+│ │   261 │   │   │   environment_name=environment_name,                     │ │
+│ │   262 │   │   │   session_id=session_id,                                 │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/docker/docker.py:218 in __init__                  │ │
+│ │                                                                          │ │
+│ │    215 │   │   │   )                                                     │ │
+│ │    216 │   │   │   and self._egress_control_kernel_support()             │ │
+│ │    217 │   │   )                                                         │ │
+│ │ ❱  218 │   │   super().__init__(                                         │ │
+│ │    219 │   │   │   environment_dir=environment_dir,                      │ │
+│ │    220 │   │   │   environment_name=environment_name,                    │ │
+│ │    221 │   │   │   session_id=session_id,                                │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/base.py:336 in __init__                           │ │
+│ │                                                                          │ │
+│ │    333 │   │   self._validate_resource_mode_support()                    │ │
+│ │    334 │   │   self._validate_gpu_support()                              │ │
+│ │    335 │   │   self._validate_tpu_support()                              │ │
+│ │ ❱  336 │   │   self._validate_network_policy_support()                   │ │
+│ │    337 │   │   self._validate_windows_support()                          │ │
+│ │    338 │                                                                 │ │
+│ │    339 │   @cached_property                                              │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/base.py:1042 in _validate_network_policy_support  │ │
+│ │                                                                          │ │
+│ │   1039 │                                                                 │ │
+│ │   1040 │   def _validate_network_policy_support(self):                   │ │
+│ │   1041 │   │   """Validate that this provider can enforce the requested  │ │
+│ │        network policy."""                                                │ │
+│ │ ❱ 1042 │   │   self.validate_network_policy_support()                    │ │
+│ │   1043 │   │   for network_policy in self._phase_network_policies:       │ │
+│ │   1044 │   │   │   self.validate_network_policy_support(network_policy)  │ │
+│ │   1045                                                                   │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/docker/docker.py:676 in                           │ │
+│ │ validate_network_policy_support                                          │ │
+│ │                                                                          │ │
+│ │    673 │   │   │   │   "by docker environment "                          │ │
+│ │    674 │   │   │   │   "for Windows containers."                         │ │
+│ │    675 │   │   │   )                                                     │ │
+│ │ ❱  676 │   │   super().validate_network_policy_support(network_policy)   │ │
+│ │    677 │                                                                 │ │
+│ │    678 │   def _compose_env_vars(self, include_os_env: bool = True) ->   │ │
+│ │        dict[str, str]:                                                   │ │
+│ │    679 │   │   user_env: dict[str, str] = {}                             │ │
+│ │                                                                          │ │
+│ │ /private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packag │ │
+│ │ es/harbor/environments/base.py:985 in validate_network_policy_support    │ │
+│ │                                                                          │ │
+│ │    982 │   │   │   network_policy.network_mode == NetworkMode.NO_NETWORK │ │
+│ │    983 │   │   │   and not self.capabilities.disable_internet            │ │
+│ │    984 │   │   ):                                                        │ │
+│ │ ❱  985 │   │   │   raise ValueError(                                     │ │
+│ │    986 │   │   │   │   f"network_mode='no-network' is not supported by   │ │
+│ │        {self.type()} "                                                   │ │
+│ │    987 │   │   │   │   "environment. Environment providers must enforce  │ │
+│ │        the requested "                                                   │ │
+│ │    988 │   │   │   │   "network policy or reject the task."              │ │
+│ ╰──────────────────────────────────────────────────────────────────────────╯ │
+│ ValueError: network_mode='no-network' is not supported by                    │
+│ EnvironmentType.DOCKER environment. Environment providers must enforce the   │
+│ requested network policy or reject the task.                                 │
+╰──────────────────────────────────────────────────────────────────────────────╯

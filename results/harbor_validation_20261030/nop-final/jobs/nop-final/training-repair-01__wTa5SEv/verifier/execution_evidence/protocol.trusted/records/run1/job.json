@@ -1,0 +1,27 @@
+{
+ "error_class": null,
+ "fault_not_injected": false,
+ "last_step": 11,
+ "ranks": [
+  {
+   "digest": "3b70456465c4384b32aa1e4df511e1acf1bf764114a85faaa1de582c4ead582b",
+   "exc_class": null,
+   "exc_msg": null,
+   "exitcode": 0,
+   "last_step": 11,
+   "rank": 0,
+   "status": "ok"
+  },
+  {
+   "digest": "3b70456465c4384b32aa1e4df511e1acf1bf764114a85faaa1de582c4ead582b",
+   "exc_class": null,
+   "exc_msg": null,
+   "exitcode": 0,
+   "last_step": 11,
+   "rank": 1,
+   "status": "ok"
+  }
+ ],
+ "run_id": "run1",
+ "status": "completed"
+}

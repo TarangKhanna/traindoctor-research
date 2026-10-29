@@ -1,0 +1,1833 @@
+{
+  "source": "executed",
+  "files": [
+    {
+      "path": "cleanup-hardened.json",
+      "sha256": "ae908b22616914174d8bb40bd9dd30ad8cde119f45eede7ef206bb498cb78910",
+      "bytes": 1794
+    },
+    {
+      "path": "cleanup.json",
+      "sha256": "376f15f6edc29f2eeb103653f9422a2ce4659ffee3d6ef57f85c2c6ac60e6987",
+      "bytes": 2460
+    },
+    {
+      "path": "environment-files.json",
+      "sha256": "c46729dfa16efc00063b5efc6677e3974213eff9a8af3a1f146773b41e88ef86",
+      "bytes": 6923
+    },
+    {
+      "path": "environment-source.patch",
+      "sha256": "3d012ce5707c158c6c54f7aab51d0d9294a53edc757c805aefa68325fc4a0844",
+      "bytes": 12834
+    },
+    {
+      "path": "environment-source.tar.gz",
+      "sha256": "ece71c8838496ca761320eb5960ba4ef28533fe66016baf3910c32c893b2e748",
+      "bytes": 128508
+    },
+    {
+      "path": "execution/capture_images.py",
+      "sha256": "ac10709090f5fbd6a54b3576c63d44a34b7db466a2ec724eb75fac3786c216ee",
+      "bytes": 1559
+    },
+    {
+      "path": "execution/cleanup_hardened.py",
+      "sha256": "69bbe1fb159b37909b99dab6225ca9f9e9bcd556ad688b234f459f97cd639d45",
+      "bytes": 1272
+    },
+    {
+      "path": "execution/native_compare.py",
+      "sha256": "8dca37b791e031deba7166654814b762c48ac8e9e53a8883be78a940ff003341",
+      "bytes": 4662
+    },
+    {
+      "path": "execution/run_control.py",
+      "sha256": "605afb50fdb13a93bebf469ca82680c7dd924d88248bf98828d04d2cf4b634e3",
+      "bytes": 2328
+    },
+    {
+      "path": "execution/seal_runtime.py",
+      "sha256": "29311cafd9bf3996581df41a4f71218fafaed2253e0c55756695fd1fcc97f1f7",
+      "bytes": 2167
+    },
+    {
+      "path": "installed-packages.json",
+      "sha256": "3d4021ae84c4daf8934d6f4c4647cc812a0d12a7f499d6ffd2e7182b41374b78",
+      "bytes": 2244
+    },
+    {
+      "path": "invalid-final/console.txt",
+      "sha256": "24964fd6e5ed764db265340099cea8330e60ef414779f5fd41986a769f8e8da8",
+      "bytes": 1301
+    },
+    {
+      "path": "invalid-final/images.json",
+      "sha256": "d39ec46b644fb4490b4d5ac2be7855776149692528cfbc1a129b8304c3798552",
+      "bytes": 3557
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/config.json",
+      "sha256": "470a41401df06a6ba5b1d3159cfb3a5c598749cb190a1be1d251b90ad4721a49",
+      "bytes": 617
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/job.log",
+      "sha256": "1b8806e0291fd00a8f6081fa0c0e1de804b2535a9efb9af17de03f7afc6264a1",
+      "bytes": 144
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/lock.json",
+      "sha256": "052db1e5469e8ea94207ed6bbfcd278a7fc01e181888e5faade1037b32e0a08a",
+      "bytes": 2323
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/result.json",
+      "sha256": "891f7e4c206589afe62e5d2b497de390c4808b7e27c727a321a12f0206c4da10",
+      "bytes": 1132
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/agent/control.json",
+      "sha256": "d2689eb87bd13802478c254e5f879bb24243d406af9fae1272a960746e291a7c",
+      "bytes": 153
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/artifacts/ckpt.py",
+      "sha256": "132d1ad80b86206349b86025d9930fd64ef391deb131310d552d786709c8c507",
+      "bytes": 2364
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/config.json",
+      "sha256": "4fb3c831a2f4948bd3adf242bb5854ac25c9bc18c89c2454924a080959d6e7bf",
+      "bytes": 623
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/lock.json",
+      "sha256": "272671007a22b9e3ce0f6e398bd013f20f2be7aa84173ec36650d6bab51bdead",
+      "bytes": 1163
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/result.json",
+      "sha256": "b70456d4bc7cd35eb432ffdfe7b344b0b4883a89ee77b24d1c3f90b3b5b1ab02",
+      "bytes": 4534
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/captures/run0/000000.ec3fd05d215184243662ae26.pt",
+      "sha256": "ec3fd05d215184243662ae267a2319362a364b0aef51bf4f54d7130ac9a2d9e6",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/captures/run1/000000.ec3fd05d215184243662ae26.pt",
+      "sha256": "ec3fd05d215184243662ae267a2319362a364b0aef51bf4f54d7130ac9a2d9e6",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/captures/run1/000001.fc1e3f133ea716121124b730.pt",
+      "sha256": "fc1e3f133ea716121124b73083b19cefbd9cc5261376cd340ebc21a96e43626b",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/captures/run1/000002.46902c5e5c7d7bb54316db12.pt",
+      "sha256": "46902c5e5c7d7bb54316db12a9def64f3ef9db800818ba81e57b8fe3e31686a9",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "2e86f2be80940863880aff0713c7bb9911d2e75a599cde5bd487facc8ae30bf2",
+      "bytes": 2545
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "230a13689e93b0a8a4b1c5e60c18d164fe22ad87cd8dea2257ab027b58286639",
+      "bytes": 534
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "4e143749de31c6b5cd6af1f7ed682fe49c447f20fb1f139d56b253a853531f94",
+      "bytes": 295
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "ffc857b1aab4eea4406bca1c159e2aea9735d1ea78fa072547589b2a1dc42571",
+      "bytes": 296
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/execution_evidence/replay.json",
+      "sha256": "6fa8a417e07307a6ed21d600ed952eaf6b94d3f3e9d346e67526a471094dd71c",
+      "bytes": 150840
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/grade_result.json",
+      "sha256": "b28d27417f63843a69976c775c70c80cc3b6c6b0fd0ad289ede8aac82f252046",
+      "bytes": 3385
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/reward.json",
+      "sha256": "6f85e6d65e1a9c09d1cef71c3d01fe3dad5c34c5947028730410a93d04e8418c",
+      "bytes": 14
+    },
+    {
+      "path": "invalid-final/jobs/invalid-final/training-repair-01__6umJeaf/verifier/test-stdout.txt",
+      "sha256": "20db5f141b0cbb3b4412bd546e9090881dc64c1dcafa55dbe517a7469d93c910",
+      "bytes": 2365
+    },
+    {
+      "path": "invalid-final/resources.json",
+      "sha256": "7c77214443dd6bebcfa31783a41473f696d058cb6676596fe350f23191e96018",
+      "bytes": 5795
+    },
+    {
+      "path": "invalid-hardened/console.txt",
+      "sha256": "8e1b72b4c5491c1d6f29fca45244391b04ca9780d93c28ebd835303d92c7b300",
+      "bytes": 1316
+    },
+    {
+      "path": "invalid-hardened/images.json",
+      "sha256": "b7b6e0420715c8606bcc8fea3f945c71e5ca0efb7f41fc1c3423bb90d85b53f5",
+      "bytes": 3556
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/config.json",
+      "sha256": "6e80b89ec2a2ad16c4b1b472a108347b731cec16cbee42ae3ace1904b2cee5fc",
+      "bytes": 623
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/job.log",
+      "sha256": "1b8806e0291fd00a8f6081fa0c0e1de804b2535a9efb9af17de03f7afc6264a1",
+      "bytes": 144
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/lock.json",
+      "sha256": "654def0b9b696d798111970220417fab3187a3adfffac30d4374f63b93a9f196",
+      "bytes": 2323
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/result.json",
+      "sha256": "172df1c5a479feca9f349a6b0a9e6f5458938787f3414864156e33f5477afa82",
+      "bytes": 1132
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/agent/control.json",
+      "sha256": "d2689eb87bd13802478c254e5f879bb24243d406af9fae1272a960746e291a7c",
+      "bytes": 153
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/artifacts/ckpt.py",
+      "sha256": "132d1ad80b86206349b86025d9930fd64ef391deb131310d552d786709c8c507",
+      "bytes": 2364
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/config.json",
+      "sha256": "7081d29c37101b11adc766239b5cb05f7a87e6306df0c5140afca76367ead906",
+      "bytes": 629
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/lock.json",
+      "sha256": "b414288bc2ab145351797598b8804216ee1147b393e2d9d9de915bb56940d09b",
+      "bytes": 1163
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/result.json",
+      "sha256": "639170abb52c3774847ac01d7926dcbdc95a6814968ce4e1d1c285da8f6184bd",
+      "bytes": 4546
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/captures/run0/000000.5a6badb6ca17cf5b48ea59ff.pt",
+      "sha256": "5a6badb6ca17cf5b48ea59ff68c2c7587a6412f7b416a8c7d27464f02e20496f",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/captures/run1/000000.5a6badb6ca17cf5b48ea59ff.pt",
+      "sha256": "5a6badb6ca17cf5b48ea59ff68c2c7587a6412f7b416a8c7d27464f02e20496f",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/captures/run1/000001.f1719919d07a46665034df76.pt",
+      "sha256": "f1719919d07a46665034df7684c24364d5dacea6d519839203f51879dec65005",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/captures/run1/000002.ce4da74783467dbff104b274.pt",
+      "sha256": "ce4da74783467dbff104b274b2e04277ad8b987ef3b65dab776c8d2917640a3b",
+      "bytes": 4773
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "482a3bb9f8c29ab5a3135b04894ebe13821d21e691d0fee9bf630a8f7324aba0",
+      "bytes": 2545
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "8c25839a80601904cc853dc531695c4a9f47c255f8a74ff5947a2627df8df308",
+      "bytes": 534
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "4e143749de31c6b5cd6af1f7ed682fe49c447f20fb1f139d56b253a853531f94",
+      "bytes": 295
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "ffc857b1aab4eea4406bca1c159e2aea9735d1ea78fa072547589b2a1dc42571",
+      "bytes": 296
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/execution_evidence/replay.json",
+      "sha256": "357997c7406ad361ceed2c8bf223ca1e2050b88366f8063252f59a9546b20e53",
+      "bytes": 150881
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/grade_result.json",
+      "sha256": "49b90003adbc3286022ee4f5beddd3f22e672c01e4dc7ea118a6126158624011",
+      "bytes": 3387
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/reward.json",
+      "sha256": "6f85e6d65e1a9c09d1cef71c3d01fe3dad5c34c5947028730410a93d04e8418c",
+      "bytes": 14
+    },
+    {
+      "path": "invalid-hardened/jobs/invalid-hardened/training-repair-01__AegQmiH/verifier/test-stdout.txt",
+      "sha256": "ca911234e5979f14c9173a579a3310ea34751b6cb5d93743121ffbd251ccf269",
+      "bytes": 2367
+    },
+    {
+      "path": "invalid-hardened/resources.json",
+      "sha256": "859b2e9716a21bd366866b2e8fa5b6c9e1560069320a62ae3bf9b6a73a992f76",
+      "bytes": 8307
+    },
+    {
+      "path": "lint-initial.json",
+      "sha256": "39f797100f435c17fb18d958557e8d7b0ef66d1f4bdb6af65b125b33e3926196",
+      "bytes": 333
+    },
+    {
+      "path": "lint-reviewed-final.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "lint-reviewed.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "native/config.json",
+      "sha256": "71f9e8a74a7181c29aecd4646cb3ac84f09471d56862654edcefbc9c5c05aff6",
+      "bytes": 751
+    },
+    {
+      "path": "native/invalid/result.json",
+      "sha256": "ea76f4ed4c0fde83a91b3c06aaf500fe72b9ee22ca918941c2fc81fb5bd590c1",
+      "bytes": 1032
+    },
+    {
+      "path": "native/invalid/submitted_ckpt.py",
+      "sha256": "132d1ad80b86206349b86025d9930fd64ef391deb131310d552d786709c8c507",
+      "bytes": 2364
+    },
+    {
+      "path": "native/nop/result.json",
+      "sha256": "62f1c8f1377286ef4b0191c470e8c557cd596f60fca18ade3d568f6d62db4ddd",
+      "bytes": 1029
+    },
+    {
+      "path": "native/nop/submitted_ckpt.py",
+      "sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+      "bytes": 2318
+    },
+    {
+      "path": "native/oracle/result.json",
+      "sha256": "e9a767548ff2ebdefddbf4f4a00a0bc22818c1e276e981446dcd857fd6dc123d",
+      "bytes": 1036
+    },
+    {
+      "path": "native/oracle/submitted_ckpt.py",
+      "sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce",
+      "bytes": 2343
+    },
+    {
+      "path": "native/summary.json",
+      "sha256": "0194e9352021adf56eef15e08d93bc4436c323cd50969bec9b060d0b00a901e7",
+      "bytes": 3769
+    },
+    {
+      "path": "nop-final/console.txt",
+      "sha256": "922f0c30b6fb348996782b151c6ca9a3a393ceb26286f37cce354aa3dfb24176",
+      "bytes": 1246
+    },
+    {
+      "path": "nop-final/images.json",
+      "sha256": "1770497400ae8d7c301bf37c3a498f209e89b602b581d6ae6df677999ad110a5",
+      "bytes": 3557
+    },
+    {
+      "path": "nop-final/jobs/nop-final/config.json",
+      "sha256": "5d0ab81a06cce0678427d70737a3f43982a658a3e5dac046ec9c73e800d52f90",
+      "bytes": 556
+    },
+    {
+      "path": "nop-final/jobs/nop-final/job.log",
+      "sha256": "27645709b8dfe2c26fbdc8bfca9f0aa3dcf77d84005fb1db61a290fb23dd4259",
+      "bytes": 109
+    },
+    {
+      "path": "nop-final/jobs/nop-final/lock.json",
+      "sha256": "0a814ff8109a5efe9317b4853afac2cfd119b22f9aa2d44cef6bbf41f925b755",
+      "bytes": 2270
+    },
+    {
+      "path": "nop-final/jobs/nop-final/result.json",
+      "sha256": "86f964c9cbae4d169fa8e8eb9401649256b72e4fd0dfcf2a95a50f0d41c1120d",
+      "bytes": 1104
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/artifacts/ckpt.py",
+      "sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+      "bytes": 2318
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/config.json",
+      "sha256": "8776eaf5af1bfa1527b63e1a8b72fa330b4324b779603befa6b324e313133bd6",
+      "bytes": 562
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/lock.json",
+      "sha256": "6e5fc14db0a4bab327c48c7ab523dfb0a0b46ba1748e32fcb952d73ab730f993",
+      "bytes": 1110
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/result.json",
+      "sha256": "066950f71d9f41ebaaf5b1cd31821f1240476c15979f97a65fd5a65a08eefdc4",
+      "bytes": 4241
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/captures/run0/000000.72c8c12dad4f92dc7e7c4a85.pt",
+      "sha256": "72c8c12dad4f92dc7e7c4a85befcd5aa9f0e00d916776b2036bb22c44b49b5cc",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/captures/run1/000000.72c8c12dad4f92dc7e7c4a85.pt",
+      "sha256": "72c8c12dad4f92dc7e7c4a85befcd5aa9f0e00d916776b2036bb22c44b49b5cc",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/captures/run1/000001.b65924eb19ce4a372b43e82e.pt",
+      "sha256": "b65924eb19ce4a372b43e82ed6458f6724b8bdc40babd4ecaf2c1d5256e79f4f",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/captures/run1/000002.2df88c19f42c330934526b9f.pt",
+      "sha256": "2df88c19f42c330934526b9f6bff3fb21f966932a01469d531261fc199342fde",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "e162ec137a45da496fa947c100a0d2b557704ccf87cef7974fbd9a04bec5423f",
+      "bytes": 2540
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "9deefd5b5f1d1baaa5c919711438ca8c3b7c97066249699da4bb86667601ef90",
+      "bytes": 534
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "e138479edc00efbe07615ab1ac5f613120f9f31ba30583f150f285e5294d98a6",
+      "bytes": 295
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "cbb27875de813c0e15c0d0ca0912cccea088fb8a2688ff777ba479c5e4380984",
+      "bytes": 295
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/execution_evidence/replay.json",
+      "sha256": "a511d2b7b57ac4662b2a9de4b08df8175038ce919ff875a15b829f63af682467",
+      "bytes": 151013
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/grade_result.json",
+      "sha256": "619b7fe66b205d1f82eb2a39b22a528afe021936618cfbcbf498c34644eef41c",
+      "bytes": 3387
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/reward.json",
+      "sha256": "6f85e6d65e1a9c09d1cef71c3d01fe3dad5c34c5947028730410a93d04e8418c",
+      "bytes": 14
+    },
+    {
+      "path": "nop-final/jobs/nop-final/training-repair-01__wTa5SEv/verifier/test-stdout.txt",
+      "sha256": "05c449158aa5f39edbd93527c8632faf3ba66df7dc43eb7964134de28edcd407",
+      "bytes": 2367
+    },
+    {
+      "path": "nop-final/resources.json",
+      "sha256": "29863a90c4198f065f1fb7e69c141795755a78dfbf38e1577361d12bdb0e3a0e",
+      "bytes": 5975
+    },
+    {
+      "path": "nop-hardened/console.txt",
+      "sha256": "2cb738d27c3ecdf080251d57a29dd7acab4aedd3a5b13301522c202666a8781e",
+      "bytes": 1264
+    },
+    {
+      "path": "nop-hardened/images.json",
+      "sha256": "6c077b9c38400b6642109e9c732b54e5c01401e344c8eedf3b1e164d4ab91254",
+      "bytes": 3556
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/config.json",
+      "sha256": "f2869dabd26b594997c168bb1eec4caa92856852d0b2e8de91c906181398efab",
+      "bytes": 562
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/job.log",
+      "sha256": "27645709b8dfe2c26fbdc8bfca9f0aa3dcf77d84005fb1db61a290fb23dd4259",
+      "bytes": 109
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/lock.json",
+      "sha256": "807081a3cefe831ceabac2c1830a0d4677630dcf2b9619d011b21cc1c7867bbd",
+      "bytes": 2270
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/result.json",
+      "sha256": "fcd0c32991725b68d46cebf4d40aa919247e8ab181149c30c5852bf484343d2e",
+      "bytes": 1104
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/artifacts/ckpt.py",
+      "sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+      "bytes": 2318
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/config.json",
+      "sha256": "59dae40756d0ddcc347c973f22e1254c15970c4cd92710a9a2a7239e1966b519",
+      "bytes": 568
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/lock.json",
+      "sha256": "49779864e376427a750d562a221b4d367f2655556d378af03f0c5cff61c17d48",
+      "bytes": 1110
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/result.json",
+      "sha256": "edc343b9017d6314fbf63f792539378dc61c93feac3b3fee2b40875742808dad",
+      "bytes": 4253
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/captures/run0/000000.4a55f7ec9c05e6416b6ef590.pt",
+      "sha256": "4a55f7ec9c05e6416b6ef5903fad608c9b0b32680e3f2660d3c2faf895e451c7",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/captures/run1/000000.4a55f7ec9c05e6416b6ef590.pt",
+      "sha256": "4a55f7ec9c05e6416b6ef5903fad608c9b0b32680e3f2660d3c2faf895e451c7",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/captures/run1/000001.487521fe5c2512c63864e8cf.pt",
+      "sha256": "487521fe5c2512c63864e8cfb09dc4f71c3f768d3f367e3bdc7e6bbe29e9eadb",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/captures/run1/000002.6e0c0406fc2bfc0b04f5a0a0.pt",
+      "sha256": "6e0c0406fc2bfc0b04f5a0a018cd5043e29a3eea2b92e70eb7b30cebf95743c6",
+      "bytes": 4523
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "abba701443b22b1e83a53a9a5fd877a3b4109a404566ff781bdbabe5cee55e04",
+      "bytes": 2540
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "fd5f3a872af244932a81a0f0e834c960e68dbb6c5088f987186cacfd1927345f",
+      "bytes": 534
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "e138479edc00efbe07615ab1ac5f613120f9f31ba30583f150f285e5294d98a6",
+      "bytes": 295
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "cbb27875de813c0e15c0d0ca0912cccea088fb8a2688ff777ba479c5e4380984",
+      "bytes": 295
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/execution_evidence/replay.json",
+      "sha256": "60a9b66b185471bd061ff395a3e7ac097be79d2804b5621db15455f34d465a77",
+      "bytes": 150765
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/grade_result.json",
+      "sha256": "3a02863a8f17728876b4fec659892fb2df69ae18b01d6b1b377945f50c1bd2b9",
+      "bytes": 3381
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/reward.json",
+      "sha256": "6f85e6d65e1a9c09d1cef71c3d01fe3dad5c34c5947028730410a93d04e8418c",
+      "bytes": 14
+    },
+    {
+      "path": "nop-hardened/jobs/nop-hardened/training-repair-01__NBogwq3/verifier/test-stdout.txt",
+      "sha256": "45c12a32a4edb21bfdb0d67ee617f3ace812c7d6b1dea590ae195ead52c14b1b",
+      "bytes": 2361
+    },
+    {
+      "path": "nop-hardened/resources.json",
+      "sha256": "4484e87dbff213bc3ec62c6cc34c88ffe16b0c920471ce82190f95e4612875a1",
+      "bytes": 28431
+    },
+    {
+      "path": "oracle-final/console.txt",
+      "sha256": "470d2ff1d1c2388c3e7a5642183ea9575167ae727d2d90af3bf9d8659d2214d1",
+      "bytes": 1264
+    },
+    {
+      "path": "oracle-final/images.json",
+      "sha256": "61fe8fba194cd149678c5f55f71cdbb83b49c5e69d9a2baa6c03ba64dcd2832b",
+      "bytes": 3557
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/config.json",
+      "sha256": "458b9e9f41c84f41285597f9c57f2e8cba40bb5930373df5f1a01d4753c05223",
+      "bytes": 493
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/job.log",
+      "sha256": "bf29af3c977c2ccf0d3abae6e48b65e526c76e6174a82392398ca22f0599fed5",
+      "bytes": 112
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/lock.json",
+      "sha256": "9d2913ac55068060471ecf314ba23033cfcd1ae34be04fbcff027413d40e0848",
+      "bytes": 2273
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/result.json",
+      "sha256": "dfecab6813a89db7efd62269f8e0a5d5c3acab5a82a5bb4c752a753307b00fb6",
+      "bytes": 1107
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/agent/oracle.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/artifacts/ckpt.py",
+      "sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce",
+      "bytes": 2343
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/config.json",
+      "sha256": "8fed6cb211417ca76de295efac2abea721ee9b1509da255b011604c32bce0741",
+      "bytes": 524
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/lock.json",
+      "sha256": "942103efd6905c012901f9d8fbf10c1b69c9947364dc59f85fcec81330756a39",
+      "bytes": 1113
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/result.json",
+      "sha256": "6539f90286e568884c336b0e6c0ff75b69f939eafadc86ae3cc36568e8106f78",
+      "bytes": 4259
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/captures/run0/000000.c18a5ac1afc22ec5fe8ca75c.pt",
+      "sha256": "c18a5ac1afc22ec5fe8ca75c164fd82b3ca7574eafc81dc1d8bb5b46f7324a6d",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/captures/run1/000000.c18a5ac1afc22ec5fe8ca75c.pt",
+      "sha256": "c18a5ac1afc22ec5fe8ca75c164fd82b3ca7574eafc81dc1d8bb5b46f7324a6d",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/captures/run1/000001.fc7ce8b508b40172d17b1660.pt",
+      "sha256": "fc7ce8b508b40172d17b1660c3cfaa18984b16ff47969092d656f673465600b4",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/captures/run1/000002.2291d9ca11b93a0870137a02.pt",
+      "sha256": "2291d9ca11b93a0870137a02321def11f4533ce0fd32211aa2a926ec26d42848",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "f9c8724e18e03f6a20c5fbb6cc0952936363eb756760804a80bc5d9f7e098b19",
+      "bytes": 2545
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "1de3a7121d85f54ff1002ff716e2e0cbbc09a229f9a2a17df3fc1dbd0d948c9f",
+      "bytes": 534
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "4e143749de31c6b5cd6af1f7ed682fe49c447f20fb1f139d56b253a853531f94",
+      "bytes": 295
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "ffc857b1aab4eea4406bca1c159e2aea9735d1ea78fa072547589b2a1dc42571",
+      "bytes": 296
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/execution_evidence/replay.json",
+      "sha256": "16e6e8c5c42629fb1afec6cedd9be2b613edcefd4ad170eda828a1a12e390d4b",
+      "bytes": 150987
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/grade_result.json",
+      "sha256": "de390f183f3db3bf75eab66c929b62ef2479178e1ea461e9ae33e5f108d101b3",
+      "bytes": 3390
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/reward.json",
+      "sha256": "4ef52c97ff4f94c6ec825e5a3afa195ff86f70759dea0c535fff2b5984c0cd98",
+      "bytes": 14
+    },
+    {
+      "path": "oracle-final/jobs/oracle-final/training-repair-01__NpW2ukT/verifier/test-stdout.txt",
+      "sha256": "a049386c83eee21ed9fca2461c83811f84d8cfeb83a2decb847c457f7dd48dd8",
+      "bytes": 2370
+    },
+    {
+      "path": "oracle-final/resources.json",
+      "sha256": "4e0d190957d7a5dc0fee4436ef0410c809cf5a32bae116e730811d14e80e4282",
+      "bytes": 4732
+    },
+    {
+      "path": "oracle-hardened-proof/console.txt",
+      "sha256": "30aae1520ce3cf75ae4022b4061857c8da8255894c513c68ffa2e476452333ed",
+      "bytes": 1311
+    },
+    {
+      "path": "oracle-hardened-proof/images.json",
+      "sha256": "8c843a6ab4e38e25b042ba8a78db5ca755ea9feb476eea477cd48210f55ed89a",
+      "bytes": 3686
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/config.json",
+      "sha256": "e573135b652bd302a0636e52182c6d1b75646d23f00c5578e995ca3733fda25d",
+      "bytes": 511
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/job.log",
+      "sha256": "bf29af3c977c2ccf0d3abae6e48b65e526c76e6174a82392398ca22f0599fed5",
+      "bytes": 112
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/lock.json",
+      "sha256": "47f1dd42db25d66e846ee88996ce83a724bdea8e262cfe89b1ea4352ef765439",
+      "bytes": 2273
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/result.json",
+      "sha256": "066dc608db8fcb1d195ba836a0ac80a8801de0c89f270edb4a51b502a656b826",
+      "bytes": 1107
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/agent/oracle.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/artifacts/ckpt.py",
+      "sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce",
+      "bytes": 2343
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/config.json",
+      "sha256": "3ce929c64c8c00f145d776ff322de40fa6bb78db721bb9be2eaece1590bdec01",
+      "bytes": 542
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/lock.json",
+      "sha256": "700a591ba0f92f594080a0f3c4ec85f04a391acd12bfd8b43a332ec886390c42",
+      "bytes": 1113
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/result.json",
+      "sha256": "ba43420cdf56ab65a453a6732970a96f2787d8d57c18a9776ce970886a2d8a4c",
+      "bytes": 4295
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/captures/run0/000000.f33b4a688c8a313a6781564d.pt",
+      "sha256": "f33b4a688c8a313a6781564dbaf87228a8d113add04f6fcb7de71c3582055cd6",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/captures/run1/000000.f33b4a688c8a313a6781564d.pt",
+      "sha256": "f33b4a688c8a313a6781564dbaf87228a8d113add04f6fcb7de71c3582055cd6",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/captures/run1/000001.f25306571ef04df13f85fbe6.pt",
+      "sha256": "f25306571ef04df13f85fbe657e06a315b3c25fb74e2e578a8b741dfd06ef17a",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/captures/run1/000002.abb70a8abbfb70569720cbce.pt",
+      "sha256": "abb70a8abbfb70569720cbcecd3f9706989b32c27e9a7ffd6cf467a8eb9092eb",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "a83be39a7a5bf78eb0853226339d4d32d45c080bd6e096b68eee74af63e06ffe",
+      "bytes": 2545
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "f7747aa548b16866a65716b450c9ac4d80e7b4621feb61fea6c4d39e44b054fb",
+      "bytes": 534
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "4e143749de31c6b5cd6af1f7ed682fe49c447f20fb1f139d56b253a853531f94",
+      "bytes": 295
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "ffc857b1aab4eea4406bca1c159e2aea9735d1ea78fa072547589b2a1dc42571",
+      "bytes": 296
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/execution_evidence/replay.json",
+      "sha256": "f161225e2166fc0cb657bb92fc6c87ff915b557796c3e1a7ffcefe128b48415c",
+      "bytes": 151070
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/grade_result.json",
+      "sha256": "739578f18ad290ecb0c01f5d3529e88c0bd47d766708367a7a758f9daa9a1323",
+      "bytes": 3390
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/reward.json",
+      "sha256": "4ef52c97ff4f94c6ec825e5a3afa195ff86f70759dea0c535fff2b5984c0cd98",
+      "bytes": 14
+    },
+    {
+      "path": "oracle-hardened-proof/jobs/oracle-hardened-proof/training-repair-01__8b8QFWT/verifier/test-stdout.txt",
+      "sha256": "61be916d1a3dadc57bb1b956fb72940adee3fc479606d4d42e92c08327cafbee",
+      "bytes": 2370
+    },
+    {
+      "path": "oracle-hardened-proof/resources.json",
+      "sha256": "26b605bdf850a6ba2e21f0f4d42ab3aa54e4645660c1603c5a1dc24284853e53",
+      "bytes": 9273
+    },
+    {
+      "path": "oracle-hardened/console.txt",
+      "sha256": "158072a88aaa9da53bdbc8612ab6f8e3e2f77e377b0140ec173e01d6236e24e7",
+      "bytes": 1279
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/config.json",
+      "sha256": "4ab199b47bd4f9efc71bcecb57159e5becb7c4fca0fbbb750c266c676c62b913",
+      "bytes": 499
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/job.log",
+      "sha256": "bf29af3c977c2ccf0d3abae6e48b65e526c76e6174a82392398ca22f0599fed5",
+      "bytes": 112
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/lock.json",
+      "sha256": "c855ca1c15906557b252cb5449ffd61e714843eee89ea503db5a48719f02d792",
+      "bytes": 2273
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/result.json",
+      "sha256": "a4442758f694870888d5494b056fbd57f0b09ebbd6f569711d7c94414c7baf64",
+      "bytes": 1107
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/agent/oracle.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/artifacts/ckpt.py",
+      "sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce",
+      "bytes": 2343
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/config.json",
+      "sha256": "f20a1cd247ffe5445033953d66549571ce3049e6bfa4faba6d54c65ff4fe2498",
+      "bytes": 530
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/lock.json",
+      "sha256": "700a591ba0f92f594080a0f3c4ec85f04a391acd12bfd8b43a332ec886390c42",
+      "bytes": 1113
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/result.json",
+      "sha256": "625736e5494cfc08d541da6d15d73b185521bea7b7d8bb908f71d811d0f8182f",
+      "bytes": 4271
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/captures/run0/000000.8876fae4f47374ace28201ec.pt",
+      "sha256": "8876fae4f47374ace28201ecbb5a2853ef8cd98b5e459b562f73e1b631af2d6f",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/captures/run1/000000.8876fae4f47374ace28201ec.pt",
+      "sha256": "8876fae4f47374ace28201ecbb5a2853ef8cd98b5e459b562f73e1b631af2d6f",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/captures/run1/000001.cd692edd57c5147a7d97de38.pt",
+      "sha256": "cd692edd57c5147a7d97de38fcdc35f32f2121efe7dbd7299a6fa6329396c643",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/captures/run1/000002.d9689bb3608d3612fbff13b4.pt",
+      "sha256": "d9689bb3608d3612fbff13b4f0322016f52028e2fb6e043d62c0bc01f3ee5f26",
+      "bytes": 4773
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "bd3b483350ec71fa28af1ca2276eec11f8b54d2d4ebe2df69c0e3b4b864950ac",
+      "bytes": 2545
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "4cd3337da4b65141dbce8a2225ef117e4539a4dc347d5ddee2fce25a042be285",
+      "bytes": 534
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "4e143749de31c6b5cd6af1f7ed682fe49c447f20fb1f139d56b253a853531f94",
+      "bytes": 295
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "ffc857b1aab4eea4406bca1c159e2aea9735d1ea78fa072547589b2a1dc42571",
+      "bytes": 296
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/execution_evidence/replay.json",
+      "sha256": "a0a676600085c2cf54c10cd69e50a1344d6fb477e3eedaf7be1f28b7cfabdc3b",
+      "bytes": 151003
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/grade_result.json",
+      "sha256": "baf4ba5f0d4b69acd5c3c4c7364f0c93a7510d152217699f1b1fdb50124c06ae",
+      "bytes": 3391
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/reward.json",
+      "sha256": "4ef52c97ff4f94c6ec825e5a3afa195ff86f70759dea0c535fff2b5984c0cd98",
+      "bytes": 14
+    },
+    {
+      "path": "oracle-hardened/jobs/oracle-hardened/training-repair-01__2uufZ8v/verifier/test-stdout.txt",
+      "sha256": "e42b07c7a90743d893ef216fdc0e94feaca63c593db9f3f465ae7d5c5d77e17e",
+      "bytes": 2371
+    },
+    {
+      "path": "oracle-hardened/resources.json",
+      "sha256": "4454016a66b87ef30472d1f907bf974486b467a62d2eaeece2d124ef20cf89bb",
+      "bytes": 5746
+    },
+    {
+      "path": "oracle-initial/console.txt",
+      "sha256": "fded6555258de5f3d49ee0ef2d76cd663a7a81398975f54193004f666cc4aa99",
+      "bytes": 28183
+    },
+    {
+      "path": "oracle-initial/jobs/oracle-initial/config.json",
+      "sha256": "6d9800439b55066557e0fef821536d8d78cf1f297e5adac0f07bc155afbff836",
+      "bytes": 352
+    },
+    {
+      "path": "oracle-initial/jobs/oracle-initial/job.log",
+      "sha256": "9eed61b328122a0cfb9cfc7fdbcb8c11eb76153d00a01ed13c4a8e64bcab60d6",
+      "bytes": 78
+    },
+    {
+      "path": "oracle-initial/jobs/oracle-initial/lock.json",
+      "sha256": "7be52a174181a4bcc0a6f5a37c02382e5ffa6a96b78d34c03fbe8fb868c3766f",
+      "bytes": 2211
+    },
+    {
+      "path": "oracle-initial/jobs/oracle-initial/result.json",
+      "sha256": "4000ff1164c4918dedec3ffc3d9fa4d048bd742350653bc867152f6e4836ad3d",
+      "bytes": 546
+    },
+    {
+      "path": "oracle-initial/jobs/oracle-initial/training-repair-01__Ras4zQt/lock.json",
+      "sha256": "f672467d86a9ede4d7f56a9223b72dd93d0914a26a94f567b034481eb824a916",
+      "bytes": 1067
+    },
+    {
+      "path": "oracle-initial/jobs/oracle-initial/training-repair-01__Ras4zQt/trial.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-initial/resources.json",
+      "sha256": "88f17610da917c4bdf54ece1881f02cc92366c52ee4cc2a89893eb2bcff4085d",
+      "bytes": 2423
+    },
+    {
+      "path": "oracle-logs-fix/console.txt",
+      "sha256": "a4700de548b1d3199e9a4ea930d22554da0d2563caf97371abbca97a8e60c1c3",
+      "bytes": 13474
+    },
+    {
+      "path": "oracle-logs-fix/images.json",
+      "sha256": "f6436626f310b17e4fddcb785006ea8aa5effd64db7a722b1c034abb98f20ab9",
+      "bytes": 2817
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/config.json",
+      "sha256": "c7240344dbeaea93315bc3daf084a5ded71dea949abf2038df5ca64b709e9f39",
+      "bytes": 499
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/job.log",
+      "sha256": "1ebc8a93caa394cff28e516aa105eb5b100a9cea9df626ba781c7d2ccc405c8e",
+      "bytes": 28272
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/lock.json",
+      "sha256": "3386eeb13acdf2bc3695f9d378d66c4b0e71dcd39fd5a90ba219017527e4b466",
+      "bytes": 2273
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/result.json",
+      "sha256": "b98bed7be97cf0f792fc2210f39129965dc24c4149ed75de6404b0040a02eede",
+      "bytes": 1064
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/agent/exit-code.txt",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/artifacts/manifest.json",
+      "sha256": "977338fe63aa8667959ddeae21d11ea130baef4d58db2f00bbf77db4e2a33666",
+      "bytes": 343
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/config.json",
+      "sha256": "711f489d64b2e0745873ae72bcfb1f6d33e3fdb8ebbc3654521901b2003b3b28",
+      "bytes": 530
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/exception.txt",
+      "sha256": "bdd88e821beb11e98b7e6335250fd8ac5582f927dbbc36f962d9d88699b04f43",
+      "bytes": 3117
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/lock.json",
+      "sha256": "6c3cc9fcd72668c6e03a2efc569b968bbbc8bdb7f94722786a29e0f0625d44a1",
+      "bytes": 1113
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/result.json",
+      "sha256": "8aea0ad92f7d401f052fd746aabe0dd753ac556006faf5a21e6893c4873fd805",
+      "bytes": 7626
+    },
+    {
+      "path": "oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/trial.log",
+      "sha256": "9d41d812b7649adcdb2f4a6f290bf3751cca5cfc8a2023c385a6d66c77faa070",
+      "bytes": 28120
+    },
+    {
+      "path": "oracle-logs-fix/resources.json",
+      "sha256": "beca959d0e2d16b4212a7c3358147ca301c4993419367b1cf54afb869007a6fe",
+      "bytes": 4245
+    },
+    {
+      "path": "oracle-network-fix/console.txt",
+      "sha256": "58da0fc3c9434e2489f2e193d02b520f2bea504960313ca147658ab0604b0320",
+      "bytes": 10731
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/config.json",
+      "sha256": "d7bbe0cb59aeebd45d51070090317846088e2d1d88e7a5149a398958a7fcc75d",
+      "bytes": 360
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/job.log",
+      "sha256": "f47343b63ca23e5e6cb637be7692c48e68be1ba433f5cb87069b6135b3d95563",
+      "bytes": 37120
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/lock.json",
+      "sha256": "0bb10c58b29fa8d6c59d5263e5768f60716a4ade0225c533e7005897f10a203b",
+      "bytes": 2211
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/result.json",
+      "sha256": "1a9e60900842cd69e3c008446901c1452f88039594119c494ad4c1b0d44a5ffb",
+      "bytes": 1052
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/training-repair-01__QcoCc99/artifacts/manifest.json",
+      "sha256": "977338fe63aa8667959ddeae21d11ea130baef4d58db2f00bbf77db4e2a33666",
+      "bytes": 343
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/training-repair-01__QcoCc99/config.json",
+      "sha256": "9499db0c8ac7f7d1872c53fc6c313968f8b7ea52529bf6db740cc0816e246181",
+      "bytes": 391
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/training-repair-01__QcoCc99/exception.txt",
+      "sha256": "f29bdc17e0c8fd9f30676672ef0b708196673edeb509571e44a03ab4fc9bad2a",
+      "bytes": 7671
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/training-repair-01__QcoCc99/lock.json",
+      "sha256": "a668c2e87188613eb41641af02b6dbe8e5f770c719693438491e26e0e40aebf5",
+      "bytes": 1067
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/training-repair-01__QcoCc99/result.json",
+      "sha256": "72e9d8544d4152cd87e6f27ef43b5a751551f7e8b1c292ebecd28d92ff3ea416",
+      "bytes": 14342
+    },
+    {
+      "path": "oracle-network-fix/jobs/oracle-network-fix/training-repair-01__QcoCc99/trial.log",
+      "sha256": "4eb96d30d63fe017e78a96a5939d1adf052fa94b5e129d12c1488fe233aef3af",
+      "bytes": 36968
+    },
+    {
+      "path": "oracle-network-fix/resources.json",
+      "sha256": "530a2a1726f71800c720ade71d92cd937a2d811b3f72161a8c058038001b880c",
+      "bytes": 8957
+    },
+    {
+      "path": "oracle-solution-fix/console.txt",
+      "sha256": "c0dc66c3ed5c5a210a52b6d96261ae5596942afa36affef93652e4367107eed5",
+      "bytes": 13649
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/config.json",
+      "sha256": "590412f04b86f7b60ee8d79235ccdc91b211ac67d41f52676caf45cf9208c15b",
+      "bytes": 440
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/job.log",
+      "sha256": "ee403664e516455eb840c0e8550b6ee23746710f9f3ab567e966d755303ea2e3",
+      "bytes": 29877
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/lock.json",
+      "sha256": "f6a7991482647c070f9cb5bc4ad6a7ded1c3f49af090b63777f428dcd451c122",
+      "bytes": 2212
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/result.json",
+      "sha256": "59fc6f6ac52d7c5ce6486fce05c8c3ae02230aab06bb962af43e5e846f2c0e5a",
+      "bytes": 1052
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/agent/exit-code.txt",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/artifacts/manifest.json",
+      "sha256": "977338fe63aa8667959ddeae21d11ea130baef4d58db2f00bbf77db4e2a33666",
+      "bytes": 343
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/config.json",
+      "sha256": "3e9df1baf9178b4ea9f49f0e4f122503f9d0c9084a07f8dc08810b2e556a86e1",
+      "bytes": 471
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/exception.txt",
+      "sha256": "c19a5e5efcbd34aceadf27d35e6065224c2d00d69fbb317d3327da257a72719a",
+      "bytes": 8364
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/lock.json",
+      "sha256": "09e7d426e29990324eeba17048ee8d1e031de21b3768fbb3de6d9e102da187b3",
+      "bytes": 1068
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/result.json",
+      "sha256": "22e6838363138780d3888a9895bdf16872790b45a2eab795e16698dfbe88798b",
+      "bytes": 15502
+    },
+    {
+      "path": "oracle-solution-fix/jobs/oracle-solution-fix/training-repair-01__RjSFGSM/trial.log",
+      "sha256": "10922b3eaf1dbdfe4370bd3bcb5f3357b198b49b7b887e3446569c7022406491",
+      "bytes": 29725
+    },
+    {
+      "path": "oracle-solution-fix/resources.json",
+      "sha256": "37fee786f22ae690f321dc3076950676a66527bbbc68154a9f786cd754f81cdd",
+      "bytes": 8475
+    },
+    {
+      "path": "oracle-volume-fix/console.txt",
+      "sha256": "b2cffd43efc58951d745dd1371e62aecc39f580e7c0a12fedb66a044fa059df1",
+      "bytes": 1476
+    },
+    {
+      "path": "oracle-volume-fix/images.json",
+      "sha256": "63b13eb774496235919c7478d8738258402fbdc7d34823b95bcc469d118d8c6c",
+      "bytes": 3621
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/config.json",
+      "sha256": "3bbf2359398a5d538b18a11fb157e5b169101360e9f12c532cbe21dfa17891cf",
+      "bytes": 503
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/job.log",
+      "sha256": "cd6ca6d388c5f9b4dfc5eddd1a7d4e027c3a49a1fdf72b4a9968e6caf3f10fbf",
+      "bytes": 743
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/lock.json",
+      "sha256": "d2f89b39968ad5d59d09dc46c5553bd7c4afc1e992ce06bfbfbbf8a93add93c4",
+      "bytes": 2273
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/result.json",
+      "sha256": "bb5d2f3e1886a362d234e89cddc8cec621424a2e2546a408aad3327b73c51af6",
+      "bytes": 1063
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/agent/oracle.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/artifacts/ckpt.py",
+      "sha256": "4f2d6d07c88836f3baadbdfd50ad24d8370d19eb9c141e5b3783e96340bcbdce",
+      "bytes": 2343
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/config.json",
+      "sha256": "2673c7feb0ee8259efeaf810a7e110dd329d27ed0cbd0e6030404ff38a369969",
+      "bytes": 534
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/exception.txt",
+      "sha256": "3b885190930c5630c467c2fb458fd4a6779f17be96934799c36ddbf62774f2b8",
+      "bytes": 1981
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/lock.json",
+      "sha256": "0536f4283719db9fac0e169cd33d4e3b5b991ca22d785eafac886f058d327225",
+      "bytes": 1113
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/result.json",
+      "sha256": "80ebb78ff7cce495d8ce8153915b7cc376b824dd6ac9369afc13db5aded85960",
+      "bytes": 6808
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/trial.log",
+      "sha256": "db8dbe86c1217589dcb015fa30f2abac47e54115a994d905fc692230a89cac09",
+      "bytes": 472
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/grade_result.json",
+      "sha256": "78b93d3fc9071579a99f1a3dd8c9c433084f40dd33995f485e3b6d4158f331c9",
+      "bytes": 389
+    },
+    {
+      "path": "oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/test-stdout.txt",
+      "sha256": "98fb46679a259b6510ed88b4140b603161f79dca033f13e1aceb30e2deaacd86",
+      "bytes": 369
+    },
+    {
+      "path": "oracle-volume-fix/resources.json",
+      "sha256": "3902a2d8450b032ce0a6f11822f4adf221b5e34a2e98499bc7b26cb9ab48e2c5",
+      "bytes": 3750
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "f7121f4a779850a3a07972387838f4aaf7cd234b8aa4b0096d9a4527f6d5b45a",
+      "bytes": 936
+    },
+    {
+      "path": "runtime.json",
+      "sha256": "638dcc1693aea43cd05df2c59dbb7dd1b84f600c49cdd080f584a8ccbb9c5777",
+      "bytes": 1759
+    },
+    {
+      "path": "source-proof-hardened.json",
+      "sha256": "2f27dd343ed2e9e19f1bd111c59578f7b8284d28025193136a1a8b805ef28f01",
+      "bytes": 863
+    },
+    {
+      "path": "source-proof.json",
+      "sha256": "9f813ea40eaf85310bfd3d56251f929785ebfd05fa807654909370705738930c",
+      "bytes": 863
+    },
+    {
+      "path": "summary-hardened-initial-recount.json",
+      "sha256": "6d8980a433f1dfae1682ceeffbd3809d5b3403a9c982b9d67559ad4ea2ea1147",
+      "bytes": 5155
+    },
+    {
+      "path": "summary-hardened.json",
+      "sha256": "8b2a99eb023bd4275fc0de4ceb397d34fd8ae1f7831c5c14f965c7557a6900f5",
+      "bytes": 5242
+    },
+    {
+      "path": "summary.json",
+      "sha256": "af6ed62755b52b2397c4ff1f462a444e2c5bf1c8494292e2cb220f79341b74d4",
+      "bytes": 5140
+    },
+    {
+      "path": "tamper-final/console.txt",
+      "sha256": "06927c6e413f4c8b0368312e942bd7293d64e33d59a2ace7acba0aed9dccc755",
+      "bytes": 1288
+    },
+    {
+      "path": "tamper-final/images.json",
+      "sha256": "4b7f697898c6be3733c177e7bc865a45bd409e2f89990941aca1bd0cfe559e92",
+      "bytes": 3687
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/config.json",
+      "sha256": "9aedda8d2d2668dbec9f1d5dc1dbd58671b46b76a7e2ae2708bc2fa146ff7606",
+      "bytes": 607
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/job.log",
+      "sha256": "ae88e83fabfe6b8434ba2eb227d23f7d02f0aa55839e91b3695eacb361c46470",
+      "bytes": 136
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/lock.json",
+      "sha256": "01ec4d74ffd6046f14ba459bb71298d532dccf360d2aefe492f7b4aa9bf2300c",
+      "bytes": 2315
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/result.json",
+      "sha256": "67bc2219e6d653c88408651b8462509560318363d7c2dc03c94ca0695a036e14",
+      "bytes": 1124
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/agent/control.json",
+      "sha256": "0a498892220e8b57597f8c747db683422c443af8228cff2c2d6395081484c048",
+      "bytes": 166
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/artifacts/ckpt.py",
+      "sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+      "bytes": 2318
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/artifacts/logs/artifacts/ledger.jsonl",
+      "sha256": "c7612e6d9c746f9b26df0c04b8f673e35662a19c39f847ca27ca8a8f97550759",
+      "bytes": 29
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/config.json",
+      "sha256": "530700a2d1d9d781cc0884d6912523e219eb9152551c6ea8fce9bc79c2a0b12a",
+      "bytes": 613
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/lock.json",
+      "sha256": "2ca0ba18f15d473cf85b71222fd3baf7fa0630420d5e042fd9346613b4732214",
+      "bytes": 1155
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/result.json",
+      "sha256": "6e03969a942a3facbf22b1dfbe0d0e4d1a7e1243fc311d148f4bedaa4cb39cbb",
+      "bytes": 4547
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/captures/run0/000000.cf25eec488593fa405ae06e9.pt",
+      "sha256": "cf25eec488593fa405ae06e939084bfaedb9f94c2a53414124e4c5cfc6821951",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/captures/run1/000000.cf25eec488593fa405ae06e9.pt",
+      "sha256": "cf25eec488593fa405ae06e939084bfaedb9f94c2a53414124e4c5cfc6821951",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/captures/run1/000001.39ecbbf35b3be7b8f45f21e2.pt",
+      "sha256": "39ecbbf35b3be7b8f45f21e28f1412d7d5afc0234d16b0506d89cc78bd95ec0c",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/captures/run1/000002.b350264cd9d38df2f36b4af0.pt",
+      "sha256": "b350264cd9d38df2f36b4af0d3aba4171d0b6782b17207e6750010f9782bfe8d",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "b6a35fdb17c68c1ac26a5c3d03df2b217e6caaa02d13f9c9ea6e092881dbb6db",
+      "bytes": 2540
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "64cff6b93dc7c55b274a8438a5bc4d4a773744686afeebf0e201a3e72ac84892",
+      "bytes": 534
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "e138479edc00efbe07615ab1ac5f613120f9f31ba30583f150f285e5294d98a6",
+      "bytes": 295
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "cbb27875de813c0e15c0d0ca0912cccea088fb8a2688ff777ba479c5e4380984",
+      "bytes": 295
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/execution_evidence/replay.json",
+      "sha256": "fca23cbe5a6587a6c4e9b56f701a4e5efececf2dc3ed6157f4adb7a4f10cbce6",
+      "bytes": 150960
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/grade_result.json",
+      "sha256": "39fc00bc83e8f4f6ff7f1bc8fd7a1a610cfe72a95d60fc7e96c9f318c6c240e6",
+      "bytes": 3387
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/reward.json",
+      "sha256": "6f85e6d65e1a9c09d1cef71c3d01fe3dad5c34c5947028730410a93d04e8418c",
+      "bytes": 14
+    },
+    {
+      "path": "tamper-final/jobs/tamper-final/training-repair-01__ePAUze4/verifier/test-stdout.txt",
+      "sha256": "73b2fd76ef4183cebbb6bdea6878f28c4325164ed7cfb289092840abf3f8e411",
+      "bytes": 2367
+    },
+    {
+      "path": "tamper-final/resources.json",
+      "sha256": "ad79c392212f449e85808b6fcca65aefd734cd5c5000c8e938228e811688c93e",
+      "bytes": 5656
+    },
+    {
+      "path": "tamper-hardened/console.txt",
+      "sha256": "138f1ce4ffc1336231fa05c8eb134c89de431affa49b683211a8a81e8e027906",
+      "bytes": 1306
+    },
+    {
+      "path": "tamper-hardened/images.json",
+      "sha256": "5f4a321e0dbf0a68e043951d6d267ccc96f9774334c8369dce812b26055c32f5",
+      "bytes": 3556
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/config.json",
+      "sha256": "7cdf7875ea0fc25ac792fc49b39c6ed5d56a4c2fdd167cba04b88bb89a2f39f6",
+      "bytes": 613
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/job.log",
+      "sha256": "ae88e83fabfe6b8434ba2eb227d23f7d02f0aa55839e91b3695eacb361c46470",
+      "bytes": 136
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/lock.json",
+      "sha256": "17d4e7f9699375aa20c346f80737e5186a1ba62692bd60f4c0ab6efc543f97ad",
+      "bytes": 2315
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/result.json",
+      "sha256": "bcf29366438bd071346a911722e6d424f988ead856107102f64b74e958f4c406",
+      "bytes": 1124
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/agent/control.json",
+      "sha256": "0a498892220e8b57597f8c747db683422c443af8228cff2c2d6395081484c048",
+      "bytes": 166
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/artifacts/ckpt.py",
+      "sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+      "bytes": 2318
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/artifacts/logs/artifacts/ledger.jsonl",
+      "sha256": "c7612e6d9c746f9b26df0c04b8f673e35662a19c39f847ca27ca8a8f97550759",
+      "bytes": 29
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/artifacts/manifest.json",
+      "sha256": "0b449c8f69f49df2f579f8e3be19e20c06c17254c8700c1d4e422433b5accde7",
+      "bytes": 340
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/config.json",
+      "sha256": "c247b544319d12caa95c2872af00907c28c0a4724569c10c47e38bc533c3ec50",
+      "bytes": 619
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/lock.json",
+      "sha256": "df7e5b4c63e1a7c2ab374813acbb130ae05399f1f43dbe284795d92c6117d806",
+      "bytes": 1155
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/result.json",
+      "sha256": "d54ec6cf8621a53c69fcae4fd220cbe62d7d5084e51c0ace86854a68ac98d57d",
+      "bytes": 4559
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/trial.log",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "bytes": 34
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/captures/run0/000000.8c4add90ba45e6e4937055e9.pt",
+      "sha256": "8c4add90ba45e6e4937055e964e01f08a0a455cae1bcb5b3620a3d87656bfc65",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/captures/run1/000000.8c4add90ba45e6e4937055e9.pt",
+      "sha256": "8c4add90ba45e6e4937055e964e01f08a0a455cae1bcb5b3620a3d87656bfc65",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/captures/run1/000001.988e75f251322e913e04583f.pt",
+      "sha256": "988e75f251322e913e04583f4a1edac8d256f01b2b90ae2cb21d00694d27feea",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/captures/run1/000002.72c6d2c5204a7d14238f4fa9.pt",
+      "sha256": "72c6d2c5204a7d14238f4fa9787f84e1170173a5c2c03ab0d6091ae6821ef9e7",
+      "bytes": 4523
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/ledger.jsonl",
+      "sha256": "3d63d2541f6a1941831b5440f52782b02dd515a773780d37080ee8275d52aa41",
+      "bytes": 2540
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/records/run0/job.json",
+      "sha256": "9d5c2f28b58966ef0ebfb652cccacd53900fdccd0ae8aaf55511902c48bffa50",
+      "bytes": 475
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank0.jsonl",
+      "sha256": "3228f3391eba027e96e056002585fcefdc37afa2f3ca1a0bbb3f3481d5c7b020",
+      "bytes": 256
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/records/run0/samples/rank1.jsonl",
+      "sha256": "37ec86ab7971721577db503ae9fcb707ed92261582a24da0b8a1eebfa0d5425e",
+      "bytes": 256
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/records/run1/job.json",
+      "sha256": "1871814012558db993573a557c9fc71066fea42de4f8a1258cda5e8d3b896ad3",
+      "bytes": 534
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank0.jsonl",
+      "sha256": "e138479edc00efbe07615ab1ac5f613120f9f31ba30583f150f285e5294d98a6",
+      "bytes": 295
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/records/run1/samples/rank1.jsonl",
+      "sha256": "cbb27875de813c0e15c0d0ca0912cccea088fb8a2688ff777ba479c5e4380984",
+      "bytes": 295
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/protocol.trusted/scheduler.jsonl",
+      "sha256": "1af212b6e4cd99b0e28f50b2cb8e6ef50705d0bcb3fccd8f929850647854fc96",
+      "bytes": 313
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/execution_evidence/replay.json",
+      "sha256": "9569a1781e0cebe5754cc964239e679e0b0541ed0ed072fbeef223178618ed42",
+      "bytes": 150835
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/grade_result.json",
+      "sha256": "a75c460de8ef19de0cbbbacd8902d0bc2441fb31124521b0f4c232433d4e8537",
+      "bytes": 3388
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/reward.json",
+      "sha256": "6f85e6d65e1a9c09d1cef71c3d01fe3dad5c34c5947028730410a93d04e8418c",
+      "bytes": 14
+    },
+    {
+      "path": "tamper-hardened/jobs/tamper-hardened/training-repair-01__qSkmVdS/verifier/test-stdout.txt",
+      "sha256": "5d5f8935f76e705615db0ec5e4029bd1b2627acd7b32c40d0cb2bcb6fe31a1ad",
+      "bytes": 2368
+    },
+    {
+      "path": "tamper-hardened/resources.json",
+      "sha256": "741ed88134c7cfb45b5694a6e26176bfc77a5d5f0e1669936e9680ee316df54f",
+      "bytes": 10422
+    },
+    {
+      "path": "tests.txt",
+      "sha256": "aa81226c481221cccbbec86e7cdb149dd76d7c4811f7f5d811c1c5adb2bea818",
+      "bytes": 267
+    },
+    {
+      "path": "tests.xml",
+      "sha256": "70f54738be37231f12f4935972039f2eabebbeae3bdad9c84ff6f2be5dc79000",
+      "bytes": 2934
+    },
+    {
+      "path": "transport-proof.json",
+      "sha256": "511885660b381bec27217f781fab6b1e15522e11bd625c355035d7f6bf05d408",
+      "bytes": 317
+    }
+  ],
+  "excluded_local_paths": [
+    "native/snapshot/ (regenerable fixture, including private reference; not part of the shared packet)"
+  ]
+}

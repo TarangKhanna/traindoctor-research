@@ -1,0 +1,40 @@
+{
+  "case": "nop",
+  "memory_after": {
+    "available_bytes": 14403715072,
+    "swap_used_bytes": 1120468992
+  },
+  "memory_before": {
+    "available_bytes": 14385987584,
+    "swap_used_bytes": 1120468992
+  },
+  "outcome": {
+    "bit_identical": false,
+    "ckpt_valid": true,
+    "detail": "",
+    "exec_mode": "sandboxed",
+    "fault_not_injected": false,
+    "format_check": "v1.2",
+    "history_intact": true,
+    "lost_steps": 3,
+    "no_duplicate_updates": true,
+    "ok": false,
+    "params_match_reference": false,
+    "path": "",
+    "ranks_consistent": true,
+    "relaunches": 2,
+    "restores_consistent": true,
+    "sample_dups": 32,
+    "sample_gaps": 32,
+    "sampler_behaviour": false,
+    "samples_match_reference": false,
+    "sandboxed": true,
+    "states_match_reference": false,
+    "steps_completed": 12,
+    "tampered": [],
+    "transitions_consistent": true
+  },
+  "source": "executed",
+  "source_sha256": "07c08ae246479a28714b1c79baab77ed6db74a7cec98fc072a2423c488459c88",
+  "wall_s": 9.998731624975335
+}

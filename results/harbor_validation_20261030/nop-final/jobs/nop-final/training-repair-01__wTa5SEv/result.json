@@ -1,0 +1,122 @@
+{
+    "id": "d9138be1-4c13-4497-b896-f26b72db629c",
+    "task_name": "traindoctor/training-repair-01",
+    "trial_name": "training-repair-01__wTa5SEv",
+    "trial_uri": "file:///Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/nop-final/jobs/nop-final/training-repair-01__wTa5SEv",
+    "task_id": {
+        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+    },
+    "source": null,
+    "task_checksum": "9e35ea74d115d30f7dfbcf85f14c03b6492a8c745e6ec6ed6cf61594b1fb1f60",
+    "config": {
+        "task": {
+            "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "training-repair-01__wTa5SEv",
+        "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/nop-final/jobs/nop-final",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "nop",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": false,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {
+                "keep_containers": true
+            },
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "969e7a26-c5d2-486d-991c-2da6a8c2f21c",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "nop",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-10-29T18:51:35.720720Z",
+    "finished_at": "2026-10-29T18:52:13.058781Z",
+    "environment_setup": {
+        "started_at": "2026-10-29T18:51:35.779048Z",
+        "finished_at": "2026-10-29T18:51:47.597199Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-29T18:51:47.597285Z",
+        "finished_at": "2026-10-29T18:51:47.597353Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-29T18:51:47.597462Z",
+        "finished_at": "2026-10-29T18:51:47.598785Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-29T18:51:49.163986Z",
+        "finished_at": "2026-10-29T18:52:13.058729Z"
+    },
+    "step_results": null
+}

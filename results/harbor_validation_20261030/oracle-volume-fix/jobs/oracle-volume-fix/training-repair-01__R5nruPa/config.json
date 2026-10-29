@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+    },
+    "trial_name": "training-repair-01__R5nruPa",
+    "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix",
+    "environment": {
+        "type": "docker",
+        "delete": false,
+        "kwargs": {
+            "keep_containers": true
+        }
+    },
+    "job_id": "8d45ff09-607e-45b7-bb64-54d28b95f35f"
+}

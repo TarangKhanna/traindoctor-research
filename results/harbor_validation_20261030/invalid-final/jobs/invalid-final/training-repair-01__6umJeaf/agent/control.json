@@ -1,0 +1,6 @@
+{
+  "scripted_control": true,
+  "model_used": false,
+  "intervention": "restore sampler persistence; discard restored momentum",
+  "edit_exit_code": 0
+}

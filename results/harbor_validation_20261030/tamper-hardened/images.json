@@ -1,0 +1,133 @@
+{
+  "source": "executed",
+  "containers": [
+    {
+      "container_id": "8c7e3f1ea50f3900a0a3445e1da1863c1334043e53199d8088d6e4002ce6919a",
+      "name": "/training-repair-01__qskmvds__verifier__trial-main-1",
+      "image_id": "sha256:c4bdac896191bb5f9eb96a8b67268cfbac9f19fc5b556c945fe1c87140797ad4",
+      "image": {
+        "Id": "sha256:c4bdac896191bb5f9eb96a8b67268cfbac9f19fc5b556c945fe1c87140797ad4",
+        "RepoDigests": [],
+        "RepoTags": [],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T19:17:21.3478143Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "0",
+        "entrypoint": null,
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": [
+          "CAP_CHOWN",
+          "CAP_DAC_OVERRIDE",
+          "CAP_FOWNER",
+          "CAP_KILL",
+          "CAP_SETGID",
+          "CAP_SETPCAP",
+          "CAP_SETUID"
+        ],
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__qskmvds__verifier__trial_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__qskmvds__verifier__trial_logs",
+          "Destination": "/logs",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "container_id": "b61013a2813d17de737947b5ac612eb99c266b25386a029d74aa68cee8e1530c",
+      "name": "/training-repair-01__qskmvds__env-main-1",
+      "image_id": "sha256:6ba2ddd9533a09f3c0e6b1da13f478c5979845a6a5a2542362b05d7d5885af09",
+      "image": {
+        "Id": "sha256:6ba2ddd9533a09f3c0e6b1da13f478c5979845a6a5a2542362b05d7d5885af09",
+        "RepoDigests": [],
+        "RepoTags": [],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T19:15:53.606463885Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "1000",
+        "entrypoint": [
+          "/usr/local/bin/prepare-submission"
+        ],
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__qskmvds__env_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__qskmvds__env_logs",
+          "Destination": "/logs",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__qskmvds__env_solution",
+          "Destination": "/solution",
+          "RW": true
+        }
+      ]
+    }
+  ]
+}

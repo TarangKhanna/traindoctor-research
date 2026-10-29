@@ -1,0 +1,18 @@
+{
+    "task": {
+        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+    },
+    "trial_name": "training-repair-01__6umJeaf",
+    "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/invalid-final/jobs/invalid-final",
+    "agent": {
+        "name": "experiments.harbor_smoke.controls:CompletingInvalidAgent"
+    },
+    "environment": {
+        "type": "docker",
+        "delete": false,
+        "kwargs": {
+            "keep_containers": true
+        }
+    },
+    "job_id": "60f2b6d4-8470-4989-b47e-4212df0e8f70"
+}

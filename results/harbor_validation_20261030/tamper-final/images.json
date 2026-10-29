@@ -1,0 +1,137 @@
+{
+  "source": "executed",
+  "containers": [
+    {
+      "container_id": "7801cbd5f877fa9f1fa54322032955772e28e507caf552666bab5f9ff62d3423",
+      "name": "/training-repair-01__epauze4__verifier__trial-main-1",
+      "image_id": "sha256:6915a5a05873739145bc0792b9d5c57d018653d24b93d36f01467550076c0b2d",
+      "image": {
+        "Id": "sha256:6915a5a05873739145bc0792b9d5c57d018653d24b93d36f01467550076c0b2d",
+        "RepoDigests": [],
+        "RepoTags": [
+          "hb__6e543ee1c73d16271aefd60306ffe41c:latest"
+        ],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:48:57.728142679Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "0",
+        "entrypoint": null,
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": [
+          "CAP_CHOWN",
+          "CAP_DAC_OVERRIDE",
+          "CAP_FOWNER",
+          "CAP_KILL",
+          "CAP_SETGID",
+          "CAP_SETPCAP",
+          "CAP_SETUID"
+        ],
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__epauze4__verifier__trial_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__epauze4__verifier__trial_logs",
+          "Destination": "/logs",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "container_id": "bdf47ad6f63cbb755c0b24c86d6d058e9512c1d6f1c2214b301311eab5496b1e",
+      "name": "/training-repair-01__epauze4__env-main-1",
+      "image_id": "sha256:4a0584fe558854d73415a8b4f9bb9d9d0ea7881a065ff33d8ce576d1d86ba591",
+      "image": {
+        "Id": "sha256:4a0584fe558854d73415a8b4f9bb9d9d0ea7881a065ff33d8ce576d1d86ba591",
+        "RepoDigests": [],
+        "RepoTags": [
+          "hb__6e25e6185d6e1493e553920fb5f95c14:latest"
+        ],
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Created": "2026-10-29T18:43:30.02573793Z",
+        "Descriptor": null
+      },
+      "runtime": {
+        "user": "1000",
+        "entrypoint": [
+          "/usr/local/bin/prepare-submission"
+        ],
+        "cmd": [
+          "sh",
+          "-c",
+          "sleep infinity"
+        ],
+        "ReadonlyRootfs": true,
+        "NetworkMode": "none",
+        "CapAdd": null,
+        "CapDrop": [
+          "ALL"
+        ],
+        "SecurityOpt": [
+          "no-new-privileges:true"
+        ],
+        "PidsLimit": 256,
+        "Memory": 4294967296,
+        "NanoCpus": 2000000000,
+        "PidMode": "",
+        "Privileged": false
+      },
+      "state": {
+        "ExitCode": 137,
+        "OOMKilled": false,
+        "Status": "exited"
+      },
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__epauze4__env_solution",
+          "Destination": "/solution",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__epauze4__env_submission",
+          "Destination": "/submission",
+          "RW": true
+        },
+        {
+          "Type": "volume",
+          "Name": "training-repair-01__epauze4__env_logs",
+          "Destination": "/logs",
+          "RW": true
+        }
+      ]
+    }
+  ]
+}

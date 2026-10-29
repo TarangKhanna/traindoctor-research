@@ -188,3 +188,13 @@ Keep TrainDoctor as a reproducible engineering artifact; do not expand its learn
 program on these findings. AI critiques are not independent human validation.
 
 Verification: 39 focused research tests and 18 Harbor adapter unit tests passed; XML output is saved in results/agent_v2_verification_20261030. Native Compose configuration and source/shell syntax checks passed. Harbor CLI lint and actual Docker trials remain unrun.
+
+## Dated addendum — 2026-10-30 Harbor validation
+
+The separately approved interoperability milestone is now executed: correct1,
+no-op0, completing-invalid0 and tamper0 through native local Harbor/Docker, with
+matching native TrainDoctor controls and 20 adapter tests. See
+[the validation report](HARBOR_VALIDATION.md) for exact source/image identities,
+runtime defects, narrow lint exception and measured costs. This supersedes only
+the earlier pending-approval/runtime status; it changes no model trajectory or
+scientific learning conclusion above. No push or publication occurred.

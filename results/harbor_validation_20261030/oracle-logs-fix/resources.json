@@ -1,0 +1,170 @@
+{
+  "source": "executed",
+  "control": "oracle-logs-fix",
+  "scripted_control": true,
+  "model_used": false,
+  "command": [
+    "/private/tmp/traindoctor-harbor-venv-20261030/bin/harbor",
+    "run",
+    "-p",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
+    "-a",
+    "oracle",
+    "-e",
+    "docker",
+    "-n",
+    "1",
+    "-k",
+    "1",
+    "-r",
+    "0",
+    "-o",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-logs-fix/jobs",
+    "--job-name",
+    "oracle-logs-fix",
+    "--no-delete",
+    "--ek",
+    "keep_containers=true"
+  ],
+  "wall_s": 26.12396220798837,
+  "returncode": 0,
+  "guard_stop": null,
+  "swap_baseline_bytes": 1440743424,
+  "minimum_available_bytes": 15121317888,
+  "maximum_swap_growth_bytes": 0,
+  "samples": [
+    {
+      "elapsed_s": 0.0020875419722869992,
+      "available_bytes": 16149348352,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 1.0073910829960369,
+      "available_bytes": 15868411904,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 2.0174940419965424,
+      "available_bytes": 15777579008,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 3.018198708014097,
+      "available_bytes": 15695757312,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 4.018549458007328,
+      "available_bytes": 15615836160,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 5.028648832987528,
+      "available_bytes": 15695872000,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 6.038773041975219,
+      "available_bytes": 15706095616,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 7.048889208002947,
+      "available_bytes": 15716433920,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 8.059003499976825,
+      "available_bytes": 15645081600,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 9.060195208003279,
+      "available_bytes": 15652421632,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 10.060460500011686,
+      "available_bytes": 15689842688,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 11.065200083015952,
+      "available_bytes": 15639724032,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 12.075283874990419,
+      "available_bytes": 15567388672,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 13.076943124993704,
+      "available_bytes": 15578300416,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 14.078499707975425,
+      "available_bytes": 15553429504,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 15.088596582994796,
+      "available_bytes": 15596601344,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 16.096821625018492,
+      "available_bytes": 15510519808,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 17.097513957996853,
+      "available_bytes": 15534407680,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 18.10761970799649,
+      "available_bytes": 15448489984,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 19.117476875020657,
+      "available_bytes": 15526887424,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 20.12056145799579,
+      "available_bytes": 15533735936,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 21.121569167007692,
+      "available_bytes": 15568846848,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 22.12188791699009,
+      "available_bytes": 15549906944,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 23.122444416978396,
+      "available_bytes": 15385804800,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 24.12331016699318,
+      "available_bytes": 15314124800,
+      "swap_used_bytes": 1440743424
+    },
+    {
+      "elapsed_s": 25.12369412498083,
+      "available_bytes": 15121317888,
+      "swap_used_bytes": 1440743424
+    }
+  ],
+  "harbor_source_commit": "509b119db0d97b141dcd9c80f4f7ab861c47c2d6",
+  "dotenv_disabled": true,
+  "telemetry_disabled": true
+}

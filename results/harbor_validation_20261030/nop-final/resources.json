@@ -1,0 +1,240 @@
+{
+  "source": "executed",
+  "control": "nop-final",
+  "scripted_control": true,
+  "model_used": false,
+  "command": [
+    "/private/tmp/traindoctor-harbor-venv-20261030/bin/harbor",
+    "run",
+    "-p",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
+    "-a",
+    "nop",
+    "-e",
+    "docker",
+    "-n",
+    "1",
+    "-k",
+    "1",
+    "-r",
+    "0",
+    "-o",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/nop-final/jobs",
+    "--job-name",
+    "nop-final",
+    "--no-delete",
+    "--ek",
+    "keep_containers=true"
+  ],
+  "wall_s": 40.08100945799379,
+  "returncode": 0,
+  "guard_stop": null,
+  "swap_baseline_bytes": 1137246208,
+  "minimum_available_bytes": 13804601344,
+  "maximum_swap_growth_bytes": 0,
+  "samples": [
+    {
+      "elapsed_s": 0.002818666980601847,
+      "available_bytes": 14750679040,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 1.0079594999551773,
+      "available_bytes": 14639661056,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 2.013088791980408,
+      "available_bytes": 14296645632,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 3.0178821249864995,
+      "available_bytes": 14230962176,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 4.02013304195134,
+      "available_bytes": 14202814464,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 5.025219291972462,
+      "available_bytes": 14221066240,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 6.026825999957509,
+      "available_bytes": 14168244224,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 7.027166832995135,
+      "available_bytes": 14128955392,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 8.028730916965287,
+      "available_bytes": 14077214720,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 9.033810707973316,
+      "available_bytes": 14070497280,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 10.036771249957383,
+      "available_bytes": 14103232512,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 11.038986291969195,
+      "available_bytes": 14091829248,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 12.041031291999388,
+      "available_bytes": 13997555712,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 13.044860832975246,
+      "available_bytes": 13999374336,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 14.045073124987539,
+      "available_bytes": 14188937216,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 15.048298999958206,
+      "available_bytes": 14195834880,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 16.053377582982648,
+      "available_bytes": 13977714688,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 17.055175416986458,
+      "available_bytes": 13917978624,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 18.060292499954812,
+      "available_bytes": 13804601344,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 19.061282416980248,
+      "available_bytes": 14689026048,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 20.062183625006583,
+      "available_bytes": 14784643072,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 21.0623467079713,
+      "available_bytes": 14757969920,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 22.06307879195083,
+      "available_bytes": 14932738048,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 23.06713162496453,
+      "available_bytes": 14933180416,
+      "swap_used_bytes": 1137246208
+    },
+    {
+      "elapsed_s": 24.06803616695106,
+      "available_bytes": 14934245376,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 25.068276207952294,
+      "available_bytes": 14964228096,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 26.0689545829664,
+      "available_bytes": 14943485952,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 27.071126791997813,
+      "available_bytes": 14921498624,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 28.071300666953903,
+      "available_bytes": 14886584320,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 29.071400541986804,
+      "available_bytes": 14890614784,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 30.071576041984372,
+      "available_bytes": 14920171520,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 31.071725749992765,
+      "available_bytes": 14911799296,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 32.07185174996266,
+      "available_bytes": 14862630912,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 33.0749287919607,
+      "available_bytes": 14748925952,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 34.07507937500486,
+      "available_bytes": 14831042560,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 35.07628049998311,
+      "available_bytes": 14908047360,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 36.078156624978874,
+      "available_bytes": 14915764224,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 37.0784387079766,
+      "available_bytes": 14838775808,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 38.07854999997653,
+      "available_bytes": 14800945152,
+      "swap_used_bytes": 1128857600
+    },
+    {
+      "elapsed_s": 39.07869129197206,
+      "available_bytes": 14667333632,
+      "swap_used_bytes": 1128857600
+    }
+  ],
+  "harbor_source_commit": "509b119db0d97b141dcd9c80f4f7ab861c47c2d6",
+  "dotenv_disabled": true,
+  "telemetry_disabled": true
+}

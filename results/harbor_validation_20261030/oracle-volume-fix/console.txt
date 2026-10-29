@@ -1,0 +1,26 @@
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:20 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      0 │          1 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception               ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ RewardFileNotFoundError │     1 │
+└─────────────────────────┴───────┘
+
+Job Info
+Total runtime: 20s
+Results written to 
+/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+ation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/result.json
+Inspect results by running `harbor view 
+/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+ation_20261030/oracle-volume-fix/jobs`
+Share results by running `harbor upload 
+/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+ation_20261030/oracle-volume-fix/jobs/oracle-volume-fix`
+

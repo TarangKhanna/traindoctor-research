@@ -1,0 +1,5 @@
+{"detail": "run0 resume_from=none", "event": "submitted"}
+{"detail": "run0 COLLECTIVE_TIMEOUT", "event": "failed"}
+{"detail": "run0 lost a worker; restarting from the latest checkpoint", "event": "auto_restart"}
+{"detail": "run1 resume_from=ck0004", "event": "submitted"}
+{"detail": "run1", "event": "completed"}

@@ -1,0 +1,27 @@
+{
+ "error_class": "COLLECTIVE_TIMEOUT",
+ "fault_not_injected": false,
+ "last_step": 6,
+ "ranks": [
+  {
+   "digest": null,
+   "exc_class": null,
+   "exc_msg": null,
+   "exitcode": -9,
+   "last_step": 6,
+   "rank": 0,
+   "status": "killed"
+  },
+  {
+   "digest": null,
+   "exc_class": "COLLECTIVE_TIMEOUT",
+   "exc_msg": "collective timed out (timeout=3s)",
+   "exitcode": 1,
+   "last_step": 6,
+   "rank": 1,
+   "status": "error"
+  }
+ ],
+ "run_id": "run0",
+ "status": "failed"
+}

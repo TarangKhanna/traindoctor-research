@@ -1,0 +1,230 @@
+{
+  "baseline": {
+    "acked": {
+      "0": 4,
+      "1": 4
+    },
+    "actual_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+    "approved_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+    "comparison": {
+      "discrete_state_max_abs": 0.0,
+      "failed_components": [
+        "model.fc1.weight",
+        "model.fc1.bias",
+        "model.fc2.weight",
+        "model.fc2.bias",
+        "opt.0",
+        "opt.1",
+        "opt.2",
+        "opt.3"
+      ],
+      "max_abs": 0.24375582367959417,
+      "max_relative_floor_1e_12": 23.199409916968772,
+      "normalized_inf": 0.5965423230373055,
+      "ok": false,
+      "reason": "state_difference",
+      "tensor_max_abs": 0.24375582367959417
+    },
+    "completed": true,
+    "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+    "error_class": null,
+    "execution_status": "completed",
+    "hashes_valid": true,
+    "history": {
+      "conflicts": [],
+      "missing": [],
+      "ok": true
+    },
+    "other_sources_unchanged": true,
+    "run_id": "run1",
+    "sandboxed": true,
+    "semantic_valid": false,
+    "source": "executed",
+    "source_stable": true,
+    "start_step": 8
+  },
+  "gold_current": {
+    "acked": {
+      "0": 4,
+      "1": 4
+    },
+    "actual_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+    "approved_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+    "comparison": {
+      "discrete_state_max_abs": 0.0,
+      "failed_components": [],
+      "max_abs": 6.082111048133498e-08,
+      "max_relative_floor_1e_12": 4.722175130894551e-06,
+      "normalized_inf": 1.1431858063044665e-07,
+      "ok": true,
+      "reason": null,
+      "tensor_max_abs": 6.082111048133498e-08
+    },
+    "completed": true,
+    "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+    "error_class": null,
+    "execution_status": "completed",
+    "hashes_valid": true,
+    "history": {
+      "conflicts": [],
+      "missing": [],
+      "ok": true
+    },
+    "other_sources_unchanged": true,
+    "run_id": "run1",
+    "sandboxed": true,
+    "semantic_valid": true,
+    "source": "executed",
+    "source_stable": true,
+    "start_step": 8
+  },
+  "gold_legacy": {
+    "acked": {
+      "0": 8,
+      "1": 8
+    },
+    "actual_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+    "approved_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+    "comparison": {
+      "discrete_state_max_abs": 0.0,
+      "failed_components": [],
+      "max_abs": 6.082111048133498e-08,
+      "max_relative_floor_1e_12": 4.722175130894551e-06,
+      "normalized_inf": 1.1431858063044665e-07,
+      "ok": true,
+      "reason": null,
+      "tensor_max_abs": 6.082111048133498e-08
+    },
+    "completed": true,
+    "delivered_checkpoint_sha256": "d5a22d4fa2c4e1b920d6d14594d775d4bc64d945e90495da6259c375d30b040b",
+    "error_class": null,
+    "execution_status": "completed",
+    "hashes_valid": true,
+    "history": {
+      "conflicts": [],
+      "missing": [],
+      "ok": true
+    },
+    "other_sources_unchanged": true,
+    "run_id": "run1",
+    "sandboxed": true,
+    "semantic_valid": true,
+    "source": "executed",
+    "source_stable": true,
+    "start_step": 4
+  },
+  "scratch_control": {
+    "actual_continuation": {
+      "acked": {
+        "0": 12,
+        "1": 12
+      },
+      "actual_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+      "approved_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+      "comparison": {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 6.082111048133498e-08,
+        "max_relative_floor_1e_12": 4.722175130894551e-06,
+        "normalized_inf": 1.1431858063044665e-07,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 6.082111048133498e-08
+      },
+      "completed": true,
+      "delivered_checkpoint_sha256": null,
+      "error_class": null,
+      "execution_status": "completed",
+      "hashes_valid": true,
+      "history": {
+        "conflicts": [],
+        "missing": [],
+        "ok": true
+      },
+      "other_sources_unchanged": true,
+      "run_id": "run2",
+      "sandboxed": true,
+      "semantic_valid": true,
+      "source": "executed",
+      "source_stable": true,
+      "start_step": 0
+    },
+    "code_changed": false,
+    "diagnosis": null,
+    "hidden_restarts": [],
+    "source": "executed",
+    "status": "unsuccessful_repair",
+    "terminal_reward": 0
+  },
+  "skip_work_exploit": {
+    "acked": {
+      "0": 0,
+      "1": 0
+    },
+    "actual_source_sha256": "22a55cbcf63f93540e0f82425e7bf56e0d4fc8a52e513d42bdbfdb635f656d2e",
+    "approved_source_sha256": "22a55cbcf63f93540e0f82425e7bf56e0d4fc8a52e513d42bdbfdb635f656d2e",
+    "comparison": {
+      "ok": false,
+      "reason": "missing_final_capture"
+    },
+    "completed": true,
+    "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+    "error_class": null,
+    "execution_status": "completed",
+    "hashes_valid": true,
+    "history": {
+      "conflicts": [],
+      "missing": [
+        [
+          "0",
+          "acknowledgements"
+        ],
+        [
+          "1",
+          "acknowledgements"
+        ],
+        [
+          "0",
+          8
+        ],
+        [
+          "0",
+          9
+        ],
+        [
+          "0",
+          10
+        ],
+        [
+          "0",
+          11
+        ],
+        [
+          "1",
+          8
+        ],
+        [
+          "1",
+          9
+        ],
+        [
+          "1",
+          10
+        ],
+        [
+          "1",
+          11
+        ]
+      ],
+      "ok": false
+    },
+    "other_sources_unchanged": true,
+    "run_id": "run1",
+    "sandboxed": true,
+    "semantic_valid": false,
+    "source": "executed",
+    "source_stable": true,
+    "start_step": 8
+  },
+  "source": "executed"
+}

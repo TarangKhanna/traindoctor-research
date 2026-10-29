@@ -1,0 +1,14 @@
+{
+  "backend": "CPU/Gloo",
+  "buggy_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+  "exec_mode": "local_os_sandbox",
+  "gold_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+  "numerical_tolerance_abs": 1e-05,
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "security": "existing macOS sandbox; residual loopback access; not a security proof",
+  "seed": 777,
+  "source": "executed",
+  "steps": 12,
+  "version": "local_agent_v1",
+  "world": 2
+}

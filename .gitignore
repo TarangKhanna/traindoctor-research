@@ -50,3 +50,12 @@ results/reference_free_v1_repeat_*/repeat*/
 # Preliminary assay packets remain local; reviewed evidence is tracked separately.
 results/reference_free_v1_20261029/
 results/reference_free_v1_20261029_final/
+# Local-agent raw trees are archived with receipts; do not duplicate them in Git.
+results/local_agent_v1_*/fixture/
+results/local_agent_v1_*/legacy_input/
+results/local_agent_v1_*/gold_*/
+results/local_agent_v1_*/skip_work_exploit/
+results/local_agent_v1_*/scratch_control/
+results/local_agent_v1_*/jobdir/
+results/local_agent_v1_*/jobdir.trusted/
+results/local_agent_v1_*/hidden_*/

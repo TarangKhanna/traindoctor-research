@@ -1,0 +1,19 @@
+{
+  "source": "executed",
+  "actor": "actual cached local Gemma; no scripted model responses",
+  "model_revision": "238767527555cb75a05732a84dff5d6ba0dd6809",
+  "evidence_condition": "full",
+  "terminal_reward": null,
+  "termination": "resource guard; root cause unresolved",
+  "native_calls": 3,
+  "turns": 3,
+  "generated_tokens": 82,
+  "generation_wall_s": 19.83984758297447,
+  "model_load_wall_s": 3.8446162089821883,
+  "patches_proposed": 0,
+  "model_edited_code_executed": false,
+  "min_recorded_available_bytes": 5257986048,
+  "max_recorded_swap_growth_bytes": 1533411328,
+  "other_prespecified_model_conditions": "not run; system RAM remained below 8 GiB",
+  "initial_runner_timing_limit": "no complete episode/tool timing before early failure; only measured load/generation values retained"
+}

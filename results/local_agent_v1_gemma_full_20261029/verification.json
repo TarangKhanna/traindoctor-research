@@ -1,0 +1,22 @@
+{
+  "source": "executed",
+  "scope": "post-run controller/contract tests; not another model episode",
+  "command": [
+    "/Users/tarangkhanna/Workspace/rl_envs/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_local_agent_v1.py",
+    "tests/test_state_recovery_oracle.py",
+    "tests/test_menu_v3_analysis.py"
+  ],
+  "returncode": 0,
+  "stdout": "............................                                             [100%]\n28 passed in 2.67s\n",
+  "stderr": "",
+  "source_sha256": {
+    "experiments/local_agent_v1/task.py": "99fcaba618da4a946cfb17d16b8ef20e2e5d86fe979fc12bbbdcb9b1f95da4c7",
+    "experiments/local_agent_v1/run.py": "64aa6613675d736667bceddb2a551cef48ebde896d82c56c62af7f8b8b08fd0d",
+    "experiments/local_agent_v1/setup.py": "35b1332def2827a3a8625eb8a4d5fcbf8e171b362b0d0d02a39a60f506c0eac8",
+    "tests/test_local_agent_v1.py": "a94abe777cf3007c6727b7661a50d062fcce8461472884a251d8cd73b17716af"
+  }
+}

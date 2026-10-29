@@ -1,0 +1,9 @@
+{
+  "source": "executed",
+  "time_utc": "2026-10-29T11:15:25.725954+00:00",
+  "available_bytes": 6198525952,
+  "swap_used_bytes": 11463163904,
+  "minimum_available_bytes": 8589934592,
+  "model_run_started": false,
+  "action": "read-only resource check; no processes terminated"
+}

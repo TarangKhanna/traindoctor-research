@@ -1,0 +1,11 @@
+- **P1 — Final patch is not bound to actual continuation** (`task.py:187–195`). `finish_actual()` reuses `last_execution` after subsequent approved edits without requiring its executed source hash to equal the final hash. Patch A can pass the actual run, then patch B receive credit through hidden restarts alone. Require hash equality or execute the final patch on the actual continuation before awarding success.
+
+- **P1 — Infrastructure failures can escape accounting** (`run.py:125–161,217`). Model loading, generation, template construction and resource guards run outside the terminal exception handler. Failures can leave no unscored infrastructure result, with persisted state still appearing runnable. Persist an explicit infrastructure termination for these paths; preserve partial outputs when available.
+
+- **P2 — Resume changes evidence state** (`run.py:92–103`; inherited `Episode.state()`). Persistence omits `phase`, `records` and `phase_records`. Reconstruction regenerates records at phase zero while retaining previously observed evidence IDs. A security-review pause after relaunch therefore changes IDs and breaks correspondence with earlier observations. Persist and restore the phase and its evidence consistently.
+
+- **P2 — Multiple native calls are silently truncated** (`run.py:168–173`). Splitting at the first closing delimiter discards subsequent calls before the parser can detect them. Two complete calls become a valid first call despite the declared one-call protocol. Validate the entire generated response and reject additional call blocks.
+
+- **P2 — Episode latency is incomplete** (`run.py:144,157–161`). The time budget and recorded row latency cover generation only, excluding tool execution, hidden restarts, loading and review interruptions. Record active episode/tool duration separately to support useful-recovery latency claims.
+
+Static inspection found no host import of edited checkpoint code or model-visible oracle verdict. Approval checks bind pending source content to its hash; hidden executions use isolated workers. Historical verifier code is unchanged. No files changed or jobs executed.

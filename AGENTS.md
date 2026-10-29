@@ -3,12 +3,11 @@
 ## Scientific goal
 
 Make the recovery mechanism and negative learning results independently assessable.
-Current authorized milestone: [reference-free validation specification](docs/REFERENCE_FREE_SPEC.md),
-after the completed [prior-art gate](docs/REFERENCE_FREE_PRIOR_ART.md). No LLM
-training or inference in this session. Use saved captures; do not rerun the twelve
-jobs. Stop after the bounded checker, two repeatability continuations, trust-boundary
-controls and report. Reference-free means conditional on an explicit trusted anchor,
-input recipe and update specification; replay itself is established prior art.
+Current authorized milestone: [local tool-using code repair](docs/LOCAL_AGENT_V1_SPEC.md).
+The owner explicitly authorizes bounded cached Qwen/Gemma inference for this
+milestone; no model training. Preserve the completed reference-free audit and its
+novelty NO-GO. Stop after one worked code incident, bounded full/reduced-evidence
+trajectories, executable controls and report. Do not build a swarm or training system.
 Read [current status](docs/STATUS.md), [the worked report](experiments/state_recovery_v1/REPORT.md)
 and [the learning log](docs/STATE_RECOVERY_LEARNINGS.md) before proposing more work.
 One state-only incident pair is complete. Do not expand it into a benchmark,

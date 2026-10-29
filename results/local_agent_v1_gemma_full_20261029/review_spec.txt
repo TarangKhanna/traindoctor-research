@@ -1,0 +1,13 @@
+Viable for one bounded engineering demonstration. Resolve these gaps before execution:
+
+- **Causal interpretation:** Full versus reduced evidence measures access to tensor summaries, not investigation benefit; source alone may reveal the defect. Freeze prompts, tool visibility and budgets before runs. Report actual tool use and whether repair preceded tensor inspection. Four dependent greedy episodes support descriptive outcomes only.
+
+- **Success contract:** “Binary verified reusable repair success” needs an explicit conjunction: the agent’s actual continuation completes with correct parameters, momentum and sample history, and the identical final patch passes isolated old-format and new-format restart tests. Freeze anchors, tolerances and checkpoint identities beforehand. Scratch may receive trajectory correctness while failing reusable-repair success.
+
+- **Execution provenance:** Bind each relaunch and hidden test to the approved source hash, delivered checkpoint hash and immutable trusted grader version. Verify the source hash immediately before launch. Worker-written captures and verdicts cannot independently establish correctness; compare captured state against trusted expectations and check required evidence.
+
+- **Security boundary:** Reviewing `ckpt.py` alone requires its import/call context and sandbox permissions to be fixed and understood. Specify that inspections, summaries and grading never import edited code or deserialize untrusted pickle in the host. Keep hidden fixtures, oracle inputs and grading outputs inaccessible to workers; document any permitted loopback services. Fail closed on review/hash mismatch.
+
+- **Outcome accounting:** Separate security rejection, malformed tool calls, budget exhaustion, semantic failure, noncompletion and infrastructure failure. Declare which terminal outcomes receive zero versus no score; never silently retry failed episodes. Security feedback should identify rejection without suggesting a repair.
+
+- **Boundedness:** Define calls, relaunches, context truncation and resource/time limits precisely. Preserve unsuccessful transcripts. Remove the future multi-agent comparison requirement: it does not help establish this milestone’s actual local repair.

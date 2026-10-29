@@ -147,3 +147,14 @@ unchanged twelve classifications and numerical discrepancies. This timing variat
 is not a performance improvement claim. Both repeatability continuations were reused,
 not rerun after the evidence-classification fixes. See the final report and its
 linked raw matrix, source manifest, verification output and two static reviews.
+
+## 2026-10-29 — Release clarity and reproducible installation
+
+The historical environment requirement pin predates the state-recovery module.
+Installing that pin and then promising all expanded tests would be misleading.
+Keep the historical pin intact; document and check editable sibling-source
+installation for the new saved-artifact example. The saved recount passes without
+new distributed jobs, model inference or a cloud account. README should distinguish
+historical Modal isolation from the local backend and completed artifacts from
+unfinished agent work. A read-only critic caught both installation and backend
+wording issues before release. No result or historical receipt was changed.

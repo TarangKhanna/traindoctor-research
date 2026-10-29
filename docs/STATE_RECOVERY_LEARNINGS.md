@@ -184,3 +184,29 @@ Evidence and remaining work: [local-agent report](LOCAL_AGENT_V1_REPORT.md).
 2026-10-29 Qwen protocol finding: adequate startup RAM allowed genuine tool-use, but did not guarantee episode capacity. One generated apply_patch block repeated escaped newlines and reached 512-token length termination; parser correctly rejected it. This is an observed protocol failure, not a completed semantic-repair failure. The next generation was resource-interrupted and unscored. Partial/complete token and timing counts are separate in the raw summary; trigger-specific memory counters remain missing. Training permission does not resolve task-validity, data, held-out mechanism or matched-comparison gaps.
 
 2026-10-29 retry catch: failing-sample telemetry isolates the guard predicate (7.7312469482421875 GiB available, swap -40 MiB): low RAM, not swap growth. It does not isolate the process causing RAM decline. Raw outputs match all eight comparable previous greedy responses, including the malformed patch, so identical deterministic retries should not be counted as independent evidence or expected to fix protocol behavior. Save and probe one decoding/model change against the already saved context before another full episode. No guard changes; 12 focused tests pass after correcting a test-only constructor mock.
+
+## 2026-10-30 — Agent feasibility catches
+
+- Actual native-tool traces are not proof of autonomous repair. Gemma's four edit
+  attempts were inapplicable. Qwen's applicable last-turn edit was applied after
+  exact security review, but the model did not choose relaunch before exhaustion.
+- A real line-editor boundary bug glued a following statement to replacement
+  content. The original proposal failed isolated execution. Only a separator was
+  normalized by the corrected editor; that control completed but still violated
+  model/momentum semantics with valid hashes and sample history. The tool defect
+  and wrong repair logic therefore have distinct executed evidence.
+- No valid G4/G8 groups were sampled. Undefined fractions remain null, not zero;
+  authored positives and dependent retries cannot be repackaged as policy groups.
+- Fixed source logic repairs this constructed format defect; unconditional full
+  restoration remains optimal for both state cases. These cases do not establish
+  investigation benefit or held-out structural generalization. STOP expansion;
+  do not manufacture difficulty or substitute more infrastructure for a result.
+- The fresh retest stopped at the RAM policy floor with no swap growth. This was
+  not OOM and does not prove the model cannot fit. Sustained rollout throughput
+  and a complete model-chosen relaunch/verification sequence remain unmeasured.
+- Harbor hidden test delivery is not scoring isolation. A separate verifier,
+  source-only transfer and real privilege/capability/private-file/network proofs
+  are necessary for this adapter's declared boundary. Static/unit review is not
+  a Docker runtime proof. Setup approval is pending; no fake compatibility claim.
+
+Exact receipts and provenance: AGENT_V2_REPORT.md and results/agent_v2_*.

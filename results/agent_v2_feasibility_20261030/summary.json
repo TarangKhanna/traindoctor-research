@@ -1,0 +1,303 @@
+{
+  "source": "executed",
+  "analysis": "saved/model receipts; live controls only when explicitly requested",
+  "research_commit": "6e0045aed469f78cde4b88c51a8cf70e004d1fca",
+  "baselines": {
+    "checkpoint_format": {
+      "provenance": "cached_executed_controls",
+      "unchanged_completes": true,
+      "unchanged_semantic_valid": false,
+      "fixed_patch_current_valid": true,
+      "fixed_patch_legacy_valid": true,
+      "completing_invalid_skip_rejected": true,
+      "scratch_semantic_valid": true,
+      "scratch_durable_code_reward": 0,
+      "new_live_replay": {
+        "unchanged": {
+          "source": "executed",
+          "completed": true,
+          "semantic_valid": false,
+          "comparison": {
+            "ok": false,
+            "reason": "state_difference",
+            "failed_components": [
+              "model.fc1.weight",
+              "model.fc1.bias",
+              "model.fc2.weight",
+              "model.fc2.bias",
+              "opt.0",
+              "opt.1",
+              "opt.2",
+              "opt.3"
+            ],
+            "max_abs": 0.24375582367959417,
+            "tensor_max_abs": 0.24375582367959417,
+            "discrete_state_max_abs": 0.0,
+            "max_relative_floor_1e_12": 23.199409916968772,
+            "normalized_inf": 0.5965423230373055
+          },
+          "history": {
+            "ok": true,
+            "missing": [],
+            "conflicts": []
+          },
+          "hashes_valid": true,
+          "source_stable": true,
+          "other_sources_unchanged": true,
+          "sandboxed": true,
+          "run_id": "run1",
+          "approved_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+          "actual_source_sha256": "85ccceb8fc0951eb2cf45dc4eb214bd9dd0d942f420f9ab4a4e8610c127500cc",
+          "start_step": 8,
+          "acked": {
+            "0": 4,
+            "1": 4
+          },
+          "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+          "execution_status": "completed",
+          "error_class": null
+        },
+        "fixed_current": {
+          "source": "executed",
+          "completed": true,
+          "semantic_valid": true,
+          "comparison": {
+            "ok": true,
+            "reason": null,
+            "failed_components": [],
+            "max_abs": 6.082111048133498e-08,
+            "tensor_max_abs": 6.082111048133498e-08,
+            "discrete_state_max_abs": 0.0,
+            "max_relative_floor_1e_12": 4.722175130894551e-06,
+            "normalized_inf": 1.1431858063044665e-07
+          },
+          "history": {
+            "ok": true,
+            "missing": [],
+            "conflicts": []
+          },
+          "hashes_valid": true,
+          "source_stable": true,
+          "other_sources_unchanged": true,
+          "sandboxed": true,
+          "run_id": "run1",
+          "approved_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+          "actual_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+          "start_step": 8,
+          "acked": {
+            "0": 4,
+            "1": 4
+          },
+          "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+          "execution_status": "completed",
+          "error_class": null
+        },
+        "fixed_legacy": {
+          "source": "executed",
+          "completed": true,
+          "semantic_valid": true,
+          "comparison": {
+            "ok": true,
+            "reason": null,
+            "failed_components": [],
+            "max_abs": 6.082111048133498e-08,
+            "tensor_max_abs": 6.082111048133498e-08,
+            "discrete_state_max_abs": 0.0,
+            "max_relative_floor_1e_12": 4.722175130894551e-06,
+            "normalized_inf": 1.1431858063044665e-07
+          },
+          "history": {
+            "ok": true,
+            "missing": [],
+            "conflicts": []
+          },
+          "hashes_valid": true,
+          "source_stable": true,
+          "other_sources_unchanged": true,
+          "sandboxed": true,
+          "run_id": "run1",
+          "approved_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+          "actual_source_sha256": "16edb371af5860d0e63b0cfe84fda7fa9742ac46d0ad241ff7c7431b25f9c040",
+          "start_step": 4,
+          "acked": {
+            "0": 8,
+            "1": 8
+          },
+          "delivered_checkpoint_sha256": "d5a22d4fa2c4e1b920d6d14594d775d4bc64d945e90495da6259c375d30b040b",
+          "execution_status": "completed",
+          "error_class": null
+        }
+      }
+    },
+    "state_recovery": {
+      "provenance": "cached_executed_recount",
+      "fixed_full_restore_valid": [
+        true,
+        true
+      ],
+      "common_optimal_actions": [
+        "restore_full"
+      ],
+      "requires_inspection_for_safe_recovery": false
+    }
+  },
+  "trajectories": [
+    {
+      "path": "results/agent_v2_gemma_full_20261030/trajectory.json",
+      "provenance": "live_model",
+      "model_revision": "238767527555cb75a05732a84dff5d6ba0dd6809",
+      "configuration": {
+        "temperature": 0,
+        "seed": 0,
+        "max_tokens": 512
+      },
+      "status": "turn_budget",
+      "terminal_reward": 0,
+      "failure_stage": "patch_applicability",
+      "response_turns": 12,
+      "protocol_valid": 12,
+      "protocol_errors": 0,
+      "edit_attempts": 4,
+      "applicable_edits": 0,
+      "applied_edits": 0,
+      "execution_attempts": 0,
+      "actual_completed": null,
+      "actual_semantic_valid": null,
+      "diagnosis_recorded": false,
+      "diagnosis_accuracy": null,
+      "generated_tokens": 686,
+      "partial_generated_tokens": 0,
+      "load_s": 6.787914416985586,
+      "inference_s": 147.9167792891385,
+      "partial_inference_s": 0,
+      "prefill_s": 82.6906863739132,
+      "decode_s": 52.868708249996416,
+      "tool_s": 0.061696082120761275,
+      "terminal_verification_s": 0.001380499976221472,
+      "measured_active_s": 154.76777028822107,
+      "elapsed_including_review_s": 168.98252487182617,
+      "peak_mlx_gb": 3.445878454,
+      "minimum_completed_turn_available_bytes": 9963094016,
+      "resource_guard_failure": null,
+      "group_id": null,
+      "warning": "Single trajectories are not rates. No diagnosis taxonomy or independent human validation."
+    },
+    {
+      "path": "results/agent_v2_qwen_full_20261030/trajectory.json",
+      "provenance": "live_model",
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "configuration": {
+        "max_tokens": 512,
+        "seed": 0,
+        "temperature": 0.2
+      },
+      "status": "turn_budget",
+      "terminal_reward": 0,
+      "failure_stage": "no_execution",
+      "response_turns": 12,
+      "protocol_valid": 12,
+      "protocol_errors": 0,
+      "edit_attempts": 2,
+      "applicable_edits": 1,
+      "applied_edits": 1,
+      "execution_attempts": 0,
+      "actual_completed": null,
+      "actual_semantic_valid": null,
+      "diagnosis_recorded": false,
+      "diagnosis_accuracy": null,
+      "generated_tokens": 511,
+      "partial_generated_tokens": 0,
+      "load_s": 0.9983022499945946,
+      "inference_s": 292.36522695812164,
+      "partial_inference_s": 0,
+      "prefill_s": 241.90390366711654,
+      "decode_s": 47.50437849992886,
+      "tool_s": 0.0429802481085062,
+      "terminal_verification_s": 0.0008162499871104956,
+      "measured_active_s": 293.40732570621185,
+      "elapsed_including_review_s": 760.9950001239777,
+      "peak_mlx_gb": 3.479140486,
+      "minimum_completed_turn_available_bytes": 9931653120,
+      "resource_guard_failure": null,
+      "group_id": null,
+      "warning": "Single trajectories are not rates. No diagnosis taxonomy or independent human validation."
+    },
+    {
+      "path": "results/agent_v2_qwen_retest_20261030/trajectory.json",
+      "provenance": "live_model",
+      "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "configuration": {
+        "max_tokens": 512,
+        "seed": 0,
+        "temperature": 0.2
+      },
+      "status": "infrastructure_error",
+      "terminal_reward": null,
+      "failure_stage": "infrastructure",
+      "response_turns": 9,
+      "protocol_valid": 8,
+      "protocol_errors": 1,
+      "edit_attempts": 0,
+      "applicable_edits": 0,
+      "applied_edits": 0,
+      "execution_attempts": 0,
+      "actual_completed": null,
+      "actual_semantic_valid": null,
+      "diagnosis_recorded": false,
+      "diagnosis_accuracy": null,
+      "generated_tokens": 699,
+      "partial_generated_tokens": 16,
+      "load_s": 1.54511004203232,
+      "inference_s": 307.499143833993,
+      "partial_inference_s": 55.684306624985766,
+      "prefill_s": 215.6915111669805,
+      "decode_s": 89.09421404398745,
+      "tool_s": 0.02412241604179144,
+      "terminal_verification_s": 0,
+      "measured_active_s": 364.75864123232896,
+      "elapsed_including_review_s": 368.53828620910645,
+      "peak_mlx_gb": 3.453056222,
+      "minimum_completed_turn_available_bytes": 8723218432,
+      "resource_guard_failure": {
+        "above_swap_growth_limit": false,
+        "available_bytes": 8492023808,
+        "below_ram_floor": true,
+        "sampled_epoch": 1793296245.917568,
+        "swap_baseline_bytes": 1465909248,
+        "swap_growth_bytes": 0,
+        "swap_used_bytes": 1465909248
+      },
+      "group_id": null,
+      "warning": "Single trajectories are not rates. No diagnosis taxonomy or independent human validation."
+    }
+  ],
+  "rollout_groups": {
+    "4": {
+      "groups": 0,
+      "infrastructure_groups": 0,
+      "scored_groups": 0,
+      "mixed_groups": 0,
+      "mixed_fraction": null,
+      "zero_advantage_fraction": null,
+      "reward_std": []
+    },
+    "8": {
+      "groups": 0,
+      "infrastructure_groups": 0,
+      "scored_groups": 0,
+      "mixed_groups": 0,
+      "mixed_fraction": null,
+      "zero_advantage_fraction": null,
+      "reward_std": []
+    }
+  },
+  "group_note": "No group IDs means no sampled G=4/G=8 estimate; no grouping across models or dependent retries.",
+  "gate2": "NO-GO: these existing cases admit fixed source/full-restore baselines.",
+  "inputs_sha256": {
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/state_recovery_v1_loopback_verified/recount.json": "68cc7528fb6806adc9f5a23afc9cedc289e30462f6cfe24df55ba7225ca970fb",
+    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/local_agent_v1_fixture_20261029/controls.json": "08c840c50251b0e66a4a4a958646e5300dd3042091235848a44fa9b169cc6e0a",
+    "results/agent_v2_gemma_full_20261030/trajectory.json": "276dc6d001c0f10c1f88d6ec9c75b64ae409db13aab926dca53febfe2ab0989f",
+    "results/agent_v2_qwen_full_20261030/trajectory.json": "10d0203f8756abef8dc231b527f3def53803e33655cda716d9a0a1c01613a58b",
+    "results/agent_v2_qwen_retest_20261030/trajectory.json": "604c396e2df0a744c6c9eed7af1e7dc0324057759d7afbeb1993acd0450915e5"
+  }
+}

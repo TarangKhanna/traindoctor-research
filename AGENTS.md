@@ -57,3 +57,10 @@ Append verified findings, catches and unresolved questions to
 [the learning log](docs/STATE_RECOVERY_LEARNINGS.md) at meaningful milestones.
 Include evidence, implication and limits; explicitly supersede mistaken claims.
 Update status at closure. Keep this lightweight: no new memory/logging framework.
+
+## Feasibility closure (2026-10-30)
+
+Read docs/AGENT_V2_REPORT.md before any further work. STOP training and task/benchmark
+expansion on current cases. The already authorized one-task Harbor interoperability
+proof remains pending isolated setup approval; it is not a learning task redesign.
+Do not restart model inference automatically or pool retries as RL reward groups.

@@ -1,0 +1,11 @@
+*
+!.gitignore
+!trajectory.json
+!TRANSCRIPT.md
+!patch.diff
+!security_review.json
+!receipt.json
+!verdict.json
+!summary.json
+!raw_evidence.zip
+!raw_evidence.zip.sha256

@@ -1,0 +1,52 @@
+{
+  "source": "executed",
+  "source_sha256": "4854e3f5c253d00ae5a2fdfb744de681a7b4d568f5202e0027a27e78c13701c2",
+  "model_args_source": "agent_v2_qwen_full_20261030 turn11",
+  "control": "Same generated arguments through fixed line editor. Separator insertion only; not a fresh model trajectory or supervisor semantic repair.",
+  "security_review": "Supervising Codex exact-file review: same local writer operations/imports and declared checkpoint I/O; no new shell/network or privileged operations.",
+  "wall_s": 4.928122500015888,
+  "verdict": {
+    "source": "executed",
+    "completed": true,
+    "semantic_valid": false,
+    "comparison": {
+      "ok": false,
+      "reason": "state_difference",
+      "failed_components": [
+        "model.fc1.weight",
+        "model.fc1.bias",
+        "model.fc2.weight",
+        "model.fc2.bias",
+        "opt.0",
+        "opt.1",
+        "opt.2",
+        "opt.3"
+      ],
+      "max_abs": 0.24375582367959417,
+      "tensor_max_abs": 0.24375582367959417,
+      "discrete_state_max_abs": 0.0,
+      "max_relative_floor_1e_12": 23.199409916968772,
+      "normalized_inf": 0.5965423230373055
+    },
+    "history": {
+      "ok": true,
+      "missing": [],
+      "conflicts": []
+    },
+    "hashes_valid": true,
+    "source_stable": true,
+    "other_sources_unchanged": true,
+    "sandboxed": true,
+    "run_id": "run1",
+    "approved_source_sha256": "4854e3f5c253d00ae5a2fdfb744de681a7b4d568f5202e0027a27e78c13701c2",
+    "actual_source_sha256": "4854e3f5c253d00ae5a2fdfb744de681a7b4d568f5202e0027a27e78c13701c2",
+    "start_step": 8,
+    "acked": {
+      "0": 4,
+      "1": 4
+    },
+    "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+    "execution_status": "completed",
+    "error_class": null
+  }
+}

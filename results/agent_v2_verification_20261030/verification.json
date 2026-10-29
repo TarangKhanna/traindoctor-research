@@ -1,0 +1,28 @@
+{
+  "source": "executed",
+  "tests": {
+    "research-tests.xml": {
+      "tests": 39,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "harbor-tests.xml": {
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "archives_sha256": {
+    "results/agent_v2_gemma_full_20261030/raw_evidence.zip": "488f545b7673656fba8afd19b8b8a26102919055353359738020de478fe59e33",
+    "results/agent_v2_qwen_original_replay_20261030/raw_evidence.zip": "d7b28c9c2ee000618879b98b68a33945abf0ff02ff004aeeb6d8fdf4617f2287",
+    "results/agent_v2_qwen_editor_control_20261030/raw_evidence.zip": "8fbb185a6b8ed59a1456d65bb15551c7b4b0fc81bf15e26bb967a476ff9766cb",
+    "results/agent_v2_qwen_retest_20261030/raw_evidence.zip": "f5f918d28bc3dab143fe5e035c7635245a5911d6d93ba8cf01d27635b4ea75d5",
+    "results/agent_v2_feasibility_20261030/raw_evidence.zip": "f284b5338559b5032d4cad13d977e49558364091966561256fb1aea6d6aaf7f9",
+    "results/agent_v2_qwen_full_20261030/raw_evidence.zip": "11f4e26da0d33804949f77255cbb60f38f4682bad15247b771bacca5cd2063d0"
+  },
+  "report_links_fences": "pass",
+  "harbor_runtime": "unverified; dependency/backend approval pending",
+  "model_training": "not run"
+}

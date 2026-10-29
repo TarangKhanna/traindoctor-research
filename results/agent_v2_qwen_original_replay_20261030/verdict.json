@@ -1,0 +1,62 @@
+{
+  "source": "executed",
+  "completed": false,
+  "semantic_valid": false,
+  "comparison": {
+    "ok": false,
+    "reason": "missing_final_capture"
+  },
+  "history": {
+    "ok": false,
+    "missing": [
+      [
+        "0",
+        8
+      ],
+      [
+        "0",
+        9
+      ],
+      [
+        "0",
+        10
+      ],
+      [
+        "0",
+        11
+      ],
+      [
+        "1",
+        8
+      ],
+      [
+        "1",
+        9
+      ],
+      [
+        "1",
+        10
+      ],
+      [
+        "1",
+        11
+      ]
+    ],
+    "conflicts": []
+  },
+  "hashes_valid": true,
+  "source_stable": true,
+  "other_sources_unchanged": true,
+  "sandboxed": true,
+  "run_id": "run1",
+  "approved_source_sha256": "38e0f1efcffce219616cbee10b7acce97d59f0322713a1481721cdae05507154",
+  "actual_source_sha256": "38e0f1efcffce219616cbee10b7acce97d59f0322713a1481721cdae05507154",
+  "start_step": 8,
+  "acked": {
+    "0": 0,
+    "1": 0
+  },
+  "delivered_checkpoint_sha256": "d4d540bfa7f4e7bd3e8ebaa0037423e91898717616cf951aa6fc17e7e9904840",
+  "execution_status": "failed",
+  "error_class": "PYTHON_ERROR"
+}

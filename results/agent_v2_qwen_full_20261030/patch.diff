@@ -1,0 +1,15 @@
+--- job/ckpt.py
++++ job/ckpt.py
+@@ -38,10 +38,8 @@
+     if rank == 0:
+         Path("ckpt", cid).mkdir(parents=True, exist_ok=True)
+         state = {f"model.{k}": v.detach().clone() for k, v in model.state_dict().items()}
+-        state.update({f"optimizer.{name}": opt.state[p]["momentum_buffer"].detach().clone()
+-                      for name, p in model.named_parameters()})
+-        state.update(sampler=sampler.state(), step=torch.tensor([step]))
+-        torch.save(state, Path("ckpt", cid, "state.pt"))
++        state.update({f"optimizer.{name}": opt.state[p]["momentum_buffer"].detach().clone() for name, p in model.named_parameters()})
++        state.update(sampler=sampler.state(), step=torch.tensor([step]))        torch.save(state, Path("ckpt", cid, "state.pt"))
+         commit(cid, step, world_size)
+     dist.barrier(group=group)
+     return cid

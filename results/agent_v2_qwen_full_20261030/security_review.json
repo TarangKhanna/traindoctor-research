@@ -1,0 +1,6 @@
+{
+  "source": "executed",
+  "sha256": "38e0f1efcffce219616cbee10b7acce97d59f0322713a1481721cdae05507154",
+  "review": "Supervising Codex exact-file security review. Imports/operations unchanged except local checkpoint writer formatting. No added shell/network/host access. Syntax-invalid proposal accepted for isolated negative execution; no semantic repair supplied.",
+  "assistance": "security review only; not independent human validation"
+}

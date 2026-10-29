@@ -1,0 +1,57 @@
+{
+  "checkpoint_bytes_changed_for_history_controls": false,
+  "execution": "checker executed on constructed in-memory counterexamples; no new training job",
+  "falsified_history": {
+    "conflicts": [
+      [
+        "0",
+        8,
+        "intended sample order"
+      ]
+    ],
+    "missing": [],
+    "ok": false
+  },
+  "missing_history": {
+    "conflicts": [],
+    "missing": [
+      [
+        "0",
+        8
+      ]
+    ],
+    "ok": false
+  },
+  "poisoned_anchor": {
+    "false_acceptance_of_original_trajectory_claim": true,
+    "final_max_abs_from_original": 0.09537724040869114,
+    "pinned_original_anchor_check": {
+      "ok": false,
+      "reason": "anchor_commitment"
+    },
+    "relative_transition_checks": [
+      {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 0.0,
+        "max_relative_floor_1e_12": 0.0,
+        "normalized_inf": 0.0,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 0.0
+      },
+      {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 0.0,
+        "max_relative_floor_1e_12": 0.0,
+        "normalized_inf": 0.0,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 0.0
+      }
+    ],
+    "violation_of_conditional_contract": false
+  },
+  "source": "simulated"
+}

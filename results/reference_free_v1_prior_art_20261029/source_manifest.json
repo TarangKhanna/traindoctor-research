@@ -1,0 +1,159 @@
+{
+  "source": "executed",
+  "operation": "public source retrieval and static inspection; downloaded code never executed",
+  "retrieved_utc_date": "2026-10-29",
+  "files": [
+    {
+      "repo": "pytorch/torchtitan",
+      "revision": "2db55136735f35ea77d629115890c7fa40decb02",
+      "path": "torchtitan/components/checkpointer/base.py",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/2db55136735f35ea77d629115890c7fa40decb02/torchtitan/components/checkpointer/base.py",
+      "sha256": "d69dade654eb8b38c02e51607b1684b925bc2eba06b5b85059c65b7e31c5eb50",
+      "bytes": 27729
+    },
+    {
+      "repo": "pytorch/torchtitan",
+      "revision": "2db55136735f35ea77d629115890c7fa40decb02",
+      "path": "torchtitan/components/checkpointer/dcp.py",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/2db55136735f35ea77d629115890c7fa40decb02/torchtitan/components/checkpointer/dcp.py",
+      "sha256": "c2a5251dc77684c8185383018511a91bfc58d0d6a79bc200c7ed384b6211b51d",
+      "bytes": 25060
+    },
+    {
+      "repo": "pytorch/torchtitan",
+      "revision": "2db55136735f35ea77d629115890c7fa40decb02",
+      "path": "torchtitan/observability/sdc_replayer.py",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/2db55136735f35ea77d629115890c7fa40decb02/torchtitan/observability/sdc_replayer.py",
+      "sha256": "13f9dc5bfd69991e37a1c5030461ab20f8d33037405fb3ba7f54ba7ddfe2fe46",
+      "bytes": 21007
+    },
+    {
+      "repo": "pytorch/torchtitan",
+      "revision": "2db55136735f35ea77d629115890c7fa40decb02",
+      "path": "tests/unit_tests/cpu/observability/test_sdc_replayer.py",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/2db55136735f35ea77d629115890c7fa40decb02/tests/unit_tests/cpu/observability/test_sdc_replayer.py",
+      "sha256": "984ff067a84e855dee5e189aa89e59eb5528f7979690e26c8ea16024898e74fa",
+      "bytes": 10065
+    },
+    {
+      "repo": "pytorch/torchtitan",
+      "revision": "2db55136735f35ea77d629115890c7fa40decb02",
+      "path": "tests/integration_tests/features.py",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/2db55136735f35ea77d629115890c7fa40decb02/tests/integration_tests/features.py",
+      "sha256": "f65e2f789f28954c5bf030a24c7ecc8e060c37f92bbd64922966ebbd85e4f87d",
+      "bytes": 44762
+    },
+    {
+      "repo": "pytorch/torchtitan",
+      "revision": "2db55136735f35ea77d629115890c7fa40decb02",
+      "path": "scripts/checkpoint_compat_test.py",
+      "url": "https://raw.githubusercontent.com/pytorch/torchtitan/2db55136735f35ea77d629115890c7fa40decb02/scripts/checkpoint_compat_test.py",
+      "sha256": "ecdd12f1bc34ad6ed36a9c5ab59cd6ba2b010db08a26fb1af4023eb6c6ad7859",
+      "bytes": 10491
+    },
+    {
+      "repo": "meta-pytorch/data",
+      "revision": "ee79a399d3a53676544e0d3f0e826ffa58d1fec9",
+      "path": "torchdata/stateful_dataloader/README.md",
+      "url": "https://raw.githubusercontent.com/meta-pytorch/data/ee79a399d3a53676544e0d3f0e826ffa58d1fec9/torchdata/stateful_dataloader/README.md",
+      "sha256": "30d9d081fdd5be2ee77ad7def8501c8ab904dbb8ed8cc18a5f0b9ccb806cac59",
+      "bytes": 6924
+    },
+    {
+      "repo": "meta-pytorch/data",
+      "revision": "ee79a399d3a53676544e0d3f0e826ffa58d1fec9",
+      "path": "test/stateful_dataloader/test_state_dict.py",
+      "url": "https://raw.githubusercontent.com/meta-pytorch/data/ee79a399d3a53676544e0d3f0e826ffa58d1fec9/test/stateful_dataloader/test_state_dict.py",
+      "sha256": "28f621c69065884824d8071652bf8ee51a339946889b94c2f492200e25d41555",
+      "bytes": 67274
+    },
+    {
+      "repo": "allenai/OLMo-core",
+      "revision": "ccf4ef4b5f6552e92f933589e9e6377d16fafb40",
+      "path": "src/olmo_core/data/data_loader.py",
+      "url": "https://raw.githubusercontent.com/allenai/OLMo-core/ccf4ef4b5f6552e92f933589e9e6377d16fafb40/src/olmo_core/data/data_loader.py",
+      "sha256": "1580cbb2c6e1821c3c747d06feb7ce18a3388e9a97170d3b73fbb67b6896894d",
+      "bytes": 46639
+    },
+    {
+      "repo": "allenai/OLMo-core",
+      "revision": "ccf4ef4b5f6552e92f933589e9e6377d16fafb40",
+      "path": "src/olmo_core/train/checkpoint.py",
+      "url": "https://raw.githubusercontent.com/allenai/OLMo-core/ccf4ef4b5f6552e92f933589e9e6377d16fafb40/src/olmo_core/train/checkpoint.py",
+      "sha256": "40e5710d0f647545cf86cdf1f72ee58d3ad26b713abd5a358a594cce8dba6688",
+      "bytes": 21678
+    },
+    {
+      "repo": "allenai/OLMo-core",
+      "revision": "ccf4ef4b5f6552e92f933589e9e6377d16fafb40",
+      "path": "src/integration_tests/test_train_small_model.py",
+      "url": "https://raw.githubusercontent.com/allenai/OLMo-core/ccf4ef4b5f6552e92f933589e9e6377d16fafb40/src/integration_tests/test_train_small_model.py",
+      "sha256": "6c9ee4c7462972263088624059189755ced1f3070967b49b9889c7fdbfcc7940",
+      "bytes": 17729
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "revision": "12ffb990341f021ea9847d86a98ba91c81f77fdb",
+      "path": "deepspeed/runtime/engine.py",
+      "url": "https://raw.githubusercontent.com/deepspeedai/DeepSpeed/12ffb990341f021ea9847d86a98ba91c81f77fdb/deepspeed/runtime/engine.py",
+      "sha256": "650dc0a2d4047b3ff7911f960e4c9a151e71670a1cf1d55988fbe9d0b77fc9c7",
+      "bytes": 309492
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "revision": "5de526f232464e1b1ff1d6645fe2c4aaf01bc0d8",
+      "path": "megatron/training/checkpointing.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/5de526f232464e1b1ff1d6645fe2c4aaf01bc0d8/megatron/training/checkpointing.py",
+      "sha256": "59857939ceda5db64ff66b41660d4b3d689d6297773defa3962419eacabf28eb",
+      "bytes": 159634
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "revision": "5de526f232464e1b1ff1d6645fe2c4aaf01bc0d8",
+      "path": "megatron/core/rerun_state_machine.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/5de526f232464e1b1ff1d6645fe2c4aaf01bc0d8/megatron/core/rerun_state_machine.py",
+      "sha256": "0098ceed9a9cedfc0fba53aab75aefad8fe8ea8d10711da70965f55500401c03",
+      "bytes": 64705
+    },
+    {
+      "repo": "NVIDIA/Megatron-LM",
+      "revision": "5de526f232464e1b1ff1d6645fe2c4aaf01bc0d8",
+      "path": "tests/unit_tests/dist_checkpointing/test_rerun_state_machine_ckpt.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Megatron-LM/5de526f232464e1b1ff1d6645fe2c4aaf01bc0d8/tests/unit_tests/dist_checkpointing/test_rerun_state_machine_ckpt.py",
+      "sha256": "21689986768bf00506f7437d136bc1072da8bd4dca487d655e77d41af734af05",
+      "bytes": 7551
+    },
+    {
+      "repo": "cleverhans-lab/Proof-of-Learning",
+      "path": "verify.py",
+      "url": "https://raw.githubusercontent.com/cleverhans-lab/Proof-of-Learning/main/verify.py",
+      "sha256": "073ffea86cf36c0c8e0917981703fcbfb1f4f2afd338d3ee9d3974be901d60a9",
+      "bytes": 11570,
+      "revision": "main; content hash pinned"
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "revision": "12ffb990341f021ea9847d86a98ba91c81f77fdb",
+      "path": "tests/unit/checkpoint/test_lr_scheduler.py",
+      "url": "https://raw.githubusercontent.com/deepspeedai/DeepSpeed/12ffb990341f021ea9847d86a98ba91c81f77fdb/tests/unit/checkpoint/test_lr_scheduler.py",
+      "sha256": "c22b91591b377b886fc42bb5b501754ef0339f0ba486d8957ffeede7b7b22714",
+      "bytes": 4632
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "revision": "12ffb990341f021ea9847d86a98ba91c81f77fdb",
+      "path": "tests/unit/checkpoint/test_tag_validation.py",
+      "url": "https://raw.githubusercontent.com/deepspeedai/DeepSpeed/12ffb990341f021ea9847d86a98ba91c81f77fdb/tests/unit/checkpoint/test_tag_validation.py",
+      "sha256": "728b2ff90408980ae38c7f5b4a32b67fe26e20083e08b2dee801bfed3bcb6bc1",
+      "bytes": 2607
+    },
+    {
+      "repo": "deepspeedai/DeepSpeed",
+      "revision": "12ffb990341f021ea9847d86a98ba91c81f77fdb",
+      "path": "tests/unit/checkpoint/common.py",
+      "url": "https://raw.githubusercontent.com/deepspeedai/DeepSpeed/12ffb990341f021ea9847d86a98ba91c81f77fdb/tests/unit/checkpoint/common.py",
+      "sha256": "83897692276852933c753e4bcb0d3cdcbb00fd9fc8251a5b0f24b1e2f5182ece",
+      "bytes": 11745
+    }
+  ]
+}

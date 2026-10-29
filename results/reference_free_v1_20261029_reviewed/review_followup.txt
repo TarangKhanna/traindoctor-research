@@ -1,0 +1,9 @@
+The diff addresses all three concerns; I found no remaining false-acceptance blocker within the frozen-archive contract.
+
+- **Scratch requires captured step 4.** A run starting at zero without that capture receives `insufficient_evidence`. Present step-4 captures are compared with the trusted anchor. The `scratch4` regression covers removal.
+- **Missing evidence is inconclusive.** Empty continuation or anchor ledgers return `insufficient_evidence`, as do missing required top-level fields: `captures`, `completed`, `start_step`, `served`, or `acked`. Tests cover both empty-ledger cases and removal of `captures`; existing tests distinguish missing history from conflicting history.
+- **Primary results survive historical-label problems.** All twelve checker outputs are persisted to `matrix.json` before the baseline is read. Missing labels leave that primary matrix intact. Disagreement is recorded without changing primary decisions, and the explicit disagreement exit follows persistence.
+
+Test coverage is narrower than the implementation: the new historical-comparison test covers an unavailable baseline, but not disagreement or missing individual labels; required-field removal tests exercise only `captures`. Those are coverage gaps, not identified false-acceptance paths.
+
+This was static review only; I did not execute tests or jobs, so I cannot confirm a fresh passing test run. Arbitrary malformed schemas remain outside this assessment.

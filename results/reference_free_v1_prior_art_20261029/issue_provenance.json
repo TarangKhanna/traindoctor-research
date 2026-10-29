@@ -1,0 +1,20 @@
+[
+  {
+    "html_url": "https://github.com/allenai/Olmo-core/issues/929",
+    "title": "Fixed-length loader resume can silently replay data after a batch-size increase",
+    "created_at": "2026-10-20T23:31:34Z",
+    "updated_at": "2026-10-20T23:31:34Z",
+    "state": "open",
+    "body_sha256": "c93d3bd85feea73c08d6f02257a5475f3c5e0a05c23859c3960eae5e492a4f99",
+    "status": "contributor report; not reproduced locally"
+  },
+  {
+    "html_url": "https://github.com/allenai/Olmo-core/issues/908",
+    "title": "Step-0 checkpoint can advance fresh Adam optimizer state before first update",
+    "created_at": "2026-10-04T04:02:49Z",
+    "updated_at": "2026-10-04T04:02:49Z",
+    "state": "open",
+    "body_sha256": "a1512e5f844a7f00af51ccd47847011b5b44d697f63d81d6329fe5427e225140",
+    "status": "contributor report; not reproduced locally"
+  }
+]

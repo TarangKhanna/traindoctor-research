@@ -1,0 +1,13 @@
+- `reference_free.py:check` can accept scratch evidence without checkpoint 4: `start_step == 0` bypasses the resume-capture requirement, and only checkpoint 12 is mandatory. Removing scratch’s step-4/8 capture records leaves no observed overlap comparison. Require checkpoint 4 for scratch, or narrow the specification’s claim that scratch is checked there.
+
+- Missing-input handling is incomplete. Missing/empty continuation or anchor ledgers cause `IndexError` at `records[-1]` or `ledger(...)[0]`, before evidence classification. Missing `captures` fields similarly escape handling. These should produce `insufficient_evidence` if the checker promises a classified result for unavailable required evidence. This is a specific completeness gap, not a request for generic parser hardening.
+
+- I found no direct reference-trajectory or prior-verdict dependency in checker decisions. Importing `oracle.advance` reuses arithmetic without calling its historical evaluator. However, the audit driver asserts historical agreement before writing the matrix; disagreement would suppress the primary report. Save checker results before that comparison.
+
+Reporting limits:
+
+- Archive pinning and trusted ledgers supply provenance; capture hashes alone do not authenticate anchors. The optional `pinned_anchor` counterexample is illustrative—the production checker relies on the external archive/trust assumptions.
+- Input-history checks validate logical IDs/order and acknowledgement counts, not independently committed input bytes, actual per-rank loaded checkpoint bytes, or every update.
+- Absolute tolerance applies separately to anchored intervals; this is not an exact, uninterrupted checkpoint-4-to-12 replay. Relative diagnostics do not affect acceptance. I found no evident arithmetic error in the implemented comparisons for the frozen tensors.
+- Historical NumPy agreement shares the same kernel. Two continuations establish local repeatability only.
+- The diff contains no completed assay report or updated status/learning log; execution results cannot be established from it. No jobs or tests were run during this review.

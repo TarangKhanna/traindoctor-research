@@ -1,0 +1,23 @@
+{
+  "source": "executed",
+  "command": [
+    "/Users/tarangkhanna/Workspace/rl_envs/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_reference_free.py",
+    "tests/test_state_recovery_oracle.py",
+    "tests/test_menu_v3_analysis.py"
+  ],
+  "returncode": 0,
+  "stdout": "............................                                             [100%]\n28 passed in 1.85s\n",
+  "stderr": "",
+  "environment_source_commit": "438b573",
+  "research_base_commit": "0419515",
+  "source_sha256": {
+    "experiments/state_recovery_v1/reference_free.py": "4393084cb1eb17b78f2c12322eaf7421a5eca2fb72885e25a9223d5ff34dd34e",
+    "experiments/state_recovery_v1/reference_free_audit.py": "2fa9f0258c97b617449e4635e11b6564db1df43b87b1189a1ceb253aee80acb1",
+    "experiments/state_recovery_v1/reference_free_repeat.py": "9d77cb5aec8f0013cd24b93e759bff4bf291189a1401d669d09f90cb71d1f45c",
+    "tests/test_reference_free.py": "9efb0d335d0c02c9dfcb57d7dcb259bd58651ae23058716572c2b8edd7443c87"
+  }
+}

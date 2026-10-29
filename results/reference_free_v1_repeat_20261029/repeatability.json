@@ -1,0 +1,160 @@
+{
+  "config": {
+    "batch_size": 4,
+    "ckpt_every": 4,
+    "data": {
+      "num_samples": 96,
+      "root": "data",
+      "shard_dirs": {
+        "0": "part-0",
+        "1": "part-1"
+      },
+      "shard_steps": 5
+    },
+    "hidden": 12,
+    "lr": 0.1,
+    "pg_timeout_s": 3,
+    "seed": 777,
+    "step_time_s": 0.05,
+    "steps": 12,
+    "sync": {
+      "mode": "all_reduce",
+      "per_rank": {
+        "0": "all_reduce"
+      },
+      "warmup_steps": 5
+    },
+    "watchdog_s": 8,
+    "world_size": 2
+  },
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "rows": [
+    {
+      "backend": "CPU/Gloo; macOS sandbox-exec",
+      "bitwise_equal_to_saved_continuation": true,
+      "continuation_steps": [
+        8,
+        12
+      ],
+      "difference_from_saved_continuation": {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 0.0,
+        "max_relative_floor_1e_12": 0.0,
+        "normalized_inf": 0.0,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 0.0
+      },
+      "exec_mode": "local_os_sandbox",
+      "job": {
+        "error_class": null,
+        "fault_not_injected": false,
+        "last_step": 11,
+        "ranks": [
+          {
+            "digest": "d6874ef4d91be1a050ced57160fac50067db31dffb72897c97c1310122802a1c",
+            "exc_class": null,
+            "exc_msg": null,
+            "exitcode": 0,
+            "last_step": 11,
+            "rank": 0,
+            "status": "ok"
+          },
+          {
+            "digest": "d6874ef4d91be1a050ced57160fac50067db31dffb72897c97c1310122802a1c",
+            "exc_class": null,
+            "exc_msg": null,
+            "exitcode": 0,
+            "last_step": 11,
+            "rank": 1,
+            "status": "ok"
+          }
+        ],
+        "run_id": "run1",
+        "status": "completed"
+      },
+      "listeners": [
+        "127.0.0.1:60273"
+      ],
+      "numpy_transition_comparison": {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 5.2193850685888776e-08,
+        "max_relative_floor_1e_12": 6.2011206187961015e-06,
+        "normalized_inf": 1.2308741361282218e-07,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 5.2193850685888776e-08
+      },
+      "repeat": 0,
+      "source": "executed",
+      "wall_s": 4.055986875027884
+    },
+    {
+      "backend": "CPU/Gloo; macOS sandbox-exec",
+      "bitwise_equal_to_saved_continuation": true,
+      "continuation_steps": [
+        8,
+        12
+      ],
+      "difference_from_saved_continuation": {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 0.0,
+        "max_relative_floor_1e_12": 0.0,
+        "normalized_inf": 0.0,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 0.0
+      },
+      "exec_mode": "local_os_sandbox",
+      "job": {
+        "error_class": null,
+        "fault_not_injected": false,
+        "last_step": 11,
+        "ranks": [
+          {
+            "digest": "d6874ef4d91be1a050ced57160fac50067db31dffb72897c97c1310122802a1c",
+            "exc_class": null,
+            "exc_msg": null,
+            "exitcode": 0,
+            "last_step": 11,
+            "rank": 0,
+            "status": "ok"
+          },
+          {
+            "digest": "d6874ef4d91be1a050ced57160fac50067db31dffb72897c97c1310122802a1c",
+            "exc_class": null,
+            "exc_msg": null,
+            "exitcode": 0,
+            "last_step": 11,
+            "rank": 1,
+            "status": "ok"
+          }
+        ],
+        "run_id": "run1",
+        "status": "completed"
+      },
+      "listeners": [
+        "127.0.0.1:60288"
+      ],
+      "numpy_transition_comparison": {
+        "discrete_state_max_abs": 0.0,
+        "failed_components": [],
+        "max_abs": 5.2193850685888776e-08,
+        "max_relative_floor_1e_12": 6.2011206187961015e-06,
+        "normalized_inf": 1.2308741361282218e-07,
+        "ok": true,
+        "reason": null,
+        "tensor_max_abs": 5.2193850685888776e-08
+      },
+      "repeat": 1,
+      "source": "executed",
+      "wall_s": 3.6939087079954334
+    }
+  ],
+  "scope": "two additional 8-to-12 continuations compared with one existing continuation; no initialization or GPU claim",
+  "source": "executed",
+  "torch": "2.14.1"
+}

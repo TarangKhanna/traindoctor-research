@@ -5,3 +5,5 @@
 Cached Qwen 4B and Gemma E2B were profiled locally with no swap growth. A parity-checked Gemma prefix-cache probe improved the five-request total by 1.47x including setup. No new training was run. See [the report](../experiments/state_recovery_v1/REPORT.md) for exact evidence, model-control limitations and reproduction commands.
 
 Verdict: engineering demonstration GO; conditional-selection RL benchmark NO-GO. Stop after this worked example. Independent reproduction remains outstanding. No cloud compute, dependency changes, paid actions, pushes, merges or publication occurred.
+
+Frozen source commits: environment d568f69, research 6e158ce. Fresh local clones pass 36 focused tests, archive checksum and README checks. A fresh sandboxed execution and independent recount again pass all twelve continuations. The prepared local dependency environment was reused; external-machine reproduction remains outstanding.

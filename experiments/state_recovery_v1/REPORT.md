@@ -93,4 +93,17 @@ To repeat an optional model profile, supply a local snapshot directory to `scrip
 
 Verified locally: the worked incident, all declared interventions, the NumPy oracle, capture/source checks, focused tests and the two model profiles. Not verified: Linux execution, a clean external machine, independent practitioner reproduction, native-function-call model quality, stochastic reward groups, new training performance or new-mechanism generalization. A preliminary execution with stale full-restore manifest metadata and the thinking-on Gemma run are retained separately and are not the final evidence.
 
+The source commits are environment `d568f69` and research `6e158ce`. Fresh local clones passed 18 environment tests (`test_state_recovery_v1.py`, `test_menu_v3.py`) and 18 research tests (`test_state_recovery_oracle.py`, `test_menu_v3_analysis.py`). The archive checksum and both existing README checkers pass. A fresh end-to-end execution from those frozen clones again passed all twelve continuations and the raw-data recount. These checks reused the prepared local Python environment; they are not a fresh dependency installation or an external reproduction.
+
+Exact demo command for the provided worktree layout, from the research worktree:
+
+```bash
+caffeinate -s env TD_KEY=state-recovery-demo-key \
+  PYTHONPATH=../state-recovery-v1-env:. UV_CACHE_DIR=/private/tmp/td-audit-uv \
+  uv run --no-project --offline ../../.venv/bin/python \
+  -m experiments.state_recovery_v1.demo --out results/a-new-local-run
+```
+
+Environment changes are `traindoctor_env/state_recovery_v1.py`, `tests/test_state_recovery_v1.py`, `README.md`, `docs/STATE_RECOVERY_V1.md` and `docs/STATUS.md`. Research changes are the new `experiments/state_recovery_v1/` demonstration/oracle/recount/packaging/profile-summary/reviewed-proposal modules and this report, `scripts/profile_mac_models.py`, `tests/test_state_recovery_oracle.py`, `README.md`, `.gitignore`, `docs/STATUS.md`, and the explicitly named generated evidence packets under `results/`. The two source commits provide the complete file manifest. No historical evidence was edited; local traceback paths are excluded from the archives.
+
 GO for the bounded engineering artifact. NO-GO for claiming a challenging cost-conditioned RL task or starting GRPO on this pair. The highest-value next action is independent reproduction and critique of this exact example, preserving the common robust recovery rather than manufacturing a penalty to defeat it. No additional incident pairs are warranted by these results.

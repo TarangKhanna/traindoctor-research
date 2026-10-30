@@ -59,3 +59,7 @@ results/local_agent_v1_*/scratch_control/
 results/local_agent_v1_*/jobdir/
 results/local_agent_v1_*/jobdir.trusted/
 results/local_agent_v1_*/hidden_*/
+# Fresh masked-mean execution trees are retained in script-produced evidence archives.
+results/masked_mean_v1_*/**/jobdir/
+results/masked_mean_v1_*/**/jobdir.trusted/
+results/masked_mean_v1_*/fixture/

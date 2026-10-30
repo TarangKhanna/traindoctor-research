@@ -65,6 +65,9 @@ def timing_totals(state):
 def finish_episode(episode, state, persist):
     terminal_start = time.perf_counter()
     try:
+        if state.get("task") == "masked_mean_v1" and not episode.done and state.get("status") in (
+                "turn_budget", "context_or_time_budget"):
+            episode.done, episode.result = True, {"status": "budget_exhausted"}
         state["result"] = episode.finish_actual()
         if state["result"].get("status") == "infrastructure_error":
             state["status"] = "infrastructure_error"
@@ -162,6 +165,7 @@ def main():
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--turns", type=int, default=12)
+    ap.add_argument("--task", choices=("checkpoint", "masked_mean_v1"), default="checkpoint")
     args = ap.parse_args()
     try:
         execute(args)
@@ -186,6 +190,13 @@ def main():
 
 
 def execute(args):
+    task_name = getattr(args, "task", "checkpoint")
+    task_episode, task_read, editable = RepairEpisode, read_source, "job/ckpt.py"
+    system, user = SYSTEM, USER
+    if task_name == "masked_mean_v1":
+        from experiments.masked_mean_v1 import task
+        task_episode, task_read, editable = task.RepairEpisode, task.read_source, task.EDITABLE
+        system, user = task.SYSTEM, task.USER
     turn_limit = getattr(args, "turns", 12)
     if not 1 <= turn_limit <= 16:
         raise InputError("response-turn limit must be between one and sixteen")
@@ -201,6 +212,8 @@ def execute(args):
         if state.get("result") is not None:
             print("Already terminated; use a new output directory for another episode")
             return
+        if state.get("task", "checkpoint") != task_name:
+            raise InputError("resume must preserve task")
         if state["model_path"] != str(args.model) or state["reduced"] != args.reduced:
             raise InputError("resume must preserve model and evidence condition")
         if state.get("generation_config", {"temperature": 0.0, "seed": 0, "max_tokens": 512}) != generation:
@@ -210,15 +223,18 @@ def execute(args):
     else:
         if args.out.exists():
             raise InputError("output exists without a trajectory")
-        base_sha = source_sha(read_source(args.fixture / "prefix"))
+        base_sha = source_sha(task_read(args.fixture / "prefix"))
         state = {"source": "executed", "model_path": str(args.model), "revision": args.model.name,
                  "reduced": args.reduced, "approved": [base_sha], "rows": [], "loads": [],
-                 "messages": [{"role": "system", "content": SYSTEM.replace('Budget: 12', f'Budget: {turn_limit}')}, {"role": "user", "content": USER}],
+                 "messages": [{"role": "system", "content": system.replace('Budget: 12', f'Budget: {turn_limit}')}, {"role": "user", "content": user}],
                  "pending": None, "status": "running", "created_epoch": time.time()}
         state["generation_config"] = generation
         state["turn_limit"] = turn_limit
         state["controller_sha256"] = source_sha(Path(__file__).read_text())
         state["task_sha256"] = source_sha(Path(__file__).with_name("task.py").read_text())
+        state["task"] = task_name
+        if task_name == "masked_mean_v1":
+            state["task_sha256"] = source_sha(Path(task.__file__).read_text())
     if state["status"] == "infrastructure_error":
         raise InputError("cannot silently retry an infrastructure-terminated episode")
     if args.approve_hash:
@@ -226,7 +242,7 @@ def execute(args):
         if not pending or source_sha(pending["source"]) != args.approve_hash:
             raise InputError("approval does not match exact pending source")
         state["approved"].append(args.approve_hash)
-    episode = RepairEpisode(args.fixture, args.out, state["approved"], args.reduced, max_tool_calls=turn_limit)
+    episode = task_episode(args.fixture, args.out, state["approved"], args.reduced, max_tool_calls=turn_limit)
     if "episode" in state:
         for key, value in state["episode"].items():
             if key != "observed_ids":
@@ -254,7 +270,7 @@ def execute(args):
             return
         pending = state["pending"]
         started_apply = time.perf_counter()
-        response, _ = episode.step({"tool": "write_file", "args": {"path": "job/ckpt.py", "content": pending["source"]}})
+        response, _ = episode.step({"tool": "write_file", "args": {"path": editable, "content": pending["source"]}})
         state["messages"].append({"role": "tool", "tool_call_id": pending["call_id"], "name": pending.get("tool", "apply_patch"), "content": response})
         state["rows"][-1].update(observation=response, security_review="supervising Codex exact-source review; no semantic correction")
         state["rows"][-1]["approval_apply_wall_s"] = time.perf_counter() - started_apply
@@ -284,6 +300,7 @@ def execute(args):
             raise RuntimeError("local resource guard")
 
     guard()
+    episode.pre_execution_guard = guard
     import mlx.core as mx
     from mlx_lm import load, stream_generate
     from mlx_lm.sample_utils import make_sampler
@@ -304,10 +321,15 @@ def execute(args):
     persist()
     for turn in range(len(state["rows"]), turn_limit):
         guard()
-        prompt = tok.apply_chat_template(state["messages"], tools=tools(), tokenize=False,
+        tool_defs = tools()
+        if task_name == "masked_mean_v1":
+            for definition in tool_defs:
+                fn = definition["function"]
+                fn["description"] = task.DESCRIPTIONS.get(fn["name"], fn["description"])
+        prompt = tok.apply_chat_template(state["messages"], tools=tool_defs, tokenize=False,
                                          add_generation_prompt=True, enable_thinking=False)
         ids = tok.encode(prompt, add_special_tokens=False)
-        if len(ids) > 8192 or sum(r["wall_s"] for r in state["rows"]) > 900:
+        if len(ids) + generation["max_tokens"] > 8192 or sum(r["wall_s"] for r in state["rows"]) > 900:
             state["status"] = "context_or_time_budget"
             break
         mx.random.seed(generation["seed"] + turn)
@@ -362,7 +384,7 @@ def execute(args):
             started_tool = time.perf_counter()
             if name in ("apply_patch", "edit_lines"):
                 try:
-                    source = (edit_lines if name == "edit_lines" else proposed)(read_source(episode.jd), tool_args)
+                    source = (edit_lines if name == "edit_lines" else proposed)(task_read(episode.jd), tool_args)
                 except ValueError as exc:
                     row.update(patch_applicable=False, observation="patch error: " + str(exc))
                     row["tool_wall_s"] = time.perf_counter() - started_tool
@@ -376,10 +398,12 @@ def execute(args):
                 pending = {"source": source, "sha256": source_sha(source), "call_id": call_id, "tool": name}
                 state["pending"], state["status"] = pending, "pending_security_review"
                 (args.out / "pending.py").write_text(source)
-                (args.out / "patch.diff").write_text("".join(difflib.unified_diff(read_source(episode.jd).splitlines(True), source.splitlines(True), fromfile="job/ckpt.py", tofile="job/ckpt.py")))
+                (args.out / "patch.diff").write_text("".join(difflib.unified_diff(task_read(episode.jd).splitlines(True), source.splitlines(True), fromfile=editable, tofile=editable)))
                 persist()
                 print("PENDING exact-source security review:", pending["sha256"], flush=True)
                 return
+            if name == "relaunch":
+                guard()
             if name == "checkpoint_summary":
                 episode.tool_calls += 1
                 observation, done = episode.checkpoint_summary(**tool_args), False

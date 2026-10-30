@@ -1,5 +1,12 @@
 # TrainDoctor research: current local work
 
+## Owner-authorized follow-up — 2026-10-30
+
+On `demo/masked-mean-v1` only, implement the one-task plan in
+`docs/MASKED_MEAN_V1.md`, execute its gates and at most four local model episodes.
+This supersedes the older no-new-task/no-inference hold for this bounded work.
+No training, publishing, dependency changes or new infrastructure follows.
+
 ## Scientific goal
 
 Make the recovery mechanism and negative learning results independently assessable.

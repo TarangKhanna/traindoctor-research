@@ -122,6 +122,9 @@ def test_controller_recovers_protocol_then_pauses_approves_resumes_and_observes(
     run.execute(args)
     pending = json.loads((out / "trajectory.json").read_text())
     assert pending["status"] == "pending_security_review"
+    identity = run.resume_identity(fixture, task.__file__)
+    assert pending["resume_identity"] == identity
+    assert pending["task_sha256"] == pending["loads"][0]["task_sha256"] == identity["task_sha256"]
     assert pending.get("result") is None
     assert task.read_source(out / "jobdir") == "x = 1\n"
     assert actions == ["read_file"]

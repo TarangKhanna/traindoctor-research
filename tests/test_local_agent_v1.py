@@ -64,6 +64,7 @@ def test_resource_stop_preserves_trigger_and_null_reward_before_model_load(
     from experiments.local_agent_v1 import run
     out, model = tmp_path / "episode", tmp_path / "model"
     model.mkdir()
+    fixture = tmp_path / "fixture"; fixture.mkdir()
     monkeypatch.setenv("TD_KEY", "state-recovery-demo-key")
     monkeypatch.setattr(run, "read_source", lambda _: "unchanged")
     def episode(*a, **k):
@@ -75,7 +76,7 @@ def test_resource_stop_preserves_trigger_and_null_reward_before_model_load(
     monkeypatch.setattr(run, "psutil", SimpleNamespace(
         virtual_memory=lambda: SimpleNamespace(available=available),
         swap_memory=lambda: SimpleNamespace(used=next(swap_samples))))
-    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", "unused", "--model", str(model),
+    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", str(fixture), "--model", str(model),
                                     "--out", str(out)])
     with pytest.raises(RuntimeError, match="local resource guard"):
         run.main()
@@ -92,14 +93,18 @@ def test_bad_security_approval_preserves_pending_trajectory(monkeypatch, tmp_pat
     from experiments.local_agent_v1 import run
     out, model = tmp_path / "episode", tmp_path / "model"
     out.mkdir(); model.mkdir()
+    fixture = tmp_path / "fixture"; fixture.mkdir()
+    identity = run.resume_identity(fixture, run.checkpoint_task.__file__)
     path = out / "trajectory.json"
     monkeypatch.setattr(run, "psutil", None)
     original = json.dumps({"model_path": str(model), "reduced": False, "status": "pending_security_review",
-                           "pending": {"source": "candidate"}})
+                           "pending": {"source": "candidate"}, "resume_identity": identity,
+                           "controller_sha256": identity["controller_sha256"],
+                           "task_sha256": identity["task_sha256"]})
     path.write_text(original)
     monkeypatch.setenv("TD_KEY", "state-recovery-demo-key")
     monkeypatch.setattr(run, "read_source", lambda p: "original")
-    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", "unused", "--model", str(model),
+    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", str(fixture), "--model", str(model),
                                     "--out", str(out), "--approve-hash", "wrong"])
     with pytest.raises(SystemExit) as exc:
         run.main()
@@ -209,7 +214,8 @@ def test_v2_identical_replacement_reports_no_change_before_match_error():
         proposed('same same', {'old':'same','new':'same'})
 
 
-def test_v2_resume_cannot_change_decoding_configuration(tmp_path, monkeypatch):
+@pytest.mark.parametrize("temperature,max_tokens", [(0, 512), (0.2, 1024)])
+def test_v2_resume_cannot_change_decoding_configuration(tmp_path, monkeypatch, temperature, max_tokens):
     from types import SimpleNamespace
     from experiments.local_agent_v1 import run
     model,out=tmp_path/'model',tmp_path/'out';model.mkdir();out.mkdir()
@@ -219,7 +225,7 @@ def test_v2_resume_cannot_change_decoding_configuration(tmp_path, monkeypatch):
     monkeypatch.setenv('TD_KEY','state-recovery-demo-key')
     with pytest.raises(run.InputError,match='generation configuration'):
         run.execute(SimpleNamespace(model=model,out=out,fixture=tmp_path/'unused',reduced=False,
-                                    approve_hash=None,temperature=0,seed=0))
+                                    approve_hash=None,temperature=temperature,seed=0,max_tokens=max_tokens))
     assert json.loads(p.read_text())==original
 
 
@@ -246,8 +252,12 @@ def test_v2_exhausted_response_budget_finalizes_without_model_load(monkeypatch,t
     from types import SimpleNamespace
     from experiments.local_agent_v1 import run
     model,out=tmp_path/'model',tmp_path/'out';model.mkdir();out.mkdir()
+    fixture=tmp_path/'fixture';fixture.mkdir()
+    identity=run.resume_identity(fixture,run.checkpoint_task.__file__)
     state={'model_path':str(model),'reduced':False,'status':'running','approved':[],
-           'rows':[{'wall_s':0} for _ in range(12)],'loads':[],'pending':None}
+           'rows':[{'wall_s':0} for _ in range(12)],'loads':[],'pending':None,
+           'resume_identity':identity,'controller_sha256':identity['controller_sha256'],
+           'task_sha256':identity['task_sha256']}
     (out/'trajectory.json').write_text(json.dumps(state))
     e=SimpleNamespace(done=False,result=None,state=lambda:{},tool_calls=12,relaunches=0,
         last_execution=None,phase=0,records=[],phase_records=[],
@@ -255,7 +265,7 @@ def test_v2_exhausted_response_budget_finalizes_without_model_load(monkeypatch,t
     monkeypatch.setenv('TD_KEY','state-recovery-demo-key')
     monkeypatch.setattr(run,'RepairEpisode',lambda *a,**k:e)
     monkeypatch.setattr(run,'psutil',None)
-    run.execute(SimpleNamespace(model=model,out=out,fixture=tmp_path/'unused',reduced=False,approve_hash=None))
+    run.execute(SimpleNamespace(model=model,out=out,fixture=fixture,reduced=False,approve_hash=None))
     actual=json.loads((out/'trajectory.json').read_text())
     assert actual['status']=='turn_budget' and actual['result']['terminal_reward']==0 and actual['loads']==[]
 
@@ -266,11 +276,12 @@ def test_inference_refuses_to_run_without_optional_memory_guard(monkeypatch, tmp
     from experiments.local_agent_v1 import run
     model, out = tmp_path / "model", tmp_path / "episode"
     model.mkdir()
+    fixture = tmp_path / "fixture"; fixture.mkdir()
     monkeypatch.setenv("TD_KEY", "state-recovery-demo-key")
     monkeypatch.setattr(run, "psutil", None)
     monkeypatch.setattr(run, "read_source", lambda _: "unchanged")
     monkeypatch.setattr(run, "RepairEpisode", lambda *a, **k: SimpleNamespace(done=False))
-    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", "unused", "--model", str(model), "--out", str(out)])
+    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", str(fixture), "--model", str(model), "--out", str(out)])
     with pytest.raises(RuntimeError, match="memory guard unavailable"):
         run.main()
     assert json.loads((out / "trajectory.json").read_text())["result"]["terminal_reward"] is None

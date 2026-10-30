@@ -126,7 +126,7 @@ no successful model repair dataset, no nontrivial task/evaluation split, no samp
 semantic reward groups and no resource-feasible model-requested repair/relaunch/verification loop demonstrated. No training
 configuration is approved by these findings; do not start an RL run.
 
-## Harbor interoperability: implemented, runtime unverified
+## Historical Harbor pre-runtime gate (superseded)
 
 **Historical status, superseded later on 2026-10-30:** the section below records
 the pre-runtime gate. Harbor controls subsequently executed successfully; see

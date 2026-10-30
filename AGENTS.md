@@ -1,5 +1,20 @@
 # TrainDoctor research: current local work
 
+## Owner-authorized protocol-corrected trials — 2026-10-30
+
+On `demo/protocol-corrected-20261030`, run one Qwen and one Gemma episode on
+the existing masked-loss task with the corrected controller and historical
+budgets. Only if Qwen hits the output cap while attempting an edit, permit one
+separately labelled higher-output-budget diagnostic. Preserve task, model
+revisions, hidden regressions, semantic grading and execution isolation. No
+training, new tasks/frameworks, automatic retries, publication or pushes.
+This current authorization supersedes older inference holds for these trials only.
+
+Paused episodes must retain their recorded fixture and controller/task code
+identity before reconstruction or approval. Do not migrate legacy unbound paused
+trajectories in place; preserve completed receipts. The bounded trials are closed:
+further inference or training needs a new owner-authorized experiment.
+
 ## Owner-authorized hiring release — 2026-10-30
 
 Prepare the completed masked-loss work and sanitized receipts for public review,

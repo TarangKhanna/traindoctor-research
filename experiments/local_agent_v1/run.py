@@ -3,10 +3,12 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import hashlib
 import importlib.metadata
 import json
 import os
 import platform
+import stat
 import time
 from pathlib import Path
 
@@ -18,7 +20,9 @@ except ModuleNotFoundError as exc:
     psutil = None  # optional local-inference telemetry; not needed for offline tools
 
 from traindoctor_env.tools import READ_TOOLS, END_TOOLS, _validate
+from jobs import safefs
 from experiments.state_recovery_v1.reference_free_audit import write
+from . import task as checkpoint_task
 from .task import RepairEpisode, read_source, source_sha
 
 SPECS = {n: READ_TOOLS[n] for n in ("job_status", "job_config", "read_file", "list_files", "grep_logs", "sample_ids", "collective_trace")}
@@ -53,6 +57,41 @@ USER = ("A training job was preempted. Its restart completed, but the resumed op
 
 class InputError(ValueError):
     pass
+
+
+def resume_identity(fixture, task_path):
+    """Bind a paused episode to its fixture (including trusted siblings) and code.
+
+    This detects accidental input/code substitution, not a malicious owner who
+    can rewrite both the trajectory and its inputs. Reuse the no-follow reader.
+    """
+    fixture = Path(fixture)
+    entries = []
+
+    def visit(relative=""):
+        for name in safefs.listdir(fixture, relative):
+            rel = f"{relative}/{name}" if relative else name
+            parts = [p.lower() for p in (fixture / rel).parts]
+            if (any(p == ".env" or p.startswith(".env.") or p in ("secrets", ".ssh") for p in parts)
+                    or parts[-2:] == ["config", "credentials.json"]):
+                raise InputError("fixture contains excluded private material")
+            info = (fixture / rel).lstat()
+            if stat.S_ISDIR(info.st_mode):
+                entries.append([rel, "directory"])
+                visit(rel)
+            elif stat.S_ISREG(info.st_mode):
+                entries.append([rel, hashlib.sha256(safefs.read_bytes(fixture, rel)).hexdigest()])
+            else:
+                raise InputError("fixture contains a link or special file")
+
+    try:
+        visit()
+    except (OSError, ValueError) as exc:
+        raise InputError("fixture must be a readable plain tree without links or private material") from exc
+    return {"version": 1, "fixture_path": str(fixture.resolve()),
+            "fixture_sha256": source_sha(json.dumps(entries, separators=(",", ":"))),
+            "controller_sha256": source_sha(Path(__file__).read_text()),
+            "task_sha256": source_sha(Path(task_path).read_text())}
 
 
 def timing_totals(state):
@@ -171,6 +210,7 @@ def main():
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--turns", type=int, default=12)
+    ap.add_argument("--max-tokens", type=int, choices=(512, 1024), default=512)
     ap.add_argument("--task", choices=("checkpoint", "masked_mean_v1"), default="checkpoint")
     args = ap.parse_args()
     try:
@@ -198,16 +238,21 @@ def main():
 def execute(args):
     task_name = getattr(args, "task", "checkpoint")
     task_episode, task_read, editable = RepairEpisode, read_source, "job/ckpt.py"
+    task_path = Path(checkpoint_task.__file__)
     system, user = SYSTEM, USER
     if task_name == "masked_mean_v1":
         from experiments.masked_mean_v1 import task
         task_episode, task_read, editable = task.RepairEpisode, task.read_source, task.EDITABLE
+        task_path = Path(task.__file__)
         system, user = task.SYSTEM, task.USER
     turn_limit = getattr(args, "turns", 12)
     if not 1 <= turn_limit <= 16:
         raise InputError("response-turn limit must be between one and sixteen")
+    token_limit = getattr(args, "max_tokens", 512)
+    if token_limit not in (512, 1024):
+        raise InputError("output-token limit must be 512 or 1024")
     generation = {"temperature": getattr(args, "temperature", 0.0),
-                  "seed": getattr(args, "seed", 0), "max_tokens": 512}
+                  "seed": getattr(args, "seed", 0), "max_tokens": token_limit}
     if not 0 <= generation["temperature"] <= 2:
         raise InputError("temperature must be between zero and two")
     if os.environ.get("TD_KEY") != "state-recovery-demo-key" or not args.model.is_dir():
@@ -226,9 +271,16 @@ def execute(args):
             raise InputError("resume must preserve generation configuration")
         if state.get("turn_limit", 12) != turn_limit:
             raise InputError("resume must preserve response-turn budget")
+        if "resume_identity" not in state:
+            raise InputError("paused trajectory lacks resume identity; start a new episode")
+        identity = resume_identity(args.fixture, task_path)
+        if (state["resume_identity"] != identity
+                or any(state.get(k) != identity[k] for k in ("controller_sha256", "task_sha256"))):
+            raise InputError("resume must preserve fixture and controller/task code identity")
     else:
         if args.out.exists():
             raise InputError("output exists without a trajectory")
+        identity = resume_identity(args.fixture, task_path)
         base_sha = source_sha(task_read(args.fixture / "prefix"))
         state = {"source": "executed", "model_path": str(args.model), "revision": args.model.name,
                  "reduced": args.reduced, "approved": [base_sha], "rows": [], "loads": [],
@@ -236,11 +288,10 @@ def execute(args):
                  "pending": None, "status": "running", "created_epoch": time.time()}
         state["generation_config"] = generation
         state["turn_limit"] = turn_limit
-        state["controller_sha256"] = source_sha(Path(__file__).read_text())
-        state["task_sha256"] = source_sha(Path(__file__).with_name("task.py").read_text())
+        state["resume_identity"] = identity
+        state["controller_sha256"] = identity["controller_sha256"]
+        state["task_sha256"] = identity["task_sha256"]
         state["task"] = task_name
-        if task_name == "masked_mean_v1":
-            state["task_sha256"] = source_sha(Path(task.__file__).read_text())
     if state["status"] == "infrastructure_error":
         raise InputError("cannot silently retry an infrastructure-terminated episode")
     if args.approve_hash:
@@ -317,8 +368,8 @@ def execute(args):
     mx.eval(model.parameters())
     mx.synchronize()
     assert tok.has_tool_calling, "native tool parser required"
-    state["loads"].append({"controller_sha256": source_sha(Path(__file__).read_text()),
-                           "task_sha256": source_sha(Path(__file__).with_name("task.py").read_text()),
+    state["loads"].append({"controller_sha256": identity["controller_sha256"],
+                           "task_sha256": identity["task_sha256"],
                            "wall_s": time.perf_counter() - started, "platform": platform.platform(),
                            "versions": {n: importlib.metadata.version(n) for n in ("mlx", "mlx-lm", "transformers")},
                            "backend": "MLX Metal", "offline": True, "trust_remote_code": False,

@@ -1,10 +1,10 @@
 {
   "source": "executed",
   "date": "2026-10-30",
-  "environment_worktree": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env",
+  "environment_worktree": "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env",
   "environment_branch": "demo/harbor-v1",
   "environment_start": "cc69e14564f8be17bf463083873a3c117b89258b",
-  "research_worktree": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research",
+  "research_worktree": "<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research",
   "research_branch": "demo/agent-v2",
   "research_start": "308ab3d6bbe1e5ed836f1d45fec1e2eb0d9a3e4c",
   "public_heads_observed": {

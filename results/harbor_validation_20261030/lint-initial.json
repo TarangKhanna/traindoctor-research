@@ -1,7 +1,7 @@
 [
   {
     "rule": "compose-additional-capabilities",
-    "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01/tests/docker-compose.yaml",
+    "path": "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01/tests/docker-compose.yaml",
     "message": "services.main.cap_add: Explicit capabilities requested; review whether they're necessary.",
     "line": null,
     "column": null

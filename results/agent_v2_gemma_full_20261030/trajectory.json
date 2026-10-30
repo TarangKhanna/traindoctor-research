@@ -2750,7 +2750,7 @@
       "tool_call_id": "call11"
     }
   ],
-  "model_path": "/Users/tarangkhanna/.cache/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809",
+  "model_path": "<LOCAL_HOME>/.cache/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809",
   "pending": null,
   "reduced": false,
   "relaunches": 0,

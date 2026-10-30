@@ -1,9 +1,9 @@
 {
     "task": {
-        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+        "path": "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
     },
     "trial_name": "training-repair-01__NpW2ukT",
-    "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-final/jobs/oracle-final",
+    "trials_dir": "<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-final/jobs/oracle-final",
     "environment": {
         "type": "docker",
         "delete": false,

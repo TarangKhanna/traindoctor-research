@@ -2,7 +2,7 @@
   "source": "executed",
   "scope": "post-run controller/contract tests; not another model episode",
   "command": [
-    "/Users/tarangkhanna/Workspace/rl_envs/.venv/bin/python",
+    "<LOCAL_HOME>/Workspace/rl_envs/.venv/bin/python",
     "-m",
     "pytest",
     "-q",

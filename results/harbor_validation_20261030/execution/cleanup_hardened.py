@@ -1,6 +1,6 @@
 import json,subprocess
 from pathlib import Path
-root=Path('/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030')
+root=Path('<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030')
 ids=set();volumes=set()
 for control in ('oracle-hardened-proof','nop-hardened','invalid-hardened','tamper-hardened'):
  for x in json.loads((root/control/'images.json').read_text())['containers']:

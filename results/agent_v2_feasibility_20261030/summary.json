@@ -294,8 +294,8 @@
   "group_note": "No group IDs means no sampled G=4/G=8 estimate; no grouping across models or dependent retries.",
   "gate2": "NO-GO: these existing cases admit fixed source/full-restore baselines.",
   "inputs_sha256": {
-    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/state_recovery_v1_loopback_verified/recount.json": "68cc7528fb6806adc9f5a23afc9cedc289e30462f6cfe24df55ba7225ca970fb",
-    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/local_agent_v1_fixture_20261029/controls.json": "08c840c50251b0e66a4a4a958646e5300dd3042091235848a44fa9b169cc6e0a",
+    "<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/state_recovery_v1_loopback_verified/recount.json": "68cc7528fb6806adc9f5a23afc9cedc289e30462f6cfe24df55ba7225ca970fb",
+    "<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/local_agent_v1_fixture_20261029/controls.json": "08c840c50251b0e66a4a4a958646e5300dd3042091235848a44fa9b169cc6e0a",
     "results/agent_v2_gemma_full_20261030/trajectory.json": "276dc6d001c0f10c1f88d6ec9c75b64ae409db13aab926dca53febfe2ab0989f",
     "results/agent_v2_qwen_full_20261030/trajectory.json": "10d0203f8756abef8dc231b527f3def53803e33655cda716d9a0a1c01613a58b",
     "results/agent_v2_qwen_retest_20261030/trajectory.json": "604c396e2df0a744c6c9eed7af1e7dc0324057759d7afbeb1993acd0450915e5"

@@ -9,7 +9,7 @@ Traceback (most recent call last):
     await self._engine_cp(f"{container}:{container_path}", str(target_path))
   File "/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/environments/docker/docker_unix.py", line 244, in _engine_cp
     raise RuntimeError(
-RuntimeError: Engine cp failed ('6678e7b54b51:/logs/verifier/.' -> '/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/verifier'): Error response from daemon: Could not find the file /logs/verifier/. in container 6678e7b54b51
+RuntimeError: Engine cp failed ('6678e7b54b51:/logs/verifier/.' -> '<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-logs-fix/jobs/oracle-logs-fix/training-repair-01__DTYfE3u/verifier'): Error response from daemon: Could not find the file /logs/verifier/. in container 6678e7b54b51
 
 
 The above exception was the direct cause of the following exception:
@@ -28,7 +28,7 @@ Traceback (most recent call last):
   File "/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py", line 974, in _verify_with_timeout
     return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+  File "<LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
     return await fut
            ^^^^^^^^^
   File "/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/verifier/verifier.py", line 295, in verify

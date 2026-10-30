@@ -38,7 +38,7 @@ Run `harbor datasets list` to see all available datasets.
 │   113                                                                        │
 │   114 def parse_kwargs(kwargs_list: list[str] | None) -> dict[str, Any]:     │
 │                                                                              │
-│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ <LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
 │ /lib/python3.12/asyncio/runners.py:195 in run                                │
 │                                                                              │
 │   192 │   │   │   "asyncio.run() cannot be called from a running event       │
@@ -50,7 +50,7 @@ Run `harbor datasets list` to see all available datasets.
 │   197                                                                        │
 │   198 def _cancel_all_tasks(loop):                                           │
 │                                                                              │
-│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ <LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
 │ /lib/python3.12/asyncio/runners.py:118 in run                                │
 │                                                                              │
 │   115 │   │                                                                  │
@@ -61,7 +61,7 @@ Run `harbor datasets list` to see all available datasets.
 │   120 │   │   │   if self._interrupt_count > 0:                              │
 │   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
 │                                                                              │
-│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ <LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
 │ /lib/python3.12/asyncio/base_events.py:691 in run_until_complete             │
 │                                                                              │
 │    688 │   │   if not future.done():                                         │
@@ -121,7 +121,7 @@ Run `harbor datasets list` to see all available datasets.
 │   1313 │   │                                                                 │
 │   1314 │   │   return [t.result() for t in tasks]                            │
 │                                                                              │
-│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ <LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
 │ /lib/python3.12/asyncio/taskgroups.py:71 in __aexit__                        │
 │                                                                              │
 │    68 │   async def __aexit__(self, et, exc, tb):                            │
@@ -132,7 +132,7 @@ Run `harbor datasets list` to see all available datasets.
 │    73 │   │   │   # Exceptions are heavy objects that can have object        │
 │    74 │   │   │   # cycles (bad for GC); let's not keep a reference to       │
 │                                                                              │
-│ /Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
+│ <LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none │
 │ /lib/python3.12/asyncio/taskgroups.py:164 in _aexit                          │
 │                                                                              │
 │   161 │   │                                                                  │

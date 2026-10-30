@@ -7,7 +7,7 @@
     "/private/tmp/traindoctor-harbor-venv-20261030/bin/harbor",
     "run",
     "-p",
-    "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
+    "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
     "-a",
     "oracle",
     "-e",
@@ -19,7 +19,7 @@
     "-r",
     "0",
     "-o",
-    "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-initial/jobs",
+    "<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-initial/jobs",
     "--job-name",
     "oracle-initial"
   ],

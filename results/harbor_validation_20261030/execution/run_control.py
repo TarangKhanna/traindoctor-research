@@ -2,12 +2,12 @@ import json,os,signal,subprocess,sys,time
 from pathlib import Path
 import psutil
 name,agent=sys.argv[1:3]
-root=Path('/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030')
+root=Path('<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030')
 out=root/name;out.mkdir(exist_ok=False)
-cmd=['/private/tmp/traindoctor-harbor-venv-20261030/bin/harbor','run','-p','/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01','-a',agent,'-e','docker','-n','1','-k','1','-r','0','-o',str(out/'jobs'),'--job-name',name,'--no-delete','--ek','keep_containers=true']
+cmd=['/private/tmp/traindoctor-harbor-venv-20261030/bin/harbor','run','-p','<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01','-a',agent,'-e','docker','-n','1','-k','1','-r','0','-o',str(out/'jobs'),'--job-name',name,'--no-delete','--ek','keep_containers=true']
 env=os.environ.copy()
 for key in ('OPENAI_API_KEY','ANTHROPIC_API_KEY','GEMINI_API_KEY','GOOGLE_API_KEY','HF_TOKEN','HUGGING_FACE_HUB_TOKEN'):env.pop(key,None)
-env.update(PYTHON_DOTENV_DISABLED='1',HARBOR_TELEMETRY='0',PYTHONPATH='/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research',NO_COLOR='1')
+env.update(PYTHON_DOTENV_DISABLED='1',HARBOR_TELEMETRY='0',PYTHONPATH='<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research',NO_COLOR='1')
 start=time.monotonic();swap0=psutil.swap_memory().used
 samples=[];stop=None
 with (out/'console.txt').open('w') as log:

@@ -1,7 +1,7 @@
 {
   "source": "executed",
   "command": [
-    "/Users/tarangkhanna/Workspace/rl_envs/.venv/bin/python",
+    "<LOCAL_HOME>/Workspace/rl_envs/.venv/bin/python",
     "-m",
     "pytest",
     "-q",

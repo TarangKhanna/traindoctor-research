@@ -1,7 +1,7 @@
 import hashlib,json,subprocess,tarfile
 from pathlib import Path
-root=Path('/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030')
-repo=Path('/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env')
+root=Path('<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030')
+repo=Path('<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env')
 images=json.loads((root/'oracle-hardened-proof/images.json').read_text())['containers']
 v=next(x for x in images if '__verifier__' in x['name'])
 sources=[]

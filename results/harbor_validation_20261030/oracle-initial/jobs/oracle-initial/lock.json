@@ -33,7 +33,7 @@
                 "version": "0.1.0",
                 "type": "local",
                 "digest": "sha256:2ac2b52ebfa5650cef36a644e6065c023b31a48203010a8bc9bc8523c45e14c8",
-                "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+                "path": "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
             },
             "install_only": false,
             "timeout_multiplier": 1.0,

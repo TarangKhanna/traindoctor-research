@@ -2,15 +2,15 @@
     "id": "a723f9e3-be81-4599-ada0-43e0b70f51cf",
     "task_name": "traindoctor/training-repair-01",
     "trial_name": "training-repair-01__R5nruPa",
-    "trial_uri": "file:///Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa",
+    "trial_uri": "file://<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa",
     "task_id": {
-        "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
+        "path": "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01"
     },
     "source": null,
     "task_checksum": "dc97f51c7d233ca47a442e472ef367617548488b9fbddf427b5a7f052c3ca071",
     "config": {
         "task": {
-            "path": "/Users/tarangkhanna/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
+            "path": "<LOCAL_HOME>/Workspace/rl_envs/.wt/harbor-v1-env/harbor/tasks/training-repair-01",
             "git_url": null,
             "git_commit_id": null,
             "name": null,
@@ -20,7 +20,7 @@
             "source": null
         },
         "trial_name": "training-repair-01__R5nruPa",
-        "trials_dir": "/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix",
+        "trials_dir": "<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix",
         "install_only": false,
         "timeout_multiplier": 1.0,
         "agent_timeout_multiplier": null,
@@ -97,8 +97,8 @@
     "verifier_environment_mode": "separate",
     "exception_info": {
         "exception_type": "RewardFileNotFoundError",
-        "exception_message": "No reward file found at /Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.txt or /Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.json",
-        "exception_traceback": "Traceback (most recent call last):\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py\", line 609, in run\n    await self._run()\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 51, in _run\n    await self._run_verifier()\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 98, in _run_verifier\n    self.result.verifier_result = await self._run_separate_verifier(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py\", line 974, in _verify_with_timeout\n    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/tarangkhanna/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 304, in verify\n    raise RewardFileNotFoundError(\nharbor.verifier.verifier.RewardFileNotFoundError: No reward file found at /Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.txt or /Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.json\n",
+        "exception_message": "No reward file found at <LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.txt or <LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.json",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py\", line 609, in run\n    await self._run()\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 51, in _run\n    await self._run_verifier()\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 98, in _run_verifier\n    self.result.verifier_result = await self._run_separate_verifier(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1081, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/trial/trial.py\", line 974, in _verify_with_timeout\n    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<LOCAL_HOME>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/private/tmp/traindoctor-harbor-venv-20261030/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 304, in verify\n    raise RewardFileNotFoundError(\nharbor.verifier.verifier.RewardFileNotFoundError: No reward file found at <LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.txt or <LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.json\n",
         "occurred_at": "2026-10-29T18:43:40.522805Z"
     },
     "started_at": "2026-10-29T18:43:19.903662Z",

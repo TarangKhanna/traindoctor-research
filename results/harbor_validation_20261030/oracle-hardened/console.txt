@@ -15,12 +15,12 @@ adhoc • oracle
 Job Info
 Total runtime: 36s
 Results written to 
-/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
 ation_20261030/oracle-hardened/jobs/oracle-hardened/result.json
 Inspect results by running `harbor view 
-/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
 ation_20261030/oracle-hardened/jobs`
 Share results by running `harbor upload 
-/Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
+<LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_valid
 ation_20261030/oracle-hardened/jobs/oracle-hardened`
 

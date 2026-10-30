@@ -1,5 +1,5 @@
 Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
 Collecting main service artifacts
-Trial training-repair-01__R5nruPa failed: No reward file found at /Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.txt or /Users/tarangkhanna/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.json
+Trial training-repair-01__R5nruPa failed: No reward file found at <LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.txt or <LOCAL_HOME>/Workspace/rl_envs/.wt/agent-v2-research/results/harbor_validation_20261030/oracle-volume-fix/jobs/oracle-volume-fix/training-repair-01__R5nruPa/verifier/reward.json
 Exception RewardFileNotFoundError is in exclude_exceptions, not retrying
 Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached

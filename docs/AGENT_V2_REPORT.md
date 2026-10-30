@@ -141,7 +141,7 @@ an isolated CLI install/backend startup is pending under repository dependency r
 Therefore Harbor lint/oracle/nop/completing-invalid trials, image digests and startup
 or verification overhead are NOT established. Static Compose parsing and 18 adapter
 unit tests are not runtime isolation proof. See the environment's
-[Harbor guide](../../harbor-v1-env/docs/HARBOR.md) for exact conditional commands,
+[Harbor guide](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/HARBOR.md) for exact conditional commands,
 primary sources, dotenv safety and the external-host-MLX agent path. No generic
 adapter framework, hosted rubric, Hub upload or agent swarm was added.
 

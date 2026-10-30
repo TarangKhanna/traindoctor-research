@@ -47,6 +47,12 @@ PASS: 12 raw continuation recounts; 60 capture hashes; common optimal actions: [
 
 This checks saved execution evidence; it launches no training or model inference and needs no cloud account. For a fresh distributed run, follow the [full reproduction commands](experiments/state_recovery_v1/REPORT.md). The local execution backend is macOS `sandbox-exec`, with loopback permissions. Historical evaluations used Modal/gVisor; those isolation boundaries are different.
 
+## Harbor and local coding agents
+
+The existing checkpoint code-repair task now runs through Harbor on local Docker. The correct patch passes; no-op, completing-but-incorrect and forged-evidence controls fail. All four verdicts agree with native TrainDoctor execution. [Validation report, raw receipts and costs](docs/HARBOR_VALIDATION.md) · [Task and setup](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/HARBOR.md).
+
+Actual local Qwen/Gemma trajectories include inspection tools and code-edit attempts. They have not demonstrated an autonomous repair/relaunch/result-inspection loop. The [agent feasibility report](docs/AGENT_V2_REPORT.md) identifies the failures and task shortcuts; these cases do not justify further RL training.
+
 ## Can verification work without an uninterrupted reference run?
 
 The [reference-free audit](docs/REFERENCE_FREE_REPORT.md) checks transitions from a trusted earlier checkpoint using recorded inputs and the specified optimizer rule. It reproduces the recovery decisions without reading an uninterrupted reference trajectory.
@@ -77,7 +83,7 @@ Continued SFT was not distinguishable from recovery-aware GRPO (+3.7 points; int
 
 The [menu v3 analysis](experiments/menu_v3_dev/REPORT.md) and [code-repair pilot](docs/PROJECT_DETAIL.md) narrowed the learning problem: failure to finish differs from completing with wrong semantics, and fixed bad-repair identities can supply shortcuts. Adding more menu options does not establish state-dependent reasoning.
 
-Interactive inspection and source edits are available through Tier B tools. A successful local-model multi-turn coding repair is not established in this release. The next model-facing milestone is a bounded real tool-use trajectory, followed by a controlled full-versus-reduced-evidence comparison. SFT/RL comparisons remain conditional on task validity, informative outcomes and matched budgets.
+Tier B supplies interactive inspection and source edits. Further SFT/RL comparisons remain conditional on a task that needs investigation, informative rewards and matched budgets; the current feasibility study recommends stopping training on these cases.
 
 ## Navigate the evidence
 

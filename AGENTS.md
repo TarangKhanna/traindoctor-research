@@ -8,7 +8,7 @@ after the [prior-art gate](docs/REFERENCE_FREE_PRIOR_ART.md). Reference-free mea
 conditional on an explicit trusted anchor, input recipe and update specification;
 replay itself is established prior art. Current owner-authorized work is release
 preparation and clear documentation, not more model runs or training. Keep unfinished
-local-agent experiments separate; do not claim successful multi-turn code repair.
+local-agent outcomes explicit; do not claim successful multi-turn code repair.
 Read [current status](docs/STATUS.md), [the worked report](experiments/state_recovery_v1/REPORT.md)
 and [the learning log](docs/STATE_RECOVERY_LEARNINGS.md) before proposing more work.
 One state-only incident pair is complete. Do not expand it into a benchmark,
@@ -35,7 +35,7 @@ orchestration system or RL run without a new, concrete scientific justification.
   No dependency additions/bumps without authorization; no general task generator,
   dashboard, new code-security framework or broad refactor.
 - Work only on isolated branches/worktrees; preserve main worktrees. No cloud
-  experimental computation, paid actions, pushes, merges or publication.
+  experimental computation or paid actions. Publication requires explicit owner approval.
 - Local inference/training is authorized for a justified experiment in this session.
   Authorization is not a reason to train on a task with no informative comparison.
 - Serialize model processes, keep at least 8 GiB available, record swap growth and
@@ -64,7 +64,8 @@ Update status at closure. Keep this lightweight: no new memory/logging framework
 Read docs/AGENT_V2_REPORT.md before any further work. STOP training and task/benchmark
 expansion on current cases. The already authorized one-task Harbor interoperability
 proof has owner-approved isolated setup and local execution; it is not a learning task redesign.
-The latest owner instruction prohibits push/publication and any new model runs.
+The earlier validation-only publication hold is superseded by the release
+authorization below; no new model runs are authorized.
 Do not restart model inference automatically or pool retries as RL reward groups.
 
 Harbor runtime gate is complete: read docs/HARBOR_VALIDATION.md and recount the
@@ -72,3 +73,11 @@ saved final packet before repeating local trials. This is one interoperability
 smoke task; preserve STOP on training/benchmark expansion. No automatic model
 restart, publishing or Harbor Hub upload. Docker Desktop/images were retained;
 only our recorded trial containers/volumes were cleaned.
+
+## Authorized release — 2026-10-30
+
+The owner now authorizes publishing the reviewed local-agent/Harbor work and
+concise README updates to both existing GitHub repositories. This supersedes
+earlier publication holds for this release only. Preserve historical receipts,
+review the full outgoing diff and use a normal fast-forward push. No training,
+new inference, Hub upload or task expansion follows from this approval.

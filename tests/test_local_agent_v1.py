@@ -72,8 +72,9 @@ def test_resource_stop_preserves_trigger_and_null_reward_before_model_load(
                                last_execution=None, phase=0, records=[], phase_records=[])
     monkeypatch.setattr(run, "RepairEpisode", episode)
     swap_samples = iter((1024**3, 1024**3 + growth))
-    monkeypatch.setattr(run.psutil, "virtual_memory", lambda: SimpleNamespace(available=available))
-    monkeypatch.setattr(run.psutil, "swap_memory", lambda: SimpleNamespace(used=next(swap_samples)))
+    monkeypatch.setattr(run, "psutil", SimpleNamespace(
+        virtual_memory=lambda: SimpleNamespace(available=available),
+        swap_memory=lambda: SimpleNamespace(used=next(swap_samples))))
     monkeypatch.setattr(sys, "argv", ["runner", "--fixture", "unused", "--model", str(model),
                                     "--out", str(out)])
     with pytest.raises(RuntimeError, match="local resource guard"):
@@ -92,6 +93,7 @@ def test_bad_security_approval_preserves_pending_trajectory(monkeypatch, tmp_pat
     out, model = tmp_path / "episode", tmp_path / "model"
     out.mkdir(); model.mkdir()
     path = out / "trajectory.json"
+    monkeypatch.setattr(run, "psutil", None)
     original = json.dumps({"model_path": str(model), "reduced": False, "status": "pending_security_review",
                            "pending": {"source": "candidate"}})
     path.write_text(original)
@@ -110,6 +112,7 @@ def test_completed_result_is_preserved_before_any_fixture_read(monkeypatch, tmp_
     out, model = tmp_path / "episode", tmp_path / "model"
     out.mkdir(); model.mkdir()
     path = out / "trajectory.json"
+    monkeypatch.setattr(run, "psutil", None)
     original = json.dumps({"result": {"terminal_reward": 1}, "status": "finished"})
     path.write_text(original)
     monkeypatch.setenv("TD_KEY", "state-recovery-demo-key")
@@ -251,7 +254,23 @@ def test_v2_exhausted_response_budget_finalizes_without_model_load(monkeypatch,t
         finish_actual=lambda:{'terminal_reward':0,'status':'unsuccessful_repair'})
     monkeypatch.setenv('TD_KEY','state-recovery-demo-key')
     monkeypatch.setattr(run,'RepairEpisode',lambda *a,**k:e)
-    monkeypatch.setattr(run.psutil,'swap_memory',lambda:pytest.fail('must finalize before memory/model loading'))
+    monkeypatch.setattr(run,'psutil',None)
     run.execute(SimpleNamespace(model=model,out=out,fixture=tmp_path/'unused',reduced=False,approve_hash=None))
     actual=json.loads((out/'trajectory.json').read_text())
     assert actual['status']=='turn_budget' and actual['result']['terminal_reward']==0 and actual['loads']==[]
+
+
+def test_inference_refuses_to_run_without_optional_memory_guard(monkeypatch, tmp_path):
+    import sys
+    from types import SimpleNamespace
+    from experiments.local_agent_v1 import run
+    model, out = tmp_path / "model", tmp_path / "episode"
+    model.mkdir()
+    monkeypatch.setenv("TD_KEY", "state-recovery-demo-key")
+    monkeypatch.setattr(run, "psutil", None)
+    monkeypatch.setattr(run, "read_source", lambda _: "unchanged")
+    monkeypatch.setattr(run, "RepairEpisode", lambda *a, **k: SimpleNamespace(done=False))
+    monkeypatch.setattr(sys, "argv", ["runner", "--fixture", "unused", "--model", str(model), "--out", str(out)])
+    with pytest.raises(RuntimeError, match="memory guard unavailable"):
+        run.main()
+    assert json.loads((out / "trajectory.json").read_text())["result"]["terminal_reward"] is None

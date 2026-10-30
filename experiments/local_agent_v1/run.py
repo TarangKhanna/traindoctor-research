@@ -10,7 +10,12 @@ import platform
 import time
 from pathlib import Path
 
-import psutil
+try:
+    import psutil
+except ModuleNotFoundError as exc:
+    if exc.name != "psutil":
+        raise
+    psutil = None  # optional local-inference telemetry; not needed for offline tools
 
 from traindoctor_env.tools import READ_TOOLS, END_TOOLS, _validate
 from experiments.state_recovery_v1.reference_free_audit import write
@@ -240,6 +245,9 @@ def execute(args):
                      evidence={k: getattr(episode, k) for k in ("phase", "records", "phase_records")})
         write(state_path, state)
 
+    needs_inference = not episode.done and len(state["rows"]) < turn_limit
+    if needs_inference and psutil is None and (not state["pending"] or args.approve_hash):
+        raise RuntimeError("local inference requires psutil; memory guard unavailable")
     if state["pending"]:
         if not args.approve_hash:
             print("PENDING exact-source security review:", state["pending"]["sha256"])

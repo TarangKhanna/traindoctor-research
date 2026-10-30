@@ -2,8 +2,10 @@
 """Release check for this repository: relative links resolve, mermaid fences balance, SVGs are well-formed, and the key README numbers
 match their source files. Exits non-zero on any failure.   Usage: python scripts/check_readme.py (repo root)."""
 import json
+import posixpath
 import re
 import sys
+import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -17,19 +19,23 @@ def check(cond, msg):
         fails.append(msg)
 
 
-# 1. links and images
-for doc in ("README.md", "docs/PROJECT_DETAIL.md", "evidence/README.md"):
-    p = ROOT / doc
-    txt = p.read_text()
-    bad = []
-    for m in re.finditer(r"!?\[[^\]]*\]\(([^)\s]+)\)", txt):
-        tgt = m[1].split("#")[0]
-        if not tgt or re.match(r"[a-z]+:", tgt):
+# 1. Validate every published Markdown link against tracked checkout contents.
+# A sibling worktree or ignored local artifact must never make a broken link pass.
+tracked = set(filter(None, subprocess.check_output(
+    ["git", "-C", str(ROOT), "ls-files", "-z"], text=True).split("\0")))
+link_targets = tracked | {str(parent) for name in tracked for parent in Path(name).parents}
+bad = []
+for doc in sorted(name for name in tracked if name.endswith(".md")):
+    for match in re.finditer(r"!?\[[^\]]*\]\(([^)\s]+)\)", (ROOT / doc).read_text()):
+        target = match[1].split("#")[0]
+        if not target or re.match(r"[a-z]+:", target):
             continue
-        if not (p.parent / tgt).exists():
-            bad.append(tgt)
-    check(not bad, f"{doc}: relative links resolve" + (f" (missing {bad})" if bad else ""))
-    fences = txt.count("```")
+        resolved = posixpath.normpath(posixpath.join(posixpath.dirname(doc), target))
+        if resolved not in link_targets:
+            bad.append(f"{doc}: {target}")
+check(not bad, "all tracked Markdown links resolve" + (f" (missing {bad})" if bad else ""))
+for doc in ("README.md", "docs/PROJECT_DETAIL.md", "evidence/README.md"):
+    fences = (ROOT / doc).read_text().count("```")
     check(fences % 2 == 0, f"{doc}: code fences balanced ({fences})")
 
 # 2. svgs

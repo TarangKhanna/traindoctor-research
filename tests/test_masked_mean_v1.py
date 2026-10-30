@@ -40,6 +40,26 @@ def test_authored_controls_compile_and_correct_forms_differ():
     assert "clamp_min(1)" in variants["unchanged"]
 
 
+def test_supervised_diagnostic_preserves_complete_fragment_and_never_completes_truncation():
+    from experiments.masked_mean_v1.diagnostic import candidate
+    fragment = "loss = total / count.clamp_min(1)"
+    literal, edited = candidate({"rows": [{"raw": "```python\n" + fragment + "\n```\n```python\nincomplete"}]})
+    assert literal == fragment
+    assert edited == task.source().replace(task.MASKED, "        " + fragment + "\n")
+    with pytest.raises(ValueError):
+        candidate({"rows": [{"raw": "```python\nloss ="}]})
+
+
+def test_saved_model_termination_failures_are_protocol_errors_for_future_runs():
+    from experiments.local_agent_v1.run import reject_incomplete_final
+    with pytest.raises(ValueError):
+        reject_incomplete_final(None, "<|tool_response>", "stop")
+    with pytest.raises(ValueError):
+        reject_incomplete_final(None, "An unfinished source patch", "length")
+    reject_incomplete_final({"name": "finish", "arguments": {}}, "complete tool block", "length")
+    reject_incomplete_final(None, "Completed final answer", "stop")
+
+
 def test_premature_finish_never_executes(monkeypatch):
     episode = task.RepairEpisode.__new__(task.RepairEpisode)
     episode.done, episode.result = False, None

@@ -139,6 +139,12 @@ def native_call(tok, raw):
     return parsed
 
 
+def reject_incomplete_final(parsed, raw, finish_reason):
+    """A clipped response or a tool-role delimiter is not a completed final answer."""
+    if parsed is None and (finish_reason == "length" or raw.strip() == "<|tool_response>"):
+        raise ValueError("incomplete final response or tool-role delimiter; use a complete tool call")
+
+
 def edit_lines(source, args):
     if source_sha(source) != args["source_sha256"]:
         raise ValueError("source hash changed; read file again")
@@ -368,6 +374,8 @@ def execute(args):
         persist()
         try:
             parsed = native_call(tok, raw)
+            if task_name == "masked_mean_v1":
+                reject_incomplete_final(parsed, raw, last.finish_reason)
             if parsed is None:
                 state["final_text"], state["status"] = raw, "natural_final"
                 break

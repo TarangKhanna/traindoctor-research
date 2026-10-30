@@ -46,3 +46,45 @@ runs if either gate fails. Retain at least 8 GiB available memory, limit swap
 growth to 128 MiB, serialize inference/heavy execution and retain raw receipts.
 Stop after this demonstration. Benchmark generalization and learning remain
 unestablished; future training needs structural heldouts and genuine policy data.
+
+## Reproduction
+
+Use the existing prepared Python 3.12 environment and cached model snapshots; no
+installation or network access is performed by these commands. Set `TD_ENV` and
+`TD_RESEARCH` to the environment/research checkouts and `TD_PYTHON` to that
+environment's interpreter. Invoke from the research checkout:
+
+```bash
+export PYTHONPATH="$TD_ENV:$TD_RESEARCH"
+export UV_CACHE_DIR=/tmp/td-masked-uv
+export TD_KEY=state-recovery-demo-key
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+uv run --no-project --offline "$TD_PYTHON" -m pytest -q tests/test_masked_mean_v1.py tests/test_local_agent_v1.py tests/test_state_recovery_oracle.py
+uv run --no-project --offline "$TD_PYTHON" -m experiments.masked_mean_v1.controls --out results/new-masked-controls
+uv run --no-project --offline "$TD_PYTHON" -m experiments.masked_mean_v1.smoke --fixture results/new-masked-controls/fixture --out results/new-masked-smoke
+caffeinate -s uv run --no-project --offline "$TD_PYTHON" -m experiments.local_agent_v1.run --task masked_mean_v1 --fixture results/new-masked-controls/fixture --model "$TD_MODEL" --out results/new-masked-episode --temperature 0.2 --seed 0 --turns 16
+```
+
+`TD_KEY` above is the public demonstration recipe, not a private credential.
+`TD_MODEL` must point to an already cached snapshot. A staged patch exits pending
+review; inspect `pending.py` and `patch.diff`, then repeat the same episode command
+with `--approve-hash` and the exact approved source hash. Approval is security-only,
+not repair coaching. An infrastructure-terminated episode cannot be resumed.
+
+The saved episodes used frozen source `e14a0f5`. Later protocol fixes reject a
+clipped final response or standalone tool-role delimiter instead of accepting it
+as a natural final. Those fixes were regression-tested without rerunning either
+model. Use the frozen commit to inspect historical controller behavior; running
+the updated controller is a fresh experiment, not reproduction of its outcome.
+
+The final report and raw receipts are in
+`results/masked_mean_v1_final_20261030/`. Their archives preserve the original
+control matrix, corrected overfit-control recheck, scripted smoke, actual model
+episodes and separately labelled supervised diagnostic. Input and archive hashes
+permit recounting without inference. The earlier fixed-count baseline was not a
+true visible-overfit control; its receipts remain intact, while the final matrix
+uses the subsequently executed visible-schedule-hardcoded control.
+These fresh full-path receipts remain local and Git-ignored under the repository's
+public-hygiene rule. The scripts reproduce the task without them. No evidence
+export or publication is performed by this milestone.

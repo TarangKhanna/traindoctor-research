@@ -24,7 +24,8 @@ def controls():
         "        sync_grads(comm, flat, step, rank, cfg)\n"
         "        dist.all_reduce(count, group=group)\n"
         "        flat.mul_(world / count)\n")
-    hardcoded = broken.replace(old, "        loss = total * world / (5 * y.shape[1])\n")
+    totals = [sum(counts) for counts in task.CASES["visible"]]
+    hardcoded = broken.replace(old, f"        loss = total * world / ({totals!r}[step] * y.shape[1])\n")
     return {"correct_loss": gold, "correct_gradient": grad, "unchanged": broken,
             "constant_scaling": broken.replace(old, "        loss = 2 * total / count.clamp_min(1)\n"),
             "visible_count_hardcoded": hardcoded,
@@ -36,6 +37,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--probe-only", action="store_true")
+    ap.add_argument("--only", choices=tuple(controls()))
     args = ap.parse_args()
     if args.out.exists() or os.environ.get("TD_KEY") != "state-recovery-demo-key":
         ap.error("require new output directory and the explicit public demonstration key")
@@ -61,6 +63,8 @@ def main():
           "sources": {k: task.source_sha(v) for k, v in sources.items()}})
     rows = []
     for name, source in sources.items():
+        if args.only and name != args.only:
+            continue
         for case in task.CASES:
             if args.probe_only and (name != "correct_loss" or case != "visible"):
                 continue
@@ -75,6 +79,15 @@ def main():
                 assert max(s["max_abs"] for s in verdict["per_step"]) < 1e-6, "correct repair lacks tolerance margin"
     if args.probe_only:
         print("PASS: trusted per-step rank0 captures match independent NumPy oracle")
+        return
+    if args.only:
+        assert all(r["completed"] for r in rows)
+        if args.only == "visible_count_hardcoded":
+            assert next(r for r in rows if r["case"] == "visible")["semantic_valid"]
+            assert any(not r["semantic_valid"] for r in rows if r["case"] != "visible")
+        write(args.out / "summary.json", {"source": "executed", "control": args.only,
+              "control_gate": "PASS for this control only", "rows": len(rows), "models_run": False})
+        print("PASS: bounded single-control recheck")
         return
     for name in sources:
         if name.startswith("correct"):

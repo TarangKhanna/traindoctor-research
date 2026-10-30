@@ -1,0 +1,5 @@
+# Decisions
+
+- 2026-10-30: Owner reopened one bounded masked-loss source-repair incident. Direct native Claude Opus reviewed the plan and resolved capture reuse as conditional on exact-source safety review; implementation reused external per-step rank0 checkpoints and independent NumPy gradients, without a new runtime or verifier framework.
+- 2026-10-30: Frozen model controller e14a0f5 produced unsuccessful Qwen/Gemma episodes without applied patches or relaunches. Preserve zero rewards, skip the gated reduced arms, and stop without training. Independently execute Qwen's sole complete code fragment with indentation only as a supervised diagnostic; never credit it as an agent action.
+- 2026-10-30: Independent diff review found path-normalization, infrastructure-reward and budget-finalization defects; focused regressions and follow-up review resolved them before inference. Post-run replay identified clipped-final/tool-delimiter termination defects; fix future behavior without rerunning or rescoring frozen episodes. Correct the overfit baseline to pass the visible schedule, retaining the original fixed-count receipts.

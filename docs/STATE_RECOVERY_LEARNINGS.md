@@ -1,5 +1,28 @@
 # Local research learning log
 
+## 2026-10-30 — Bounded masked-loss follow-up
+
+The owner reopened one source-repair incident on `demo/masked-mean-v1`. Existing
+external checkpoint copies plus an independent NumPy transition calculation can
+check per-step rank0 state when checkpoint frequency is increased through existing
+configuration. This remains conditional on exact-source review: serialized state
+is not a live-memory attestation, and input delivery is not direct consumption.
+
+Both correctly implemented loss-side and gradient-side global normalization pass
+the fixed regressions. A source rule solving all cases is legitimate correctness,
+not evidence of a failed task. Conversely, a hardcoded control must actually fit
+the visible case before hidden failures establish overfitting; the initial
+fixed-count control did not, so a corrected control was executed separately.
+
+Actual model traces still do not establish autonomous repair. Qwen investigates
+and emits a clipped prose/code proposal; Gemma emits a tool-role delimiter after
+inspection. The frozen controller prematurely accepts both as final answers.
+Regression tests correct future classification, but the cause of Gemma's delimiter
+emission remains unresolved. Do not call these runs proof of a model reasoning
+limit or infer that inspection helps. Qwen's verbatim fragment, separately reviewed
+and executed, fails on a Python integer/tensor API error. No semantic correction,
+trajectory credit, model retry or training follows. See the raw final packet.
+
 Append-only project observations and corrections. "New here" does not mean novel
 in the literature. Evidence takes precedence over the explanation; unresolved
 questions remain unresolved. No historical result is relabeled by this log.

@@ -1,5 +1,13 @@
 # Local milestone status
 
+Current: owner-authorized `demo/masked-mean-v1` follow-up is bounded and complete.
+Read [the task contract and reproduction commands](MASKED_MEAN_V1.md) and the
+script-generated `results/masked_mean_v1_final_20261030/REPORT.md`. The new task's
+controls and scripted tool smoke pass. Neither actual local model applied a patch
+or requested relaunch. The separately executed Qwen text fragment fails Python;
+it receives no autonomous credit. No reduced arm, model retry or training followed.
+Historical milestones below remain unchanged.
+
 2026-10-29: one state-only recovery pair implemented on isolated `demo/state-recovery-v1` branches. All twelve continuations complete and agree with an independent NumPy continuation oracle. Full restore is optimal in both states; scratch is correct but repeats more work. Historical verifier v1.2 and evidence remain unchanged.
 
 Cached Qwen 4B and Gemma E2B were profiled locally with no swap growth. A parity-checked Gemma prefix-cache probe improved the five-request total by 1.47x including setup. No new training was run. See [the report](../experiments/state_recovery_v1/REPORT.md) for exact evidence, model-control limitations and reproduction commands.

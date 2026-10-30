@@ -97,6 +97,7 @@ Tier B supplies interactive inspection and source edits. Further SFT/RL comparis
 | [Detailed project record](docs/PROJECT_DETAIL.md) | Full historical analysis, model setup, audits and limitations |
 | [Reproduction guide](docs/RERUN_EXAMPLE.md) | Historical recount and rerun commands |
 | [Current status](docs/STATUS.md) | Completed work and next steps |
+| [Test coverage and limits](docs/TESTING.md) | Which contracts, numerical checks and integration boundaries are tested; what CI does not establish |
 
 Saved evidence, local reruns and independent human reproduction are distinct; human reproduction remains outstanding. The demonstrated workloads are small CPU/Gloo MLP jobs, with no established production NCCL/FSDP coverage or generalization to arbitrary training programs.
 

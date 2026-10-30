@@ -1,5 +1,12 @@
 # Local milestone status
 
+Testing clarification: the deterministic controller wiring regression now covers
+protocol recovery through approval/resume, relaunch feedback and finish using
+explicit test doubles. It is not a live model repair. [Test coverage and
+remaining gaps](TESTING.md) separates this check from numerical replay and fresh
+distributed execution. A native critic reviewed the final scope; no new model
+episode or training run was performed.
+
 Current hiring release: a working multi-turn model harness and executable
 masked-loss repair task are implemented. The [public report and portable
 packet](../evidence/masked_mean_v1/REPORT.md) recount captured states and model

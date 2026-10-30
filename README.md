@@ -53,6 +53,8 @@ The existing checkpoint code-repair task now runs through Harbor on local Docker
 
 Actual local Qwen/Gemma trajectories include inspection tools and code-edit attempts. They have not demonstrated an autonomous repair/relaunch/result-inspection loop. The [agent feasibility report](docs/AGENT_V2_REPORT.md) identifies the failures and task shortcuts; these cases do not justify further RL training.
 
+The subsequent [masked-loss coding-agent study](evidence/masked_mean_v1/REPORT.md) adds an executable source-debugging task, hidden semantic regressions and a working multi-turn harness. Its [sanitized model traces and captured states](evidence/masked_mean_v1/) support an inference-free numerical recount. It demonstrates the infrastructure to attempt autonomous repair; neither recorded model episode completed that repair loop. Protocol fixes were tested afterward without model reruns. This study is separate from the historical menu-based SFT/GRPO experiment below.
+
 ## Can verification work without an uninterrupted reference run?
 
 The [reference-free audit](docs/REFERENCE_FREE_REPORT.md) checks transitions from a trusted earlier checkpoint using recorded inputs and the specified optimizer rule. It reproduces the recovery decisions without reading an uninterrupted reference trajectory.

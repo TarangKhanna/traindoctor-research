@@ -1,0 +1,562 @@
+{
+  "config": {
+    "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+    "smoke_sha256": "aa63890137daf1fdf265af601d18ab8c5b20a49612fc419dbb413a7a07b6a1cd",
+    "task": "masked_mean_v1",
+    "task_sha256": "154d22f1007df812fc4151bd4cfdae7c5922c4277bad735f202b9c11b3bdfbaa"
+  },
+  "not_model_evidence": true,
+  "policy": "scripted_positive_control",
+  "resources": [
+    {
+      "available_bytes": 11098390528,
+      "swap_growth_bytes": 0
+    },
+    {
+      "available_bytes": 11103141888,
+      "swap_growth_bytes": 0
+    },
+    {
+      "available_bytes": 11214471168,
+      "swap_growth_bytes": 0
+    },
+    {
+      "available_bytes": 11585273856,
+      "swap_growth_bytes": 0
+    },
+    {
+      "available_bytes": 11256266752,
+      "swap_growth_bytes": 0
+    },
+    {
+      "available_bytes": 11478253568,
+      "swap_growth_bytes": 0
+    },
+    {
+      "available_bytes": 11195121664,
+      "swap_growth_bytes": 0
+    }
+  ],
+  "result": {
+    "actual_continuation": {
+      "actual_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+      "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+      "completed": true,
+      "error_class": null,
+      "execution_status": "completed",
+      "hashes_valid": true,
+      "history": {
+        "conflicts": [],
+        "missing": [],
+        "ok": true
+      },
+      "immutable_inputs": true,
+      "limits": [
+        "job-serialized rank0 snapshots, fidelity conditional on exact-source review",
+        "served inputs are not direct consumption attestation",
+        "non-rank0 state not captured"
+      ],
+      "per_step": [
+        {
+          "discrete_state_max_abs": 0.0,
+          "failed_components": [],
+          "max_abs": 1.5001025976957294e-08,
+          "max_relative_floor_1e_12": 7.663606730887031e-06,
+          "normalized_inf": 1.277303003947837e-07,
+          "ok": true,
+          "reason": null,
+          "step": 1,
+          "tensor_max_abs": 1.5001025976957294e-08
+        },
+        {
+          "discrete_state_max_abs": 0.0,
+          "failed_components": [],
+          "max_abs": 2.9850147492682666e-08,
+          "max_relative_floor_1e_12": 7.909118491183592e-06,
+          "normalized_inf": 1.3185416536424225e-07,
+          "ok": true,
+          "reason": null,
+          "step": 2,
+          "tensor_max_abs": 2.9850147492682666e-08
+        },
+        {
+          "discrete_state_max_abs": 0.0,
+          "failed_components": [],
+          "max_abs": 3.6182092676140254e-08,
+          "max_relative_floor_1e_12": 1.127093210736142e-05,
+          "normalized_inf": 1.2196474316593456e-07,
+          "ok": true,
+          "reason": null,
+          "step": 3,
+          "tensor_max_abs": 3.6182092676140254e-08
+        },
+        {
+          "discrete_state_max_abs": 0.0,
+          "failed_components": [],
+          "max_abs": 3.90797890159611e-08,
+          "max_relative_floor_1e_12": 1.402529140498416e-06,
+          "normalized_inf": 1.0686865866835186e-07,
+          "ok": true,
+          "reason": null,
+          "step": 4,
+          "tensor_max_abs": 3.90797890159611e-08
+        }
+      ],
+      "run_id": "run2",
+      "sandboxed": true,
+      "semantic_valid": true,
+      "source": "executed",
+      "source_stable": true,
+      "tolerance_abs": 1e-05,
+      "tolerance_relative": 0
+    },
+    "diagnosis": {
+      "claimed_fixed": true,
+      "evidence_ids": [],
+      "fix_summary": "global valid-target mean",
+      "label": "global_loss_normalization"
+    },
+    "final_patch_bound_to_actual_execution": true,
+    "hidden_cases": [
+      {
+        "actual_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "case": "balanced",
+        "completed": true,
+        "error_class": null,
+        "execution_status": "completed",
+        "hashes_valid": true,
+        "history": {
+          "conflicts": [],
+          "missing": [],
+          "ok": true
+        },
+        "immutable_inputs": true,
+        "limits": [
+          "job-serialized rank0 snapshots, fidelity conditional on exact-source review",
+          "served inputs are not direct consumption attestation",
+          "non-rank0 state not captured"
+        ],
+        "per_step": [
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 2.1624313450985255e-08,
+            "max_relative_floor_1e_12": 1.087047492857593e-05,
+            "normalized_inf": 1.1725679609016423e-07,
+            "ok": true,
+            "reason": null,
+            "step": 1,
+            "tensor_max_abs": 2.1624313450985255e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 3.764573103248736e-08,
+            "max_relative_floor_1e_12": 1.1156748861699319e-06,
+            "normalized_inf": 9.249855864686772e-08,
+            "ok": true,
+            "reason": null,
+            "step": 2,
+            "tensor_max_abs": 3.764573103248736e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 5.249927681472144e-08,
+            "max_relative_floor_1e_12": 2.4023782654284364e-06,
+            "normalized_inf": 1.6411150776480333e-07,
+            "ok": true,
+            "reason": null,
+            "step": 3,
+            "tensor_max_abs": 5.249927681472144e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 4.326676331101176e-08,
+            "max_relative_floor_1e_12": 3.0229227163770645e-06,
+            "normalized_inf": 1.3342379234464437e-07,
+            "ok": true,
+            "reason": null,
+            "step": 4,
+            "tensor_max_abs": 4.326676331101176e-08
+          }
+        ],
+        "run_id": "run0",
+        "sandboxed": true,
+        "semantic_valid": true,
+        "source": "executed",
+        "source_stable": true,
+        "tolerance_abs": 1e-05,
+        "tolerance_relative": 0
+      },
+      {
+        "actual_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "case": "reversed",
+        "completed": true,
+        "error_class": null,
+        "execution_status": "completed",
+        "hashes_valid": true,
+        "history": {
+          "conflicts": [],
+          "missing": [],
+          "ok": true
+        },
+        "immutable_inputs": true,
+        "limits": [
+          "job-serialized rank0 snapshots, fidelity conditional on exact-source review",
+          "served inputs are not direct consumption attestation",
+          "non-rank0 state not captured"
+        ],
+        "per_step": [
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 1.4688501553949962e-08,
+            "max_relative_floor_1e_12": 1.0831370536206403e-05,
+            "normalized_inf": 1.1529539620797312e-07,
+            "ok": true,
+            "reason": null,
+            "step": 1,
+            "tensor_max_abs": 1.4688501553949962e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 2.7345747610763027e-08,
+            "max_relative_floor_1e_12": 2.166764088693502e-06,
+            "normalized_inf": 9.295650124751663e-08,
+            "ok": true,
+            "reason": null,
+            "step": 2,
+            "tensor_max_abs": 2.7345747610763027e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 3.999289527323313e-08,
+            "max_relative_floor_1e_12": 2.999546365360162e-06,
+            "normalized_inf": 1.1124742320916005e-07,
+            "ok": true,
+            "reason": null,
+            "step": 3,
+            "tensor_max_abs": 3.999289527323313e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 5.6271099779792166e-08,
+            "max_relative_floor_1e_12": 3.638888989862822e-06,
+            "normalized_inf": 1.1686215458381908e-07,
+            "ok": true,
+            "reason": null,
+            "step": 4,
+            "tensor_max_abs": 5.6271099779792166e-08
+          }
+        ],
+        "run_id": "run0",
+        "sandboxed": true,
+        "semantic_valid": true,
+        "source": "executed",
+        "source_stable": true,
+        "tolerance_abs": 1e-05,
+        "tolerance_relative": 0
+      },
+      {
+        "actual_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "case": "zero_rank",
+        "completed": true,
+        "error_class": null,
+        "execution_status": "completed",
+        "hashes_valid": true,
+        "history": {
+          "conflicts": [],
+          "missing": [],
+          "ok": true
+        },
+        "immutable_inputs": true,
+        "limits": [
+          "job-serialized rank0 snapshots, fidelity conditional on exact-source review",
+          "served inputs are not direct consumption attestation",
+          "non-rank0 state not captured"
+        ],
+        "per_step": [
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 1.496781981691342e-08,
+            "max_relative_floor_1e_12": 4.604376785886135e-06,
+            "normalized_inf": 1.6512139192274652e-07,
+            "ok": true,
+            "reason": null,
+            "step": 1,
+            "tensor_max_abs": 1.496781981691342e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 4.932400682333693e-08,
+            "max_relative_floor_1e_12": 6.88288667656904e-06,
+            "normalized_inf": 1.6115126648575616e-07,
+            "ok": true,
+            "reason": null,
+            "step": 2,
+            "tensor_max_abs": 4.932400682333693e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 3.498396178303054e-08,
+            "max_relative_floor_1e_12": 2.6349705762321554e-06,
+            "normalized_inf": 1.0295926772049389e-07,
+            "ok": true,
+            "reason": null,
+            "step": 3,
+            "tensor_max_abs": 3.498396178303054e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 3.5570413614571805e-08,
+            "max_relative_floor_1e_12": 2.021217810942994e-05,
+            "normalized_inf": 9.894490154940966e-08,
+            "ok": true,
+            "reason": null,
+            "step": 4,
+            "tensor_max_abs": 3.5570413614571805e-08
+          }
+        ],
+        "run_id": "run0",
+        "sandboxed": true,
+        "semantic_valid": true,
+        "source": "executed",
+        "source_stable": true,
+        "tolerance_abs": 1e-05,
+        "tolerance_relative": 0
+      },
+      {
+        "actual_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "case": "changing",
+        "completed": true,
+        "error_class": null,
+        "execution_status": "completed",
+        "hashes_valid": true,
+        "history": {
+          "conflicts": [],
+          "missing": [],
+          "ok": true
+        },
+        "immutable_inputs": true,
+        "limits": [
+          "job-serialized rank0 snapshots, fidelity conditional on exact-source review",
+          "served inputs are not direct consumption attestation",
+          "non-rank0 state not captured"
+        ],
+        "per_step": [
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 2.009592153795481e-08,
+            "max_relative_floor_1e_12": 4.15295378831535e-06,
+            "normalized_inf": 1.235597237807031e-07,
+            "ok": true,
+            "reason": null,
+            "step": 1,
+            "tensor_max_abs": 2.009592153795481e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 3.466777584448799e-08,
+            "max_relative_floor_1e_12": 5.571706472907695e-06,
+            "normalized_inf": 1.0932099331068917e-07,
+            "ok": true,
+            "reason": null,
+            "step": 2,
+            "tensor_max_abs": 3.466777584448799e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 4.018162347296794e-08,
+            "max_relative_floor_1e_12": 1.8724519165100143e-06,
+            "normalized_inf": 1.1004265563109044e-07,
+            "ok": true,
+            "reason": null,
+            "step": 3,
+            "tensor_max_abs": 4.018162347296794e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 4.981117818214642e-08,
+            "max_relative_floor_1e_12": 1.395189331705391e-05,
+            "normalized_inf": 1.1373552427198192e-07,
+            "ok": true,
+            "reason": null,
+            "step": 4,
+            "tensor_max_abs": 4.981117818214642e-08
+          }
+        ],
+        "run_id": "run0",
+        "sandboxed": true,
+        "semantic_valid": true,
+        "source": "executed",
+        "source_stable": true,
+        "tolerance_abs": 1e-05,
+        "tolerance_relative": 0
+      },
+      {
+        "actual_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "approved_source_sha256": "50afa583a49652e8951c1baab84ed91db37661cf8ee6f2113a19389fcea14856",
+        "case": "all_valid",
+        "completed": true,
+        "error_class": null,
+        "execution_status": "completed",
+        "hashes_valid": true,
+        "history": {
+          "conflicts": [],
+          "missing": [],
+          "ok": true
+        },
+        "immutable_inputs": true,
+        "limits": [
+          "job-serialized rank0 snapshots, fidelity conditional on exact-source review",
+          "served inputs are not direct consumption attestation",
+          "non-rank0 state not captured"
+        ],
+        "per_step": [
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 1.513296277178e-08,
+            "max_relative_floor_1e_12": 6.327464240098424e-06,
+            "normalized_inf": 1.0290396079804517e-07,
+            "ok": true,
+            "reason": null,
+            "step": 1,
+            "tensor_max_abs": 1.513296277178e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 2.704782342544121e-08,
+            "max_relative_floor_1e_12": 2.65477403042586e-06,
+            "normalized_inf": 1.00332795258521e-07,
+            "ok": true,
+            "reason": null,
+            "step": 2,
+            "tensor_max_abs": 2.704782342544121e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 3.6743741965716836e-08,
+            "max_relative_floor_1e_12": 6.9828243765998406e-06,
+            "normalized_inf": 9.81851384419671e-08,
+            "ok": true,
+            "reason": null,
+            "step": 3,
+            "tensor_max_abs": 3.6743741965716836e-08
+          },
+          {
+            "discrete_state_max_abs": 0.0,
+            "failed_components": [],
+            "max_abs": 7.173489136036437e-08,
+            "max_relative_floor_1e_12": 3.542844263534021e-06,
+            "normalized_inf": 1.4315391668414565e-07,
+            "ok": true,
+            "reason": null,
+            "step": 4,
+            "tensor_max_abs": 7.173489136036437e-08
+          }
+        ],
+        "run_id": "run0",
+        "sandboxed": true,
+        "semantic_valid": true,
+        "source": "executed",
+        "source_stable": true,
+        "tolerance_abs": 1e-05,
+        "tolerance_relative": 0
+      }
+    ],
+    "source": "executed",
+    "status": "verified_repair",
+    "terminal_reward": 1
+  },
+  "rows": [
+    {
+      "action": {
+        "args": {
+          "path": "job/train.py"
+        },
+        "tool": "read_file"
+      },
+      "done": false,
+      "observation": "source_sha256=470887df79fea5f53ea92086fe0debb61f8d6896aecbb158e8c8949715549237\n1: \"\"\"Data-parallel training of a small MLP on CPU with Gloo (one process per rank).\n2: \n3: Per run (runs/<RUN_ID>/): logs/rank{r}.jsonl and trace/rank{r}.jsonl (collectives). Launched from the job\n4: directory by the cluster's launcher with RANK, WORLD_SIZE, MASTER_ADDR, MASTER_PORT, RUN_ID and RESUME_FROM in\n5: the environment.\n6: \"\"\"\n7: import json\n8: import os\n9: import time\n10: from datetime import timedelta\n11: from pathlib import Path\n12: \n13: import torch\n14: import torch.distributed as dist\n15: import torch.nn.functional as F\n16: \n17: import ckpt\n18: import config\n19: import data\n20: \n21: N_BUCKETS = 2\n22: \n23: \n24: class Jsonl:\n25:     def __init__(self, path: Path):\n26:         path.parent.mkdir(parents=True, exist_ok=True)\n27:         self.f = open(path, \"a\")\n28: \n29:     def write(self, **rec) -> None:\n30:         self.f.write(json.dumps(rec, sort_keys=True) + \"\\n\")\n31:         self.f.flush()\n32: \n33: \n34: class Comm:\n35:     \"\"\"Collectives with a per-rank trace: every call is recorded on entry and on exit.\"\"\"\n36: \n37:     def __init__(self, trace: Jsonl, world_size: int, group):\n38:         self.trace, self.world, self.group, self.seq = trace, world_size, group, 0\n39: \n40:     def _run(self, op: str, t: torch.Tensor, step: int, bucket: int, fn) -> None:\n41:         self.trace.write(ev=\"enter\", seq=self.seq, step=step, op=op, bucket=bucket, numel=t.numel())\n42:         fn()\n43:         self.trace.write(ev=\"exit\", seq=self.seq)\n44:         self.seq += 1\n45: \n46:     def all_reduce(self, t, step, bucket):\n47:         def fn():\n48:             dist.all_reduce(t, group=self.group)\n49:             t.div_(self.world)\n50:         self._run(\"all_reduce\", t, step, bucket, fn)\n51: \n52:     def reduce(self, t, step, bucket):\n53:         self._run(\"reduce\", t, step, bucket, lambda: dist.reduce(t, dst=0, group=self.group))\n54: \n55:     def broadcast(self, t, step, bucket):\n56:         self._run(\"broadcast\", t, step, bucket, lambda: dist.broadcast(t, src=0, group=self.group))\n57: \n58: \n59: class MLP(torch.nn.Module):\n60:     def __init__(self, hidden: int):\n61:         super().__init__()\n62:         self.fc1 = torch.nn.Linear(data.IN_DIM, hidden)\n63:         self.fc2 = torch.nn.Linear(hidden, data.OUT_DIM)\n64: \n65:     def forward(self, x):\n66:         return self.fc2(torch.relu(self.fc1(x)))\n67: \n68: \n69: def sync_grads(comm: Comm, flat: torch.Tensor, step: int, rank: int, cfg: dict) -> None:\n70:     \"\"\"Average the flattened gradients across ranks, one bucket at a time.\"\"\"\n71:     mode = cfg[\"sync\"][\"mode\"]\n72:     if step >= cfg[\"sync\"][\"warmup_steps\"]:\n73:         mode = cfg[\"sync\"][\"per_rank\"].get(str(rank), mode)\n74:     for b, bucket in enumerate(flat.chunk(N_BUCKETS)):\n75:         if mode == \"reduce_bcast\" and b == N_BUCKETS - 1:\n76:             comm.reduce(bucket, step, b)\n77:             comm.broadcast(bucket, step, b)\n78:             bucket.div_(comm.world)\n79:         else:\n80:             comm.all_reduce(bucket, step, b)\n81: \n82: \n83: def main() -> None:\n84:     torch.set_num_threads(1)\n85:     rank, world = int(os.environ[\"RANK\"]), int(os.environ[\"WORLD_SIZE\"])\n86:     cfg = config.load(\"job/config.yaml\")\n87:     run = Path(\"runs\", os.environ[\"RUN_ID\"])\n88:     log_f = Jsonl(run / \"logs\" / f\"rank{rank}.jsonl\")\n89:     status = dict(step=-1)\n90: \n91:     def log(msg: str, level: str = \"INFO\") -> None:\n92:         log_f.write(step=status[\"step\"], level=level, msg=msg)\n93: \n94:     log(f\"start world_size={world} resume_from={os.environ.get('RESUME_FROM') or 'none'}\")\n95:     torch.manual_seed(cfg[\"seed\"])\n96:     model = MLP(cfg[\"hidden\"])\n97:     opt = torch.optim.SGD(model.parameters(), lr=cfg[\"lr\"], momentum=0.9)\n98:     sampler = data.Sampler(cfg[\"data\"][\"num_samples\"], world, rank, cfg[\"batch_size\"], cfg[\"seed\"])\n99:     start = 0\n100:     if os.environ.get(\"RESUME_FROM\"):\n101:         start = ckpt.restore(os.environ[\"RESUME_FROM\"], model, opt, sampler, rank)\n102:         status[\"step\"] = start - 1\n103:         log(f\"resumed from {os.environ['RESUME_FROM']} at step {start}\")\n104:     os.environ.update(MASTER_ADDR=\"127.0.0.1\")\n105:     dist.init_process_group(\"gloo\", rank=rank, world_size=world, timeout=timedelta(seconds=60))  # ranks start at different times\n106:     group = dist.new_group(timeout=timedelta(seconds=cfg[\"pg_timeout_s\"]))  # collectives time out quickly\n107:     comm = Comm(Jsonl(run / \"trace\" / f\"rank{rank}.jsonl\"), world, group)\n108:     for step in range(start, cfg[\"steps\"]):\n109:         if step % cfg[\"data\"][\"shard_steps\"] == 0:\n110:             data.open_shard(cfg, rank, step // cfg[\"data\"][\"shard_steps\"], log)\n111:         x, y = sampler.next_batch()\n112:         Path(\"progress\").mkdir(exist_ok=True)\n113:         Path(\"progress\", f\"rank{rank}.json\").write_text(json.dumps(dict(step=step, sampler=sampler.state().tolist())))\n114:         opt.zero_grad()\n115:         valid = cfg[\"valid_counts\"][str(step)][str(rank)]\n116:         mask = (torch.arange(x.shape[0]) < valid).to(x.dtype).unsqueeze(1)\n117:         total = ((model(x) - y).square() * mask).sum()\n118:         count = mask.sum() * y.shape[1]\n119:         log(f\"valid examples {valid}; local squared error {total.item():.6f}\")\n120:         loss = total / count.clamp_min(1)\n121:         loss.backward()\n122:         params = list(model.parameters())\n123:         flat = torch.cat([p.grad.flatten() for p in params])\n124:         flat = torch.cat([flat, torch.zeros(-flat.numel() % N_BUCKETS)])\n125:         sync_grads(comm, flat, step, rank, cfg)\n126:         off = 0\n127:         for p in params:\n128:             p.grad.copy_(flat[off:off + p.numel()].view_as(p))\n129:             off += p.numel()\n130:         opt.step()\n131:         status[\"step\"] = step\n132:         log(f\"step {step} loss={loss.item():.3f}\")\n133:         if (step + 1) % cfg[\"ckpt_every\"] == 0 or step + 1 == cfg[\"steps\"]:\n134:             log(f\"checkpoint {ckpt.save(step + 1, model, opt, sampler, rank, world, group)} committed\")\n135:         time.sleep(cfg[\"step_time_s\"])\n136:     log(\"training complete\")\n137: \n138: \n139: if __name__ == \"__main__\":\n140:     main()",
+      "wall_s": 0.0015458749840036035
+    },
+    {
+      "action": {
+        "args": {
+          "path": "job/config.yaml"
+        },
+        "tool": "read_file"
+      },
+      "done": false,
+      "observation": "1: world_size: 2\n2: steps: 4\n3: seed: 777\n4: hidden: 12\n5: lr: 0.1\n6: batch_size: 4\n7: ckpt_every: 1\n8: step_time_s: 0\n9: pg_timeout_s: 3\n10: watchdog_s: 8\n11: sync:\n12:   mode: all_reduce\n13:   warmup_steps: 5\n14:   per_rank:\n15:     0: all_reduce\n16: data:\n17:   root: data\n18:   num_samples: 96\n19:   shard_steps: 5\n20:   shard_dirs:\n21:     0: part-0\n22:     1: part-1\n23: valid_counts:\n24:   0:\n25:     0: 1\n26:     1: 4\n27:   1:\n28:     0: 3\n29:     1: 2\n30:   2:\n31:     0: 2\n32:     1: 4\n33:   3:\n34:     0: 4\n35:     1: 1",
+      "wall_s": 0.0011304999934509397
+    },
+    {
+      "action": {
+        "args": {
+          "content": "\"\"\"Data-parallel training of a small MLP on CPU with Gloo (one process per rank).\n\nPer run (runs/<RUN_ID>/): logs/rank{r}.jsonl and trace/rank{r}.jsonl (collectives). Launched from the job\ndirectory by the cluster's launcher with RANK, WORLD_SIZE, MASTER_ADDR, MASTER_PORT, RUN_ID and RESUME_FROM in\nthe environment.\n\"\"\"\nimport json\nimport os\nimport time\nfrom datetime import timedelta\nfrom pathlib import Path\n\nimport torch\nimport torch.distributed as dist\nimport torch.nn.functional as F\n\nimport ckpt\nimport config\nimport data\n\nN_BUCKETS = 2\n\n\nclass Jsonl:\n    def __init__(self, path: Path):\n        path.parent.mkdir(parents=True, exist_ok=True)\n        self.f = open(path, \"a\")\n\n    def write(self, **rec) -> None:\n        self.f.write(json.dumps(rec, sort_keys=True) + \"\\n\")\n        self.f.flush()\n\n\nclass Comm:\n    \"\"\"Collectives with a per-rank trace: every call is recorded on entry and on exit.\"\"\"\n\n    def __init__(self, trace: Jsonl, world_size: int, group):\n        self.trace, self.world, self.group, self.seq = trace, world_size, group, 0\n\n    def _run(self, op: str, t: torch.Tensor, step: int, bucket: int, fn) -> None:\n        self.trace.write(ev=\"enter\", seq=self.seq, step=step, op=op, bucket=bucket, numel=t.numel())\n        fn()\n        self.trace.write(ev=\"exit\", seq=self.seq)\n        self.seq += 1\n\n    def all_reduce(self, t, step, bucket):\n        def fn():\n            dist.all_reduce(t, group=self.group)\n            t.div_(self.world)\n        self._run(\"all_reduce\", t, step, bucket, fn)\n\n    def reduce(self, t, step, bucket):\n        self._run(\"reduce\", t, step, bucket, lambda: dist.reduce(t, dst=0, group=self.group))\n\n    def broadcast(self, t, step, bucket):\n        self._run(\"broadcast\", t, step, bucket, lambda: dist.broadcast(t, src=0, group=self.group))\n\n\nclass MLP(torch.nn.Module):\n    def __init__(self, hidden: int):\n        super().__init__()\n        self.fc1 = torch.nn.Linear(data.IN_DIM, hidden)\n        self.fc2 = torch.nn.Linear(hidden, data.OUT_DIM)\n\n    def forward(self, x):\n        return self.fc2(torch.relu(self.fc1(x)))\n\n\ndef sync_grads(comm: Comm, flat: torch.Tensor, step: int, rank: int, cfg: dict) -> None:\n    \"\"\"Average the flattened gradients across ranks, one bucket at a time.\"\"\"\n    mode = cfg[\"sync\"][\"mode\"]\n    if step >= cfg[\"sync\"][\"warmup_steps\"]:\n        mode = cfg[\"sync\"][\"per_rank\"].get(str(rank), mode)\n    for b, bucket in enumerate(flat.chunk(N_BUCKETS)):\n        if mode == \"reduce_bcast\" and b == N_BUCKETS - 1:\n            comm.reduce(bucket, step, b)\n            comm.broadcast(bucket, step, b)\n            bucket.div_(comm.world)\n        else:\n            comm.all_reduce(bucket, step, b)\n\n\ndef main() -> None:\n    torch.set_num_threads(1)\n    rank, world = int(os.environ[\"RANK\"]), int(os.environ[\"WORLD_SIZE\"])\n    cfg = config.load(\"job/config.yaml\")\n    run = Path(\"runs\", os.environ[\"RUN_ID\"])\n    log_f = Jsonl(run / \"logs\" / f\"rank{rank}.jsonl\")\n    status = dict(step=-1)\n\n    def log(msg: str, level: str = \"INFO\") -> None:\n        log_f.write(step=status[\"step\"], level=level, msg=msg)\n\n    log(f\"start world_size={world} resume_from={os.environ.get('RESUME_FROM') or 'none'}\")\n    torch.manual_seed(cfg[\"seed\"])\n    model = MLP(cfg[\"hidden\"])\n    opt = torch.optim.SGD(model.parameters(), lr=cfg[\"lr\"], momentum=0.9)\n    sampler = data.Sampler(cfg[\"data\"][\"num_samples\"], world, rank, cfg[\"batch_size\"], cfg[\"seed\"])\n    start = 0\n    if os.environ.get(\"RESUME_FROM\"):\n        start = ckpt.restore(os.environ[\"RESUME_FROM\"], model, opt, sampler, rank)\n        status[\"step\"] = start - 1\n        log(f\"resumed from {os.environ['RESUME_FROM']} at step {start}\")\n    os.environ.update(MASTER_ADDR=\"127.0.0.1\")\n    dist.init_process_group(\"gloo\", rank=rank, world_size=world, timeout=timedelta(seconds=60))  # ranks start at different times\n    group = dist.new_group(timeout=timedelta(seconds=cfg[\"pg_timeout_s\"]))  # collectives time out quickly\n    comm = Comm(Jsonl(run / \"trace\" / f\"rank{rank}.jsonl\"), world, group)\n    for step in range(start, cfg[\"steps\"]):\n        if step % cfg[\"data\"][\"shard_steps\"] == 0:\n            data.open_shard(cfg, rank, step // cfg[\"data\"][\"shard_steps\"], log)\n        x, y = sampler.next_batch()\n        Path(\"progress\").mkdir(exist_ok=True)\n        Path(\"progress\", f\"rank{rank}.json\").write_text(json.dumps(dict(step=step, sampler=sampler.state().tolist())))\n        opt.zero_grad()\n        valid = cfg[\"valid_counts\"][str(step)][str(rank)]\n        mask = (torch.arange(x.shape[0]) < valid).to(x.dtype).unsqueeze(1)\n        total = ((model(x) - y).square() * mask).sum()\n        count = mask.sum() * y.shape[1]\n        log(f\"valid examples {valid}; local squared error {total.item():.6f}\")\n        dist.all_reduce(count, group=group)\n        loss = total * world / count\n        loss.backward()\n        params = list(model.parameters())\n        flat = torch.cat([p.grad.flatten() for p in params])\n        flat = torch.cat([flat, torch.zeros(-flat.numel() % N_BUCKETS)])\n        sync_grads(comm, flat, step, rank, cfg)\n        off = 0\n        for p in params:\n            p.grad.copy_(flat[off:off + p.numel()].view_as(p))\n            off += p.numel()\n        opt.step()\n        status[\"step\"] = step\n        log(f\"step {step} loss={loss.item():.3f}\")\n        if (step + 1) % cfg[\"ckpt_every\"] == 0 or step + 1 == cfg[\"steps\"]:\n            log(f\"checkpoint {ckpt.save(step + 1, model, opt, sampler, rank, world, group)} committed\")\n        time.sleep(cfg[\"step_time_s\"])\n    log(\"training complete\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+          "path": "job/train.py"
+        },
+        "tool": "write_file"
+      },
+      "done": false,
+      "observation": "recorded",
+      "wall_s": 0.00022945803357288241
+    },
+    {
+      "action": {
+        "args": {
+          "resume_from": "none"
+        },
+        "tool": "relaunch"
+      },
+      "done": false,
+      "observation": "{\"completed\": true, \"execution_status\": \"completed\", \"run_id\": \"run2\", \"error_class\": null}",
+      "wall_s": 4.228867333033122
+    },
+    {
+      "action": {
+        "args": {
+          "claimed_fixed": true,
+          "evidence_ids": [],
+          "fix_summary": "global valid-target mean",
+          "label": "global_loss_normalization"
+        },
+        "tool": "submit_diagnosis"
+      },
+      "done": false,
+      "observation": "recorded",
+      "wall_s": 2.9749993700534105e-05
+    },
+    {
+      "action": {
+        "args": {},
+        "tool": "finish"
+      },
+      "done": true,
+      "observation": "{\"status\": \"verified_repair\", \"terminal_reward\": 1}",
+      "wall_s": 24.892526375013404
+    }
+  ],
+  "source": "executed"
+}

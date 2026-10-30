@@ -2,7 +2,9 @@
 
 Owner-authorized bounded follow-up, 2026-10-30. This supersedes the earlier stop
 on task expansion only for this incident and the frozen local episodes. No
-training, dependencies, cloud runs, publishing or framework work is authorized.
+training, dependencies, cloud runs or framework work is authorized. The subsequent
+owner-authorized hiring release exports the completed evidence; it starts no new
+model episode or training run.
 
 The task's objective is global mean squared error over valid scalar targets.
 Two CPU/Gloo ranks process fixed physical batches with deterministic validity
@@ -78,7 +80,18 @@ as a natural final. Those fixes were regression-tested without rerunning either
 model. Use the frozen commit to inspect historical controller behavior; running
 the updated controller is a fresh experiment, not reproduction of its outcome.
 
-The final report and raw receipts are in
+## Public evidence
+
+[The public report and packet](../evidence/masked_mean_v1/REPORT.md) include
+deidentified full model trajectories, the separately executed Qwen candidate,
+the scripted smoke receipt, and original captured tensor bytes for the controls.
+Run the recount without local receipts, model weights, workers or a cloud account:
+
+```bash
+TD_KEY=state-recovery-demo-key PYTHONPATH=. python -m experiments.masked_mean_v1.public_packet --check evidence/masked_mean_v1
+```
+
+The original full-path report and raw receipts remain locally in
 `results/masked_mean_v1_final_20261030/`. Their archives preserve the original
 control matrix, corrected overfit-control recheck, scripted smoke, actual model
 episodes and separately labelled supervised diagnostic. Input and archive hashes
@@ -86,5 +99,9 @@ permit recounting without inference. The earlier fixed-count baseline was not a
 true visible-overfit control; its receipts remain intact, while the final matrix
 uses the subsequently executed visible-schedule-hardcoded control.
 These fresh full-path receipts remain local and Git-ignored under the repository's
-public-hygiene rule. The scripts reproduce the task without them. No evidence
-export or publication is performed by this milestone.
+public-hygiene rule. The experiment-specific public exporter exists because the
+original reporter archives full local paths and raw execution trees. The public
+copy replaces host path prefixes without changing numerical values or tensor
+bytes; the source-receipt hashes and transformation are recorded. Recounting is
+independent numerical checking of recorded state, not external execution
+attestation. The scripts reproduce the task without the private-path receipts.

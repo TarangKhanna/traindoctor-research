@@ -1,5 +1,12 @@
 # TrainDoctor research: current local work
 
+## Owner-authorized hiring release — 2026-10-30
+
+Prepare the completed masked-loss work and sanitized receipts for public review,
+use a native subagent critic (no Claude Code this session), and push only after
+release checks pass. This supersedes the earlier publication hold for this release.
+It authorizes no new model episode, training, dependency change or task family.
+
 ## Owner-authorized follow-up — 2026-10-30
 
 On `demo/masked-mean-v1` only, implement the one-task plan in

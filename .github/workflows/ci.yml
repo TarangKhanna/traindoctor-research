@@ -53,3 +53,8 @@ jobs:
           PYTHONPATH: .
           TD_KEY: research-test-key
         run: python -m pytest -q
+      - name: Recount the public masked-loss packet (no inference or workers)
+        env:
+          PYTHONPATH: .
+          TD_KEY: state-recovery-demo-key
+        run: python -m experiments.masked_mean_v1.public_packet --check evidence/masked_mean_v1

@@ -128,6 +128,11 @@ configuration is approved by these findings; do not start an RL run.
 
 ## Harbor interoperability: implemented, runtime unverified
 
+**Historical status, superseded later on 2026-10-30:** the section below records
+the pre-runtime gate. Harbor controls subsequently executed successfully; see
+[the completed validation and its raw receipts](HARBOR_VALIDATION.md). The original
+preflight account is retained rather than rewritten as a successful execution.
+
 One existing B_DUP task is packaged in the environment branch. Standard task files
 use Harbor schema1.4/native separate verification, source-only transfer and existing
 v1.2 checks. The task-specific Linux bridge requires actual uid/capability,

@@ -1,5 +1,14 @@
 # Local milestone status
 
+Current hiring release: a working multi-turn model harness and executable
+masked-loss repair task are implemented. The [public report and portable
+packet](../evidence/masked_mean_v1/REPORT.md) recount captured states and model
+actions without a model or workers. Model-selected investigation is demonstrated;
+successful autonomous source repair/relaunch/feedback is not. The frozen episodes
+remain unchanged, and the later protocol fixes were not model-rerun. The earlier
+Harbor preflight status in AGENT_V2_REPORT is now explicitly marked superseded by
+the executed validation. Release preparation starts no new inference or training.
+
 Current: owner-authorized `demo/masked-mean-v1` follow-up is bounded and complete.
 Read [the task contract and reproduction commands](MASKED_MEAN_V1.md) and the
 script-generated `results/masked_mean_v1_final_20261030/REPORT.md`. The new task's

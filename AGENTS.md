@@ -3,11 +3,12 @@
 ## Scientific goal
 
 Make the recovery mechanism and negative learning results independently assessable.
-Current authorized milestone: [TrainDoctor v2](docs/AGENT_V2_SPEC.md), superseding
-older one-incident/no-expansion limits only for the explicitly gated upgrade.
-Reuse the local loop, fix the smallest blocker and move sequentially through gates.
-No policy-model training, cloud computation, publishing or generic orchestration.
-Preserve the completed reference-free audit and its novelty NO-GO.
+Completed evidence: [reference-free validation](docs/REFERENCE_FREE_REPORT.md),
+after the [prior-art gate](docs/REFERENCE_FREE_PRIOR_ART.md). Reference-free means
+conditional on an explicit trusted anchor, input recipe and update specification;
+replay itself is established prior art. Current owner-authorized work is release
+preparation and clear documentation, not more model runs or training. Keep unfinished
+local-agent experiments separate; do not claim successful multi-turn code repair.
 Read [current status](docs/STATUS.md), [the worked report](experiments/state_recovery_v1/REPORT.md)
 and [the learning log](docs/STATE_RECOVERY_LEARNINGS.md) before proposing more work.
 One state-only incident pair is complete. Do not expand it into a benchmark,

@@ -1,122 +1,95 @@
-# TrainDoctor Research - Qwen3-4B SFT/GRPO and Recovery-Verifier Audits
+# TrainDoctor Research
 
-Question. When an agent repairs a failed distributed training job, a repair can make the job finish while silently breaking training (skipped or duplicated samples, wrong optimizer state). Does rewarding *verified* recovery, rather than only a correct diagnosis, teach a model to avoid such repairs?
+**Does a repaired training job preserve the intended computation—or merely finish?**
 
-The environment and verifier are in [traindoctor-env](https://github.com/TarangKhanna/traindoctor-env). Each candidate repair is re-executed in a network-less Modal (gVisor) sandbox; a verifier outside the sandbox checks launcher-recorded sample delivery, launcher-captured checkpoint history, and committed optimizer state against an uninterrupted reference or an independent replay of the update rule. The workloads are small synthetic CPU/Gloo jobs (four fault kinds in two families plus a healthy control), not production FSDP/NCCL training.
+This repository contains TrainDoctor’s experiments, analysis and raw execution evidence. The [environment repository](https://github.com/TarangKhanna/traindoctor-env) supplies the distributed runtime, investigation tools and verifier.
 
-Held-out set of 100 incidents, full-task success (correct diagnosis, supporting evidence and a repair that passes live sandbox replay) on the four faulted task kinds. Historical v0.1, Qwen3-4B, exploratory:
+The strongest current result is an executable recovery demonstration: checksum-valid checkpoints can resume successfully while silently changing sample consumption or optimizer state. We test competing recoveries, check their actual trajectories and preserve the evidence for reproduction.
 
-| Policy | Success |
-| --- | ---: |
-| Base model | 5.0% |
-| SFT | 17.2% |
-| Continued SFT (compute comparability not established) | 29.7% |
-| GRPO, diagnosis-only reward (mean of 6 seeds) | 23.0% |
-| GRPO, recovery-aware reward (mean of 6 seeds) | 33.4% |
+## The worked recovery experiment
 
-V2 outperformed V0, but without a V1 (evidence-only) arm the experiment cannot isolate the contribution of recovery verification; repair-choice rates were similar (71.4% vs 71.5%). The 10.36-point gain lies below the amendment's 20-point minimum meaningful difference ([erratum](docs/ERRATUM_mmd.md)), and continued SFT was statistically indistinguishable ([details](#results-historical-v01)).
+A small two-rank PyTorch/Gloo job is preempted. The training code stays unchanged. Recovery artifacts mix components from different genuine checkpoints:
 
-The verifier audits (menu v3 development suite and red team) are author-designed consistency checks, not external validation or independent false-acceptance rates; see [Results](#results-historical-v01) and [Menu v3 development result](#menu-v3-development-result). Menu v3 was a NO-GO for RL, existing coding agents solved the development tasks, and held-out splits used new seeds, not new failure mechanisms ([Limitations](#limitations)).
+| Delivered checkpoint | Sampler-only restoration | Optimizer-only restoration | Full restoration |
+| --- | --- | --- | --- |
+| Current model/momentum, stale sampler | Correct | Incorrect | Correct |
+| Current model/sampler, stale momentum | Incorrect | Correct | Correct |
 
-A separate local [state-only recovery demonstration](experiments/state_recovery_v1/REPORT.md) keeps the training source correct, changes delivered checkpoint components, and grades the actual selected continuation. It reports correctness separately from repeated optimizer work and retains full restore and scratch as legitimate options. The worked pair supports an engineering example; full restore remains optimal in both states, so it does not establish a challenging conditional-selection task. Local model profiles and the independent continuation-oracle evidence are reported separately from the historical SFT/GRPO results.
+Every tested intervention completes, including the incorrect ones. Manifest checksums are recomputed for the delivered artifacts, so byte integrity does not establish component consistency. Semantic checks distinguish them using trusted committed state, delivered samples and training updates.
 
-Read these before the numbers:
+The experiment includes older-checkpoint and scratch recovery. Both remain legitimate fallbacks; repeated computation is measured separately. Full restoration is optimal in both states, so this pair demonstrates recovery verification rather than a difficult conditional-choice benchmark.
 
-- The base model's 5.0% partly reflects the JSON format gate: valid-format rate was 51.7% for base vs 99.8% for SFT ([TEST_REPORT.md](evidence/results/TEST_REPORT.md)).
-- Training used cached dev-container outcomes; held-out scoring used 369 live sandbox replays (diagram below).
-- The batch size of the historical held-out evaluations is unknown (protocol 2, launcher default 8, launch commands not kept; [modal_train/README.md](modal_train/README.md)).
-- The generator has a seed-to-label leak (see the [library README](https://github.com/TarangKhanna/traindoctor-env/blob/main/README.md)).
-- Test levels differ: unit CI, the executed suite and the Modal regression are separate ([library docs/TESTING.md](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/TESTING.md)).
+An independently implemented NumPy continuation oracle agrees with the executed trajectories. Its inputs include genuine committed anchors and the same data-service specification; this is mathematical cross-checking, not independent human validation.
 
-```mermaid
-flowchart LR
-  G["Generator scenarios"] --> D["Cached dev-container outcomes"]
-  D --> T["Training reward (V0, V2)"]
-  T --> M["Trained policy"]
-  G --> H["Held-out incidents"]
-  M --> S["Live Modal sandbox replay (369)"]
-  H --> S
-  S --> R["Held-out scores"]
-```
+[Worked report and action outcomes](experiments/state_recovery_v1/REPORT.md) · [Recovery contract](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/STATE_RECOVERY_V1.md)
 
-Links: [Evidence map](docs/EVIDENCE_MAP.md) · [Test report](evidence/results/TEST_REPORT.md) · [Menu v3 report](experiments/menu_v3_dev/REPORT.md) · [Verifier audit](experiments/verifier_audit/VERIFIER_AUDIT.md) · [Limitations](#limitations) · [Erratum](docs/ERRATUM_mmd.md) · [Errata](docs/ERRATA.md) · [Provenance](PROVENANCE.md) (split from the library at `6a8f565`, fresh history). Reproducibility is summarized in [Recomputing the results](#recomputing-the-results).
+## Reproduce the saved local example
 
-![Four ranks: rank 2 calls broadcast while ranks 0, 1 and 3 call all_reduce, so every rank times out with the same error](docs/figures/fig_failure.svg)
-
-The figure shows the A1 kind (mismatched collectives). Raw results and checksums are in [`evidence/`](evidence/README.md).
-
-## Install
-
-Python 3.12 or 3.13. The research code imports the library (`traindoctor_env`, `jobs`), which is pinned by commit in `requirements.txt`. Run everything from the repository root.
+Use Python 3.12. Clone both repositories as siblings, install the environment source and recount the archived executions. Use a new, empty extraction directory.
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-pip install -r requirements-rl.txt   # only for rl/ (Apple Silicon, MLX)
-export PYTHONPATH=. TD_KEY=$(python -c "import secrets;print(secrets.token_hex(16))")
-python -m pytest -q   # tests/test_first_update.py skips without MLX and a Metal device
+git clone https://github.com/TarangKhanna/traindoctor-env
+git clone https://github.com/TarangKhanna/traindoctor-research
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -e './traindoctor-env[dev]'
+cd traindoctor-research
+export TD_KEY=state-recovery-demo-key PYTHONPATH=.
+python -m zipfile -e results/state_recovery_v1_loopback_verified/raw_evidence.zip /tmp/traindoctor-evidence
+python -m experiments.state_recovery_v1.recount --run /tmp/traindoctor-evidence
 ```
 
-## Models and compute
+Expected output:
 
-The trained model is Qwen3-4B (4 billion parameters), adapted with LoRA. It was first trained with supervised fine-tuning (SFT) on reference answers, then with GRPO (group-relative policy optimization, a reinforcement-learning method). Training and evaluation ran on Modal cloud GPUs (A100 and L40S), not on a laptop: evaluation used GPU inference, and repairs on the held-out set were verified by replay in Modal Sandboxes. Claude Sonnet and Codex were not trained or fine-tuned; they appear only in [Coding-agent evaluation](#coding-agent-evaluation-claude-sonnet-and-codex). Terms: V0 rewards a correct diagnosis label. V1 also requires cited evidence that supports it. V2 (the recovery-aware reward) additionally requires a repair that passes sandboxed re-execution. Repair-selection accuracy is how often the model picks the repair that recovers the job. The held-out evaluation set was reserved before evaluation; its scenarios come from the same generator and the same fault mechanisms as the training data, so it tests new seeds, not new failure mechanisms.
+```text
+PASS: 12 raw continuation recounts; 60 capture hashes; common optimal actions: ['restore_full']
+```
+
+This checks saved execution evidence; it launches no training or model inference and needs no cloud account. For a fresh distributed run, follow the [full reproduction commands](experiments/state_recovery_v1/REPORT.md). The local execution backend is macOS `sandbox-exec`, with loopback permissions. Historical evaluations used Modal/gVisor; those isolation boundaries are different.
+
+## Can verification work without an uninterrupted reference run?
+
+The [reference-free audit](docs/REFERENCE_FREE_REPORT.md) checks transitions from a trusted earlier checkpoint using recorded inputs and the specified optimizer rule. It reproduces the recovery decisions without reading an uninterrupted reference trajectory.
+
+The guarantee is conditional: it verifies consistency with the anchor and update specification. A poisoned anchor can support a consistently wrong trajectory. The audit includes that counterexample, missing-history checks and a CPU numerical repeatability test. It also measures replay cost and reports the additional trusted records required.
+
+Our [prior-art review](docs/REFERENCE_FREE_PRIOR_ART.md) found that checkpoint-transition replay is established, including Proof-of-Learning and existing training-system checks. We make no new verification-method claim. On this pair, component comparisons already detect the tested inconsistencies; replay adds no detection coverage. The useful artifact is the inspectable execution, checks and documented failure boundaries.
 
 ## Results (historical v0.1)
 
-Training. After SFT, Qwen3-4B received GRPO with diagnosis-only (V0) or recovery-aware (V2) reward, six paired seeds each, then was scored once on a held-out evaluation set of 100 incidents.
+Qwen3-4B was adapted with LoRA SFT, then GRPO, and scored on a held-out evaluation set of 100 incidents from the same generator. Training used cached recovery outcomes; evaluation used live sandbox replay. These were single-turn diagnosis/evidence/repair-menu tasks, not interactive code repair.
 
-- Reward comparison: the recovery-aware arm gained 10.36 percentage points over the diagnosis-only arm (95% bootstrap interval +5.83 to +15.26; positive in all six seeds).
-- The gain accompanied improved evidence citation; label accuracy did not change. The V1 caveat and repair-choice rates are stated at the top.
-- Continued SFT: a single run, with compute comparability not established, is not distinguishable from the recovery-aware arm (+3.7 points; interval −1.7 to +9.1), so the table does not show that the recovery-aware reward beats more SFT.
-- Development split: the same V2-minus-V0 comparison was +4.64 points (interval −0.69 to +9.98), inconclusive.
-- Minimum meaningful difference: the frozen protocol states 7.2 points and its power-analysis amendment states 20. The 10.36-point gain is above the first and below the second, and the two were not reconciled ([ERRATUM_mmd.md](docs/ERRATUM_mmd.md)).
+| Policy | Full-task success |
+| --- | ---: |
+| Base model | 5.0% |
+| SFT | 17.2% |
+| Continued SFT | 29.7% |
+| GRPO, diagnosis-only reward | 23.0% |
+| GRPO, recovery-aware reward | 33.4% |
 
-![Full-task success and working-repair selection for the two reward arms](docs/figures/fig_reward_outcome.svg)
+The recovery-aware arm gained 10.36 percentage points over diagnosis-only reward (95% bootstrap interval +5.83 to +15.26; six paired training seeds). Repair-choice rates were similar: 71.4% versus 71.5%. Without an evidence-only reward arm, the gain cannot be attributed to better recovery selection.
 
-Attacking the verifier. None of 86 fake repairs (swallow the exception, exit 0, shrink the world, raise timeouts, forge logs) was accepted: 48 were rejected by a correctness invariant and 38 failed during execution, which shows those cheats do not run, not that an invariant covers them. The reference repair was accepted 5/5 and alternative valid repairs 9/10 (one false rejection, fixed in a prepared v1.1 verifier). One scripted cheat, `world_size: 1` on the rank-divergence task, completes the job but leaves 72 missing and 8 duplicated samples. The verifier and attacks share an author; there was no external review. See [REDTEAM_TABLE.md](evidence/results/REDTEAM_TABLE.md) and [the audit write-up](experiments/verifier_audit/VERIFIER_AUDIT.md).
+Continued SFT was not distinguishable from recovery-aware GRPO (+3.7 points; interval −1.7 to +9.1); compute comparability was not established. The base-to-SFT difference also includes a large format-validity improvement. Seed splits do not test unseen failure mechanisms.
 
-![Outcomes of the fake repairs: rejected by a correctness invariant or failed during execution](docs/figures/fig_redteam_funnel.svg)
+**Conclusion: these experiments do not establish that RL improves repair selection or beats continued SFT.** The [detailed results](docs/PROJECT_DETAIL.md#results-historical-v01), [evidence map](docs/EVIDENCE_MAP.md) and [protocol erratum](docs/ERRATUM_mmd.md) retain uncertainty, shortcuts and unresolved preregistration contradictions.
 
-## Menu v3 development result
+## What the failed pilots taught us
 
-NO-GO for RL on menu v3. The 720 Modal-sandboxed candidate outcomes comprise 60 reference repairs, 115 valid alternatives, 271 incorrect-but-completed repairs, 274 non-completions and 0 infrastructure errors. Verifier v1.2 accepts 175/175 valid and 0/271 incorrect-but-completed repairs under the suite's reference-based criteria (a consistency check: the classification uses the verifier's own outcome fields); v1 has 12 false rejections. See [ACCOUNTING.md](experiments/menu_v3_dev/ACCOUNTING.md) and [REPORT.md](experiments/menu_v3_dev/REPORT.md).
+The [menu v3 analysis](experiments/menu_v3_dev/REPORT.md) and [code-repair pilot](docs/PROJECT_DETAIL.md) narrowed the learning problem: failure to finish differs from completing with wrong semantics, and fixed bad-repair identities can supply shortcuts. Adding more menu options does not establish state-dependent reasoning.
 
-| Policy | P(V1 != V2) | V1-pass/V2-fail (of V1-pass) | Avoid-list share of V1-pass/V2-fail |
-| --- | --- | --- | --- |
-| Codex CLI (gpt-6.1-sol, medium) | 0.0% (0/120) | 0/102 | Undefined (no failures) |
-| Qwen3-4B continued SFT (`csft`) | 2.9% [1.2, 5.0] | 7/24 | 6/7 |
-| Qwen3-4B GRPO-V0 (`g_v0`, seed 0) | 5.8% [2.5, 9.6] | 14/41 | 9/14 |
-| Qwen3-4B GRPO-V2 (`g_v2`, seed 0) | 7.1% [2.9, 12.1] | 17/40 | 14/17 |
+Interactive inspection and source edits are available through Tier B tools. A successful local-model multi-turn coding repair is not established in this release. The next model-facing milestone is a bounded real tool-use trajectory, followed by a controlled full-versus-reduced-evidence comparison. SFT/RL comparisons remain conditional on task validity, informative outcomes and matched budgets.
 
-Intervals are 95% seed-clustered bootstrap. The avoid-list is learned leaving one seed out and contains four fixed items: `sync:align`, `ckpt:from_progress`, `ckpt:fresh_optimizer`, `exclude_rank`. Codex chose no completing-invalid repair with V1 credit; trained-model disagreement remains below the roughly 10% target and is mostly explained by those items. The expectation that RL would mostly teach item identities is an inference.
+## Navigate the evidence
 
-Limitations: one development seed range, one strong agent and three checkpoints from one training seed, trained on menu v1 and evaluated here without retraining. V1-pass denominators are small, and no held-out-item evaluation tested generalization. Incidents ran locally; candidate repairs ran in sandboxes; Codex saw only the prompt. These outcomes do not revise the historical v0.1 results. Details: [report](experiments/menu_v3_dev/REPORT.md).
+| Artifact | What to inspect |
+| --- | --- |
+| [State-recovery report](experiments/state_recovery_v1/REPORT.md) | Executed interventions, NumPy checks and raw receipts |
+| [Reference-free report](docs/REFERENCE_FREE_REPORT.md) | Detection matrix, trust assumptions, counterexamples and timing |
+| [Evidence directory](evidence/README.md) | Historical evaluation outputs and checksums |
+| [Detailed project record](docs/PROJECT_DETAIL.md) | Full historical analysis, model setup, audits and limitations |
+| [Reproduction guide](docs/RERUN_EXAMPLE.md) | Historical recount and rerun commands |
+| [Current status](docs/STATUS.md) | Completed work and next steps |
 
-## Coding-agent evaluation (Claude Sonnet and Codex)
+Saved evidence, local reruns and independent human reproduction are distinct; human reproduction remains outstanding. The demonstrated workloads are small CPU/Gloo MLP jobs, with no established production NCCL/FSDP coverage or generalization to arbitrary training programs.
 
-Existing coding agents, evaluated separately from the Qwen3-4B 23.0% and 33.4% results, both recovered all six development tasks. The stricter score also requires evidence records: Claude scored 5/6 because one answer omitted a record, and Codex scored 6/6. These easy tasks do not establish a model ranking. Per-task results are published; prompts and transcripts are not ([report](experiments/cross_agent_dev6/BENCHMARK_REPORT.md)).
-
-In a separate mutation pilot, eight procedurally mutated tasks passed trusted re-execution validation, then Codex solved 24 of 24 attempts. Those tasks also failed to discriminate, so the pilot stopped (NO-GO) ([pilot](experiments/mutation_pilot/README.md)).
-
-## Recomputing the results
-
-The [evidence map](docs/EVIDENCE_MAP.md) links claims to sources and recount commands. `python scripts/analyze_test.py` and `scripts/audit_test_recount.py` rebuild the policy table and repair-choice counts; `scripts/make_figures.py` redraws the figures; `scripts/check_readme.py` checks README numbers. Run `shasum -a 256 -c SHA256SUMS` in `evidence/results/`, `experiments/cross_agent_dev6/` and `experiments/mutation_pilot/`, and `shasum -a 256 -c results/SHA256SUMS` from `experiments/menu_v3_dev/` (its paths are relative to that folder).
-
-| Status | What | Notes |
-| --- | --- | --- |
-| Recomputable here | Policy table, repair-choice counts, red-team recount, figures, README numbers, checksums | CPU only; commands above |
-| Needs prerequisites | MLX tests such as `tests/test_first_update.py` | Apple Silicon with a Metal device (`requirements-rl.txt`); skipped otherwise |
-| Historical only | GPU training and evaluation (`modal_train/`, `rl/`), sandbox replays, `scripts/redteam_suite.py` | Ran before the split and were not re-run after it. The `redteam_suite.py` import of `traindoctor_env.modal_backend` was checked against the pinned library; sandbox runs were not repeated. Modal image setup: [modal_train/README.md](modal_train/README.md) |
-| Unavailable | Held-out evaluation set (only the seed-list sha256 is published); cross-agent prompts, raw answers, outcomes and harness; mutation-pilot receipts; the gate experiment; per-run development JSON behind the six-seed development comparison | Withheld or lost; see evidence map class C |
-
-The held-out evaluation protocol is copied unmodified into `evidence/prereg/`; its sha256 is in [evidence/README.md](evidence/README.md). The freeze happened in a private repository that is not published, so neither the copy nor its hash establishes when the freeze happened, and this repository's commit dates are not evidence of preregistration.
-
-## Limitations
-
-- In the historical v0.1 experiment, each repair menu has one recovering option, so V1 and V2 agree on 97.7% of development rollouts (a development-split figure, not measured on the held-out set). The results do not show that recovery-based reward improves repair selection.
-- Six paired seeds is enough to see whether the sign is stable, not enough for statistical power.
-- A post-hoc audit on 120 new development seeds found that the process-status records in the Tier A bundle separate A2 from A1 perfectly but not A1_src from A1_cfg ([report](https://github.com/TarangKhanna/traindoctor-env/blob/main/results/status_audit/run1/REPORT.md)). The bundles were not changed, and the audit does not measure whether the trained models used that shortcut.
-- Tier B is an interactive development environment, not a validated multi-turn RL benchmark; the training results are Tier A only.
-- No claim about production NCCL/FSDP failures, arbitrary training programs, or difficulty for frontier agents.
-
-Related documents: [evidence map](docs/EVIDENCE_MAP.md), [rerun example](docs/RERUN_EXAMPLE.md), [findings](docs/FINDINGS.md), [realism of the fault families](docs/REALISM.md), [related work](docs/RELATED_WORK.md). Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)); citation in [CITATION.cff](CITATION.cff); security reports in [SECURITY.md](SECURITY.md).
+Apache-2.0: [LICENSE](LICENSE), [NOTICE](NOTICE). [Citation](CITATION.cff) · [Security](SECURITY.md).

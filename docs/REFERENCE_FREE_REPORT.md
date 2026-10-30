@@ -277,3 +277,9 @@ the twelve-row assay supplies no detection advantage that defeats it.
 engineer reproduce this exact packet and identify one real failure whose diagnosis
 their current framework/tests cannot already supply. A negative assessment ends
 the paper claim; do not respond by generating more tasks.
+
+Publication status update, 2026-10-29: the owner subsequently authorized sharing
+this bounded engineering artifact and its reproduction evidence. That supersedes
+the publication hold above, not the novelty/RL conclusions. Independent human
+reproduction remains outstanding; this release is not a validated benchmark or
+evidence of external recognition.

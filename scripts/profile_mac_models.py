@@ -1,7 +1,7 @@
 """Offline, serialized MLX inference profiles and tiny capability controls.
 
-Generated code is saved as text only. A separate sandboxed validation command
-may execute patches only after a strict AST equivalence safety gate.
+Generated code is saved as text only. The separate replay command accepts one
+exact manually reviewed proposal; there is no generic generated-code safety gate.
 """
 from __future__ import annotations
 

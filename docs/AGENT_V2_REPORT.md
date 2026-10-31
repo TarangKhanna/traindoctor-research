@@ -1,11 +1,11 @@
-# TrainDoctor v2 feasibility and Harbor handoff
+# TrainDoctor v2: local-agent feasibility
 
-**Decision: STOP model-training and benchmark expansion on the current task set.**
+**The current task set did not establish a useful RL learning signal.**
 The bounded study produced real model tools/edits, executed negative repairs and
 positive semantic controls. It did not demonstrate an autonomous model choosing
 relaunch and observing its result, inspection benefit or a valid RL comparison.
-Complete only the already scoped Harbor interoperability proof after setup approval;
-that packaging is not evidence of a stronger learning task.
+The subsequent [Harbor interoperability validation](HARBOR_VALIDATION.md) tests
+packaging and verification; it does not establish a stronger learning task.
 
 ## Provenance and implementation
 
@@ -196,10 +196,9 @@ Verification: 39 focused research tests and 18 Harbor adapter unit tests passed;
 
 ## Dated addendum — 2026-10-30 Harbor validation
 
-The separately approved interoperability milestone is now executed: correct1,
+The subsequent interoperability validation executed correct1,
 no-op0, completing-invalid0 and tamper0 through native local Harbor/Docker, with
 matching native TrainDoctor controls and 20 adapter tests. See
 [the validation report](HARBOR_VALIDATION.md) for exact source/image identities,
-runtime defects, narrow lint exception and measured costs. This supersedes only
-the earlier pending-approval/runtime status; it changes no model trajectory or
-scientific learning conclusion above. No push or publication occurred.
+runtime defects, narrow lint exception and measured costs. These controls are
+separate from the model trajectories and learning conclusions above.

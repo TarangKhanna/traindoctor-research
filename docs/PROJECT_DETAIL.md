@@ -93,7 +93,7 @@ The trained model is Qwen3-4B (4 billion parameters), adapted with LoRA. It was 
 
 ## Results (historical v0.1)
 
-Held-out set of 100 incidents, full-task success (correct diagnosis, supporting evidence and a repair that passes live sandbox replay) on the four faulted task kinds. Historical v0.1, Qwen3-4B, exploratory:
+Full-task success (correct diagnosis, supporting evidence and a repair that passes live sandbox replay) on the 80 faulted incidents within a 100-incident held-out set. Each policy generated four rollouts per incident. Historical v0.1, Qwen3-4B, exploratory:
 
 | Policy | Success |
 | --- | ---: |

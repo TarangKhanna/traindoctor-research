@@ -262,3 +262,9 @@ needed a sibling source checkout to provide it. Installing environment 221096d
 from the pinned Git URL supplies the module directly. The current setup now uses
 that revision, and CPU CI recounts the fresh archive. This verifies saved evidence,
 not fresh distributed execution or an independent external reproduction.
+
+## 2026-10-31 — State the metric denominator
+
+The published fault-kind score uses 80 faulted incidents, four rollouts each,
+within the 100-incident suite. The results summary and evidence map now state
+that denominator; the release checker derives the count from the saved analysis.

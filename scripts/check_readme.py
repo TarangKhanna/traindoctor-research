@@ -61,7 +61,13 @@ pt = A["policy_table"]
 mean = lambda a: sum(a) / len(a)
 pct = lambda k: 100 * pt[k]["v2_fault4"]
 p = A["primary"]
-check(f"{p['diff']:+.2f}" == "+10.36" and "10.36 percentage points" in R, "primary diff +10.36 in analysis JSON and README")
+fault_episodes = sum(n for kind, n in A["episodes_per_kind"].items() if kind != "B_OK")
+check(fault_episodes == 80 and f"{fault_episodes} faulted incidents in a {A['n_episodes']}-incident" in L,
+      "README denominator: 80 faulted incidents within the 100-incident suite")
+check("four rollouts per incident" in L and pt["base"]["n"] == 4 * A["n_episodes"],
+      "README states the four-rollout evaluation protocol")
+check(f"{p['diff']:.1f} percentage points" in L, "README gain rounds the primary estimate to 10.4 points")
+check(f"{p['diff']:+.2f}" == "+10.36" and "10.36 percentage points" in R, "primary diff +10.36 in analysis JSON and detailed report")
 check([f"{x:+.2f}" for x in p["boot_ci95"]] == ["+5.83", "+15.26"] and "+5.83 to +15.26" in R, "primary CI [+5.83, +15.26]")
 check(round(mean([pct(f"v0_s{i}") for i in range(6)]), 1) == 23.0 and "23.0%" in R, "label-only arm mean 23.0")
 check(round(mean([pct(f"v2_s{i}") for i in range(6)]), 1) == 33.4 and "33.4%" in R, "verified arm mean 33.4")
@@ -71,7 +77,7 @@ s = A["secondary"]["v2_arm_minus_csft"]
 check(f"{s['diff']:+.2f}" == "+3.70" and [f"{x:+.2f}" for x in s["boot_ci95"]] == ["-1.67", "+9.11"] and "+3.7 points; interval \u22121.7 to +9.1" in R,
       "continued-SFT diff +3.70 CI [-1.67, +9.11]")
 check(A["n_episodes"] == 100 and "held-out evaluation set of 100 incidents" in R, "100 episodes")
-check("369" in R and "369" in TR, "369 replays in README and TEST_REPORT")
+check("369" in R and "369" in TR, "369 replays in detailed report and TEST_REPORT")
 check("0 accepted of 86" in RT and "48 invariant, 38 execution_failure" in RT and "None of 86 fake repairs" in R and "48 were rejected by a correctness invariant and 38 failed during execution" in R,
       "red team 86/48/38/0")
 check("gold 5/5" in RT and "alt-gold 9/10" in RT and "reference repair was accepted 5/5 and alternative valid repairs 9/10" in R, "gold 5/5, alt 9/10")

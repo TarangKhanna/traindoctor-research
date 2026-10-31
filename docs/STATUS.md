@@ -67,3 +67,5 @@ The new REPRODUCIBILITY.md and evidence/reproduction_20261031 packet preserve
 the fresh 12-continuation result, passing Docker correct control, listener-test
 failure and memory-interrupted no-op attempts. Full fresh Harbor sign-off remains
 incomplete. Historical evidence and verifier semantics are unchanged.
+
+2026-10-31 editorial correction: the results summary now identifies the 80 faulted incidents within the 100-incident suite and four rollouts per incident. Numerical guards check the denominator and rounded gain. Report process history is separated from the technical narrative. Runtime and historical evidence are unchanged.

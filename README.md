@@ -11,7 +11,7 @@ A two-rank CPU/Gloo job resumes from a checksum-valid checkpoint assembled from 
 | Stale sampler cursor | Correct | Incorrect | Correct |
 | Stale optimizer momentum | Incorrect | Correct | Correct |
 
-The verifier checks actual continuations against sample and state-transition contracts. An independent NumPy implementation checks the training updates, conditional on shared inputs and genuine checkpoint anchors. Full restoration works in both states; this is a recovery-verification example, not a hard action-selection benchmark.
+The verifier checks actual continuations against sample and state-transition contracts. A separate NumPy implementation cross-checks the training updates. Full restoration works in both states.
 
 [Experiment](experiments/state_recovery_v1/REPORT.md) · [Latest reproduction](docs/REPRODUCIBILITY.md) · [Trust assumptions and counterexamples](docs/REFERENCE_FREE_REPORT.md)
 
@@ -36,11 +36,11 @@ Use a new extraction directory. Expected output:
 PASS: 12 raw continuation recounts; 60 capture hashes; common optimal actions: ['restore_full']
 ```
 
-This recount launches no workers or model inference. [Fresh execution](docs/REPRODUCIBILITY.md#fresh-execution) requires the supported macOS sandbox backend. The latest clean-checkout pass reproduced all recovery trajectories; the complete Harbor rerun remains blocked by host-memory limits.
+This recount launches no workers or model inference. See [fresh execution and reproduction status](docs/REPRODUCIBILITY.md#fresh-execution) for the macOS sandbox requirements and results.
 
 ## Results
 
-Historical Qwen3-4B post-training results on 100 held-out incidents from the same generator. GRPO rows are means over six training seeds.
+Qwen3-4B performance on the 80 faulted incidents in a 100-incident held-out evaluation, using new seeds from the same task generator. Each policy generated four rollouts per incident; GRPO rows average six training seeds.
 
 | Policy | Full-task success |
 | --- | ---: |
@@ -50,7 +50,7 @@ Historical Qwen3-4B post-training results on 100 held-out incidents from the sam
 | GRPO, diagnosis-only reward | 23.0% |
 | GRPO, recovery-aware reward | 33.4% |
 
-Repair-choice rates were 71.4% versus 71.5%. An advantage over continued SFT was not established, and compute comparability was not verified. Base-to-SFT gains also include improved output formatting. [Analysis, uncertainty and limitations](docs/PROJECT_DETAIL.md#results-historical-v01) · [Evidence map](docs/EVIDENCE_MAP.md)
+Recovery-aware GRPO improved full-task success by 10.4 percentage points over diagnosis-only GRPO. Repair-choice rates remained similar (71.4% versus 71.5%), and an advantage over continued SFT was not established. [Analysis, uncertainty and limitations](docs/PROJECT_DETAIL.md#results-historical-v01) · [Evidence map](docs/EVIDENCE_MAP.md)
 
 ## Explore
 

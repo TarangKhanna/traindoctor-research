@@ -33,3 +33,14 @@ Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/REA
 | A2v2 behaviour | library tests | [A2V2_STATUS.md](A2V2_STATUS.md) | result tables withheld | C |
 
 See [ERRATUM_mmd.md](ERRATUM_mmd.md) for the 7.2 vs 20 point MMD discrepancy and [ERRATA.md](ERRATA.md) for other corrections.
+
+## Current recovery reproduction
+
+The [2026-10-31 packet](../evidence/reproduction_20261031/) contains fresh local
+execution receipts at environment 221096d / research ed262d0. After extracting
+`raw_evidence.zip`, run `python -m experiments.state_recovery_v1.recount --run
+/path/to/extracted` with the README environment: 12 continuations, 60 capture
+hashes, and the same recount as the earlier published execution. Class A for
+recounting; fresh execution requires the supported macOS backend. The
+[reproduction record](REPRODUCIBILITY.md) distinguishes the passing fresh Docker
+correct control from interrupted and unrun negative controls.

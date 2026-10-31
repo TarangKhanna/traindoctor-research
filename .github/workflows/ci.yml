@@ -58,3 +58,13 @@ jobs:
           PYTHONPATH: .
           TD_KEY: state-recovery-demo-key
         run: python -m experiments.masked_mean_v1.public_packet --check evidence/masked_mean_v1
+      - name: Recount the recovery demonstration (saved evidence, no workers)
+        env:
+          PYTHONPATH: .
+          TD_KEY: state-recovery-demo-key
+        run: |
+          cd evidence/reproduction_20261031
+          sha256sum -c SHA256SUMS
+          cd ../..
+          python -m zipfile -e evidence/reproduction_20261031/raw_evidence.zip "$RUNNER_TEMP/recovery-evidence"
+          python -m experiments.state_recovery_v1.recount --run "$RUNNER_TEMP/recovery-evidence"

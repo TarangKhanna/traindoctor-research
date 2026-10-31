@@ -254,3 +254,11 @@ Closure learning: static tests cannot establish SDK transport semantics, and a s
 2026-10-30 release catch: CI does not install the optional Mac profiler. The agent module can now be imported without psutil; actual inference still refuses without the memory guard. Review caught that this refusal must follow completed-state and bad-approval checks, while preceding new inference/approved-patch work. Completed, exhausted and invalid-approval paths are tested without psutil; all 22 focused tests pass against the historical CI environment source as well. No dependency addition or new model execution.
 
 2026-10-30 CI root cause: a report's relative Harbor link resolved through a sibling worktree, so local filesystem checks passed while a standalone GitHub checkout failed. The URL is now public and the existing release checker validates every tracked Markdown link against tracked files/directories. A deliberate regression with the old link is rejected despite the sibling existing; the restored public link passes. This strengthens release validation without changing experimental evidence.
+
+## 2026-10-31 — Keep the install pin aligned with the featured example
+
+The old requirements pin predates `state_recovery_v1`; the README previously
+needed a sibling source checkout to provide it. Installing environment 221096d
+from the pinned Git URL supplies the module directly. The current setup now uses
+that revision, and CPU CI recounts the fresh archive. This verifies saved evidence,
+not fresh distributed execution or an independent external reproduction.

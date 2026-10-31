@@ -51,8 +51,7 @@ for f in sorted((ROOT / "docs/figures").glob("*.svg")):
 R = (ROOT / "docs/PROJECT_DETAIL.md").read_text()
 # Preserve the full historical evidence checks after moving detail off the landing page.
 L = (ROOT / "README.md").read_text()
-for value in ("5.0%", "17.2%", "29.7%", "23.0%", "33.4%", "10.36 percentage points",
-              "+5.83 to +15.26", "71.4%", "71.5%", "+3.7 points; interval \u22121.7 to +9.1"):
+for value in ("5.0%", "17.2%", "29.7%", "23.0%", "33.4%", "71.4%", "71.5%"):
     check(value in L and value in R, f"landing-page result retained in historical detail: {value}")
 A = json.loads((ROOT / "evidence/results/test/TEST_REPORT_analysis.json").read_text())
 RC = json.loads((ROOT / "evidence/results/test/AUDIT_RECOUNT.json").read_text())

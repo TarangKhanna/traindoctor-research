@@ -59,3 +59,11 @@ Local follow-up: [scoped agent instructions](../AGENTS.md) and [append-only lear
 Release verification: 20 Harbor adapter tests, 22 agent tests (also against the historical CI pin without psutil), README numerical/link checks and the four-control saved-evidence recount pass. Read-only subagent review found no remaining blocker; outgoing history/archive credential-pattern checks were clear within their stated limits.
 
 2026-10-30 privacy audit: public tracked trees and advertised-ref history were checked for personal documents and known resume contact fields. No resume/attachment or contact match was found in file contents. Existing commit author/committer metadata does contain a personal email; it is not removed by this cleanup. Private-document ignore rules were added. The research receipt derivatives redact owner-home paths, with original/redacted hashes recorded; older public commits still retain historical paths. No history rewrite or new experiment.
+
+2026-10-31 reproducibility/publication pass: the current requirements pin now
+includes the state-recovery runtime. The README uses the fresh recovery archive;
+CPU CI checks its hashes and recounts its captures without launching workers.
+The new REPRODUCIBILITY.md and evidence/reproduction_20261031 packet preserve
+the fresh 12-continuation result, passing Docker correct control, listener-test
+failure and memory-interrupted no-op attempts. Full fresh Harbor sign-off remains
+incomplete. Historical evidence and verifier semantics are unchanged.

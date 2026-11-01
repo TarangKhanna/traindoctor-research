@@ -6,9 +6,9 @@ Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/REA
 
 | claim | source | recount command | printed | class |
 | --- | --- | --- | --- | --- |
-| Success on the sealed test: base 5.0, SFT 17.2, continued SFT 29.7; 100 episodes | `R/test/test_scored.json`, `R/test/TEST_REPORT_analysis.json` | `python scripts/analyze_test.py evidence/results/test/test_scored.json $TMPDIR/an`, then compare `$TMPDIR/an.json` with the committed analysis | identical JSON; 5.0 / 17.2 / 29.7; n=100 | A |
+| Success on 80 faulted incidents within the 100-incident sealed test: base 5.0, SFT 17.2, continued SFT 29.7; four rollouts per incident | `R/test/test_scored.json`, `R/test/TEST_REPORT_analysis.json` | `python scripts/analyze_test.py evidence/results/test/test_scored.json $TMPDIR/an`, then compare `$TMPDIR/an.json` with the committed analysis | identical JSON; 5.0 / 17.2 / 29.7; 80 faulted + 20 healthy incidents, 320 faulted rollouts per policy | A |
 | GRPO arms 23.0% / 33.4% (means of 6 seeds) | same | `python scripts/check_readme.py` | "label-only arm mean 23.0", "verified arm mean 33.4" ok | A |
-| V2 arm minus V0 arm +10.36 points, 95% bootstrap interval +5.83 to +15.26 | `R/test/TEST_REPORT_analysis.json` | `analyze_test.py` as above | 10.36 [5.83, 15.26]  (continued SFT is not distinguishable from V2, compute comparability not established; the gain accompanies improved evidence citation while repair-choice rates were similar; no V1 arm was trained) | A |
+| V2 arm minus V0 arm +10.36 points (10.4 rounded), 95% bootstrap interval +5.83 to +15.26 | `R/test/TEST_REPORT_analysis.json` | `analyze_test.py` as above | 10.36 [5.83, 15.26]  (continued SFT is not distinguishable from V2, compute comparability not established; the gain accompanies improved evidence citation while repair-choice rates were similar; no V1 arm was trained) | A |
 | V2 arm minus continued SFT +3.7 (-1.7 to +9.1) | same | same | 3.70 [-1.67, 9.11] | A |
 | Working repair chosen at 71.4% vs 71.5% | `R/test/AUDIT_RECOUNT.txt` | `python scripts/audit_test_recount.py`; `python scripts/repair_choice_by_seed.py` | v0 71.41, v2 71.46 (README rounds to 71.4 / 71.5) | A |
 | 369 unique scenario/repair pairs replayed in sandboxes | `R/test/test_replay_r*.json` | `python scripts/audit_test_recount.py` | "replay pairs 369 ... modal_sandbox 369", 0 conflicting duplicates | A for the count; the replays themselves need Modal (C) |
@@ -68,3 +68,14 @@ remains untested. An isolated source-only strong-agent proposal is analytic, not
 executed repair. No Tier B group variance/advantage fraction is claimed.
 
 The Table B model names are Qwen3-4B-Instruct-2507 and Gemma-4-E2B-it, both 4-bit; exact snapshots are in CODING_AGENT_RECOUNT.md and the frozen configurations.
+
+## Current recovery reproduction
+
+The [2026-10-31 packet](../evidence/reproduction_20261031/) contains fresh local
+execution receipts at environment 221096d / research ed262d0. After extracting
+`raw_evidence.zip`, run `python -m experiments.state_recovery_v1.recount --run
+/path/to/extracted` with the README environment: 12 continuations, 60 capture
+hashes, and the same recount as the earlier published execution. Class A for
+recounting; fresh execution requires the supported macOS backend. The
+[reproduction record](REPRODUCIBILITY.md) distinguishes the passing fresh Docker
+correct control from interrupted and unrun negative controls.

@@ -1,22 +1,11 @@
 # TrainDoctor: reference-free recovery verification
 
-2026-10-29. **Local feasibility GO; replay-method novelty NO-GO.** The checker can
+2026-10-29. The checker can
 detect the saved checksum-valid invalid recoveries without an uninterrupted run.
 It establishes conditional transition consistency, not correctness of an entire
 training history. No differentiated ML systems paper contribution is established.
 
-## Provenance and prior-art gate
-
-Research worktree: `.wt/reference-free-v1-research`, branch
-`audit/reference-free-v1`, based on `0419515`. Environment source is unchanged at
-`438b573` in `.wt/state-recovery-v1-env` (launcher hardening `65e4bea`). Earlier
-`demo/state-recovery-v1` and `audit/state-twins-20261029` worktrees were inspected
-and preserved. The public heads were verified in the earlier audit; they were not
-re-queried in this session. No main worktree was changed.
-
-Frozen prototype, tests and raw receipts: research commit
-`aea970db30f8e43b63285f9e03ee644ccaf4333a`. This report/status closure is a separate
-documentation commit; the tested source hashes are stored with the receipts.
+## Prior art
 
 The [prior-art matrix and one-page boundary](REFERENCE_FREE_PRIOR_ART.md) were
 completed before experimental implementation. They distinguish documentation,
@@ -202,30 +191,17 @@ Use existing MLX/MLX-LM/mlxrl work; no implementation or promise of RL improveme
 
 ## Verification and reproduction
 
-Changed implementation: three `experiments/state_recovery_v1/reference_free*.py`
-modules and `tests/test_reference_free.py`. Documents: this report, prior-art gate,
-specification, scoped AGENTS, learning/status updates and ignore rules. New generated
-receipts are confined to `results/reference_free_v1_*`. Environment/v1.2 and all old
-receipts remain unchanged. Preliminary new assay output is retained separately.
-
 Baseline: 18 focused research tests passed. Final focused research gate: 28 passed.
-The earlier environment claim was rerun: **241 passed, 1 deselected**. The manual
+The environment checks were rerun: **241 passed, 1 deselected**. The manual
 smoke path was filtered saved captures → reference-free decision matrix → old
 oracle comparison, followed by two real sandboxed continuations and live loopback
-inspection. Native read-only critic reviewed specification and implementation;
-this is AI critique, not independent human recognition. Linux/external reproduction
-and new dependency installation were not performed. No experimental model
-inference/training ran; AI research/review assistance is identified separately.
+inspection. Linux/external reproduction and new dependency installation were not
+performed.
 
-The [terminal test output](../results/reference_free_v1_20261029_reviewed/tests.txt),
-[tested source hashes](../results/reference_free_v1_20261029_reviewed/verification.json),
-[initial static review](../results/reference_free_v1_20261029_reviewed/review_initial.txt)
-and [follow-up review](../results/reference_free_v1_20261029_reviewed/review_followup.txt)
-are retained. Review caught missing scratch overlap evidence, empty/missing ledger
-classification and suppression of primary outputs on historical disagreement.
-These were fixed with regressions; the follow-up found no remaining blocker within
-the frozen-artifact contract. It did not execute the tests. The repeatability archive
-checksum is `4276bb189e367e5ca017f51b749214a1cb4153d9b357ba8bd7c68f7f1c168fe4`.
+The [terminal test output](../results/reference_free_v1_20261029_reviewed/tests.txt)
+and [tested source hashes](../results/reference_free_v1_20261029_reviewed/verification.json)
+are retained. The repeatability archive checksum is
+`4276bb189e367e5ca017f51b749214a1cb4153d9b357ba8bd7c68f7f1c168fe4`.
 
 From this research worktree, with the existing prepared Python and environment
 source (replace paths as needed):
@@ -251,35 +227,42 @@ The replay/math tests need existing CPU PyTorch/NumPy and matching environment
 source, not Metal or cached LLMs. The last command requires macOS sandbox-exec and
 permission to launch local sandboxed workers. Output paths must not exist.
 
-## Decision and single next action
+## Interpretation
 
-| Decision | Verdict |
-|---|---|
-| Conditional reference-free checker | GO as a bounded engineering validation |
-| Novel verifier contribution | NO-GO: equivalent interval replay exists |
-| Full research paper now | NO-GO: differentiation, scale and external value unproved |
-| External release now | NO-GO pending human reproduction/review and owner approval |
-| Local RL training | NO-GO: common optimal repair, no demonstrated investigation benefit |
+The checker establishes transition consistency conditional on a trusted anchor,
+input history and update rule. Interval replay is an existing method, and the
+component archive already detects every tested inconsistency. The twelve-row
+assay therefore supplies no additional detection coverage or new verifier-method
+result. Full restoration is optimal in both states; an investigation benefit or
+useful RL learning signal was not demonstrated.
 
-Choose **B: independent human reproduction**, not an integration PR or manuscript
-yet. Potential scientific reviewers include Proof-of-Learning authors Hengrui Jia
-or Nicolas Papernot for method overlap/trust assumptions; PyTorch DCP/TorchTitan
-checkpoint contributors are an upstream channel only after a concrete unmet
-regression is identified. These are potential channels, not confirmed availability,
-endorsement or outreach. No messages/issues/PRs were sent. Any eventual O-1A use
-should rest on documented external adoption/recognition, not AI review or star counts.
+Independent practitioner reproduction remains outstanding. A stronger research
+claim would need a real failure that existing component checks and replay methods
+cannot already diagnose.
 
-**Strongest argument for no novelty:** this is a custom-instrumented MLP using a
-known replay method, and its component archive already detects every tested fault.
-**Evidence:** source inspection of Proof-of-Learning supports that objection;
-the twelve-row assay supplies no detection advantage that defeats it.
-**Single highest-information next action:** have an independent checkpoint/resume
-engineer reproduce this exact packet and identify one real failure whose diagnosis
-their current framework/tests cannot already supply. A negative assessment ends
-the paper claim; do not respond by generating more tasks.
+## Appendix: source and review provenance
 
-Publication status update, 2026-10-29: the owner subsequently authorized sharing
-this bounded engineering artifact and its reproduction evidence. That supersedes
-the publication hold above, not the novelty/RL conclusions. Independent human
-reproduction remains outstanding; this release is not a validated benchmark or
-evidence of external recognition.
+Research worktree: `.wt/reference-free-v1-research`, branch
+`audit/reference-free-v1`, based on `0419515`. Environment source is unchanged at
+`438b573` in `.wt/state-recovery-v1-env` (launcher hardening `65e4bea`). Earlier
+`demo/state-recovery-v1` and `audit/state-twins-20261029` worktrees were inspected
+and preserved. The public heads were verified in the earlier audit; they were not
+re-queried in this session. No main worktree was changed.
+
+Frozen prototype, tests and raw receipts: research commit
+`aea970db30f8e43b63285f9e03ee644ccaf4333a`. This report/status closure is a separate
+documentation commit; the tested source hashes are stored with the receipts.
+
+Changed implementation: three `experiments/state_recovery_v1/reference_free*.py`
+modules and `tests/test_reference_free.py`. Documents: this report, prior-art gate,
+specification, scoped AGENTS, learning/status updates and ignore rules. New generated
+receipts are confined to `results/reference_free_v1_*`. Environment/v1.2 and all old
+receipts remain unchanged. Preliminary new assay output is retained separately.
+
+Read-only AI reviews of the specification and implementation are retained in the
+[initial review](../results/reference_free_v1_20261029_reviewed/review_initial.txt)
+and [follow-up review](../results/reference_free_v1_20261029_reviewed/review_followup.txt).
+They identified missing scratch-overlap evidence, empty/missing-ledger handling
+and suppression of primary outputs on historical disagreement; regressions cover
+the corrections. These reviews did not execute tests and are not independent
+human validation. No experimental model inference or training ran in this audit.

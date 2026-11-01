@@ -1,0 +1,40 @@
+{
+  "source": "executed",
+  "phase": "release after merging public heads46eb031/a8b26a2",
+  "checks": [
+    {
+      "name": "readme",
+      "exit_code": 0,
+      "command": "python scripts/check_readme.py"
+    },
+    {
+      "name": "numbers",
+      "exit_code": 0,
+      "command": "python scripts/check_readme_numbers.py"
+    },
+    {
+      "name": "learning",
+      "exit_code": 0,
+      "command": "python scripts/audit_learning_signal.py --check results/learning_signal_20261102_verified"
+    },
+    {
+      "name": "agents",
+      "exit_code": 0,
+      "command": "python scripts/recount_coding_agents.py --check results/agent_recount_20261102"
+    },
+    {
+      "name": "reproduction_recount",
+      "exit_code": 0
+    },
+    {
+      "name": "reproduction_hashes",
+      "exit_code": 0
+    }
+  ],
+  "research_tests": "81 passed in 2.08s; research_tests.txt",
+  "resume_identity_tests": "11 passed in 0.10s; terminal output, independently repeated by critic",
+  "environment_tests": "24 passed in 0.25s; state recovery and Harbor grader",
+  "critic": "reviewed final READMEs and outgoing code diff; stale audit provenance fixed, no remaining release blocker; AI review, not independent human validation",
+  "merge_check": "both append histories preserved; numerical check caught omitted evidence-map append and passes after restoration",
+  "compute": "no new inference/training/workers during release; additional Modal cost $0"
+}

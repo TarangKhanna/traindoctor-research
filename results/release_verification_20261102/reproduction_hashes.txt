@@ -1,0 +1,6 @@
+harbor_correct.json: OK
+raw_evidence.zip: OK
+raw_evidence.zip.sha256: OK
+recount.json: OK
+resources.json: OK
+summary.json: OK

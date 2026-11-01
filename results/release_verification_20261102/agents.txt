@@ -1,0 +1,1 @@
+PASS: corrected-controller identities, budgets, actions, rewards and derivative hashes

@@ -258,3 +258,17 @@ Closure learning: static tests cannot establish SDK transport semantics, and a s
 2026-10-30 bounded corrected-controller trials (`demo/protocol-corrected-20261030`): Qwen512 16 responses/14 valid native calls, one applied model edit and one model-requested relaunch; failed with IndentationError, then acted after feedback. Gemma512 9 responses/8 valid calls, one applied edit, context exhaustion before relaunch. Eligible Qwen1024 diagnostic 16 responses/16 valid calls, one applied edit and two relaunches; both fail with AttributeError. All rewards zero; no successful autonomous semantic repair. Fresh controls/smoke pass; 144 control states independently recounted, two latest failed model execution verdicts rechecked, 51 focused tests pass. Native critic found no blocker. Raw evidence/report retained locally under results/masked_mean_v1_protocol_corrected_20261030/recount/. No training, publication, new tasks or further inference. Next task-discrimination decision requires fixed/contract-aware baselines.
 
 2026-10-30 audit follow-up: paused episodes now bind canonical fixture path, full fixture contents including trusted history, controller source and selected task source before reconstruction or approval. Legacy unbound paused episodes fail closed; terminated historical receipts remain unchanged. Per-load task identity now names the selected task. Focused resume/controller/masked-loss/state-oracle tests: 62 passed; actual saved-fixture identity smoke passed without model load or mutation. The older Harbor pre-runtime heading is explicitly superseded. No new inference, Docker trial, training or publication; all historical local model-result hashes remain intact.
+
+## 2026-10-31 — Keep the install pin aligned with the featured example
+
+The old requirements pin predates `state_recovery_v1`; the README previously
+needed a sibling source checkout to provide it. Installing environment 221096d
+from the pinned Git URL supplies the module directly. The current setup now uses
+that revision, and CPU CI recounts the fresh archive. This verifies saved evidence,
+not fresh distributed execution or an independent external reproduction.
+
+## 2026-10-31 — State the metric denominator
+
+The published fault-kind score uses 80 faulted incidents, four rollouts each,
+within the 100-incident suite. The results summary and evidence map now state
+that denominator; the release checker derives the count from the saved analysis.

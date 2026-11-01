@@ -1,0 +1,1 @@
+PASS: identical-completion rewards and all eight-completion group arithmetic recounted

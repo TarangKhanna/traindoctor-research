@@ -2,7 +2,7 @@
 
 **Does a repaired training job preserve the intended computation—or merely finish?**
 
-TrainDoctor exposes distributed PyTorch/Gloo failures, investigation and editing tools, and checks of recovered samples, parameters and optimizer state. Experiments and receipts are here; the [environment](https://github.com/TarangKhanna/traindoctor-env) contains the runtime and verifier.
+TrainDoctor runs failing distributed PyTorch/Gloo jobs, exposes inspection and editing tools, and checks whether repairs preserve samples, parameters and optimizer state. Experiments and receipts are here; the [environment](https://github.com/TarangKhanna/traindoctor-env) contains the runtime and verifier.
 
 Tier A is single-turn diagnosis, evidence citation and repair-menu selection. Tier B is multi-turn inspection, source edits, actual distributed relaunch and feedback.
 
@@ -35,17 +35,30 @@ V2 improved evidence grounding alongside full-task success, without demonstratin
 | Masked-loss corrected / Gemma 512 | 9 | 8 | 1 | 0 | Context limit; reward 0 |
 | Masked-loss corrected / Qwen 1024 | 16 | 16 | 1 | 2 | Python failure; reward 0 |
 
-Different tasks/controllers make these episodes **unsuitable for controlled model comparison**. Models are cached Qwen3-4B-Instruct-2507 and Gemma-4-E2B-it, both 4-bit. Corrected runs reserve 512 or 1,024 output tokens inside an 8,192-token context; the larger budget also reduces prompt room. Configurations: [checkpoint study](docs/AGENT_V2_REPORT.md), [original masked-loss packet](evidence/masked_mean_v1/REPORT.md), [corrected-controller recount](docs/CODING_AGENT_RECOUNT.md).
+These are individual attempts across different tasks and controller versions, not success rates or a model ranking. Models are cached Qwen3-4B-Instruct-2507 and Gemma-4-E2B-it, both 4-bit. Corrected runs reserve 512 or 1,024 output tokens inside an 8,192-token context; the larger budget also reduces prompt room. Configurations: [checkpoint study](docs/AGENT_V2_REPORT.md), [original masked-loss packet](evidence/masked_mean_v1/REPORT.md), [corrected-controller recount](docs/CODING_AGENT_RECOUNT.md).
 
 **Autonomous semantically correct repair has not yet been demonstrated.** Qwen did complete edit → relaunch → failure feedback → further action. Safety review supplied no repaired code. Scripted successes and separately executed/normalized proposals receive no autonomous credit.
 
 ## What the task-design audit establishes
 
-V1/V2 advantages differ in only 20 of 384 saved eight-completion development groups. These are evaluation samples, not recovered training gradients. Menu redesigns added completing-but-wrong repairs, but fixed choices remained strong; full restoration solves both state-recovery twins, and one global-normalization patch solves all masked-loss schedules. Two source-only Qwen checks also failed the formula/patch floor; further RL is unjustified. [Learning-signal audit](LEARNING_SIGNAL_AUDIT.md).
+V1/V2 advantages differ in only 20 of 384 saved eight-completion development groups. These are evaluation samples, not recovered training gradients. Menu redesigns added completing-but-wrong repairs, but fixed choices remained strong; full restoration solves both state-recovery twins, and one global-normalization patch solves all masked-loss schedules. Two source-only Qwen checks failed to produce a correct formula or patch. These cases do not yet justify further RL. [Learning-signal audit](LEARNING_SIGNAL_AUDIT.md).
 
 ## Reproduce the saved local example
 
-Use Python 3.12, install the environment with its documented dependencies, then follow the [archive extraction and recount commands](experiments/state_recovery_v1/REPORT.md). Recounting needs no model or cloud account. [Worked recovery report](experiments/state_recovery_v1/REPORT.md) · [Recount commands and limits](docs/CODING_AGENT_RECOUNT.md).
+Python 3.12; install the pinned runtime, then recount the saved executions:
+
+```bash
+git clone https://github.com/TarangKhanna/traindoctor-research
+cd traindoctor-research
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+export TD_KEY=state-recovery-demo-key PYTHONPATH=.
+python -m zipfile -e evidence/reproduction_20261031/raw_evidence.zip /tmp/traindoctor-evidence
+python -m experiments.state_recovery_v1.recount --run /tmp/traindoctor-evidence
+```
+
+Use a new extraction directory. This launches no workers or models. [Reproduction status and fresh execution](docs/REPRODUCIBILITY.md) · [Agent recount](docs/CODING_AGENT_RECOUNT.md).
 
 Two synthetic families and seed holdouts do not establish unseen-mechanism or production generalization. Captured-state checks depend on trusted inputs and reviewed source. [Evidence map](docs/EVIDENCE_MAP.md) · [Harbor controls](docs/HARBOR_VALIDATION.md) · [Testing boundaries](docs/TESTING.md) · [Provenance](PROVENANCE.md).
 

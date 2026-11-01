@@ -1,0 +1,56 @@
+{
+  "container_versions": {
+    "numpy": "2.5.4",
+    "python": "3.12.16",
+    "torch": "2.14.1+cpu"
+  },
+  "cpu_versions": {
+    "numpy": "2.5.4",
+    "python": "3.12.9",
+    "torch": "2.14.1"
+  },
+  "date": "2026-10-31",
+  "docker_version": "29.5.3",
+  "environment_commit": "221096d37690f21ab1a57cb79e387c3911064802",
+  "environment_tests": {
+    "failed": 1,
+    "failed_test": "test_live_job_and_rendezvous_listeners_are_loopback",
+    "failure": "launcher listener on loopback; worker listener absent during four-second polling; cause unresolved",
+    "passed": 23
+  },
+  "fresh_clone_method": "local clones without shared hardlinks; fresh dependency environments; existing interpreter and caches",
+  "full_reproduction_signoff": false,
+  "harbor_commit": "509b119db0d97b141dcd9c80f4f7ab861c47c2d6",
+  "harbor_expected_rewards": {
+    "completing_invalid": 0,
+    "correct": 1,
+    "nop": 0,
+    "tampered": 0
+  },
+  "harbor_freshly_graded": {
+    "correct": 1
+  },
+  "harbor_interrupted": [
+    "nop",
+    "nop-retry"
+  ],
+  "harbor_unrun": [
+    "completing_invalid",
+    "tampered"
+  ],
+  "harbor_version": "0.25.0",
+  "independent_external_validation": false,
+  "model_inference_or_training": false,
+  "oracle_tests": {
+    "passed": 2
+  },
+  "original_checks_sha256": "6b2d95f659e09320d918041be7e907e929f188b038dbb99e0e086af1d57c45d9",
+  "platform": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+  "raw_evidence_sha256": "0199cd1abb01b7b475b41424646573a3f5ae9cefa9c3c57f4f8f066520a6f02b",
+  "research_commit": "ed262d0b7ea37fd4f1643ea6b80bb076e5717d71",
+  "same_host": true,
+  "saved_fresh_recounts_equal": true,
+  "source": "executed",
+  "state_capture_hashes": 60,
+  "state_continuations": 12
+}

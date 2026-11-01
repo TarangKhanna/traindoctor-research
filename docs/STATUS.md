@@ -78,3 +78,13 @@ runs. Historical receipts unchanged; two additional source-only cached-Qwen requ
 fail correct-formula/patch competence, without exhaustion or resource interruption.
 No new workers, paid compute, push or publication. No Tier B group rates estimated;
 see LEARNING_SIGNAL_AUDIT.md and CODING_AGENT_RECOUNT.md.
+
+2026-10-31 reproducibility/publication pass: the current requirements pin now
+includes the state-recovery runtime. The README uses the fresh recovery archive;
+CPU CI checks its hashes and recounts its captures without launching workers.
+The new REPRODUCIBILITY.md and evidence/reproduction_20261031 packet preserve
+the fresh 12-continuation result, passing Docker correct control, listener-test
+failure and memory-interrupted no-op attempts. Full fresh Harbor sign-off remains
+incomplete. Historical evidence and verifier semantics are unchanged.
+
+2026-10-31 editorial correction: the results summary now identifies the 80 faulted incidents within the 100-incident suite and four rollouts per incident. Numerical guards check the denominator and rounded gain. Report process history is separated from the technical narrative. Runtime and historical evidence are unchanged.

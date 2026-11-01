@@ -1,12 +1,10 @@
 # State only recovery and local model profiles
 
-The engineering demonstration works: correct, identical training source can resume a checksum-valid checkpoint and finish with an incorrect sample or optimizer trajectory. Two selective repairs have opposite outcomes under the two constructed states. A separate NumPy continuation oracle agrees with all twelve executed continuations.
+The same correct training source can resume a checksum-valid checkpoint and finish with an incorrect sample or optimizer trajectory. Two selective repairs have opposite outcomes under the two constructed states. A separate NumPy continuation oracle agrees with all twelve executed continuations.
 
-The learning-task verdict remains NO-GO. Full committed restoration is legitimate and optimal in both states, including under the new illustrative recomputation penalty. Thinking-off Gemma chose that common optimal action without inspection. This is a useful recovery example, not evidence of a difficult RL problem.
+The task did not establish a useful RL learning signal. Full committed restoration is legitimate and optimal in both states, including under the new illustrative recomputation penalty. Thinking-off Gemma chose that common optimal action without inspection. This is a useful recovery example, not evidence of a difficult RL problem.
 
 ## Contract and architecture
-
-Public baselines were verified as environment `0e8cf6a` and research `53fa710`; clean local method-fixes worktrees matched GitHub. All changes are on isolated `demo/state-recovery-v1` branches. Historical Task B's fault/recovery semantics, `Replay.outcomes()`, verifier v1.2, its scratch allowance, dependency pins and historical evidence remain unchanged. The shared launcher received a separate transport-security fix described below.
 
 The historical protocol checks repaired source through a fresh fault injection. The new `state_recovery_v1` instead preserves genuine pre-failure captures and grades the selected continuation. It reuses the existing launcher, manifest checks and semantic/provenance checks, with cost excluded from the correctness boolean. Raw redone optimizer steps are reported separately, without a scratch exemption. Scratch remains correct when it reconstructs the intended computation. Its checkpoint-continuity field is not applicable.
 
@@ -33,13 +31,13 @@ The oracle independently implements MLP forward/backward, rank averaging, moment
 
 The fixed data challenge preserves the pre-step-8 prefix and uses the same continuation salt for all actions and the reference. Source hashes and original captures are retained. Preemption and continuations use macOS `sandbox-exec`; the existing reference helper runs trusted local code without OS isolation. Seatbelt's loopback permissions are not equivalent to historical network-less Modal isolation.
 
-The required live listener check exposed a pre-existing wildcard TCPStore bind on this host despite `MASTER_ADDR=127.0.0.1`. The launcher now owns a socket pre-bound to IPv4 loopback, using PyTorch's supported `master_listen_fd` API and agent-store client mode for every rank. The live `lsof` regression passed; 241 focused local tests passed, and the static review found no blockers. All twelve continuations and the independent recount passed again after this fix. Model-visible observations and every semantic/cost result are unchanged. The fix changes rendezvous ownership/binding, not training source, fault injection or v1.2 semantics.
+The required live listener check exposed a pre-existing wildcard TCPStore bind on this host despite `MASTER_ADDR=127.0.0.1`. The launcher now owns a socket pre-bound to IPv4 loopback, using PyTorch's supported `master_listen_fd` API and agent-store client mode for every rank. The live `lsof` regression passed; 241 focused local tests passed. All twelve continuations and the independent recount passed again after this fix. Model-visible observations and every semantic/cost result are unchanged. The fix changes rendezvous ownership/binding, not training source, fault injection or v1.2 semantics.
 
 Evidence ablation makes the two initial observations indistinguishable for selecting a *selective* repair. It does not make successful recovery impossible: full restore remains optimal. Display-name perturbations are structural noninterference controls, not a population robustness experiment. The recorded multi-turn reference policy is explicitly scripted, never represented as a model transcript. All observations share one paired incident; no independent-trial confidence intervals are claimed.
 
 ## Local inference and code fixing
 
-The requested model research was split into task design, Mac models/runtimes and training efficiency, then combined and criticized before implementation. Actual inference used cached 4-bit models, MLX 0.31.2 / MLX-LM 0.31.3, AC power and serialized Metal runs on the M4 Air with 32 GB. No downloads, cloud jobs, paid APIs or dependency changes were needed.
+Local inference used cached 4-bit models with MLX 0.31.2 / MLX-LM 0.31.3 on an M4 Air with 32 GB. The machine used AC power, with one Metal inference process at a time.
 
 Each timing shape has one discarded warmup and five measured requests. These are approximately equal native-token contexts, not identical byte strings across tokenizers. Model order and thermal conditions were not counterbalanced, so the table is an observed hardware/runtime profile, not a controlled architecture ranking.
 
@@ -95,8 +93,6 @@ To repeat an optional model profile, supply a local snapshot directory to `scrip
 
 Verified locally: the worked incident, all declared interventions, the NumPy oracle, capture/source checks, focused tests and the two model profiles. Not verified: Linux execution, a clean external machine, independent practitioner reproduction, native-function-call model quality, stochastic reward groups, new training performance or new-mechanism generalization. A preliminary execution with stale full-restore manifest metadata and the thinking-on Gemma run are retained separately and are not the final evidence.
 
-The initial source commits are environment `d568f69` and research `6e158ce`; loopback hardening is environment `65e4bea`. Fresh local clones of the initial commits passed 18 environment tests (`test_state_recovery_v1.py`, `test_menu_v3.py`) and 18 research tests (`test_state_recovery_oracle.py`, `test_menu_v3_analysis.py`), archive checks and both README checkers. A fresh end-to-end execution from those clones again passed all twelve continuations and the recount. The subsequent binding fix passed its live listener test, 241 focused tests and the full repeated demonstration. These checks reused the prepared local Python environment; they are not a fresh dependency installation or an external reproduction.
-
 Exact demo command for the provided worktree layout, from the research worktree:
 
 ```bash
@@ -106,6 +102,12 @@ caffeinate -s env TD_KEY=state-recovery-demo-key \
   -m experiments.state_recovery_v1.demo --out results/a-new-local-run
 ```
 
-Environment changes are `traindoctor_env/state_recovery_v1.py`, `jobs/launcher.py`, `tests/test_state_recovery_v1.py`, `tests/test_loopback_rendezvous.py`, `tests/test_dataserver.py`, `README.md`, `docs/STATE_RECOVERY_V1.md`, `docs/DECISIONS.md` and `docs/STATUS.md`. Research changes are the new `experiments/state_recovery_v1/` demonstration/oracle/recount/packaging/profile-summary/reviewed-proposal modules and this report, `scripts/profile_mac_models.py`, `tests/test_state_recovery_oracle.py`, `README.md`, `.gitignore`, `docs/STATUS.md`, and the explicitly named generated evidence packets under `results/`. The source commits provide the complete file manifest. No historical evidence was edited; local traceback paths are excluded from the archives.
+The executed controls validate this recovery example. Full restoration remains optimal in both states, so the pair does not establish an investigation-dependent learning task. Independent practitioner reproduction remains outstanding.
 
-GO for the bounded engineering artifact. NO-GO for claiming a challenging cost-conditioned RL task or starting GRPO on this pair. The highest-value next action is independent reproduction and critique of this exact example, preserving the common robust recovery rather than manufacturing a penalty to defeat it. No additional incident pairs are warranted by these results.
+## Appendix: source and validation history
+
+Public baselines were verified as environment `0e8cf6a` and research `53fa710`; clean local method-fixes worktrees matched GitHub. All changes are on isolated `demo/state-recovery-v1` branches. Historical Task B's fault/recovery semantics, `Replay.outcomes()`, verifier v1.2, its scratch allowance, dependency pins and historical evidence remain unchanged. The shared launcher received a separate transport-security fix described below.
+
+The initial source commits are environment `d568f69` and research `6e158ce`; loopback hardening is environment `65e4bea`. Fresh local clones of the initial commits passed 18 environment tests (`test_state_recovery_v1.py`, `test_menu_v3.py`) and 18 research tests (`test_state_recovery_oracle.py`, `test_menu_v3_analysis.py`), archive checks and both README checkers. A fresh end-to-end execution from those clones again passed all twelve continuations and the recount. The subsequent binding fix passed its live listener test, 241 focused tests and the full repeated demonstration. These checks reused the prepared local Python environment; they are not a fresh dependency installation or an external reproduction.
+
+Environment changes are `traindoctor_env/state_recovery_v1.py`, `jobs/launcher.py`, `tests/test_state_recovery_v1.py`, `tests/test_loopback_rendezvous.py`, `tests/test_dataserver.py`, `README.md`, `docs/STATE_RECOVERY_V1.md`, `docs/DECISIONS.md` and `docs/STATUS.md`. Research changes are the new `experiments/state_recovery_v1/` demonstration/oracle/recount/packaging/profile-summary/reviewed-proposal modules and this report, `scripts/profile_mac_models.py`, `tests/test_state_recovery_oracle.py`, `README.md`, `.gitignore`, `docs/STATUS.md`, and the explicitly named generated evidence packets under `results/`. The source commits provide the complete file manifest. No historical evidence was edited; local traceback paths are excluded from the archives.

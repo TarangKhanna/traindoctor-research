@@ -142,8 +142,10 @@ all group vectors; `recount_coding_agents.py --check` validates the later model
 rows, identities and derivative hashes. Existing portable control, menu accounting,
 README numerical and focused unit checks are recorded in
 [the verification receipt](results/overnight_verification_20261102/verification.json).
-Local bases were environment `2569a2a` and research `f9933a2`, beyond the older
-release worktrees. Supplied `46eb031`/`a8b26a2` objects were absent locally; remote
-heads were not fetched or verified. No push or publication occurred. Additional
-Modal spend: $0; no model process was started. Process enumeration was denied by
-the sandbox, so existing heavy-job status was unknown and heavy work was avoided.
+Initial local bases were environment `2569a2a` and research `f9933a2`. Before
+release, public heads `46eb031`/`a8b26a2` were fetched and merged, preserving their
+runtime pin, reproduction packet and CI checks. Additional Modal spend: $0.
+Two source-only cached-Qwen requests completed through the existing serialized
+Metal runner, with RAM/swap guards and a successful host process preflight.
+No training or distributed workers ran. No push occurred during the audit phase;
+publication follows the separately requested final diff review.

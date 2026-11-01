@@ -1,0 +1,225 @@
+{
+  "centered_different": 20,
+  "disagreement": 70,
+  "gap_by_repair_role": {
+    "decoy_ckpt": 7,
+    "decoy_perrank": 1,
+    "decoy_shard": 30,
+    "decoy_sync": 30,
+    "noop": 2
+  },
+  "groups": 384,
+  "n": 3072,
+  "normalized_different": 20,
+  "per_policy": {
+    "ecsft": {
+      "centered_different": 3,
+      "disagreement": 12,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 3,
+      "repair_ok_given_v1": 86,
+      "rewards": {
+        "v0": 256.0,
+        "v1": 98.0,
+        "v2": 86.0
+      },
+      "v1_positive": 98,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_shard | no_completed_relaunch": 8,
+        "A1 | decoy_sync | no_completed_relaunch": 3,
+        "B_SKIP | decoy_perrank | no_completed_relaunch": 1
+      },
+      "zero_variance": {
+        "v0": 11,
+        "v1": 16,
+        "v2": 16
+      }
+    },
+    "eg_v0": {
+      "centered_different": 2,
+      "disagreement": 3,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 2,
+      "repair_ok_given_v1": 94,
+      "rewards": {
+        "v0": 248.0,
+        "v1": 97.0,
+        "v2": 94.0
+      },
+      "v1_positive": 97,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_ckpt | no_completed_relaunch": 1,
+        "A1 | decoy_sync | no_completed_relaunch": 2
+      },
+      "zero_variance": {
+        "v0": 30,
+        "v1": 21,
+        "v2": 22
+      }
+    },
+    "eg_v0_s1": {
+      "centered_different": 4,
+      "disagreement": 12,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 4,
+      "repair_ok_given_v1": 82,
+      "rewards": {
+        "v0": 278.0,
+        "v1": 94.0,
+        "v2": 82.0
+      },
+      "v1_positive": 94,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_ckpt | no_completed_relaunch": 3,
+        "A1 | decoy_shard | no_completed_relaunch": 3,
+        "A1 | decoy_sync | no_completed_relaunch": 4,
+        "A1 | noop | no_completed_relaunch": 1,
+        "A2 | decoy_ckpt | no_completed_relaunch": 1
+      },
+      "zero_variance": {
+        "v0": 31,
+        "v1": 27,
+        "v2": 28
+      }
+    },
+    "eg_v0_s2": {
+      "centered_different": 2,
+      "disagreement": 7,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 2,
+      "repair_ok_given_v1": 75,
+      "rewards": {
+        "v0": 233.0,
+        "v1": 82.0,
+        "v2": 75.0
+      },
+      "v1_positive": 82,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_shard | no_completed_relaunch": 3,
+        "A1 | decoy_sync | no_completed_relaunch": 4
+      },
+      "zero_variance": {
+        "v0": 23,
+        "v1": 24,
+        "v2": 24
+      }
+    },
+    "eg_v2": {
+      "centered_different": 3,
+      "disagreement": 9,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 3,
+      "repair_ok_given_v1": 101,
+      "rewards": {
+        "v0": 251.0,
+        "v1": 110.0,
+        "v2": 101.0
+      },
+      "v1_positive": 110,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_shard | no_completed_relaunch": 5,
+        "A1 | decoy_sync | no_completed_relaunch": 4
+      },
+      "zero_variance": {
+        "v0": 20,
+        "v1": 22,
+        "v2": 23
+      }
+    },
+    "eg_v2_s1": {
+      "centered_different": 2,
+      "disagreement": 12,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 2,
+      "repair_ok_given_v1": 102,
+      "rewards": {
+        "v0": 270.0,
+        "v1": 114.0,
+        "v2": 102.0
+      },
+      "v1_positive": 114,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_ckpt | no_completed_relaunch": 2,
+        "A1 | decoy_shard | no_completed_relaunch": 9,
+        "A1 | decoy_sync | no_completed_relaunch": 1
+      },
+      "zero_variance": {
+        "v0": 20,
+        "v1": 22,
+        "v2": 22
+      }
+    },
+    "eg_v2_s2": {
+      "centered_different": 2,
+      "disagreement": 10,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 2,
+      "repair_ok_given_v1": 98,
+      "rewards": {
+        "v0": 249.0,
+        "v1": 108.0,
+        "v2": 98.0
+      },
+      "v1_positive": 108,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_sync | no_completed_relaunch": 9,
+        "A1 | noop | no_completed_relaunch": 1
+      },
+      "zero_variance": {
+        "v0": 24,
+        "v1": 22,
+        "v2": 23
+      }
+    },
+    "esft_full": {
+      "centered_different": 2,
+      "disagreement": 5,
+      "groups": 48,
+      "n": 384,
+      "normalized_different": 2,
+      "repair_ok_given_v1": 59,
+      "rewards": {
+        "v0": 188.0,
+        "v1": 64.0,
+        "v2": 59.0
+      },
+      "v1_positive": 64,
+      "v1_positive_v2_negative": {
+        "A1 | decoy_shard | no_completed_relaunch": 2,
+        "A1 | decoy_sync | no_completed_relaunch": 3
+      },
+      "zero_variance": {
+        "v0": 4,
+        "v1": 20,
+        "v2": 21
+      }
+    }
+  },
+  "repair_ok_given_v1": 697,
+  "rewards": {
+    "v0": 1973.0,
+    "v1": 767.0,
+    "v2": 697.0
+  },
+  "v1_positive": 767,
+  "v1_positive_v2_negative": {
+    "A1 | decoy_ckpt | no_completed_relaunch": 6,
+    "A1 | decoy_shard | no_completed_relaunch": 30,
+    "A1 | decoy_sync | no_completed_relaunch": 30,
+    "A1 | noop | no_completed_relaunch": 2,
+    "A2 | decoy_ckpt | no_completed_relaunch": 1,
+    "B_SKIP | decoy_perrank | no_completed_relaunch": 1
+  },
+  "zero_variance": {
+    "v0": 163,
+    "v1": 174,
+    "v2": 179
+  }
+}

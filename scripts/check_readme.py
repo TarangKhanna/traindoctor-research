@@ -51,8 +51,7 @@ for f in sorted((ROOT / "docs/figures").glob("*.svg")):
 R = (ROOT / "docs/PROJECT_DETAIL.md").read_text()
 # Preserve the full historical evidence checks after moving detail off the landing page.
 L = (ROOT / "README.md").read_text()
-for value in ("5.0%", "17.2%", "29.7%", "23.0%", "33.4%", "10.36 percentage points",
-              "+5.83 to +15.26", "71.4%", "71.5%", "+3.7 points; interval \u22121.7 to +9.1"):
+for value in ("5.0%", "17.2%", "29.7%", "23.0%", "33.4%", "71.4%", "71.5%"):
     check(value in L and value in R, f"landing-page result retained in historical detail: {value}")
 A = json.loads((ROOT / "evidence/results/test/TEST_REPORT_analysis.json").read_text())
 RC = json.loads((ROOT / "evidence/results/test/AUDIT_RECOUNT.json").read_text())
@@ -78,4 +77,32 @@ check("0 accepted of 86" in RT and "48 invariant, 38 execution_failure" in RT an
 check("gold 5/5" in RT and "alt-gold 9/10" in RT and "reference repair was accepted 5/5 and alternative valid repairs 9/10" in R, "gold 5/5, alt 9/10")
 check("Null (no diff): 0 accepted of 5" in RT and "no-op 0/5" in (ROOT / "evidence/README.md").read_text(), "null 0/5")
 check("72 missing and 8 duplicated samples" in R and "gaps=72 dups=8" in RT, "F11 A1_src 72 gaps / 8 dups")
+# Bind both new tables to labels and raw action receipts, not numeric presence alone.
+for label, key in (("Base Qwen3-4B", "base"), ("SFT", "sft"), ("Continued SFT", "csft")):
+    check(f"| {label} | {pct(key):.1f}% |" in L, f"Table A {label} bound to analysis")
+for label, arm in (("GRPO V0", "v0"), ("GRPO V2", "v2")):
+    value=mean([pct(f"{arm}_s{i}") for i in range(6)])
+    check(f"| {label} | {value:.1f}% |" in L, f"Table A {label} six-seed mean")
+check("80 faulted incidents among 100" in L and "compute-matched" in L, "Table A denominator and SFT limitation")
+
+def action_row(label, t):
+    rows=t['rows']
+    counts=(len(rows), sum(bool(r.get('protocol_valid')) for r in rows),
+            sum(r.get('tool') in ('apply_patch','edit_lines') and 'security_review' in r for r in rows), t['relaunches'])
+    prefix='| '+label+' | '+' | '.join(str(x) for x in counts)+' |'
+    check(prefix in L, f"Table B {label}: counts from trajectory")
+    matching=[line for line in L.splitlines() if line.startswith(prefix)]
+    reward=t['result'].get('terminal_reward')
+    check(bool(matching) and (('unscored' in matching[0]) if reward is None else f'reward {reward}' in matching[0]),
+          f"Table B {label}: reward/null distinction")
+for label, stem in (("Checkpoint agent-v2 / Gemma", "agent_v2_gemma_full_20261030"),
+                    ("Checkpoint agent-v2 / Qwen", "agent_v2_qwen_full_20261030"),
+                    ("Checkpoint agent-v2 / Qwen retest", "agent_v2_qwen_retest_20261030")):
+    action_row(label,json.loads((ROOT/'results'/stem/'trajectory.json').read_text()))
+for label, name in (("Masked-loss original / Qwen", "qwen"), ("Masked-loss original / Gemma", "gemma")):
+    action_row(label,json.loads((ROOT/'evidence/masked_mean_v1'/f'{name}_trajectory.json').read_text()))
+for label, name in (("Masked-loss corrected / Qwen 512", "qwen_full"),
+                    ("Masked-loss corrected / Gemma 512", "gemma_full"),
+                    ("Masked-loss corrected / Qwen 1024", "qwen_output1024")):
+    action_row(label,json.loads((ROOT/'results/agent_recount_20261102'/name/'trajectory.json').read_text()))
 sys.exit(1 if fails else 0)

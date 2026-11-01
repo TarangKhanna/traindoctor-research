@@ -1,0 +1,15 @@
+{
+  "capped_responses": 0,
+  "correct_formula_demonstrated": false,
+  "correct_patch_demonstrated": false,
+  "generated_code_executed": false,
+  "grouped_rollouts": false,
+  "guided_tool_condition": "not run after prerequisite source-only repair failed",
+  "mathematical_issue": "qualitative weighting bug identified; purported formula still rank-local",
+  "max_sampled_swap_growth_bytes": 0,
+  "min_available_bytes": 10799611904,
+  "patch_issue": "no unified-diff headers/hunks; no global denominator or world factor; original loss line not removed",
+  "questions": 2,
+  "source": "executed",
+  "total_inference_s": 64.94225287495647
+}

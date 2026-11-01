@@ -1,0 +1,32 @@
+{
+  "analysis": "historical DEV evaluation re-score; approximation to training groups",
+  "capped_completions": 0,
+  "group_size": 8,
+  "inputs": {
+    "cache/dev_eps.pkl": "67923e525a4d8e266398d6ba994af72925ce4bdd4c50406fc42cdd34ea4c16e5",
+    "results/ecsft_eval.json": "dea694a3c0e8b04134619d655336b2023b91a406b8559a00a54f793d5e79c717",
+    "results/eg_v0_eval.json": "e8f408301425a8eb5bdd88813aab02f209b961b5a7bdac02db8d08a9ab69b9af",
+    "results/eg_v0_s1_eval.json": "c14acedfd284a8797264e915d5d5edd537a5a464fbdf920e04b127587e2a65bc",
+    "results/eg_v0_s2_eval.json": "d8f29a789d41a23851684bcae37777df7fe78a71e084ecc7b0bf6e7a7ffa2652",
+    "results/eg_v2_eval.json": "0b660e92069324bfd604f1ce93b3b5fcafca882c53416816054b6ae858f562b5",
+    "results/eg_v2_s1_eval.json": "17d9106a54531b5da74a67fe91dd37de2f67e0e02afd1c600e5d3ee0ab1a05c3",
+    "results/eg_v2_s2_eval.json": "2ad022f08267a430164b4df5154340f739aee88f3e6cb2135d7cf5bcb16b0098",
+    "results/esft_full_eval.json": "e21b2363d9957a9498b4a0e6303a40f7a09062a6299a072699bc8d3c44c72fc8"
+  },
+  "limits": [
+    "not training-time rollouts; no token masks/logprobs/gradients recovered",
+    "V2 uses transient dev_episode sandboxed=True over dev_container outcomes; not fresh sandbox verification",
+    "portable grading fixtures reproduce V0/V1/V2; original cache hash records provenance"
+  ],
+  "masking": "no rows dropped; historical config does not enable mask_truncated_completions; cap=400",
+  "normalization": "sample std (ddof=1), epsilon 1e-4; conventional TRL group normalization, not recovered training tensors",
+  "ordering": "run_eval: episode-major, eight contiguous samples per episode",
+  "scorer_sha256": {
+    "modal_train/core.py": "5fee83a7f9a7b2b2fbe7f23d394533758e8a0c1c46594428d68ccd72eba86343",
+    "scripts/audit_learning_signal.py": "45b20f22592b550c96599789f7049398474dffe73356e746d85edf1c63b7dacf"
+  },
+  "source": "executed",
+  "versions": {
+    "numpy": "2.5.4"
+  }
+}

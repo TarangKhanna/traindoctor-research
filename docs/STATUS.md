@@ -65,3 +65,16 @@ Release verification: 20 Harbor adapter tests, 22 agent tests (also against the 
 2026-10-30 audit follow-up: paused episodes now bind canonical fixture path, full fixture contents including trusted history, controller source and selected task source before reconstruction or approval. Legacy unbound paused episodes fail closed; terminated historical receipts remain unchanged. Per-load task identity now names the selected task. Focused resume/controller/masked-loss/state-oracle tests: 62 passed; actual saved-fixture identity smoke passed without model load or mutation. The older Harbor pre-runtime heading is explicitly superseded. No new inference, Docker trial, training or publication; all historical local model-result hashes remain intact.
 
 2026-10-31 session close: 62 focused research tests pass again at the final local gate; reviewed changes are preserved in local commits only. No push, new model episode, training or fresh Docker execution. Existing evidence remains intact. Further work starts with task-discrimination baselines rather than automatic inference or RL.
+
+2026-11-02 isolated evidence audit: both landing pages distinguish Tier A training
+from Tier B model coding episodes. The original 3072 saved DEV completions and cached
+episodes reproduce 70 V1/V2 disagreements, with centered/normalized advantages
+different in 20/384 actual eight-response groups. This is DEV approximation, not
+training-gradient recovery. All gaps are noncompletion; no V1 GRPO follows.
+Corrected-controller 512/1024 trajectories are exported as deidentified derivatives
+and independently recounted. Masked-loss universal normalization repair and the
+existing controls support an engineering demonstration, not additional learning
+runs. Historical receipts unchanged; two additional source-only cached-Qwen requests
+fail correct-formula/patch competence, without exhaustion or resource interruption.
+No new workers, paid compute, push or publication. No Tier B group rates estimated;
+see LEARNING_SIGNAL_AUDIT.md and CODING_AGENT_RECOUNT.md.

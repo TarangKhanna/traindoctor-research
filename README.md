@@ -2,103 +2,51 @@
 
 **Does a repaired training job preserve the intended computation—or merely finish?**
 
-This repository contains TrainDoctor’s experiments, analysis and raw execution evidence. The [environment repository](https://github.com/TarangKhanna/traindoctor-env) supplies the distributed runtime, investigation tools and verifier.
+TrainDoctor exposes distributed PyTorch/Gloo failures, investigation and editing tools, and checks of recovered samples, parameters and optimizer state. Experiments and receipts are here; the [environment](https://github.com/TarangKhanna/traindoctor-env) contains the runtime and verifier.
 
-The strongest current result is an executable recovery demonstration: checksum-valid checkpoints can resume successfully while silently changing sample consumption or optimizer state. We test competing recoveries, check their actual trajectories and preserve the evidence for reproduction.
+Tier A is single-turn diagnosis, evidence citation and repair-menu selection. Tier B is multi-turn inspection, source edits, actual distributed relaunch and feedback.
 
-## The worked recovery experiment
+## Results
 
-A small two-rank PyTorch/Gloo job is preempted. The training code stays unchanged. Recovery artifacts mix components from different genuine checkpoints:
+**Table A — Single-turn post-training (Qwen3-4B)**
 
-| Delivered checkpoint | Sampler-only restoration | Optimizer-only restoration | Full restoration |
-| --- | --- | --- | --- |
-| Current model/momentum, stale sampler | Correct | Incorrect | Correct |
-| Current model/sampler, stale momentum | Incorrect | Correct | Correct |
+| Policy | Full-task success |
+|---|---:|
+| Base Qwen3-4B | 5.0% |
+| SFT | 17.2% |
+| Continued SFT | 29.7% |
+| GRPO V0 | 23.0% |
+| GRPO V2 | 33.4% |
 
-Every tested intervention completes, including the incorrect ones. Manifest checksums are recomputed for the delivered artifacts, so byte integrity does not establish component consistency. Semantic checks distinguish them using trusted committed state, delivered samples and training updates.
+Full-task success requires diagnosis, grounded evidence and a verified repair. Scores cover **80 faulted incidents among 100 evaluation incidents**, with four completions per incident. GRPO means cover **six paired training seeds** per arm; continued SFT is one run, without a properly compute-matched comparison.
 
-The experiment includes older-checkpoint and scratch recovery. Both remain legitimate fallbacks; repeated computation is measured separately. Full restoration is optimal in both states, so this pair demonstrates recovery verification rather than a difficult conditional-choice benchmark.
+V2 improved evidence grounding alongside full-task success, without demonstrating better repair selection: **71.4% versus 71.5%** for V0/V2. No V1-only training arm isolates the effect of repair verification. [Evaluation and uncertainty](evidence/results/TEST_REPORT.md) · [Independent recount](evidence/results/test/AUDIT_RECOUNT.txt) · [Historical detail](docs/PROJECT_DETAIL.md).
 
-An independently implemented NumPy continuation oracle agrees with the executed trajectories. Its inputs include genuine committed anchors and the same data-service specification; this is mathematical cross-checking, not independent human validation.
+**Table B — Actual multi-turn coding-agent episodes**
 
-[Worked report and action outcomes](experiments/state_recovery_v1/REPORT.md) · [Recovery contract](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/STATE_RECOVERY_V1.md)
+| Task / model | Turns | Valid tool calls | Applied edits | Agent relaunches | Final semantic result |
+|---|---:|---:|---:|---:|---|
+| Checkpoint agent-v2 / Gemma | 12 | 12 | 0 | 0 | No execution; reward 0 |
+| Checkpoint agent-v2 / Qwen | 12 | 12 | 1 | 0 | No agent execution; reward 0 |
+| Checkpoint agent-v2 / Qwen retest | 9 | 8 | 0 | 0 | Resource interruption; unscored |
+| Masked-loss original / Qwen | 11 | 10 | 0 | 0 | No execution; reward 0 |
+| Masked-loss original / Gemma | 2 | 1 | 0 | 0 | No execution; reward 0 |
+| Masked-loss corrected / Qwen 512 | 16 | 14 | 1 | 1 | Python failure; reward 0 |
+| Masked-loss corrected / Gemma 512 | 9 | 8 | 1 | 0 | Context limit; reward 0 |
+| Masked-loss corrected / Qwen 1024 | 16 | 16 | 1 | 2 | Python failure; reward 0 |
+
+Different tasks/controllers make these episodes **unsuitable for controlled model comparison**. Models are cached Qwen3-4B-Instruct-2507 and Gemma-4-E2B-it, both 4-bit. Corrected runs reserve 512 or 1,024 output tokens inside an 8,192-token context; the larger budget also reduces prompt room. Configurations: [checkpoint study](docs/AGENT_V2_REPORT.md), [original masked-loss packet](evidence/masked_mean_v1/REPORT.md), [corrected-controller recount](docs/CODING_AGENT_RECOUNT.md).
+
+**Autonomous semantically correct repair has not yet been demonstrated.** Qwen did complete edit → relaunch → failure feedback → further action. Safety review supplied no repaired code. Scripted successes and separately executed/normalized proposals receive no autonomous credit.
+
+## What the task-design audit establishes
+
+V1/V2 advantages differ in only 20 of 384 saved eight-completion development groups. These are evaluation samples, not recovered training gradients. Menu redesigns added completing-but-wrong repairs, but fixed choices remained strong; full restoration solves both state-recovery twins, and one global-normalization patch solves all masked-loss schedules. Two source-only Qwen checks also failed the formula/patch floor; further RL is unjustified. [Learning-signal audit](LEARNING_SIGNAL_AUDIT.md).
 
 ## Reproduce the saved local example
 
-Use Python 3.12. Clone both repositories as siblings, install the environment source and recount the archived executions. Use a new, empty extraction directory.
+Use Python 3.12, install the environment with its documented dependencies, then follow the [archive extraction and recount commands](experiments/state_recovery_v1/REPORT.md). Recounting needs no model or cloud account. [Worked recovery report](experiments/state_recovery_v1/REPORT.md) · [Recount commands and limits](docs/CODING_AGENT_RECOUNT.md).
 
-```bash
-git clone https://github.com/TarangKhanna/traindoctor-env
-git clone https://github.com/TarangKhanna/traindoctor-research
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install -e './traindoctor-env[dev]'
-cd traindoctor-research
-export TD_KEY=state-recovery-demo-key PYTHONPATH=.
-python -m zipfile -e results/state_recovery_v1_loopback_verified/raw_evidence.zip /tmp/traindoctor-evidence
-python -m experiments.state_recovery_v1.recount --run /tmp/traindoctor-evidence
-```
+Two synthetic families and seed holdouts do not establish unseen-mechanism or production generalization. Captured-state checks depend on trusted inputs and reviewed source. [Evidence map](docs/EVIDENCE_MAP.md) · [Harbor controls](docs/HARBOR_VALIDATION.md) · [Testing boundaries](docs/TESTING.md) · [Provenance](PROVENANCE.md).
 
-Expected output:
-
-```text
-PASS: 12 raw continuation recounts; 60 capture hashes; common optimal actions: ['restore_full']
-```
-
-This checks saved execution evidence; it launches no training or model inference and needs no cloud account. For a fresh distributed run, follow the [full reproduction commands](experiments/state_recovery_v1/REPORT.md). The local execution backend is macOS `sandbox-exec`, with loopback permissions. Historical evaluations used Modal/gVisor; those isolation boundaries are different.
-
-## Harbor and local coding agents
-
-The existing checkpoint code-repair task now runs through Harbor on local Docker. The correct patch passes; no-op, completing-but-incorrect and forged-evidence controls fail. All four verdicts agree with native TrainDoctor execution. [Validation report, raw receipts and costs](docs/HARBOR_VALIDATION.md) · [Task and setup](https://github.com/TarangKhanna/traindoctor-env/blob/main/docs/HARBOR.md).
-
-Actual local Qwen/Gemma trajectories include inspection tools and code-edit attempts. They have not demonstrated an autonomous repair/relaunch/result-inspection loop. The [agent feasibility report](docs/AGENT_V2_REPORT.md) identifies the failures and task shortcuts; these cases do not justify further RL training.
-
-The subsequent [masked-loss coding-agent study](evidence/masked_mean_v1/REPORT.md) adds an executable source-debugging task, hidden semantic regressions and a working multi-turn harness. Its [sanitized model traces and captured states](evidence/masked_mean_v1/) support an inference-free numerical recount. It demonstrates the infrastructure to attempt autonomous repair; neither recorded model episode completed that repair loop. Protocol fixes were tested afterward without model reruns. This study is separate from the historical menu-based SFT/GRPO experiment below.
-
-## Can verification work without an uninterrupted reference run?
-
-The [reference-free audit](docs/REFERENCE_FREE_REPORT.md) checks transitions from a trusted earlier checkpoint using recorded inputs and the specified optimizer rule. It reproduces the recovery decisions without reading an uninterrupted reference trajectory.
-
-The guarantee is conditional: it verifies consistency with the anchor and update specification. A poisoned anchor can support a consistently wrong trajectory. The audit includes that counterexample, missing-history checks and a CPU numerical repeatability test. It also measures replay cost and reports the additional trusted records required.
-
-Our [prior-art review](docs/REFERENCE_FREE_PRIOR_ART.md) found that checkpoint-transition replay is established, including Proof-of-Learning and existing training-system checks. We make no new verification-method claim. On this pair, component comparisons already detect the tested inconsistencies; replay adds no detection coverage. The useful artifact is the inspectable execution, checks and documented failure boundaries.
-
-## Results (historical v0.1)
-
-Qwen3-4B was adapted with LoRA SFT, then GRPO, and scored on a held-out evaluation set of 100 incidents from the same generator. Training used cached recovery outcomes; evaluation used live sandbox replay. These were single-turn diagnosis/evidence/repair-menu tasks, not interactive code repair.
-
-| Policy | Full-task success |
-| --- | ---: |
-| Base model | 5.0% |
-| SFT | 17.2% |
-| Continued SFT | 29.7% |
-| GRPO, diagnosis-only reward | 23.0% |
-| GRPO, recovery-aware reward | 33.4% |
-
-The recovery-aware arm gained 10.36 percentage points over diagnosis-only reward (95% bootstrap interval +5.83 to +15.26; six paired training seeds). Repair-choice rates were similar: 71.4% versus 71.5%. Without an evidence-only reward arm, the gain cannot be attributed to better recovery selection.
-
-Continued SFT was not distinguishable from recovery-aware GRPO (+3.7 points; interval −1.7 to +9.1); compute comparability was not established. The base-to-SFT difference also includes a large format-validity improvement. Seed splits do not test unseen failure mechanisms.
-
-**Conclusion: these experiments do not establish that RL improves repair selection or beats continued SFT.** The [detailed results](docs/PROJECT_DETAIL.md#results-historical-v01), [evidence map](docs/EVIDENCE_MAP.md) and [protocol erratum](docs/ERRATUM_mmd.md) retain uncertainty, shortcuts and unresolved preregistration contradictions.
-
-## What the failed pilots taught us
-
-The [menu v3 analysis](experiments/menu_v3_dev/REPORT.md) and [code-repair pilot](docs/PROJECT_DETAIL.md) narrowed the learning problem: failure to finish differs from completing with wrong semantics, and fixed bad-repair identities can supply shortcuts. Adding more menu options does not establish state-dependent reasoning.
-
-Tier B supplies interactive inspection and source edits. Further SFT/RL comparisons remain conditional on a task that needs investigation, informative rewards and matched budgets; the current feasibility study recommends stopping training on these cases.
-
-## Navigate the evidence
-
-| Artifact | What to inspect |
-| --- | --- |
-| [State-recovery report](experiments/state_recovery_v1/REPORT.md) | Executed interventions, NumPy checks and raw receipts |
-| [Reference-free report](docs/REFERENCE_FREE_REPORT.md) | Detection matrix, trust assumptions, counterexamples and timing |
-| [Evidence directory](evidence/README.md) | Historical evaluation outputs and checksums |
-| [Detailed project record](docs/PROJECT_DETAIL.md) | Full historical analysis, model setup, audits and limitations |
-| [Reproduction guide](docs/RERUN_EXAMPLE.md) | Historical recount and rerun commands |
-| [Current status](docs/STATUS.md) | Completed work and next steps |
-| [Test coverage and limits](docs/TESTING.md) | Which contracts, numerical checks and integration boundaries are tested; what CI does not establish |
-
-Saved evidence, local reruns and independent human reproduction are distinct; human reproduction remains outstanding. The demonstrated workloads are small CPU/Gloo MLP jobs, with no established production NCCL/FSDP coverage or generalization to arbitrary training programs.
-
-Apache-2.0: [LICENSE](LICENSE), [NOTICE](NOTICE). [Citation](CITATION.cff) · [Security](SECURITY.md).
+Apache-2.0: [LICENSE](LICENSE), [NOTICE](NOTICE), [citation](CITATION.cff).

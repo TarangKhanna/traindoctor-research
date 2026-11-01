@@ -1,0 +1,17 @@
+{
+  "source": "simulated",
+  "kind": "analytic source-only coding-agent baseline; not execution",
+  "context": "isolated agent given input.json only; no audit/gold/receipts",
+  "formula": "world * local_squared_error_sum / max(global_valid_scalar_count, 1)",
+  "replacement": {
+    "old_count": "count = mask.sum() * y.shape[1]",
+    "new_count": "count = sum(cfg[\"valid_counts\"][str(step)][str(r)] for r in range(world)) * y.shape[1]",
+    "old_loss": "loss = total / count.clamp_min(1)",
+    "new_loss": "loss = world * total / max(count, 1)"
+  },
+  "limitations": [
+    "not a controlled Qwen comparison",
+    "no patch application or workers",
+    "configuration assumed accurate; declared task guarantees positive global count"
+  ]
+}

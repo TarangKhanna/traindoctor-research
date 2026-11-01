@@ -1,0 +1,20 @@
+{
+  "analysis": "two new independent source-only requests; no reward groups; generated code never executed",
+  "files": {
+    "config.json": {
+      "exported_sha256": "0f534b9eb361dcebfe17e15d8aae5d2d759173336ad5e3d2e88d7f4489caf4ce",
+      "original_sha256": "aa67af46aaa963353e6148cc2fa4db924f21ad2bb63457d2415dc95a2f1f4e73"
+    },
+    "input.json": {
+      "difference": "cached model path replaced; source and questions identical",
+      "exported_sha256": "0df44a44d455a316636bedb20db379abcf354ec7c7d0a4b8d10703fe14705cd1",
+      "original_sha256": "f9011bb0594a323bc85e7798e6b4cfc4b48b16ffdb1f40f751252b74e9050468"
+    },
+    "responses.json": {
+      "exported_sha256": "bc26ab2d67a9554ef937779aa347709ca524e6457750cbc27762bf7baa57aaaf",
+      "original_sha256": "8baee71f2583956574569de61cc0fbd72b7c0a6b68719fd213d81e1a720b0797"
+    }
+  },
+  "script_sha256": "68f95e0271c44f73d04259b6173a83cd256a131cd6712ef6b82684e6c08f822f",
+  "source": "executed"
+}

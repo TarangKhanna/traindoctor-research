@@ -1,0 +1,35 @@
+{
+  "analysis": "historical receipt derivative; no new model execution",
+  "deidentification": "home and temporary path strings replaced; no actions or outputs normalized",
+  "files": {
+    "controller_1024.py": {
+      "exported_sha256": "88cd19774286a8a96692ddfd5e57b01361e3dc47e85ab1d6ae17aa68e11db3b9",
+      "original_sha256": "88cd19774286a8a96692ddfd5e57b01361e3dc47e85ab1d6ae17aa68e11db3b9"
+    },
+    "controller_512.py": {
+      "exported_sha256": "c51aac5e49a5487853004c99dcaab7f45a6aa75088b6123bce70b70c3113834e",
+      "original_sha256": "c51aac5e49a5487853004c99dcaab7f45a6aa75088b6123bce70b70c3113834e"
+    },
+    "diagnostic_config.json": {
+      "exported_sha256": "054aeeae4c5f4ee03e9aab952caeeac5f0e7ad54faa4ccaceb8b1043141b365c",
+      "original_sha256": "82d149208f8189bdac6ee03a5d3401d83c7b1c11470637f744221b012c2c93b5"
+    },
+    "frozen_config.json": {
+      "exported_sha256": "15340534e00addf2c52b4efb7bc3e045c1fb1d58a16a1d811ebc4cf1424317eb",
+      "original_sha256": "c206f02f930d425e5c63cf644de7d47990e17f5375156e1f08d351ad3665f323"
+    },
+    "gemma_full/trajectory.json": {
+      "exported_sha256": "b44eea4c3771862cb7c4253f2ad9332f6fd3c72b22e8fc3ec00e75dc2e85f832",
+      "original_sha256": "e9d6e2a7b0a2bcc59629f70900049b0c359eb118ca0dd6ffe3998d9749fbec2a"
+    },
+    "qwen_full/trajectory.json": {
+      "exported_sha256": "6b536fff27f43a8a0258b496ea18a7e9bef34bc81a2047819a7fd115e72a85ad",
+      "original_sha256": "668ad3321626428f2556c940079d44a084ecb2e8d24789b1e48b360a0a3579b1"
+    },
+    "qwen_output1024/trajectory.json": {
+      "exported_sha256": "436ac7b721205228c58f56c98a2382fc2a993af54c64b461a174ffc132077474",
+      "original_sha256": "9ad475da9dcf1e27acedd4458580f6f8129e7f930d8edef017d9c331d4adfbfa"
+    }
+  },
+  "source": "executed"
+}

@@ -33,3 +33,38 @@ Shorthand: `AWK` is the red-team recount in [evidence/README.md](../evidence/REA
 | A2v2 behaviour | library tests | [A2V2_STATUS.md](A2V2_STATUS.md) | result tables withheld | C |
 
 See [ERRATUM_mmd.md](ERRATUM_mmd.md) for the 7.2 vs 20 point MMD discrepancy and [ERRATA.md](ERRATA.md) for other corrections.
+
+## 2026-11-02 landing-page tables and learning-signal audit
+
+Table A explicitly uses 80 faulted of 100 incidents, four completions per incident
+and six paired GRPO training seeds; continued SFT remains one run with no proper
+compute match. Historical uncertainty remains in PROJECT_DETAIL and TEST_REPORT.
+
+Table B is recounted by `scripts/check_readme.py` from agent-v2 trajectories,
+`evidence/masked_mean_v1/*_trajectory.json`, and
+`results/agent_recount_20261102/*/trajectory.json`. The latter preserves 512 and
+1024 output caps inside 8192 context. Rows are respectively turns/valid calls/edits/
+agent relaunches: checkpoint Gemma 12/12/0/0, Qwen 12/12/1/0, retest 9/8/0/0;
+original masked Qwen 11/10/0/0, Gemma 2/1/0/0; corrected masked Qwen512 16/14/1/1,
+Gemma512 9/8/1/0, Qwen1024 16/16/1/2. Retest reward is null/unscored, other listed
+terminal rewards 0. These are individual episodes, not a controlled comparison.
+See [the complete recount and limits](CODING_AGENT_RECOUNT.md).
+
+`results/learning_signal_20261102_verified/` exports the original 3072 development
+completion texts, grading fixtures and actual eight-sample groups: 70 reward
+differences, 20/384 changed advantage groups, 163/174/179 zero-variance groups
+for V0/V1/V2, and 697/767 repair acceptance conditional on V1. Re-score with
+`scripts/audit_learning_signal.py --check` pointing at that directory. Training
+rollouts/gradients remain unavailable. This supersedes only the earlier statement
+that those original development completions cannot be recounted here; six-seed
+aggregate-only development reports and unpublished menu-v2 inputs retain their
+separate provenance limits. No historical file was rewritten.
+
+The separate `results/capability_floor_20261102/` packet records two new source-only
+Qwen requests (not a rollout group): both normal stop, no output cap or infrastructure
+interruption. The math answer recognizes local/global weighting but gives no correct
+formula; the patch is inapplicable/incorrect. Given-location correct-patch application
+remains untested. An isolated source-only strong-agent proposal is analytic, not an
+executed repair. No Tier B group variance/advantage fraction is claimed.
+
+The Table B model names are Qwen3-4B-Instruct-2507 and Gemma-4-E2B-it, both 4-bit; exact snapshots are in CODING_AGENT_RECOUNT.md and the frozen configurations.

@@ -1,0 +1,1 @@
+PASS: 36 controls / 144 captured states independently recounted; 2 recorded model episodes, no autonomous repair; supervised diagnostic remains separate

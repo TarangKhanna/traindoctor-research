@@ -12,7 +12,8 @@ readme = norm((ROOT / "README.md").read_text())
 emap = norm((ROOT / "docs/EVIDENCE_MAP.md").read_text())
 sec = readme.split("## Results", 1)[1].split("\n## ", 1)[0]
 sec = re.sub(r"\]\([^)]*\)", "]", sec)  # drop link targets
-sec = re.sub(r"!\[[^\]]*\]", "", sec)  # drop figure alt text
+sec = re.sub(r"!\[[^\]]*\]", "", sec)
+sec = re.sub(r"(?<=\d),(?=\d{3}\b)", "", sec)  # 1,024 is one number, not 1 and 024  # drop figure alt text
 nums = sorted({m.lstrip("+-") for m in re.findall(r"(?<![\w.])[+-]?\d+(?:\.\d+)?(?![\w])", sec)})
 missing = [n for n in nums if not re.search(r"(?<![\d.])" + re.escape(n) + r"(?![\d])", emap)]
 print(f"{len(nums)} distinct numbers in README Results; missing from EVIDENCE_MAP.md: {missing or 'none'}")

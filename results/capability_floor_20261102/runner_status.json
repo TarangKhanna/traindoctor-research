@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "/usr/bin/sandbox-exec",
+    "-p",
+    "(version 1)\n(deny default)\n(import \"system.sb\")\n; our own MLX dev jobs: GPU + read repo/venv/model caches, write only the run dir; no network\n(allow process-fork)\n(allow process-exec (subpath \"<home>/Workspace/rl_envs/.venv\") (subpath \"<home>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none\") (literal \"/bin/sleep\"))\n(allow file-read-metadata)\n(allow file-read*\n  (subpath \"<home>/Workspace/rl_envs\") (subpath \"<home>/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none\")\n  (subpath \"<home>/.cache/huggingface/hub\") (subpath \"<home>/.cache/m0_models\")\n  (subpath \"/usr\") (subpath \"/System\") (subpath \"/Library/Apple\") (subpath \"/private/var/db/timezone\")\n  (literal \"/dev/urandom\") (literal \"/dev/random\") (literal \"/dev/null\"))\n(deny file-read* (subpath \"<home>/Workspace/rl_envs/.git\") (subpath \"<home>/Workspace/rl_envs/runs/tdrun/_private\"))\n(deny file-read* (subpath \"<home>/Workspace/rl_envs/.wt\") (subpath \"<home>/Workspace/rl_envs/runs\") (subpath \"<home>/Workspace/rl_envs/.claude\"))\n(allow file-read* (subpath \"<home>/Workspace/rl_envs/.wt/mlxrl-A\") (subpath \"<home>/Workspace/rl_envs/.wt/mlxrl-A-stock\") (subpath \"<home>/Workspace/rl_envs/runs/tdrun/mlx_py-20261102T030920-4747\"))\n(allow file-read* (subpath \"<home>/Workspace/rl_envs/.wt/mlxrl-SP\"))\n(deny file-read* (regex #\"/\\.devkey$\") (regex #\"/\\.env($|\\.)\") (regex #\"/\\.modal\\.toml$\"))\n(allow file-write* (subpath \"<home>/Workspace/rl_envs/runs/tdrun/mlx_py-20261102T030920-4747\") (literal \"/dev/null\"))\n(allow sysctl-read)\n(allow iokit-open\n  (iokit-registry-entry-class \"IOSurfaceRootUserClient\")\n  (iokit-registry-entry-class \"RootDomainUserClient\")\n  (iokit-user-client-class \"IOSurfaceSendRight\")\n  (iokit-user-client-class \"AGXDeviceUserClient\"))\n(allow mach-lookup (global-name \"com.apple.MTLCompilerService\") (global-name \"com.apple.gpumemd.source\"))\n(allow ipc-posix-shm-read* ipc-posix-shm-write-data)\n",
+    ".venv/bin/python",
+    "-B",
+    "-c",
+    "import resource,os,sys; resource.setrlimit(resource.RLIMIT_CPU,(14400,14400)); resource.setrlimit(resource.RLIMIT_FSIZE,(4<<30,4<<30)); os.execv(sys.executable,[sys.executable,'-B']+sys.argv[1:])",
+    "scripts/capability_floor_probe_20261102.py",
+    "scripts/capability_floor_input_20261102.json"
+  ],
+  "cwd": "<home>/Workspace/rl_envs",
+  "end": 1793563831.186326,
+  "exit_code": 0,
+  "host_end": {
+    "power": "Now drawing from 'AC Power'",
+    "swap": "total = 5120.00M  used = 3810.25M  free = 1309.75M  (encrypted)",
+    "t": 1793563831.186369
+  },
+  "host_start": {
+    "power": "Now drawing from 'AC Power'",
+    "swap": "total = 5120.00M  used = 3890.25M  free = 1229.75M  (encrypted)",
+    "t": 1793563760.624127
+  },
+  "id": "mlx_py-20261102T030920-4747",
+  "log": "<home>/Workspace/rl_envs/runs/tdrun/mlx_py-20261102T030920-4747/job.log",
+  "pid": 4751,
+  "pid_start": "Mon Nov  2 03:09:20 2026",
+  "run_dir": "<home>/Workspace/rl_envs/runs/tdrun/mlx_py-20261102T030920-4747",
+  "spec": "mlx_py",
+  "start": 1793563760.624127,
+  "status": "exited"
+}

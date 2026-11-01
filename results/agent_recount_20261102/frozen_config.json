@@ -1,0 +1,41 @@
+{
+  "active_inference_limit_s": 900,
+  "conditions": [
+    "qwen_full",
+    "gemma_full"
+  ],
+  "context_limit": 8192,
+  "env_head": "221096d37690f21ab1a57cb79e387c3911064802",
+  "files": {
+    "experiments/local_agent_v1/run.py": "c51aac5e49a5487853004c99dcaab7f45a6aa75088b6123bce70b70c3113834e",
+    "experiments/masked_mean_v1/controls.py": "00b75c1fa6e0069e786cd8ef6af9182f79740011542582971ad14d85d38c96d9",
+    "experiments/masked_mean_v1/task.py": "154d22f1007df812fc4151bd4cfdae7c5922c4277bad735f202b9c11b3bdfbaa"
+  },
+  "max_relaunches": 2,
+  "max_swap_growth_MiB": 128,
+  "max_tokens": 512,
+  "minimum_available_GiB": 8,
+  "models": {
+    "gemma": {
+      "path": "<home>/.cache/huggingface/hub/models--mlx-community--gemma-4-E2B-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809",
+      "revision": "238767527555cb75a05732a84dff5d6ba0dd6809"
+    },
+    "qwen": {
+      "path": "<home>/.cache/huggingface/hub/models--mlx-community--Qwen3-4B-Instruct-2507-4bit/snapshots/50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b"
+    }
+  },
+  "no_automatic_retries": true,
+  "optional_qwen_diagnostic": {
+    "eligibility": "Qwen hits output cap while attempting an edit",
+    "max_tokens": 1024,
+    "separate_condition": true
+  },
+  "purpose": "protocol-corrected local-agent feasibility, not learning experiment",
+  "research_head": "ed262d0b7ea37fd4f1643ea6b80bb076e5717d71",
+  "seed": 0,
+  "source": "executed",
+  "task": "masked_mean_v1",
+  "temperature": 0.2,
+  "turns": 16
+}

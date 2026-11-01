@@ -1,0 +1,19 @@
+{
+  "context": 8192,
+  "fixture_sha256": "f9011bb0594a323bc85e7798e6b4cfc4b48b16ffdb1f40f751252b74e9050468",
+  "max_swap_growth_mib": 128,
+  "max_tokens": 1024,
+  "min_available_gib": 8,
+  "model": "Qwen3-4B-Instruct-2507-4bit",
+  "model_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+  "purpose": "source-only capability floor, two independent questions, not reward groups",
+  "seed": 0,
+  "source": "executed",
+  "temperature": 0,
+  "thinking": false,
+  "versions": {
+    "mlx": "0.31.2",
+    "mlx-lm": "0.31.3",
+    "transformers": "5.20.1"
+  }
+}

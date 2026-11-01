@@ -1,0 +1,22 @@
+{
+  "active_inference_limit_s": 900,
+  "condition": "qwen_output1024",
+  "context_limit": 8192,
+  "context_reservation_note": "1024 output tokens reserved instead of512; prompt room correspondingly reduced",
+  "controller_sha256": "88cd19774286a8a96692ddfd5e57b01361e3dc47e85ab1d6ae17aa68e11db3b9",
+  "eligibility_receipt": "qwen_diagnostic_eligibility.json",
+  "generation_config": {
+    "max_tokens": 1024,
+    "seed": 0,
+    "temperature": 0.2
+  },
+  "max_relaunches": 2,
+  "model": {
+    "path": "<home>/.cache/huggingface/hub/models--mlx-community--Qwen3-4B-Instruct-2507-4bit/snapshots/50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b"
+  },
+  "separate_budget_diagnostic": true,
+  "source": "executed",
+  "task_sha256": "154d22f1007df812fc4151bd4cfdae7c5922c4277bad735f202b9c11b3bdfbaa",
+  "turn_limit": 16
+}

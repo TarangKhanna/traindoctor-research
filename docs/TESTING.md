@@ -50,3 +50,13 @@ made here.
 The controller wiring test closes an orchestration gap. It must never be reported
 as a successful model episode. Preserve the published negative trajectories and
 version any future live-model experiment separately.
+
+## 2026-11-02 saved-trial update
+
+The later corrected-controller receipts now demonstrate model-applied editing,
+requested relaunch and failure-feedback actions for Qwen. Their executed edits
+fail Python; successful semantic repair and useful policy reward variation remain
+unproven. Gemma applies an edit without relaunch. This supersedes the earlier
+absence-of-live-loop statements above, without changing historical episodes. See
+[the independently recounted action table](CODING_AGENT_RECOUNT.md). No new model
+or distributed execution was performed during this audit.
